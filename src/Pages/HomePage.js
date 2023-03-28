@@ -23,6 +23,7 @@ import choose2img from "../ownassets/choosestar.png";
 import choose3img from "../ownassets/chooseedit.png";
 import QuestionCard from "../Components/QuestionCard";
 import { useNavigate } from "react-router-dom";
+import "./HomePage.css";
 import {
 	AiOutlineLeft,
 	AiOutlineRight,
@@ -170,16 +171,8 @@ const HomePage = () => {
 	];
 	return (
 		<>
-			<div
-				className='d-flex align-items-center justify-content-center flex-column'
-				style={{
-					background: "#F0F0F0",
-					minHeight: "60vh",
-					height: "fit-content",
-					position: "relative",
-					marginBottom: "20px",
-					overflow: "visible",
-				}}>
+			{/*First Container */}
+			<div className='allCenter flex-column firstCont'>
 				<div className='col-10 mx-auto h-100'>
 					<div className='row h-100'>
 						<div className='col-12 gb-2 col-md-6 d-flex align-items-start justify-content-center flex-column'>
@@ -205,7 +198,7 @@ const HomePage = () => {
 								Shop cards
 							</button>
 						</div>
-						<div className='col-12 col-md-6 d-flex align-items-center justify-content-center'>
+						<div className='col-12 col-md-6 allCenter'>
 							<img
 								style={{
 									objectFit: "contain",
@@ -239,7 +232,7 @@ const HomePage = () => {
 						justifyContent: "center",
 					}}>
 					<div className='row gx-0 w-100 mx-auto'>
-						<div className='col-6 col-md-3 d-flex align-items-center justify-content-center'>
+						<div className='col-6 col-md-3 allCenter'>
 							<span>
 								<BsStarFill
 									style={{ fontSize: "18px", marginRight: "10px" }}
@@ -248,7 +241,7 @@ const HomePage = () => {
 								Trust Pilot
 							</span>
 						</div>
-						<div className='col-6 col-md-4 d-flex align-items-center justify-content-center'>
+						<div className='col-6 col-md-4 allCenter'>
 							<span style={{ margin: "0px 10px" }}>
 								{Array(4)
 									.fill()
@@ -265,24 +258,19 @@ const HomePage = () => {
 								/>
 							</span>
 						</div>
-						<div className='col-12 col-md-5 d-flex align-items-center justify-content-center'>
+						<div className='col-12 col-md-5 allCenter'>
 							<span>Trust score : 4.5 | 500+ Reviews</span>
 						</div>
 					</div>
 				</div>
 			</div>
+			{/*Second Container */}
 
 			<br />
-			<div
-				style={{
-					background: "#FFFFFF",
-					minHeight: "80vh",
-					height: "fit-content",
-					marginTop: "20px",
-				}}>
-				<div className='col-10 mx-auto h-100 d-flex align-items-center justify-content-center flex-column'>
+			<div className='secondContainer'>
+				<div className='col-10 mx-auto h-100 allCenter flex-column'>
 					<div className='row h-88'>
-						<div className='col-12 mb-4 col-lg-6 d-flex align-items-center justify-content-center flex-column'>
+						<div className='col-12 mb-4 col-lg-6 allCenter flex-column'>
 							<div
 								style={{
 									background: "rgba(33,50,94,0.22)",
@@ -291,7 +279,7 @@ const HomePage = () => {
 									maxWidth: "500px",
 									borderRadius: "33px",
 								}}
-								className='d-flex align-items-center justify-content-center flex-column'>
+								className='allCenter flex-column'>
 								<h3 style={{ fontWeight: "bold" }} className='mainColor'>
 									Shop Best Sellers
 								</h3>
@@ -325,12 +313,10 @@ const HomePage = () => {
 								/>
 							</div>
 						</div>
-						<div className='col-12 mb-4 col-lg-6 d-flex align-items-center justify-content-center flex-row'>
+						<div className='col-12 mb-4 col-lg-6 allCenter flex-row'>
 							<div className='row'>
 								{rawdata.map((dat) => (
-									<div
-										key={dat.id}
-										className='col-12 col-sm-6 d-flex align-items-center justify-content-center'>
+									<div key={dat.id} className='col-12 col-sm-6 allCenter'>
 										<FootballCards
 											isbestSeller={true}
 											sorce={dat.imgSrc}
@@ -355,17 +341,10 @@ const HomePage = () => {
 					/>
 				</div>
 			</div>
-			<div
-				className='d-flex align-items-center justify-content-center flex-column'
-				style={{
-					background: "rgba(206,210,220,0.5)",
-					minHeight: "60vh",
-					height: "fit-content",
-					position: "relative",
-					overflow: "visible",
-					padding: "30px 0px",
-				}}>
-				<div className='d-flex align-items-center justify-content-center flex-column'>
+			{/*third Container */}
+
+			<div className='allCenter flex-column thirdContainer'>
+				<div className='allCenter flex-column'>
 					<h3 style={{ fontWeight: "bold" }} className='mainColor'>
 						Our Service
 					</h3>
@@ -389,15 +368,9 @@ const HomePage = () => {
 					src={ourservices1}
 				/>
 			</div>
-			<div
-				className='d-flex align-items-center justify-content-center flex-column'
-				style={{
-					background: "rgba(242,225,162,0.54)",
-					minHeight: "40vh",
-					padding: "40px 0px",
-					height: "fit-content",
-					overflow: "visible",
-				}}>
+			{/*fourth Container */}
+
+			<div className='allCenter fourthContainer flex-column'>
 				<div className='col-10 mx-auto h-100'>
 					<div className='row h-100'>
 						<div className='col-12 gb-2 col-md-6 col-lg-4 d-flex align-items-start justify-content-center flex-column'>
@@ -420,7 +393,7 @@ const HomePage = () => {
 								are also available now
 							</p>
 						</div>
-						<div className='col-12 col-md-6 col-lg-8 d-flex align-items-center justify-content-center flex-column'>
+						<div className='col-12 col-md-6 col-lg-8 allCenter flex-column'>
 							<img
 								style={{
 									objectFit: "contain",
@@ -433,14 +406,9 @@ const HomePage = () => {
 					</div>
 				</div>
 			</div>
-			<div
-				className='d-flex align-items-center justify-content-center flex-column'
-				style={{
-					background: "rgba(242,225,162,0.54)",
-					minHeight: "60vh",
-					height: "fit-content",
-					overflow: "visible",
-				}}>
+			{/*fifth Container */}
+
+			<div className='allCenter fifthContainer flex-column'>
 				<div className='col-10 mx-auto h-100'>
 					<div className='row' style={{ marginBottom: "20px" }}>
 						<div className='col-8 col-md-6'>
@@ -463,7 +431,7 @@ const HomePage = () => {
 						{rawdata2.map((dat) => (
 							<div
 								key={dat.id}
-								className='col-12 col-sm-6 col-md-4 col-lg-2 d-flex align-items-center justify-content-center'>
+								className='col-12 col-sm-6 col-md-4 col-lg-2 allCenter'>
 								<FootballCards
 									sorce={dat.imgSrc}
 									title={dat.title}
@@ -475,16 +443,9 @@ const HomePage = () => {
 					</div>
 				</div>
 			</div>
-			<div
-				className='d-flex align-items-center justify-content-center flex-column'
-				style={{
-					background: "rgba(206,210,220,0.5)",
-					minHeight: "60vh",
-					height: "fit-content",
-					position: "relative",
-					overflow: "visible",
-					padding: "30px 0px",
-				}}>
+			{/*Sixth Container */}
+
+			<div className='allCenter sixthContainer flex-column'>
 				<div className='col-10 mx-auto h-100'>
 					<div className='row h-100'>
 						<div className='col-12 col-md-8 mb-4 '>
@@ -502,7 +463,7 @@ const HomePage = () => {
 								</Slider>
 							</div>
 						</div>
-						<div className='col-12 col-md-4 mb-4 d-flex align-items-center justify-content-center flex-column'>
+						<div className='col-12 col-md-4 mb-4 allCenter flex-column'>
 							<span
 								className='secondaryColor'
 								style={{
@@ -540,15 +501,9 @@ const HomePage = () => {
 					</div>
 				</div>
 			</div>
-			<div
-				className='d-flex align-items-center justify-content-center flex-column'
-				style={{
-					background: "white",
-					minHeight: "60vh",
-					height: "fit-content",
-					overflow: "visible",
-					padding: "30px 0px",
-				}}>
+			{/*Seventh Container */}
+
+			<div className='allCenter seventhContainer flex-column'>
 				<div className='col-10 mx-auto h-100 d-flex align-items-center justify-content-evenly flex-column'>
 					<h3
 						style={{
@@ -563,7 +518,7 @@ const HomePage = () => {
 						{choosedata.map((dat, index) => (
 							<div
 								key={index}
-								className='col-12 col-md-6 col-lg-4 d-flex align-items-center justify-content-center'
+								className='col-12 col-md-6 col-lg-4 allCenter'
 								style={{ marginBottom: "20px" }}>
 								<ChooseUsCard
 									imglink={dat.imglink}
@@ -573,20 +528,14 @@ const HomePage = () => {
 							</div>
 						))}
 					</div>
-					<div className='row mt-4 mb-4 d-flex align-items-center justify-content-center'>
+					<div className='row mt-4 mb-4 allCenter'>
 						<button className='btn mainColor secondarybg'>Shop cards</button>
 					</div>
 				</div>
 			</div>
-			<div
-				className='d-flex align-items-center justify-content-center flex-column'
-				style={{
-					background: "white",
-					minHeight: "60vh",
-					height: "fit-content",
-					overflow: "visible",
-					padding: "30px 0px",
-				}}>
+			{/*Eight Container */}
+
+			<div className='allCenter seventhContainer flex-column'>
 				<div className='col-10 mx-auto h-100 d-flex align-items-center justify-content-evenly flex-column'>
 					<h3
 						style={{
@@ -606,22 +555,16 @@ const HomePage = () => {
 							/>
 						))}
 					</div>
-					<div className='row mt-4 mb-4 d-flex align-items-center justify-content-center'>
+					<div className='row mt-4 mb-4 allCenter'>
 						<button className='btn mainColor secondarybg'>
 							Want more help?
 						</button>
 					</div>
 				</div>
 			</div>
-			<div
-				className='d-flex align-items-center justify-content-center flex-column'
-				style={{
-					background: "white",
-					minHeight: "60vh",
-					height: "fit-content",
-					overflow: "visible",
-					padding: "30px 0px",
-				}}>
+			{/*Ninth Container */}
+
+			<div className='allCenter seventhContainer flex-column'>
 				<div
 					style={{
 						background: "rgba(242,225,162,0.54)",
@@ -655,7 +598,7 @@ const HomePage = () => {
 								dhvwvdhwv
 							</span>
 						</div>
-						<div className='col-12  col-md-5 d-flex align-items-center justify-content-center'>
+						<div className='col-12  col-md-5 allCenter'>
 							<img
 								src={startedimage}
 								style={{ objectFit: "contain" }}
@@ -665,16 +608,9 @@ const HomePage = () => {
 					</div>
 				</div>
 			</div>
-			<div
-				className=' d-flex align-items-center justify-content-center flex-column'
-				style={{
-					background: "rgba(248,154,68,0.18)",
-					minHeight: "60vh",
-					height: "fit-content",
-					overflow: "visible",
-					padding: "30px 0px",
-					marginBottom: "30px",
-				}}>
+			{/*tenth Container */}
+
+			<div className=' allCenter tenthContainer flex-column'>
 				<div className='col-10 mx-auto'>
 					<div style={{ marginBottom: "30px" }} className='row overflow-hidden'>
 						{/* <div style={{ marginBottom: "30px" }} className='w-100'> */}
@@ -707,7 +643,7 @@ const HomePage = () => {
 						{videodataraw.map((dat, index) => (
 							<div
 								key={index}
-								className='col-12 col-sm-6 col-md-4 mb-4 col-lg-3 d-flex align-items-center justify-content-center'>
+								className='col-12 col-sm-6 col-md-4 mb-4 col-lg-3 allCenter'>
 								<iframe
 									title={`${index}`}
 									src={`${dat.videolink}`}
@@ -721,7 +657,7 @@ const HomePage = () => {
 					</div>
 				</div>
 
-				<div className='row d-flex align-items-center justify-content-center'>
+				<div className='row allCenter'>
 					<button
 						style={{ width: "100%", maxWidth: "120px" }}
 						className='btn secondaryColor mainbg'>

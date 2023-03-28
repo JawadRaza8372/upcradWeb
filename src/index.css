@@ -30,6 +30,11 @@ body {
 .secondaryColor {
 	color: #f1d00a !important;
 }
+.allCenter {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
 .mainbg {
 	background-color: #21325e !important;
 }

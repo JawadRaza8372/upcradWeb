@@ -7,10 +7,12 @@ import ChooseFlagComp from "../Components/ChooseFlagComp";
 import ChooseAttributComp from "../Components/ChooseAttributComp";
 import ExtraServiceComp from "../Components/ExtraServiceComp";
 import { AiOutlineRight } from "react-icons/ai";
-import { BsStarFill, BsStar } from "react-icons/bs";
+import { BsStarFill, BsStar, BsStarHalf } from "react-icons/bs";
 
 export const CardCustomization = () => {
-	let ratting = 3;
+	let rattingdata = 4.5;
+	let ratting = Math.floor(rattingdata);
+	let decimalpoint = rattingdata - ratting;
 	const { id } = useParams();
 	const navigate = useNavigate();
 	const [compSeq, setcompSeq] = useState(0);
@@ -66,8 +68,17 @@ export const CardCustomization = () => {
 											className='secondaryColor'
 										/>
 									))}
+							{Array(decimalpoint ? 1 : 0)
+								.fill("a")
+								.map((dat, index) => (
+									<BsStarHalf
+										key={index}
+										style={{ fontSize: "22px" }}
+										className='secondaryColor'
+									/>
+								))}
 							{(ratting || ratting === 0) &&
-								Array(5 - ratting)
+								Array(5 - Math.ceil(rattingdata))
 									.fill("a")
 									.map((dat, index) => (
 										<BsStar
@@ -80,7 +91,7 @@ export const CardCustomization = () => {
 						<div
 							style={{ fontSize: "14px", fontWeight: "500" }}
 							className='col-4  d-flex align-items-center justify-content-center flex-row'>
-							4 out of 5
+							4.5 out of 5
 						</div>
 					</div>
 				</div>
