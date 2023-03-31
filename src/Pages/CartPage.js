@@ -1,4 +1,5 @@
 import React from "react";
+import { AiOutlineClose } from "react-icons/ai";
 import design1 from "../ownassets/design1.png";
 const CartPage = () => {
 	const rawdata = [
@@ -53,7 +54,7 @@ const CartPage = () => {
 									position: "relative",
 								}}>
 								<button
-									className='btn'
+									className='btn nillbtn'
 									style={{
 										position: "absolute",
 										top: "10px",
@@ -61,7 +62,7 @@ const CartPage = () => {
 										width: "30px",
 										height: "30px",
 									}}>
-									X
+									<AiOutlineClose />
 								</button>
 								<div
 									className='col-2 d-flex align-items-center justify-content-center'

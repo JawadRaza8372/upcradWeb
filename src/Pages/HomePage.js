@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import startedimage from "../ownassets/image 18.png";
 import FootballCards from "../Components/FootballCards";
 import firstimg from "../ownassets/firstsesion.png";
@@ -224,17 +224,6 @@ const HomePage = () => {
 			price: "12$",
 		},
 	];
-	const [windowWidth, setwindowWidth] = useState(0);
-	const filteredFootballData =
-		windowWidth >= 768 ? rawdata : rawdata.slice(0, 4);
-	const filteredFootballData2 =
-		windowWidth >= 768 ? rawdata2 : rawdata2.slice(0, 4);
-
-	useEffect(() => {
-		setTimeout(() => {
-			setwindowWidth(window.screen.width);
-		}, 300000);
-	}, []);
 
 	return (
 		<>
@@ -360,7 +349,7 @@ const HomePage = () => {
 						<div className='col-12 mb-4 col-lg-6 allCenter flex-row'>
 							<div className='row w-100 h-100 d-flex d-md-none'>
 								<Slider {...settings2}>
-									{filteredFootballData.map((dat) => (
+									{rawdata.map((dat) => (
 										<FootballCards
 											onClickFun={() =>
 												navigate(`/cardCustomization/${dat.id}`)
@@ -376,7 +365,7 @@ const HomePage = () => {
 								</Slider>
 							</div>
 							<div className='row d-none d-md-flex'>
-								{filteredFootballData.map((dat) => (
+								{rawdata.slice(0, 4).map((dat) => (
 									<div key={dat.id} className='col-12 col-sm-6 allCenter'>
 										<FootballCards
 											onClickFun={() =>
@@ -538,7 +527,7 @@ const HomePage = () => {
 					<div className='col-12 mb-4 allCenter flex-row'>
 						<div className='row w-100 h-100 d-flex d-md-none'>
 							<Slider {...settings2}>
-								{filteredFootballData2.map((dat) => (
+								{rawdata2.map((dat) => (
 									<FootballCards
 										onClickFun={() => navigate("/otherProducts")}
 										key={dat.id}
@@ -551,7 +540,7 @@ const HomePage = () => {
 							</Slider>
 						</div>
 						<div className='row d-none d-md-flex align-items-center justify-content-evenly'>
-							{filteredFootballData2.map((dat) => (
+							{rawdata2.slice(0, 4).map((dat) => (
 								<div
 									key={dat.id}
 									className='col-12 col-sm-6 col-md-4 col-lg-3 allCenter'>
