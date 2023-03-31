@@ -7,9 +7,6 @@ import { NavLink } from "react-router-dom";
 import logoimg from "../ownassets/logo.png";
 import { BiCartAlt } from "react-icons/bi";
 import { IoPersonOutline } from "react-icons/io5";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
 
 const CustomNavbar = () => {
