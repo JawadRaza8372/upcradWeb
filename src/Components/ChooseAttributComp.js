@@ -11,7 +11,7 @@ const ChooseAttributComp = () => {
 				Customize attributes and ratings or randomize them all.
 			</span>
 			<QuestionLinee label={"E"} title={"Choose attributes"}>
-				<div className='row' style={{ marginTop: "20px" }}>
+				<div className='row w-100 mx-auto' style={{ marginTop: "20px" }}>
 					<div className='col-12 col-md-6'>
 						<AttributesInput title={"RIT"} />
 						<AttributesInput title={"PAS"} />
@@ -25,7 +25,7 @@ const ChooseAttributComp = () => {
 				</div>
 			</QuestionLinee>
 			<QuestionLinee label={"F"} title={"Overall rating"}>
-				<div className='row gx-0' style={{ marginTop: "20px" }}>
+				<div className='row w-100 gx-0 mx-auto' style={{ marginTop: "20px" }}>
 					<div className='col-12 mt-1 col-md-3'>
 						<input
 							placeholder='00'

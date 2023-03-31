@@ -95,12 +95,15 @@ export const CardCustomization = () => {
 				<div className='row'>
 					<div className='order-1 col-6 col-md-2 d-flex align-items-center justify-content-center'>
 						<button
+							onClick={() => {
+								compSeq > 0 ? setcompSeq(compSeq - 1) : navigate(`/products`);
+							}}
 							className='btn w-90 mb-4'
 							style={{
 								background: "rgba(33,50,94,0.25)",
 								color: "rgba(33,50,94,1)",
 							}}>
-							Return to product
+							{compSeq > 0 ? "Previous" : "Home"}
 						</button>
 					</div>
 					<div className='order-3 order-md-2 col-12  mb-4 col-md-8 d-flex align-items-center justify-content-center'>
