@@ -14,54 +14,16 @@ const BasicInfoComp = () => {
 	const [activePosition, setactivePosition] = useState("");
 	return (
 		<div className='w-90 h-100 mx-auto d-flex align-items-start justify-content-center flex-column'>
-			<span
-				className='mainColor'
-				style={{ fontSize: "28px", fontWeight: "bold" }}>
-				Basic Information
-			</span>
-			<span
-				style={{
-					fontSize: "16px",
-					fontWeight: "500",
-					color: "rgba(0,0,0,0.5)",
-				}}>
+			<span className='mainColor CustHeadingRespComp'>Basic Information</span>
+			<span className='CustSubHeadingRespComp'>
 				Enter name, upload image and choose a position
 			</span>
 			<QuestionLinee label={"A"} title={"Name and image upload"}>
-				<span
-					style={{
-						fontSize: "16px",
-						fontWeight: "500",
-						color: "#21325E",
-						marginTop: "30px",
-					}}>
-					Name
-				</span>
-				<input
-					style={{
-						height: "40px",
-						width: "100%",
-						border: "1px solid #21325E",
-						background: "white",
-						borderRadius: "5px",
-						marginTop: "10px",
-						marginBottom: "20px",
-						padding: "0px 15px",
-					}}
-					placeholder='name'
-				/>
+				<span className='inputLabelResp'>Name</span>
+				<input className='inputCustmResp' placeholder='name' />
 				<label className='w-100' htmlFor='file'>
 					<input type='file' id='file' hidden />
-					<div
-						className='d-flex align-items-center justify-content-center'
-						style={{
-							background: "white",
-							border: "1px solid #21325E",
-							borderRadius: "5px",
-							height: "70px",
-							width: "100%",
-							marginBottom: "30px",
-						}}>
+					<div className='d-flex align-items-center justify-content-center imgInptCustmResp'>
 						<span>Click to Upload</span>
 						<BiImageAdd
 							style={{ fontSize: "26px", marginLeft: "10px" }}
@@ -69,7 +31,7 @@ const BasicInfoComp = () => {
 						/>
 					</div>
 				</label>
-				<span style={{ fontSize: "14px", fontWeight: "400", color: "red" }}>
+				<span className='bellTextResp'>
 					<BsBell
 						style={{ fontSize: "20px", marginRight: "10px" }}
 						className='mainColor'
@@ -87,54 +49,10 @@ const BasicInfoComp = () => {
 						borderBottom: "2px solid rgba(0,0,0,0.5)",
 						margin: "30px 0px",
 					}}>
-					<div
-						style={{
-							color: "rgba(0,0,0,0.5)",
-							fontSize: "14px",
-							fontWeight: "600",
-							textAlign: "center",
-							cursor: "pointer",
-							paddingBottom: "10px",
-						}}
-						className='col-3'>
-						Defense
-					</div>
-					<div
-						style={{
-							color: "rgba(0,0,0,0.5)",
-							fontSize: "14px",
-							fontWeight: "600",
-							textAlign: "center",
-							cursor: "pointer",
-							paddingBottom: "10px",
-						}}
-						className='col-3 text-center'>
-						Midfield
-					</div>
-					<div
-						style={{
-							color: "rgba(0,0,0,0.5)",
-							fontSize: "14px",
-							fontWeight: "600",
-							textAlign: "center",
-							cursor: "pointer",
-							paddingBottom: "10px",
-						}}
-						className='col-3 text-center'>
-						Attack
-					</div>
-					<div
-						style={{
-							color: "rgba(0,0,0,0.5)",
-							fontSize: "14px",
-							fontWeight: "600",
-							textAlign: "center",
-							cursor: "pointer",
-							paddingBottom: "10px",
-						}}
-						className='col-3 text-center'>
-						Custom
-					</div>
+					<div className='col-3 customOptionSelector'>Defense</div>
+					<div className='col-3 customOptionSelector'>Midfield</div>
+					<div className='col-3 customOptionSelector'>Attack</div>
+					<div className='col-3 customOptionSelector'>Custom</div>
 				</div>
 				<div
 					className='row w-100 gx-0'
@@ -144,11 +62,9 @@ const BasicInfoComp = () => {
 					{rawdata.map((dat, index) => (
 						<div
 							onClick={() => setactivePosition(dat.title)}
+							key={index}
+							className='customOptionSmal'
 							style={{
-								cursor: "pointer",
-								width: "fit-content",
-								marginLeft: "10px",
-								marginBottom: "10px",
 								border:
 									dat.title === activePosition
 										? "1px solid rgba(0,0,0,1)"
@@ -157,20 +73,10 @@ const BasicInfoComp = () => {
 									dat.title === activePosition
 										? "rgba(0,0,0,1)"
 										: "rgba(0,0,0,0.5)",
-								padding: "5px 10px",
-								borderRadius: "20px",
-								display: "flex",
-								alignItems: "center",
-								justifyContent: "center",
-								flexDirection: "row",
 							}}>
 							<div
+								className='customOptionCircle'
 								style={{
-									width: "20px",
-									height: "20px",
-									border: "1px solid rgba(0,0,0,0.5)",
-									borderRadius: "20px",
-									marginRight: "10px",
 									background:
 										dat.title === activePosition ? "#21325E" : "white",
 								}}

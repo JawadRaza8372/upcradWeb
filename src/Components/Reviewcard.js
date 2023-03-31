@@ -27,9 +27,9 @@ export const Reviewcard = ({ name, imaglink, message, ratting }) => {
 				<IoIosQuote
 					style={{
 						position: "absolute",
-						top: "20px",
-						right: "30px",
-						fontSize: "50px",
+						top: "15px",
+						right: "20px",
+						fontSize: "40px",
 						color: "rgba(0,0,0,0.5)",
 					}}
 				/>
@@ -62,8 +62,8 @@ export const Reviewcard = ({ name, imaglink, message, ratting }) => {
 								/>
 							))}
 				</div>
-				<p style={{ fontSize: "12px", fontWeight: "600", width: "95%" }}>
-					{message}
+				<p style={{ fontSize: "10px", fontWeight: "600", width: "95%" }}>
+					{message.length > 100 ? message.substring(0, 107) + " ..." : message}
 				</p>
 			</div>
 		</div>

@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import questionpic from "../ownassets/questions.png";
+import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 const QuestionCard = ({ question, answer }) => {
+	const [showAnswer, setshowAnswer] = useState(false);
 	return (
 		<div
-			className='row gx-0 d-flex align-item-center justify-content-evenly'
+			className='row gx-0 d-flex align-item-center justify-content-between'
 			style={{
 				background: "rgba(206,210,220,0.5)",
 				marginBottom: "20px",
@@ -20,15 +22,19 @@ const QuestionCard = ({ question, answer }) => {
 				/>
 			</div>
 
-			<div className='col-10 col-md-11'>
-				<span
-					style={{ fontWeight: "bold", fontSize: "20px", lineHeight: "50px" }}>
-					{question}
-				</span>
-				{answer && (
+			<div style={{ width: "calc(100% - 70px )" }}>
+				<div className='allCenter justify-content-between flex-row'>
+					<span className='responsiveQuestion'>{question}</span>
+					{answer && (
+						<button onClick={() => setshowAnswer(!showAnswer)} className='btn'>
+							{showAnswer ? <AiOutlineUp /> : <AiOutlineDown />}
+						</button>
+					)}
+				</div>
+
+				{showAnswer && answer && (
 					<>
-						<br />
-						<span style={{ color: "rgba(0, 0, 0, 0.5)", fontSize: "18px" }}>
+						<span style={{ color: "rgba(0, 0, 0, 0.5)", fontSize: "15px" }}>
 							{answer}
 						</span>
 					</>

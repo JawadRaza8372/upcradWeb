@@ -64,7 +64,14 @@ const SuccessPage = () => {
 					4 out of 5
 				</div>
 			</div>
-			<span style={{ color: "#01A912", fontSize: "28px", fontWeight: "bold" }}>
+			<span
+				style={{
+					color: "#01A912",
+					fontSize: "28px",
+					fontWeight: "bold",
+					textAlign: "center",
+					width: "90%",
+				}}>
 				Congratulations! your order has been placed
 			</span>
 		</div>

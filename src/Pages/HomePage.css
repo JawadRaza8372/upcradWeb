@@ -1,16 +1,23 @@
+.firstContWrapper {
+	background: transparent;
+	min-height: 60vh;
+	height: max-content;
+	padding-bottom: 10px;
+	position: relative;
+}
 .firstCont {
 	background: #f0f0f0;
 	min-height: 60vh;
 	height: fit-content;
-	position: relative;
-	margin-bottom: 20px;
-	overflow: visible;
+	overflow-y: visible;
+	overflow-x: hidden;
 }
 .secondContainer {
 	background: #ffffff;
 	min-height: 80vh;
 	height: fit-content;
-	margin-top: 20px;
+	margin-top: 30px;
+	overflow-x: hidden;
 }
 .thirdContainer {
 	background: rgba(206, 210, 220, 0.5);
@@ -19,6 +26,7 @@
 	position: relative;
 	overflow: visible;
 	padding: 30px 0px;
+	overflow-x: hidden;
 }
 .fourthContainer {
 	background: rgba(242, 225, 162, 0.54);
@@ -26,12 +34,14 @@
 	padding: 40px 0px;
 	height: fit-content;
 	overflow: visible;
+	overflow-x: hidden;
 }
 .fifthContainer {
 	background: rgba(242, 225, 162, 0.54);
 	min-height: 60vh;
 	height: fit-content;
 	overflow: visible;
+	overflow-x: hidden;
 }
 .sixthContainer {
 	background: rgba(206, 210, 220, 0.5);
@@ -40,6 +50,7 @@
 	position: relative;
 	overflow: visible;
 	padding: 30px 0px;
+	overflow-x: hidden;
 }
 .seventhContainer {
 	background: white;
@@ -47,6 +58,7 @@
 	height: fit-content;
 	overflow: visible;
 	padding: 30px 0px;
+	overflow-x: hidden;
 }
 .tenthContainer {
 	background: rgba(248, 154, 68, 0.18);
@@ -55,4 +67,75 @@
 	overflow: visible;
 	padding: 30px 0px;
 	margin-bottom: 30px;
+	overflow-x: hidden;
+}
+.bottomLineDiv {
+	width: 95%;
+	max-width: 750px;
+	position: absolute;
+	bottom: -20px;
+	left: 0px;
+	right: 0px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px 0px;
+	min-height: 50px;
+	height: fit-content;
+	border-radius: 5px;
+	color: white;
+}
+
+.secondContainerCard {
+	background: rgba(33, 50, 94, 0.22);
+	height: 520px;
+	width: 100%;
+	max-width: 500px;
+	border-radius: 33px;
+}
+.firstSectionHeading {
+	font-size: 50px;
+	font-weight: bold;
+}
+.scrolledImageContainer {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: fit-content;
+}
+@media screen and (max-width: 768px) {
+	.firstSectionHeading {
+		font-size: 30px;
+	}
+	.resptextp {
+		font-size: 0.67rem;
+	}
+	.secondContainerCard {
+		border-radius: 0px !important;
+		max-width: none !important;
+	}
+}
+@media screen and (max-width: 767px) {
+	.scrolledImageContainer {
+		overflow-x: scroll;
+	}
+	.scrolledImageContainer img {
+		height: 250px;
+		width: 200% !important;
+		object-fit: fill !important;
+		margin-left: 250px;
+		margin-right: 40px;
+	}
+}
+@media screen and (max-width: 400px) {
+	.scrolledImageContainer {
+		overflow-x: scroll;
+	}
+	.scrolledImageContainer img {
+		height: 250px;
+		width: 200% !important;
+		object-fit: fill !important;
+		margin-left: 450px;
+		margin-right: 40px;
+	}
 }

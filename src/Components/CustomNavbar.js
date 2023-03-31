@@ -7,86 +7,125 @@ import { NavLink } from "react-router-dom";
 import logoimg from "../ownassets/logo.png";
 import { BiCartAlt } from "react-icons/bi";
 import { IoPersonOutline } from "react-icons/io5";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import Offcanvas from "react-bootstrap/Offcanvas";
+
 const CustomNavbar = () => {
 	return (
-		<div className='col-12'>
-			<Navbar collapseOnSelect expand='lg' bg='light'>
+		<>
+			<Navbar sticky='top' bg='light' expand={"lg"} className='my-1 w-100'>
 				<Container>
-					<NavLink
-						className='navbar-brand d-flex align-items-center h-100'
-						to='/'>
-						<img
-							style={{ objectFit: "contain", height: "50px" }}
-							src={logoimg}
-							alt='logo'
-						/>
-					</NavLink>
-					<Navbar.Toggle
-						aria-controls='responsive-navbar-nav'
-						style={{ outline: "0px", boxShadow: "none !important" }}
-					/>
-					<Navbar.Collapse id='responsive-navbar-nav'>
-						<Nav
-							className='col-12 col-md-7 col-lg-7 col-xl-7'
-							style={{ marginLeft: "auto" }}>
-							<NavLink
-								className={(isActive) =>
-									"nav-link mx-auto my-auto" + (!isActive ? "" : " active")
-								}
-								to='/cards'>
-								Cards
-							</NavLink>
+					<div style={{ width: "fit-content" }} className='allCenter flex-row'>
+						<Navbar.Toggle aria-controls={`offcanvasNavbar-expand-lg`} />
+						<NavLink
+							style={{ marginRight: "0px" }}
+							className='navbar-brand d-flex align-items-center h-100'
+							to='/'>
+							<img
+								style={{ objectFit: "contain", height: "50px" }}
+								src={logoimg}
+								alt='logo'
+							/>
+						</NavLink>
+					</div>
+					<div className='d-flex d-lg-none'>
+						<NavLink
+							className={(isActive) =>
+								"nav-link my-auto" + (!isActive ? "" : " active")
+							}
+							style={{ marginRight: "20px" }}
+							to='/cart'>
+							<BiCartAlt
+								style={{ fontSize: "30px", color: "rgba(0,0,0,0.5)" }}
+							/>
+						</NavLink>
 
-							<NavLink
-								className={(isActive) =>
-									"nav-link mx-auto my-auto" + (!isActive ? "" : " active")
-								}
-								to='/'>
-								App
-							</NavLink>
-
-							<NavLink
-								className={(isActive) =>
-									"nav-link mx-auto my-auto" + (!isActive ? "" : " active")
-								}
-								to='/'>
-								Support
-							</NavLink>
-
-							<NavLink
-								className={(isActive) =>
-									"nav-link mx-auto my-auto" + (!isActive ? "" : " active")
-								}
-								to='/cart'>
-								<BiCartAlt
-									style={{ fontSize: "30px", color: "rgba(0,0,0,0.5)" }}
+						<NavLink
+							className={(isActive) =>
+								"nav-link my-auto" + (!isActive ? "" : " active")
+							}
+							to='/auth'>
+							<IoPersonOutline
+								style={{ fontSize: "30px", color: "rgba(0,0,0,0.5)" }}
+							/>
+						</NavLink>
+					</div>
+					<Navbar.Offcanvas
+						id={`offcanvasNavbar-expand-lg`}
+						aria-labelledby={`offcanvasNavbarLabel-expand-lg`}
+						placement='end'>
+						<Offcanvas.Header closeButton>
+							<Offcanvas.Title id={`offcanvasNavbarLabel-expand-lg`}>
+								<img
+									style={{ objectFit: "contain", height: "50px" }}
+									src={logoimg}
+									alt='logo'
 								/>
-							</NavLink>
+							</Offcanvas.Title>
+						</Offcanvas.Header>
+						<Offcanvas.Body>
+							<Nav className='justify-content-end flex-grow-1 pe-3'>
+								<NavLink
+									className={(isActive) =>
+										"nav-link mx-1 my-auto" + (!isActive ? "" : " active")
+									}
+									to='/products'>
+									Cards
+								</NavLink>
 
-							<NavLink
-								className={(isActive) =>
-									"nav-link mx-auto my-auto" + (!isActive ? "" : " active")
-								}
-								to='/'>
-								<IoPersonOutline
-									style={{ fontSize: "30px", color: "rgba(0,0,0,0.5)" }}
-								/>
-							</NavLink>
+								<NavLink
+									className={(isActive) =>
+										"nav-link mx-1 my-auto" + (!isActive ? "" : " active")
+									}
+									to='/cards'>
+									App
+								</NavLink>
 
-							<NavLink
-								className={(isActive) =>
-									"nav-link mx-auto my-auto" + (!isActive ? "" : " active")
-								}
-								to='/cards'>
-								<button className='btn mainColor secondarybg'>
-									Shop Cards
-								</button>
-							</NavLink>
-						</Nav>
-					</Navbar.Collapse>
+								<NavLink
+									className={(isActive) =>
+										"nav-link mx-1 my-auto" + (!isActive ? "" : " active")
+									}
+									to='/support'>
+									Support
+								</NavLink>
+
+								<NavLink
+									className={(isActive) =>
+										"nav-link mx-1 my-auto" + (!isActive ? "" : " active")
+									}
+									to='/cart'>
+									<BiCartAlt
+										style={{ fontSize: "30px", color: "rgba(0,0,0,0.5)" }}
+									/>
+								</NavLink>
+
+								<NavLink
+									className={(isActive) =>
+										"nav-link mx-1 my-auto" + (!isActive ? "" : " active")
+									}
+									to='/auth'>
+									<IoPersonOutline
+										style={{ fontSize: "30px", color: "rgba(0,0,0,0.5)" }}
+									/>
+								</NavLink>
+
+								<NavLink
+									className={(isActive) =>
+										"nav-link mx-1 my-auto" + (!isActive ? "" : " active")
+									}
+									to='/products'>
+									<button className='btn mainColor secondarybg'>
+										Shop Cards
+									</button>
+								</NavLink>
+							</Nav>
+						</Offcanvas.Body>
+					</Navbar.Offcanvas>
 				</Container>
 			</Navbar>
-		</div>
+		</>
 	);
 };
 

@@ -21,17 +21,10 @@ const ExtraServiceComp = () => {
 	];
 	return (
 		<div className='w-90 h-100 mx-auto d-flex align-items-start justify-content-center flex-column'>
-			<span
-				className='mainColor'
-				style={{ fontSize: "28px", fontWeight: "bold" }}>
+			<span className='mainColor CustHeadingRespComp'>
 				Extras to make your card perfect
 			</span>
-			<span
-				style={{
-					fontSize: "16px",
-					fontWeight: "500",
-					color: "rgba(0,0,0,0.5)",
-				}}>
+			<span className='CustSubHeadingRespComp'>
 				Add these to make your card perfect
 			</span>
 			<div

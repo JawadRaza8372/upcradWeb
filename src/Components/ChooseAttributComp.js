@@ -4,17 +4,10 @@ import QuestionLinee from "./QuestionLinee";
 const ChooseAttributComp = () => {
 	return (
 		<div className='w-90 h-100 mx-auto d-flex align-items-start justify-content-center flex-column'>
-			<span
-				className='mainColor'
-				style={{ fontSize: "28px", fontWeight: "bold" }}>
+			<span className='mainColor CustHeadingRespComp'>
 				Attributes customization
 			</span>
-			<span
-				style={{
-					fontSize: "16px",
-					fontWeight: "500",
-					color: "rgba(0,0,0,0.5)",
-				}}>
+			<span className='CustSubHeadingRespComp'>
 				Customize attributes and ratings or randomize them all.
 			</span>
 			<QuestionLinee label={"E"} title={"Choose attributes"}>
@@ -33,7 +26,7 @@ const ChooseAttributComp = () => {
 			</QuestionLinee>
 			<QuestionLinee label={"F"} title={"Overall rating"}>
 				<div className='row gx-0' style={{ marginTop: "20px" }}>
-					<div className='col-12 col-md-3'>
+					<div className='col-12 mt-1 col-md-3'>
 						<input
 							placeholder='00'
 							style={{
@@ -48,8 +41,8 @@ const ChooseAttributComp = () => {
 							}}
 						/>
 					</div>
-					<div className='col-12 col-md-9 d-flex align-items-center justify-content-evenly flex-row'>
-						<span>suggested rattings</span>
+					<div className='col-12 mt-1 col-md-9 d-flex align-items-center justify-content-evenly flex-row'>
+						<span className='respQuestionHeading'>suggested rattings</span>
 						<input
 							placeholder='00'
 							style={{
@@ -74,6 +67,7 @@ const ChooseAttributComp = () => {
 								outline: "none",
 								fontSize: "16px",
 								fontWeight: "600",
+								margin: "0px 6px",
 							}}
 						/>
 						<input

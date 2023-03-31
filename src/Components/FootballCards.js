@@ -1,8 +1,16 @@
 import React from "react";
 
-const FootballCards = ({ isbestSeller, sorce, title, price, oldprice }) => {
+const FootballCards = ({
+	isbestSeller,
+	sorce,
+	title,
+	price,
+	oldprice,
+	onClickFun,
+}) => {
 	return (
 		<div
+			onClick={onClickFun}
 			style={{
 				border: "1.8px solid #21325E",
 				background: "white",
@@ -18,6 +26,7 @@ const FootballCards = ({ isbestSeller, sorce, title, price, oldprice }) => {
 				alignItems: "center",
 				justifyContent: "space-evenly",
 				flexDirection: "column",
+				cursor: "pointer",
 			}}>
 			{isbestSeller && (
 				<div
@@ -44,9 +53,11 @@ const FootballCards = ({ isbestSeller, sorce, title, price, oldprice }) => {
 				{title}
 			</h5>
 			<p className='m-0'>
-				<span className='mainColor'>
-					<b>From {price}</b>
-				</span>{" "}
+				{price && (
+					<span className='mainColor'>
+						<b>From {price}</b>
+					</span>
+				)}{" "}
 				{oldprice && (
 					<span
 						style={{
