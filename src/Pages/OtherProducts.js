@@ -47,7 +47,9 @@ const OtherProducts = () => {
 	return (
 		<>
 			<div className='topHeadingDiv'>
-				<h1 className='responsiveHeading mainColor'>Other Products</h1>
+				<h1 className='responsiveHeading text-center mainColor'>
+					Other Products
+				</h1>
 			</div>
 			<div className='col-12 col-lg-10 mx-auto'>
 				<div className='row w-100'>

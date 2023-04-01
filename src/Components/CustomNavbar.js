@@ -66,7 +66,8 @@ const CustomNavbar = () => {
 							<Nav className='justify-content-end flex-grow-1 pe-3'>
 								<NavLink
 									className={(isActive) =>
-										"nav-link mx-1 my-auto" + (!isActive ? "" : " active")
+										"nav-link text-center mx-1 my-auto" +
+										(!isActive ? "" : " active")
 									}
 									to='/products'>
 									Cards
@@ -74,7 +75,8 @@ const CustomNavbar = () => {
 
 								<NavLink
 									className={(isActive) =>
-										"nav-link mx-1 my-auto" + (!isActive ? "" : " active")
+										"nav-link text-center mx-1 my-auto" +
+										(!isActive ? "" : " active")
 									}
 									to='/cards'>
 									App
@@ -82,7 +84,8 @@ const CustomNavbar = () => {
 
 								<NavLink
 									className={(isActive) =>
-										"nav-link mx-1 my-auto" + (!isActive ? "" : " active")
+										"nav-link text-center mx-1 my-auto" +
+										(!isActive ? "" : " active")
 									}
 									to='/support'>
 									Support
@@ -90,7 +93,8 @@ const CustomNavbar = () => {
 
 								<NavLink
 									className={(isActive) =>
-										"nav-link mx-1 my-auto" + (!isActive ? "" : " active")
+										"nav-link text-center mx-1 my-auto" +
+										(!isActive ? "" : " active")
 									}
 									to='/cart'>
 									<BiCartAlt
@@ -100,7 +104,8 @@ const CustomNavbar = () => {
 
 								<NavLink
 									className={(isActive) =>
-										"nav-link mx-1 my-auto" + (!isActive ? "" : " active")
+										"nav-link text-center mx-1 my-auto" +
+										(!isActive ? "" : " active")
 									}
 									to='/auth'>
 									<IoPersonOutline
@@ -110,7 +115,8 @@ const CustomNavbar = () => {
 
 								<NavLink
 									className={(isActive) =>
-										"nav-link mx-1 my-auto" + (!isActive ? "" : " active")
+										"nav-link text-center mx-1 my-auto" +
+										(!isActive ? "" : " active")
 									}
 									to='/products'>
 									<button className='btn mainColor secondarybg'>

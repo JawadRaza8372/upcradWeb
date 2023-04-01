@@ -1,6 +1,6 @@
 .wholeSection2 {
 	padding: 2rem 4rem;
-	min-height: 60vh;
+	min-height: 50vh;
 	height: max-content;
 	background: #21325e;
 	position: relative;
@@ -39,11 +39,22 @@
 	font-size: 18px;
 	font-weight: 700px !important;
 }
+.marginIssue {
+	margin: 20px 0px;
+}
 @media screen and (max-width: 768px) {
 	.widthissue {
 		width: 100% !important;
 	}
+	.marginIssue {
+		margin-top: 15px;
+		margin-bottom: 10px;
+		margin-left: 0px;
+		margin-right: 0px;
+	}
 	.footerlinks {
 		text-align: center;
+		font-size: 12px;
+		margin-bottom: 10px;
 	}
 }

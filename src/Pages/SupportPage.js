@@ -92,7 +92,9 @@ const SupportPage = () => {
 	return (
 		<>
 			<div className='topHeadingDiv'>
-				<h1 className='responsiveHeading mainColor'>HOW CAN WE HELP?</h1>
+				<h1 className='responsiveHeading text-center mainColor'>
+					HOW CAN WE HELP?
+				</h1>
 			</div>
 			<div className='col-12 col-lg-10 mx-auto'>
 				<div className='row w-100 mx-auto'>

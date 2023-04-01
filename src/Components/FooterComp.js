@@ -26,8 +26,8 @@ const FooterComp = () => {
 		<>
 			<div className='wholeSection2 w-100'>
 				<div
-					style={{ margin: "20px 0px", width: "80%" }}
-					className='widthissue row d-flex align-items-start justify-content-start flex-row'>
+					style={{ width: "80%" }}
+					className='widthissue marginIssue row d-flex align-items-start justify-content-start flex-row'>
 					<div className='col-12 col-md-6 col-lg-4 h-100 d-flex align-items-center justify-content-evenly flex-column'>
 						{firstwala.map((dat, index) => (
 							<>
@@ -57,8 +57,8 @@ const FooterComp = () => {
 					</div>
 				</div>
 				<div
-					style={{ margin: "20px 0px", width: "80%" }}
-					className='widthissue row d-flex align-items-start justify-content-evenly flex-row'>
+					style={{ width: "80%" }}
+					className='marginIssue widthissue row d-flex align-items-start justify-content-evenly flex-row'>
 					<div className='col-12 col-md-6 col-lg-9 h-100 d-flex align-items-center justify-content-center flex-column'>
 						<span className='text-center footerlinks'>
 							All rights reserverd

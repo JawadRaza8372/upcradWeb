@@ -5,7 +5,7 @@ import { BsStarFill, BsStar } from "react-icons/bs";
 export const Reviewcard = ({ name, imaglink, message, ratting }) => {
 	return (
 		<div
-			className='row mx-auto'
+			className='row mx-auto gx-0'
 			style={{
 				height: "280px",
 				width: "90%",

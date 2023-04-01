@@ -15,7 +15,7 @@ const FootballCards = ({
 				border: "1.8px solid #21325E",
 				background: "white",
 				borderRadius: "28px",
-				width: "220px",
+				width: "90%",
 				height: "230px",
 				position: "relative",
 				marginLeft: "auto",

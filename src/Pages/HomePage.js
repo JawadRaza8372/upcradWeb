@@ -91,7 +91,7 @@ const HomePage = () => {
 
 		return (
 			<button className={className} onClick={() => onClick()}>
-				<AiOutlineLeft className='mainColor' style={{ fontSize: "30px" }} />
+				<AiOutlineLeft className='mainColor' style={{ fontSize: "20px" }} />
 			</button>
 		);
 	};
@@ -101,7 +101,7 @@ const HomePage = () => {
 
 		return (
 			<button className={className} onClick={() => onClick()}>
-				<AiOutlineRight className='mainColor' style={{ fontSize: "30px" }} />
+				<AiOutlineRight className='mainColor' style={{ fontSize: "20px" }} />
 			</button>
 		);
 	};
@@ -120,7 +120,8 @@ const HomePage = () => {
 		speed: 500,
 		slidesToShow: 2,
 		slidesToScroll: 2,
-		arrows: false,
+		nextArrow: <CustomRightArrow />,
+		prevArrow: <CustomLeftArrow />,
 		responsive: [
 			{
 				breakpoint: 500,
@@ -305,10 +306,10 @@ const HomePage = () => {
 
 			<br />
 			<div className='secondContainer'>
-				<div className='col-12 col-lg-10 mx-auto h-100 allCenter flex-column'>
+				<div className='col-11 col-lg-10 mx-auto h-100 allCenter flex-column'>
 					<div className='row w-100 h-88'>
 						<div
-							className='col-12 mb-4 col-lg-6 allCenter flex-column'
+							className='col-12 mb-4 col-lg-6 order-2 order-md-1 allCenter flex-column'
 							style={{ padding: "0px" }}>
 							<div className='allCenter flex-column secondContainerCard'>
 								<h3 style={{ fontWeight: "bold" }} className='mainColor'>
@@ -346,8 +347,8 @@ const HomePage = () => {
 								/>
 							</div>
 						</div>
-						<div className='col-12 mb-4 col-lg-6 allCenter flex-row'>
-							<div className='row w-100 h-100 d-flex d-md-none'>
+						<div className='col-12 mb-4 col-lg-6  order-1 order-md-2 allCenter flex-row'>
+							<div className='row w-100 h-100  d-flex d-md-none'>
 								<Slider {...settings2}>
 									{rawdata.map((dat) => (
 										<FootballCards
@@ -442,7 +443,7 @@ const HomePage = () => {
 			{/*fourth Container */}
 
 			<div className='allCenter fourthContainer flex-column'>
-				<div className='col-12 col-lg-10 mx-auto h-100'>
+				<div className='col-11 col-lg-10 mx-auto h-100'>
 					<div className='row w-100 mx-auto h-100'>
 						<div className='col-12 gb-2 col-md-5 col-lg-4 d-flex align-items-start justify-content-center flex-column'>
 							<h3 style={{ fontWeight: "bold" }} className='mainColor'>
@@ -505,8 +506,8 @@ const HomePage = () => {
 			{/*fifth Container */}
 
 			<div className='allCenter fifthContainer flex-column'>
-				<div className='col-12 col-lg-10 mx-auto h-100'>
-					<div className=' row mx-auto' style={{ marginBottom: "20px" }}>
+				<div className='col-11 col-lg-11 mx-auto h-100'>
+					{/* <div className=' row mx-auto' style={{ marginBottom: "20px" }}>
 						<div className='col-8 col-md-6 d-flex align-items-center justify-content-start'>
 							<h3 style={{ fontWeight: "bold" }} className='mainColor'>
 								Our Service
@@ -523,36 +524,38 @@ const HomePage = () => {
 								/>
 							</button>
 						</div>
-					</div>
-					<div className='col-12 mb-4 allCenter flex-row'>
-						<div className='row w-100 h-100 d-flex d-md-none'>
-							<Slider {...settings2}>
-								{rawdata2.map((dat) => (
-									<FootballCards
-										onClickFun={() => navigate("/otherProducts")}
+					</div> */}
+					<div className=' row w-100 mx-auto'>
+						<div className='col-12 mb-4 allCenter flex-row'>
+							<div className='row w-100 h-100 d-flex d-md-none'>
+								<Slider {...settings2}>
+									{rawdata2.map((dat) => (
+										<FootballCards
+											onClickFun={() => navigate("/otherProducts")}
+											key={dat.id}
+											sorce={dat.imgSrc}
+											title={dat.title}
+											price={dat.price}
+											oldprice={dat.oldprice}
+										/>
+									))}
+								</Slider>
+							</div>
+							<div className='row w-100 d-none d-md-flex align-items-center justify-content-evenly'>
+								{rawdata2.slice(0, 4).map((dat) => (
+									<div
 										key={dat.id}
-										sorce={dat.imgSrc}
-										title={dat.title}
-										price={dat.price}
-										oldprice={dat.oldprice}
-									/>
+										className='col-12 col-sm-6 col-md-4 col-lg-3 allCenter'>
+										<FootballCards
+											onClickFun={() => navigate("/otherProducts")}
+											sorce={dat.imgSrc}
+											title={dat.title}
+											price={dat.price}
+											oldprice={dat.oldprice}
+										/>
+									</div>
 								))}
-							</Slider>
-						</div>
-						<div className='row d-none d-md-flex align-items-center justify-content-evenly'>
-							{rawdata2.slice(0, 4).map((dat) => (
-								<div
-									key={dat.id}
-									className='col-12 col-sm-6 col-md-4 col-lg-3 allCenter'>
-									<FootballCards
-										onClickFun={() => navigate("/otherProducts")}
-										sorce={dat.imgSrc}
-										title={dat.title}
-										price={dat.price}
-										oldprice={dat.oldprice}
-									/>
-								</div>
-							))}
+							</div>
 						</div>
 					</div>
 				</div>
@@ -560,10 +563,10 @@ const HomePage = () => {
 			{/*Sixth Container */}
 
 			<div className='allCenter sixthContainer flex-column'>
-				<div className='col-12 col-lg-10 mx-auto h-100'>
-					<div className='row h-100'>
+				<div className='col-11 col-lg-10 mx-auto h-100'>
+					<div className='row gx-100 h-100'>
 						<div className='col-12 col-md-8 mb-4 '>
-							<div className='w-100 h-100 d-none d-md-block'>
+							<div className='w-90 mx-auto h-100'>
 								<Slider {...settings}>
 									{reviewraw.map((dat, index) => (
 										<Reviewcard
@@ -575,18 +578,6 @@ const HomePage = () => {
 										/>
 									))}
 								</Slider>
-							</div>
-							<div className='w-100 h-100 d-block d-md-none'>
-								{reviewraw.map((dat, index) => (
-									<div key={index} className='col-12 mb-2'>
-										<Reviewcard
-											imaglink={dat.imageurl}
-											name={dat.name}
-											message={dat.message}
-											ratting={dat.stars}
-										/>
-									</div>
-								))}
 							</div>
 						</div>
 						<div className='col-12 col-md-4 mb-4 allCenter flex-column'>
@@ -699,7 +690,7 @@ const HomePage = () => {
 			<div className='allCenter seventhContainer flex-column'>
 				<div
 					style={{
-						background: "rgba(242,225,162,0.54)",
+						background: "rgba(248, 154, 68, 0.18)",
 						minHeight: "300px",
 						height: "fit-content",
 						padding: "0px 20px",
@@ -743,7 +734,7 @@ const HomePage = () => {
 			{/*tenth Container */}
 
 			<div className=' allCenter tenthContainer flex-column'>
-				<div className='col-10 mx-auto'>
+				<div className='col-11 col-lg-10 mx-auto'>
 					<div style={{ marginBottom: "30px" }} className='row overflow-hidden'>
 						{/* <div style={{ marginBottom: "30px" }} className='w-100'> */}
 						<div className='col-12 col-md-5'>
@@ -771,7 +762,7 @@ const HomePage = () => {
 							</button>
 						</div>
 					</div>
-					<div className='row w-100 h-100 d-flex d-md-none'>
+					<div className='row w-100 mx-auto h-100 d-flex d-md-none'>
 						<Slider {...settings2}>
 							{videodataraw.map((dat, index) => (
 								<div key={index} className='col-12 mx-auto d-flex allCenter'>
