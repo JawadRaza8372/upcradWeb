@@ -1,23 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import QuestionLinee from "./QuestionLinee";
 import { BiImageAdd } from "react-icons/bi";
+import { useSelector } from "react-redux";
 
-const ChooseClubComp = () => {
-	const rawdata = [
-		{ title: "Football's Greatest" },
-		{ title: "World's Greatest" },
-		{ title: "Top best Football Club" },
-	];
-	const [activePosition, setactivePosition] = useState("");
+const ChooseClubComp = ({ selectedFlag, setselectedFlag }) => {
+	const { clubs } = useSelector((state) => state.project);
+
+	const [inputValue, setInputValue] = useState("");
+	const filteredData = () => {
+		if (inputValue?.length > 0) {
+			return clubs?.filter((dat) =>
+				dat?.name?.toLowerCase()?.includes(inputValue?.toLowerCase())
+			);
+		} else {
+			return clubs?.slice(0, 4);
+		}
+	};
 	return (
 		<div className='w-90 h-100 mx-auto d-flex align-items-start justify-content-center flex-column'>
 			<span className='mainColor CustHeadingRespComp'>Choose a club</span>
 			<span className='CustSubHeadingRespComp'>
 				Choose a club badge or upload a custom one.
 			</span>
-			<QuestionLinee label={"C"} title={"Search Club"}>
+			<QuestionLinee
+				label={"C"}
+				title={"Search Club"}
+				button={
+					<label className='w-100' htmlFor='file'>
+						<input type='file' id='file' hidden />
+						<div className='d-flex align-items-center justify-content-center smallBtnsSettings'>
+							<span>Add Custom badge</span>
+							<BiImageAdd className='mainColor' />
+						</div>
+					</label>
+				}>
 				<span className='inputLabelResp'>Search</span>
-				<input className='inputCustmResp' placeholder='search' />
+				<input
+					className='inputCustmResp'
+					value={inputValue}
+					onChange={(e) => setInputValue(e.target.value)}
+					placeholder='search'
+				/>
 				<div
 					className='row w-100 gx-0'
 					style={{
@@ -34,33 +57,34 @@ const ChooseClubComp = () => {
 					style={{
 						marginBottom: "30px",
 					}}>
-					{rawdata.map((dat, index) => (
+					{filteredData().map((dat) => (
 						<div
-							onClick={() => setactivePosition(dat.title)}
+							key={dat.id}
+							onClick={() => setselectedFlag(dat)}
 							className='customOptionSmal'
 							style={{
 								border:
-									dat.title === activePosition
+									dat.id === selectedFlag?.id
 										? "1px solid rgba(0,0,0,1)"
 										: "1px solid rgba(0,0,0,0.5)",
 								color:
-									dat.title === activePosition
-										? "rgba(0,0,0,1)"
-										: "rgba(0,0,0,0.5)",
+									dat.id === selectedFlag?.id ? "white" : "rgba(0,0,0,0.5)",
+								background:
+									dat.id === selectedFlag?.id
+										? "rgba(0,0,0,0.5)"
+										: "transparent",
 							}}>
 							<div
-								className='customOptionCircle'
-								style={{
-									background:
-										dat.title === activePosition ? "#21325E" : "white",
-								}}
-							/>
-							{dat.title}
+								className='customOptionCircle overflow-hidden'
+								style={{ border: "0px" }}>
+								<img src={dat.badge} alt='demoflag' />
+							</div>
+							{dat?.name}
 						</div>
 					))}
 				</div>
 			</QuestionLinee>
-
+			{/* 
 			<QuestionLinee>
 				<span className='inputLabelResp' style={{ marginBottom: "15px" }}>
 					Upload Custom Club Flag
@@ -76,7 +100,7 @@ const ChooseClubComp = () => {
 						/>
 					</div>
 				</label>
-			</QuestionLinee>
+			</QuestionLinee> */}
 		</div>
 	);
 };
