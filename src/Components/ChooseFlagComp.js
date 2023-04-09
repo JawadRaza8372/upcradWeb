@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import QuestionLinee from "./QuestionLinee";
-import demoflag from "../ownassets/demoflag.png";
 import { countries } from "../Database/Database";
 const ChooseFlagComp = ({ selectedFlag, onSelectedFlag }) => {
 	const [inputValue, setInputValue] = useState("");

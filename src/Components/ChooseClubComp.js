@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import QuestionLinee from "./QuestionLinee";
 import { BiImageAdd } from "react-icons/bi";
 import { useSelector } from "react-redux";

@@ -248,7 +248,7 @@ const BasicInfoComp = ({
 					{imglink?.length > 0 && loading === false ? (
 						<>
 							<div className='d-flex align-items-center justify-content-evenly imgInptCustmResp2'>
-								<img src={`${imglink}`} />
+								<img src={`${imglink}`} alt='avtar' />
 								<input
 									onChange={onChangeImagefun}
 									type='file'

@@ -1,14 +1,5 @@
 import { initializeApp } from "firebase/app";
-import {
-	getFirestore,
-	collection,
-	getDocs,
-	setDoc,
-	onSnapshot,
-	addDoc,
-	doc,
-	deleteDoc,
-} from "firebase/firestore";
+import { getFirestore, collection, getDocs, addDoc } from "firebase/firestore";
 import {
 	getStorage,
 	ref,
@@ -21,7 +12,6 @@ import {
 	getAuth,
 	createUserWithEmailAndPassword,
 	signInWithEmailAndPassword,
-	onAuthStateChanged,
 } from "firebase/auth";
 
 var FirebaseConfig = {
@@ -52,6 +42,17 @@ const uploadImage = async (file) => {
 const login = async (email, password) => {
 	let resp = null;
 	await signInWithEmailAndPassword(getauth, email, password)
+		.then((data) => {
+			resp = { uid: data.user.uid, error: null };
+		})
+		.catch((error) => {
+			resp = { error: error?.code, uid: null };
+		});
+	return resp;
+};
+const SignUp = async (email, password) => {
+	let resp = null;
+	await createUserWithEmailAndPassword(getauth, email, password)
 		.then((data) => {
 			resp = { uid: data.user.uid, error: null };
 		})
@@ -1235,6 +1236,7 @@ const countries = [
 export {
 	deltImage,
 	uploadImage,
+	SignUp,
 	getData,
 	logout,
 	login,

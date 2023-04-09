@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import design1 from "../ownassets/design1.png";
 import BasicInfoComp from "../Components/BasicInfoComp";
@@ -8,9 +8,7 @@ import ChooseAttributComp from "../Components/ChooseAttributComp";
 import ExtraServiceComp from "../Components/ExtraServiceComp";
 import { AiOutlineRight, AiOutlineClose } from "react-icons/ai";
 import { BsStarFill, BsStar, BsStarHalf, BsFullscreen } from "react-icons/bs";
-import { deltImage, uploadImage } from "../Database/Database";
-import * as htmlToImage from "html-to-image";
-import convertToImage from "react-convert-to-image";
+import { uploadImage } from "../Database/Database";
 import html2canvas from "html2canvas";
 export const CardCustomization = () => {
 	const [BasicInfo, setBasicInfo] = useState({
@@ -49,6 +47,7 @@ export const CardCustomization = () => {
 	let ratting = Math.floor(rattingdata);
 	let decimalpoint = rattingdata - ratting;
 	const { id } = useParams();
+	console.log(id);
 	const navigate = useNavigate();
 	const [compSeq, setcompSeq] = useState(0);
 	const [fullScreeniew, setFullScreeniew] = useState(false);
@@ -242,6 +241,7 @@ export const CardCustomization = () => {
 		selectedCountry,
 		clubFlag,
 		subPositionsVal,
+		subPositions,
 		overAllRatting,
 		compSeq,
 	]);
