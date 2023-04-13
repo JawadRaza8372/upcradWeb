@@ -30,9 +30,7 @@ const ChooseAttributComp = ({
 				label={"E"}
 				title={"Choose attributes"}
 				button={
-					<button
-						onClick={() => randomizebtn()}
-						className='imgInptCustmRespSmall'>
+					<button onClick={() => randomizebtn()} className='smallBtnsSettings'>
 						Randomize
 					</button>
 				}>

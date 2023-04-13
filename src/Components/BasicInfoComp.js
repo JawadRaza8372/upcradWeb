@@ -243,6 +243,7 @@ const BasicInfoComp = ({
 					onChange={onChangeName}
 					className='inputCustmResp'
 					placeholder='name'
+					maxLength={12}
 				/>
 				<label className='w-100' htmlFor='file'>
 					{imglink?.length > 0 && loading === false ? (
@@ -256,12 +257,9 @@ const BasicInfoComp = ({
 									hidden
 									accept='image/png,image/jpg,image/jpeg'
 								/>
-								<div className='d-flex align-items-center justify-content-center imgInptCustmResp'>
+								<div className='d-flex mainColor align-items-center justify-content-center imgInptCustmResp'>
 									<span>Upload Again</span>
-									<BiImageAdd
-										style={{ fontSize: "26px", marginLeft: "10px" }}
-										className='mainColor'
-									/>
+									<BiImageAdd className='mainColor' />
 								</div>
 							</div>
 						</>
@@ -372,6 +370,7 @@ const BasicInfoComp = ({
 							type='text'
 							placeholder='Custom Position'
 							className='inputCustmResp'
+							maxLength={3}
 							value={activePosition}
 							onChange={(e) => {
 								setactivePosition(e.target.value.toUpperCase());

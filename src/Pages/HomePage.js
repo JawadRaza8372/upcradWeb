@@ -5,14 +5,10 @@ import firstimg from "../ownassets/firstsesion.png";
 import secssion from "../ownassets/secsesion.png";
 import design1 from "../ownassets/design1.png";
 import design2 from "../ownassets/design2.png";
-import design3 from "../ownassets/design3.png";
-import design4 from "../ownassets/design4.png";
 import ourservices1 from "../ownassets/ourservices1.png";
 import service1 from "../ownassets/servis1.png";
 import service2 from "../ownassets/servis2.png";
 import service3 from "../ownassets/servis3.png";
-import prosuct1 from "../ownassets/products1.png";
-import prosuct2 from "../ownassets/products2.png";
 import Slider from "react-slick";
 import { Reviewcard } from "../Components/Reviewcard";
 import "../../node_modules/slick-carousel/slick/slick.css";
@@ -36,8 +32,20 @@ import fistImage2 from "../ownassets/firstimg (2).png";
 import fistImage3 from "../ownassets/firstimg (3).png";
 import fistImage4 from "../ownassets/firstimg (4).png";
 import ServiceMiniCard from "../Components/ServiceMiniCard";
+import { useSelector } from "react-redux";
 
 const HomePage = () => {
+	const { footballCards, otherProducts } = useSelector(
+		(state) => state.project
+	);
+	let fourCards =
+		footballCards?.length > 4 ? footballCards?.slice(0, 4) : footballCards;
+	let sixCards =
+		footballCards?.length > 6 ? footballCards?.slice(0, 6) : footballCards;
+	let fourCardsOther =
+		otherProducts?.length > 4 ? otherProducts?.slice(0, 4) : otherProducts;
+	let sixCardsOther =
+		otherProducts?.length > 6 ? otherProducts?.slice(0, 6) : otherProducts;
 	const navigate = useNavigate();
 	const ourServiceCardData = [
 		{ id: 0, imgSrc: service1, title: "Other Products" },
@@ -153,76 +161,6 @@ const HomePage = () => {
 			message:
 				"sjbjkabkb asjbvchavbcja hbavsjvcahjvca scsvhchvhas chsvcvasvah sc ahsbv csvhcavshc svhavhsvha shavsvjbskhabshja shvbdsvhd sndksnd sdhsbahjvs dahbvdhba a cvhdabhdfa schdvehfdvaha hhe aknjkna sm,anbjs ajbsbad jbdjads ajbda",
 			imageurl: design2,
-		},
-	];
-	const rawdata = [
-		{
-			id: 0,
-			title: "Design 1 hero",
-			imgSrc: design1,
-			price: "12$",
-			oldprice: "15$",
-		},
-		{
-			id: 1,
-			title: "design 2 monster",
-			imgSrc: design2,
-			price: "12$",
-			oldprice: "15$",
-		},
-		{
-			id: 2,
-			title: "design 3 conquror",
-			imgSrc: design3,
-			price: "12$",
-			oldprice: "15$",
-		},
-		{
-			id: 3,
-			title: "design 4 devil",
-			imgSrc: design4,
-			price: "12$",
-			oldprice: "15$",
-		},
-		{
-			id: 1,
-			title: "design 2 monster",
-			imgSrc: design2,
-			price: "12$",
-			oldprice: "15$",
-		},
-		{
-			id: 2,
-			title: "design 3 conquror",
-			imgSrc: design3,
-			price: "12$",
-			oldprice: "15$",
-		},
-	];
-	const rawdata2 = [
-		{
-			id: 0,
-			title: "game 1 hero",
-			imgSrc: prosuct1,
-			price: "12$",
-		},
-		{
-			id: 1,
-			title: "game 2 monster",
-			imgSrc: prosuct2,
-			price: "12$",
-		},
-		{
-			id: 2,
-			title: "Game 3 conquror",
-			imgSrc: prosuct1,
-			price: "12$",
-		},
-		{
-			id: 3,
-			title: "Game 4 devil",
-			imgSrc: prosuct2,
-			price: "12$",
 		},
 	];
 
@@ -350,36 +288,42 @@ const HomePage = () => {
 						<div className='col-12 mb-4 col-lg-6  order-1 order-md-2 allCenter flex-row'>
 							<div className='row w-100 h-100  d-flex d-md-none'>
 								<Slider {...settings2}>
-									{rawdata.map((dat) => (
-										<FootballCards
-											onClickFun={() =>
-												navigate(`/cardCustomization/${dat.id}`)
-											}
-											key={dat.id}
-											isbestSeller={true}
-											sorce={dat.imgSrc}
-											title={dat.title}
-											price={dat.price}
-											oldprice={dat.oldprice}
-										/>
-									))}
+									{footballCards.length > 0 &&
+										sixCards.length > 0 &&
+										sixCards?.map((dat) => (
+											<FootballCards
+												onClickFun={() =>
+													navigate(`/cardCustomization/${dat.id}`)
+												}
+												key={dat.id}
+												isbestSeller={true}
+												sorce={dat.imgSrc}
+												title={dat.title}
+												price={dat.price}
+												oldprice={dat.oldprice}
+											/>
+										))}
 								</Slider>
 							</div>
-							<div className='row d-none d-md-flex'>
-								{rawdata.slice(0, 4).map((dat) => (
-									<div key={dat.id} className='col-12 col-sm-6 allCenter'>
-										<FootballCards
-											onClickFun={() =>
-												navigate(`/cardCustomization/${dat.id}`)
-											}
-											isbestSeller={true}
-											sorce={dat.imgSrc}
-											title={dat.title}
-											price={dat.price}
-											oldprice={dat.oldprice}
-										/>
-									</div>
-								))}
+							<div className='row w-100 d-none d-md-flex'>
+								{footballCards &&
+									fourCards?.length > 0 &&
+									fourCards?.map((dat) => (
+										<div
+											key={dat.id}
+											className='col-12 col-sm-6 mx-auto allCenter'>
+											<FootballCards
+												onClickFun={() =>
+													navigate(`/cardCustomization/${dat.id}`)
+												}
+												isbestSeller={true}
+												sorce={dat.imgSrc}
+												title={dat.title}
+												price={dat.price}
+												oldprice={dat.oldprice}
+											/>
+										</div>
+									))}
 							</div>
 						</div>
 					</div>
@@ -529,32 +473,38 @@ const HomePage = () => {
 						<div className='col-12 mb-4 allCenter flex-row'>
 							<div className='row w-100 h-100 d-flex d-md-none'>
 								<Slider {...settings2}>
-									{rawdata2.map((dat) => (
-										<FootballCards
-											onClickFun={() => navigate("/otherProducts")}
-											key={dat.id}
-											sorce={dat.imgSrc}
-											title={dat.title}
-											price={dat.price}
-											oldprice={dat.oldprice}
-										/>
-									))}
+									{otherProducts &&
+										sixCardsOther?.length > 0 &&
+										sixCardsOther?.map((dat) => (
+											<FootballCards
+												isLargeImg={true}
+												onClickFun={() => navigate(`/productInfo/${dat.id}`)}
+												key={dat.id}
+												sorce={dat.imgSrc}
+												title={dat.title}
+												price={dat.price}
+												oldprice={dat.oldprice}
+											/>
+										))}
 								</Slider>
 							</div>
 							<div className='row w-100 d-none d-md-flex align-items-center justify-content-evenly'>
-								{rawdata2.slice(0, 4).map((dat) => (
-									<div
-										key={dat.id}
-										className='col-12 col-sm-6 col-md-4 col-lg-3 allCenter'>
-										<FootballCards
-											onClickFun={() => navigate("/otherProducts")}
-											sorce={dat.imgSrc}
-											title={dat.title}
-											price={dat.price}
-											oldprice={dat.oldprice}
-										/>
-									</div>
-								))}
+								{otherProducts &&
+									fourCardsOther?.length > 0 &&
+									fourCardsOther?.map((dat) => (
+										<div
+											key={dat.id}
+											className='col-12 col-sm-6 col-md-4 col-lg-3 allCenter'>
+											<FootballCards
+												isLargeImg={true}
+												onClickFun={() => navigate(`/productInfo/${dat.id}`)}
+												sorce={dat.imgSrc}
+												title={dat.title}
+												price={dat.price}
+												oldprice={dat.oldprice}
+											/>
+										</div>
+									))}
 							</div>
 						</div>
 					</div>

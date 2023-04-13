@@ -2,25 +2,80 @@ import { useEffect } from "react";
 import CustomNavbar from "./Components/CustomNavbar";
 import FooterComp from "./Components/FooterComp";
 import FileRoutes from "./Navigation/FileRoutes";
-import { getClubs } from "./Database/Database";
+import { getClubs, getData } from "./Database/Database";
 import { useDispatch } from "react-redux";
-import { setClubs } from "./store/projectSlice";
+import {
+	setCartItems,
+	setClubs,
+	setFootballCards,
+	setOtherProducts,
+} from "./store/projectSlice";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { setAuth } from "./store/authSlice";
+//import { useNavigate } from "react-router-dom";
 
 function App() {
 	const dispatch = useDispatch();
-	const getClubsFun = async () => {
+	// const navigate = useNavigate();
+	// const { isAuth } = useSelector((state) => state.auth);
+	const fetchAuth = async () => {
+		const checkAuth = await window.localStorage.getItem("upcradWebAuth");
+		const finalrest = checkAuth ? JSON.parse(checkAuth) : null;
+		dispatch(setAuth({ isAuth: finalrest }));
+	};
+	const dataFetchFunction = async () => {
+		fetchAuth();
 		const result = await getClubs();
 		dispatch(setClubs({ clubs: result }));
+		const productRes = await getData("Products");
+		dispatch(setOtherProducts({ otherProducts: productRes }));
+		const metalCards = await getData("metalCards");
+		dispatch(setFootballCards({ footballCards: metalCards }));
+
+		const cartdata = window.localStorage.getItem("upCradCartArry");
+		dispatch(
+			setCartItems({
+				cartItems: JSON.parse(cartdata),
+			})
+		);
 	};
 	useEffect(() => {
-		getClubsFun();
+		dataFetchFunction();
 	});
+
+	// useEffect(() => {
+	// 	const getDelivery = async () => {
+	// 		const devRes = await getDeliveryInfo(isAuth?.uid);
+	// 		console.log("kya hy datat", devRes);
+	// 		if (devRes?.data) {
+	// 			dispatch(setDeliveryInfo({ deliveryInfo: devRes?.data }));
+	// 		} else {
+	// 			navigate("/profile");
+	// 		}
+	// 	};
+	// 	if (isAuth?.uid) {
+	// 		getDelivery();
+	// 	}
+	// }, [isAuth?.uid]);
 
 	return (
 		<>
 			<CustomNavbar />
 			<FileRoutes />
 			<FooterComp />
+			<ToastContainer
+				position='bottom-right'
+				autoClose={5000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss={false}
+				draggable
+				pauseOnHover
+				theme='colored'
+			/>
 		</>
 	);
 }

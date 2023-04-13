@@ -7,6 +7,7 @@ const AttributesInput = ({ title, value, onChangeVal }) => {
 				placeholder='00'
 				type='number'
 				value={value}
+				maxLength={2}
 				onChange={onChangeVal}
 				className='AttributeInputCust'
 			/>

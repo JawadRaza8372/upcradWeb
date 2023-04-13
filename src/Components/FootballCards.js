@@ -7,6 +7,7 @@ const FootballCards = ({
 	price,
 	oldprice,
 	onClickFun,
+	isLargeImg,
 }) => {
 	return (
 		<div
@@ -16,7 +17,7 @@ const FootballCards = ({
 				background: "white",
 				borderRadius: "28px",
 				width: "90%",
-				height: "230px",
+				height: "auto",
 				position: "relative",
 				marginLeft: "auto",
 				marginRight: "auto",
@@ -27,6 +28,7 @@ const FootballCards = ({
 				justifyContent: "space-evenly",
 				flexDirection: "column",
 				cursor: "pointer",
+				maxWidth: "220px",
 			}}>
 			{isbestSeller && (
 				<div
@@ -45,29 +47,59 @@ const FootballCards = ({
 				</div>
 			)}
 			<img
-				style={{ maxWidth: "210px", objectFit: "contain", height: "150px" }}
+				style={
+					isLargeImg
+						? { width: "100%", height: "150px" }
+						: { maxWidth: "210px", objectFit: "contain", height: "150px" }
+				}
 				src={sorce}
 				alt={title}
 			/>
-			<h5 className='m-0 mainColor' style={{ fontWeight: "bold" }}>
-				{title}
-			</h5>
-			<p className='m-0'>
-				{price && (
-					<span className='mainColor'>
-						<b>From {price}</b>
-					</span>
-				)}{" "}
-				{oldprice && (
-					<span
-						style={{
-							textDecorationLine: "line-through",
-							color: "red",
-						}}>
-						{oldprice}
-					</span>
-				)}
-			</p>
+			<div
+				style={{
+					width: "90%",
+					height: "100px",
+					display: "flex",
+					alignItems: "center",
+					justifyContent: "space-evenly",
+					flexDirection: "column",
+					marginBottom: "10px",
+				}}>
+				<h5
+					className='m-0 mainColor'
+					style={{
+						fontWeight: "bold",
+						height: "50px",
+						width: "100%",
+						textTransform: "capitalize",
+						overflow: "hidden",
+					}}>
+					{title?.length > 33 ? title?.substring(0, 33) + " ..." : title}
+				</h5>
+				<p
+					style={{
+						height: "20px",
+						width: "100%",
+						textTransform: "capitalize",
+						fontSize: "16px",
+					}}
+					className='m-0'>
+					{price && (
+						<span style={{ color: "rgba(0, 0, 0, 0.5)" }}>
+							<b>From ${price}</b>
+						</span>
+					)}{" "}
+					{oldprice && (
+						<span
+							style={{
+								textDecorationLine: "line-through",
+								color: "red",
+							}}>
+							${oldprice}
+						</span>
+					)}
+				</p>
+			</div>
 		</div>
 	);
 };

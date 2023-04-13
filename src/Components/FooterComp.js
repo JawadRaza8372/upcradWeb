@@ -31,7 +31,7 @@ const FooterComp = () => {
 					<div className='col-12 col-md-6 col-lg-4 h-100 d-flex align-items-center justify-content-evenly flex-column'>
 						{firstwala.map((dat, index) => (
 							<>
-								<Link key={index} className='footerlinks'>
+								<Link key={dat.title + " " + index} className='footerlinks'>
 									{dat.title}
 								</Link>
 							</>
@@ -40,7 +40,7 @@ const FooterComp = () => {
 					<div className='col-12 col-md-6 col-lg-4 h-100 d-flex align-items-center justify-content-evenly flex-column'>
 						{secondwala.map((dat, index) => (
 							<>
-								<Link key={index} className='footerlinks'>
+								<Link key={dat.title + " " + index} className='footerlinks'>
 									{dat.title}
 								</Link>
 							</>
@@ -49,7 +49,7 @@ const FooterComp = () => {
 					<div className='col-12 col-md-6 col-lg-4 h-100 d-flex align-items-center justify-content-evenly flex-column'>
 						{thirdwala.map((dat, index) => (
 							<>
-								<Link key={index} className='footerlinks'>
+								<Link key={dat.title + " " + index} className='footerlinks'>
 									{dat.title}
 								</Link>
 							</>
@@ -66,15 +66,19 @@ const FooterComp = () => {
 					</div>
 					<div className='col-12 col-md-6 col-lg-3 h-100 d-flex align-items-center justify-content-center flex-row'>
 						<button className='btn'>
-							<FaFacebook style={{ fontSize: "30px", color: "white" }} />
+							<FaFacebook
+								style={{ fontSize: "30px", color: "white !important" }}
+							/>
 						</button>
 						<button className='btn mx-3'>
 							<AiOutlineInstagram
-								style={{ fontSize: "30px", color: "white" }}
+								style={{ fontSize: "30px", color: "white !important" }}
 							/>
 						</button>
 						<button className='btn'>
-							<AiOutlineTwitter style={{ fontSize: "30px", color: "white" }} />
+							<AiOutlineTwitter
+								style={{ fontSize: "30px", color: "white !important" }}
+							/>
 						</button>
 					</div>
 				</div>

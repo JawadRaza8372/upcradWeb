@@ -2,19 +2,38 @@ import React, { useState } from "react";
 import QuestionLinee from "./QuestionLinee";
 import { BiImageAdd } from "react-icons/bi";
 import { useSelector } from "react-redux";
+import CustomSmallLoader from "./CustomSmallLoader";
 
-const ChooseClubComp = ({ selectedFlag, setselectedFlag }) => {
+const ChooseClubComp = ({
+	selectedFlag,
+	setselectedFlag,
+	handleFlagUpload,
+}) => {
 	const { clubs } = useSelector((state) => state.project);
-
+	const [loading, setloading] = useState(false);
 	const [inputValue, setInputValue] = useState("");
+	const [selectData, setselectData] = useState(0);
 	const filteredData = () => {
 		if (inputValue?.length > 0) {
 			return clubs?.filter((dat) =>
 				dat?.name?.toLowerCase()?.includes(inputValue?.toLowerCase())
 			);
 		} else {
-			return clubs?.slice(0, 4);
+			if (selectData === 0) {
+				return clubs?.filter((dat) => dat?.category === "others");
+			} else if (selectData === 1) {
+				return clubs?.filter((dat) => dat?.category === "premium");
+			} else if (selectData === 2) {
+				return clubs?.filter((dat) => dat?.category === "champion");
+			} else {
+				return clubs?.slice(0, 4);
+			}
 		}
+	};
+	const clubFlagUploader = async (e) => {
+		setloading(true);
+		await handleFlagUpload(e);
+		setloading(false);
 	};
 	return (
 		<div className='w-90 h-100 mx-auto d-flex align-items-start justify-content-center flex-column'>
@@ -27,11 +46,24 @@ const ChooseClubComp = ({ selectedFlag, setselectedFlag }) => {
 				title={"Search Club"}
 				button={
 					<label className='w-100' htmlFor='file'>
-						<input type='file' id='file' hidden />
-						<div className='d-flex align-items-center justify-content-center smallBtnsSettings'>
-							<span>Add Custom badge</span>
-							<BiImageAdd className='mainColor' />
-						</div>
+						{loading ? (
+							<>
+								<CustomSmallLoader />
+							</>
+						) : (
+							<>
+								<input
+									type='file'
+									id='file'
+									hidden
+									onChange={(e) => clubFlagUploader(e)}
+								/>
+								<div className='d-flex align-items-center justify-content-center smallBtnsSettings'>
+									<span>Add Custom badge</span>
+									<BiImageAdd className='mainColor' />
+								</div>
+							</>
+						)}
 					</label>
 				}>
 				<span className='inputLabelResp'>Search</span>
@@ -48,40 +80,68 @@ const ChooseClubComp = ({ selectedFlag, setselectedFlag }) => {
 						borderBottom: "2px solid rgba(0,0,0,0.5)",
 						marginBottom: "30px",
 					}}>
-					<div className='col-2 customOptionSelector'>Other</div>
-					<div className='col-6 customOptionSelector'>Premium League</div>
-					<div className='col-4 customOptionSelector'>Championship</div>
+					<div
+						onClick={() => setselectData(0)}
+						className={`col-2 customOptionSelector ${
+							selectData === 0 ? "actieOption" : ""
+						}`}>
+						Other
+					</div>
+					<div
+						onClick={() => setselectData(1)}
+						className={`col-6 customOptionSelector ${
+							selectData === 1 ? "actieOption" : ""
+						}`}>
+						Premium League
+					</div>
+					<div
+						onClick={() => setselectData(2)}
+						className={`col-4 customOptionSelector ${
+							selectData === 2 ? "actieOption" : ""
+						}`}>
+						Championship
+					</div>
 				</div>
 				<div
-					className='row w-100 gx-0'
 					style={{
-						marginBottom: "30px",
+						height: "180px",
+						overflowX: "hidden",
+						overflowY: "auto",
+						width: "100%",
+						marginBottom: "10px",
+						padding: "10px 0px",
 					}}>
-					{filteredData().map((dat) => (
-						<div
-							key={dat.id}
-							onClick={() => setselectedFlag(dat)}
-							className='customOptionSmal'
-							style={{
-								border:
-									dat.id === selectedFlag?.id
-										? "1px solid rgba(0,0,0,1)"
-										: "1px solid rgba(0,0,0,0.5)",
-								color:
-									dat.id === selectedFlag?.id ? "white" : "rgba(0,0,0,0.5)",
-								background:
-									dat.id === selectedFlag?.id
-										? "rgba(0,0,0,0.5)"
-										: "transparent",
-							}}>
-							<div
-								className='customOptionCircle overflow-hidden'
-								style={{ border: "0px" }}>
-								<img src={dat.badge} alt='demoflag' />
-							</div>
-							{dat?.name}
-						</div>
-					))}
+					<div className='row w-100 gx-0'>
+						{filteredData().length > 0 ? (
+							filteredData().map((dat) => (
+								<div
+									key={dat.id}
+									onClick={() => setselectedFlag(dat)}
+									className='customOptionSmal'
+									style={{
+										border:
+											dat.id === selectedFlag?.id
+												? "1px solid rgba(0,0,0,1)"
+												: "1px solid rgba(0,0,0,0.5)",
+										color:
+											dat.id === selectedFlag?.id ? "white" : "rgba(0,0,0,0.5)",
+										background:
+											dat.id === selectedFlag?.id
+												? "rgba(0,0,0,0.5)"
+												: "transparent",
+									}}>
+									<div
+										className='customOptionCircle overflow-hidden'
+										style={{ border: "0px" }}>
+										<img src={dat.badge} alt='demoflag' />
+									</div>
+									{dat?.name}
+								</div>
+							))
+						) : (
+							<p>No data found</p>
+						)}
+					</div>
 				</div>
 			</QuestionLinee>
 			{/* 

@@ -7,7 +7,7 @@ const QuestionLinee = ({ label, title, children, button }) => {
 			style={{ background: "rgba(62,73,122,0.08)" }}>
 			{label && title && (
 				<div className='row w-100 mx-auto gx-0 '>
-					<div className='col-12 col-md-7 mt-2'>
+					<div className='col-12 col-lg-7 mt-2'>
 						<div className='row w-100 mx-auto gx-0 '>
 							<div className='allCenter mainColor secondarybg respiveLabel'>
 								{label}
@@ -19,7 +19,7 @@ const QuestionLinee = ({ label, title, children, button }) => {
 							</div>
 						</div>
 					</div>
-					<div className='col-12 col-md-5 mt-2 smallBtnsContShow'>{button}</div>
+					<div className='col-12 col-lg-5 mt-2 smallBtnsContShow'>{button}</div>
 				</div>
 			)}
 			{children}

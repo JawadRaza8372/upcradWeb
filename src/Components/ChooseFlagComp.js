@@ -41,36 +41,49 @@ const ChooseFlagComp = ({ selectedFlag, onSelectedFlag }) => {
 					<div className='col-3 customOptionSelector'>Europe</div>
 				</div> */}
 				<div
-					className='row w-100 gx-0'
 					style={{
-						marginBottom: "30px",
+						height: "180px",
+						overflowX: "hidden",
+						overflowY: "auto",
+						width: "100%",
+						marginBottom: "10px",
+						padding: "10px 0px",
 					}}>
-					{filteredData().map((dat, index) => (
-						<div
-							onClick={() =>
-								onSelectedFlag({ flag: dat?.flag, name: dat?.name })
-							}
-							className='customOptionSmal'
-							style={{
-								border:
-									dat.name === selectedFlag?.name
-										? "1px solid rgba(0,0,0,1)"
-										: "1px solid rgba(0,0,0,0.5)",
-								color:
-									dat.name === selectedFlag?.name ? "white" : "rgba(0,0,0,0.5)",
-								background:
-									dat.name === selectedFlag?.name
-										? "rgba(0,0,0,0.5)"
-										: "transparent",
-							}}>
+					<div className='row w-100 gx-0'>
+						{filteredData().map((dat, index) => (
 							<div
-								className='customOptionCircle overflow-hidden'
-								style={{ border: "0px" }}>
-								<img src={dat.flag} alt='demoflag' />
+								key={index}
+								onClick={() =>
+									onSelectedFlag({
+										flag: dat?.flag,
+										name: dat?.name,
+										code: dat?.code,
+									})
+								}
+								className='customOptionSmal'
+								style={{
+									border:
+										dat.name === selectedFlag?.name
+											? "1px solid rgba(0,0,0,1)"
+											: "1px solid rgba(0,0,0,0.5)",
+									color:
+										dat.name === selectedFlag?.name
+											? "white"
+											: "rgba(0,0,0,0.5)",
+									background:
+										dat.name === selectedFlag?.name
+											? "rgba(0,0,0,0.5)"
+											: "transparent",
+								}}>
+								<div
+									className='customOptionCircle overflow-hidden'
+									style={{ border: "0px" }}>
+									<img src={dat.flag} alt='demoflag' />
+								</div>
+								{dat.name}
 							</div>
-							{dat.name}
-						</div>
-					))}
+						))}
+					</div>
 				</div>
 			</QuestionLinee>
 		</div>

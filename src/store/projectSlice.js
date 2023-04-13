@@ -6,31 +6,33 @@ const initialState = {
 	cartItems: [],
 	extraServices: [],
 	clubs: [],
+	deliveryInfo: {},
+	clientSecret: null,
 };
 
 export const projectSlice = createSlice({
 	name: "project",
 	initialState,
 	reducers: {
-		setUsers: (state, action) => {
-			if (action.payload.users === null) {
-				state.users = [];
+		setFootballCards: (state, action) => {
+			if (action.payload.footballCards === null) {
+				state.footballCards = [];
 			} else {
-				state.users = action.payload.users;
+				state.footballCards = action.payload.footballCards;
 			}
 		},
-		setPosts: (state, action) => {
-			if (action.payload.posts === null) {
-				state.posts = [];
+		setOtherProducts: (state, action) => {
+			if (action.payload.otherProducts === null) {
+				state.otherProducts = [];
 			} else {
-				state.posts = action.payload.posts;
+				state.otherProducts = action.payload.otherProducts;
 			}
 		},
-		setStudioss: (state, action) => {
-			if (action.payload.studios === null) {
-				state.studios = [];
+		setCartItems: (state, action) => {
+			if (action.payload.cartItems === null) {
+				state.cartItems = [];
 			} else {
-				state.studios = action.payload.studios;
+				state.cartItems = action.payload.cartItems;
 			}
 		},
 		setClubs: (state, action) => {
@@ -40,10 +42,30 @@ export const projectSlice = createSlice({
 				state.clubs = action.payload.clubs;
 			}
 		},
+		setDeliveryInfo: (state, action) => {
+			if (action.payload.deliveryInfo === null) {
+				state.deliveryInfo = {};
+			} else {
+				state.deliveryInfo = action.payload.deliveryInfo;
+			}
+		},
+		setClientSecretId: (state, action) => {
+			if (action.payload.clientSecret === null) {
+				state.clientSecret = null;
+			} else {
+				state.clientSecret = action.payload.clientSecret;
+			}
+		},
 	},
 });
 
-export const { setClubs, setStudioss, setPosts, setUsers } =
-	projectSlice.actions;
+export const {
+	setClubs,
+	setFootballCards,
+	setOtherProducts,
+	setCartItems,
+	setDeliveryInfo,
+	setClientSecretId,
+} = projectSlice.actions;
 
 export default projectSlice.reducer;
