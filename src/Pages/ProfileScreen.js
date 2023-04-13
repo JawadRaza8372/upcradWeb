@@ -1,11 +1,19 @@
 import React, { useState } from "react";
 import { postDeliveryInfo } from "../Database/Database";
 import { toast } from "react-toastify";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setDeliveryInfo } from "../store/projectSlice";
+import { useEffect } from "react";
 const ProfileScreen = () => {
-	const { isAuth } = useSelector((state) => state.auth);
+	const { isAuth, deliveryInfo } = useSelector((state) => state.auth);
+	useEffect(() => {
+		if (deliveryInfo) {
+			setdeliveryInfos(deliveryInfo);
+		}
+	}, [deliveryInfo]);
 
-	const [deliveryInfo, setdeliveryInfo] = useState({
+	const dispatch = useDispatch();
+	const [deliveryInfos, setdeliveryInfos] = useState({
 		name: "",
 		email: "",
 		phone: "",
@@ -14,7 +22,7 @@ const ProfileScreen = () => {
 
 	const handleDelieryData = async (e) => {
 		e.preventDefault();
-		const rest = await postDeliveryInfo(deliveryInfo, isAuth?.uid);
+		const rest = await postDeliveryInfo(deliveryInfos, isAuth?.uid);
 		if (rest === "success") {
 			toast.success("Delivery information uploaded", {
 				position: "bottom-right",
@@ -26,6 +34,7 @@ const ProfileScreen = () => {
 				progress: undefined,
 				theme: "light",
 			});
+			dispatch(setDeliveryInfo({ deliveryInfo: deliveryInfos }));
 		} else {
 			toast.error("Internal Server Error", {
 				position: "bottom-right",
@@ -55,9 +64,9 @@ const ProfileScreen = () => {
 								<input
 									type={"text"}
 									placeholder='Your Name'
-									value={deliveryInfo?.name}
+									value={deliveryInfos?.name}
 									onChange={(e) =>
-										setdeliveryInfo({ ...deliveryInfo, name: e.target.value })
+										setdeliveryInfos({ ...deliveryInfos, name: e.target.value })
 									}
 								/>
 							</div>
@@ -66,9 +75,12 @@ const ProfileScreen = () => {
 								<input
 									type={"email"}
 									placeholder='youremail@provider.com'
-									value={deliveryInfo?.email}
+									value={deliveryInfos?.email}
 									onChange={(e) =>
-										setdeliveryInfo({ ...deliveryInfo, email: e.target.value })
+										setdeliveryInfos({
+											...deliveryInfos,
+											email: e.target.value,
+										})
 									}
 								/>
 							</div>
@@ -77,9 +89,12 @@ const ProfileScreen = () => {
 								<input
 									type={"number"}
 									placeholder='0093XXXXXXXXXXXX'
-									value={deliveryInfo?.phone}
+									value={deliveryInfos?.phone}
 									onChange={(e) =>
-										setdeliveryInfo({ ...deliveryInfo, email: e.target.value })
+										setdeliveryInfos({
+											...deliveryInfos,
+											phone: e.target.value,
+										})
 									}
 								/>
 							</div>
@@ -88,10 +103,10 @@ const ProfileScreen = () => {
 								<input
 									type={"text"}
 									placeholder='Your address'
-									value={deliveryInfo?.address}
+									value={deliveryInfos?.address}
 									onChange={(e) =>
-										setdeliveryInfo({
-											...deliveryInfo,
+										setdeliveryInfos({
+											...deliveryInfos,
 											address: e.target.value,
 										})
 									}
