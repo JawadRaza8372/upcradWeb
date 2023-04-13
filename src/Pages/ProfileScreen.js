@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { setDeliveryInfo } from "../store/projectSlice";
 import { useEffect } from "react";
+import { setAuth } from "../store/authSlice";
 const ProfileScreen = () => {
 	const { isAuth, deliveryInfo } = useSelector((state) => state.auth);
 	useEffect(() => {
@@ -50,6 +51,16 @@ const ProfileScreen = () => {
 	};
 	return (
 		<div className='container my-4 mx-auto'>
+			<div className='row gx-0'>
+				<button
+					onClick={() => {
+						dispatch(setAuth({ isAuth: null }));
+						window.localStorage.removeItem("upcradWebAuth");
+					}}
+					className='btn mainColor secondarybg'>
+					Logout
+				</button>
+			</div>
 			<div className='row gx-0'>
 				<div className='col-12 col-md-11 allCenter mx-auto'>
 					<div className='deliveryFormContainer allCenter flex-column'>
