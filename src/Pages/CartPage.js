@@ -17,9 +17,13 @@ const CartPage = () => {
 			}
 		});
 	}, []);
-	const { footballCards, otherProducts, cartItems, clientSecret } = useSelector(
-		(state) => state.project
-	);
+	const {
+		footballCards,
+		otherProducts,
+		cartItems,
+		clientSecret,
+		deliveryInfo,
+	} = useSelector((state) => state.project);
 
 	const { isAuth } = useSelector((state) => state.auth);
 
@@ -135,25 +139,39 @@ const CartPage = () => {
 							</div>
 							<div className='row w-100 gx-0 mt-4'>
 								{isAuth ? (
-									<>
-										{subtotal > 0 ? (
-											<Elements
-												stripe={stripePromise}
-												options={
-													clientSecret
-														? {
-																clientSecret,
-														  }
-														: {}
-												}>
-												<PaymentMethod price={subtotal + 25} data={cartItems} />
-											</Elements>
-										) : (
-											<></>
-										)}
-									</>
+									deliveryInfo ? (
+										<>
+											{subtotal > 0 ? (
+												<Elements
+													stripe={stripePromise}
+													options={
+														clientSecret
+															? {
+																	clientSecret,
+															  }
+															: {}
+													}>
+													<PaymentMethod
+														price={subtotal + 25}
+														data={cartItems}
+														userid={isAuth?.uid}
+													/>
+												</Elements>
+											) : (
+												<></>
+											)}
+										</>
+									) : (
+										<>
+											<p style={{ color: "red" }}>
+												Please Fill delivery information
+											</p>
+										</>
+									)
 								) : (
-									<></>
+									<>
+										<p style={{ color: "red" }}>Please Login</p>
+									</>
 								)}
 							</div>
 						</div>

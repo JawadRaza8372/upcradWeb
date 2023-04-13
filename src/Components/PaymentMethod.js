@@ -2,16 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
 import { CardElement } from "@stripe/react-stripe-js";
 import { useDispatch, useSelector } from "react-redux";
-import { setClientSecretId } from "../store/projectSlice";
+import { setClientSecretId, setCartItems } from "../store/projectSlice";
 import { postData } from "../Database/Database";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-const PaymentMethod = ({ price, data }) => {
+const PaymentMethod = ({ price, data, userid }) => {
 	const navigate = useNavigate();
 	const stripe = useStripe();
 	const elements = useElements();
-	const { clientSecret } = useSelector((state) => state.project);
+	const { clientSecret, deliveryInfo } = useSelector((state) => state.project);
 	const dispatch = useDispatch();
 	useEffect(() => {
 		let data = { priceit: `${price}` };
@@ -66,8 +66,13 @@ const PaymentMethod = ({ price, data }) => {
 			setError(null);
 			setProcessing(false);
 			setSucceeded(true);
-			const rest = await postData({ ...data, price: price }, "Orders");
+			const rest = await postData(
+				{ ...data, price: price, postedBy: userid, deliveryInfo: deliveryInfo },
+				"Orders"
+			);
 			if (rest?.data) {
+				dispatch(setCartItems({ cartItems: [] }));
+				window.localStorage.removeItem("upCradCartArry");
 				navigate(`/success/${rest?.data}`);
 			} else {
 				toast.error(`${rest?.error}`, {
