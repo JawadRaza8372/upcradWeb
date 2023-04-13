@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { CardCustomization } from "../Pages/CardCustomization";
 import CartPage from "../Pages/CartPage";

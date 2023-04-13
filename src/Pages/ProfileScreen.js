@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { postDeliveryInfo } from "../Database/Database";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
