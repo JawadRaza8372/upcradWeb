@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import CustomNavbar from "./Components/CustomNavbar";
 import FooterComp from "./Components/FooterComp";
 import FileRoutes from "./Navigation/FileRoutes";
-import { getClubs, getData } from "./Database/Database";
 import { useDispatch } from "react-redux";
 import {
 	setCartItems,
@@ -26,7 +25,6 @@ function App() {
 		const finalrest = checkAuth ? JSON.parse(checkAuth) : null;
 		dispatch(setAuth({ isAuth: finalrest }));
 	};
-	const dataFetchFunction = async () => {};
 	useEffect(() => {
 		fetchAuth();
 		getDocs(collection(dbs, "FootballClubs")).then((projectSnaps) => {
