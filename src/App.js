@@ -13,6 +13,8 @@ import {
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { setAuth } from "./store/authSlice";
+import { collection, getDocs } from "firebase/firestore";
+import { dbs } from "./Database/Database";
 //import { useNavigate } from "react-router-dom";
 
 function App() {
@@ -24,24 +26,42 @@ function App() {
 		const finalrest = checkAuth ? JSON.parse(checkAuth) : null;
 		dispatch(setAuth({ isAuth: finalrest }));
 	};
-	const dataFetchFunction = async () => {
+	const dataFetchFunction = async () => {};
+	useEffect(() => {
 		fetchAuth();
-		const result = await getClubs();
-		dispatch(setClubs({ clubs: result }));
-		const productRes = await getData("Products");
-		dispatch(setOtherProducts({ otherProducts: productRes }));
-		const metalCards = await getData("metalCards");
-		dispatch(setFootballCards({ footballCards: metalCards }));
-
+		getDocs(collection(dbs, "FootballClubs")).then((projectSnaps) => {
+			dispatch(
+				setClubs({
+					clubs: projectSnaps.docs.map((doc) => {
+						return { id: doc?.id, ...doc.data() };
+					}),
+				})
+			);
+		});
+		getDocs(collection(dbs, `Products`)).then((projectSnaps) => {
+			dispatch(
+				setOtherProducts({
+					otherProducts: projectSnaps.docs.map((doc) => {
+						return { id: doc?.id, ...doc.data() };
+					}),
+				})
+			);
+		});
+		getDocs(collection(dbs, `metalCards`)).then((projectSnaps) => {
+			dispatch(
+				setFootballCards({
+					footballCards: projectSnaps.docs.map((doc) => {
+						return { id: doc?.id, ...doc.data() };
+					}),
+				})
+			);
+		});
 		const cartdata = window.localStorage.getItem("upCradCartArry");
 		dispatch(
 			setCartItems({
 				cartItems: JSON.parse(cartdata),
 			})
 		);
-	};
-	useEffect(() => {
-		dataFetchFunction();
 	});
 
 	// useEffect(() => {
