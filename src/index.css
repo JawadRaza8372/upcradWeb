@@ -262,6 +262,17 @@ h6 {
 	width: 100%;
 	color: #21325e;
 }
+.whiteColor {
+	color: white !important;
+}
+.errorDiv {
+	width: 100%;
+	padding: 5px 8px;
+	text-align: center;
+	background-color: red;
+	color: white;
+	border-radius: 10px;
+}
 .formContainer .customForm div input {
 	border: 2px solid #21325e;
 	color: #21325e;

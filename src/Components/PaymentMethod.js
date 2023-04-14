@@ -15,13 +15,16 @@ const PaymentMethod = ({ price, data, userid }) => {
 	const dispatch = useDispatch();
 	useEffect(() => {
 		let data = { priceit: `${price}` };
-		fetch("/create-payment-intent", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(data),
-		}).then(async (result) => {
+		fetch(
+			"https://upcradstripepayment-production.up.railway.app/create-payment-intent",
+			{
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(data),
+			}
+		).then(async (result) => {
 			var newRest = await result.json();
 			dispatch(setClientSecretId({ clientSecret: newRest?.clientSecret }));
 		});
@@ -30,6 +33,12 @@ const PaymentMethod = ({ price, data, userid }) => {
 	const [error, setError] = useState(null);
 	const [processing, setProcessing] = useState(false);
 	const [disabled, setDisabled] = useState(true);
+	useEffect(() => {
+		setTimeout(() => {
+			setError(null);
+		}, 7000);
+	}, [error]);
+
 	const cardStyle = {
 		style: {
 			base: {
@@ -121,7 +130,11 @@ const PaymentMethod = ({ price, data, userid }) => {
 							</span>
 						</button>
 						{/* Show any error or success messages */}
-						{error && <div id='paerror'>{error}</div>}
+						{error && (
+							<div className='errorDiv' id='paerror'>
+								{error}
+							</div>
+						)}
 					</form>
 				</>
 			) : (

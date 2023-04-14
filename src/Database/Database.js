@@ -78,7 +78,6 @@ const SignUp = async (email, password) => {
 const getDeliveryInfo = async (docid) => {
 	let resp = null;
 	const rest = await getDoc(doc(dbs, `deliveryInfo`, `${docid}`));
-	console.log(rest);
 	if (rest) {
 		resp = { data: rest.data(), error: null };
 	} else {

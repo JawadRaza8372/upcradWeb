@@ -246,7 +246,6 @@ export const CardCustomization = () => {
 		if (compSeq >= 4) {
 		}
 	}, [compSeq]);
-	console.log(subPositionsVal);
 	return (
 		<>
 			{fullScreeniew && (

@@ -38,14 +38,6 @@ const HomePage = () => {
 	const { footballCards, otherProducts } = useSelector(
 		(state) => state.project
 	);
-	let fourCards =
-		footballCards?.length > 4 ? footballCards?.slice(0, 4) : footballCards;
-	let sixCards =
-		footballCards?.length > 6 ? footballCards?.slice(0, 6) : footballCards;
-	let fourCardsOther =
-		otherProducts?.length > 4 ? otherProducts?.slice(0, 4) : otherProducts;
-	let sixCardsOther =
-		otherProducts?.length > 6 ? otherProducts?.slice(0, 6) : otherProducts;
 	const navigate = useNavigate();
 	const ourServiceCardData = [
 		{ id: 0, imgSrc: service1, title: "Other Products" },
@@ -288,27 +280,27 @@ const HomePage = () => {
 						<div className='col-12 mb-4 col-lg-6  order-1 order-md-2 allCenter flex-row'>
 							<div className='row w-100 h-100  d-flex d-md-none'>
 								<Slider {...settings2}>
-									{footballCards.length > 0 &&
-										sixCards.length > 0 &&
-										sixCards?.map((dat) => (
-											<FootballCards
-												onClickFun={() =>
-													navigate(`/cardCustomization/${dat.id}`)
-												}
-												key={dat.id}
-												isbestSeller={true}
-												sorce={dat.imgSrc}
-												title={dat.title}
-												price={dat.price}
-												oldprice={dat.oldprice}
-											/>
-										))}
+									{footballCards &&
+										footballCards
+											?.slice(0, 6)
+											?.map((dat) => (
+												<FootballCards
+													onClickFun={() =>
+														navigate(`/cardCustomization/${dat.id}`)
+													}
+													key={dat.id}
+													isbestSeller={true}
+													sorce={dat.imgSrc}
+													title={dat.title}
+													price={dat.price}
+													oldprice={dat.oldprice}
+												/>
+											))}
 								</Slider>
 							</div>
 							<div className='row w-100 d-none d-md-flex'>
 								{footballCards &&
-									fourCards?.length > 0 &&
-									fourCards?.map((dat) => (
+									footballCards?.slice(0, 4)?.map((dat) => (
 										<div
 											key={dat.id}
 											className='col-12 col-sm-6 mx-auto allCenter'>
@@ -474,24 +466,24 @@ const HomePage = () => {
 							<div className='row w-100 h-100 d-flex d-md-none'>
 								<Slider {...settings2}>
 									{otherProducts &&
-										sixCardsOther?.length > 0 &&
-										sixCardsOther?.map((dat) => (
-											<FootballCards
-												isLargeImg={true}
-												onClickFun={() => navigate(`/productInfo/${dat.id}`)}
-												key={dat.id}
-												sorce={dat.imgSrc}
-												title={dat.title}
-												price={dat.price}
-												oldprice={dat.oldprice}
-											/>
-										))}
+										otherProducts
+											?.slice(0, 6)
+											?.map((dat) => (
+												<FootballCards
+													isLargeImg={true}
+													onClickFun={() => navigate(`/productInfo/${dat.id}`)}
+													key={dat.id}
+													sorce={dat.imgSrc}
+													title={dat.title}
+													price={dat.price}
+													oldprice={dat.oldprice}
+												/>
+											))}
 								</Slider>
 							</div>
 							<div className='row w-100 d-none d-md-flex align-items-center justify-content-evenly'>
 								{otherProducts &&
-									fourCardsOther?.length > 0 &&
-									fourCardsOther?.map((dat) => (
+									otherProducts?.slice(0, 4)?.map((dat) => (
 										<div
 											key={dat.id}
 											className='col-12 col-sm-6 col-md-4 col-lg-3 allCenter'>

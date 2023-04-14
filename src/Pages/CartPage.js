@@ -10,12 +10,14 @@ const CartPage = () => {
 	const dispatch = useDispatch();
 	const [stripePromise, setStripePromise] = useState(null);
 	useEffect(() => {
-		fetch("/config").then(async (r) => {
-			const result = await r.json();
-			if (result?.publishableKey) {
-				setStripePromise(loadStripe(`${result?.publishableKey}`));
+		fetch("https://upcradstripepayment-production.up.railway.app/config").then(
+			async (r) => {
+				const result = await r.json();
+				if (result?.publishableKey) {
+					setStripePromise(loadStripe(`${result?.publishableKey}`));
+				}
 			}
-		});
+		);
 	}, []);
 	const {
 		footballCards,
@@ -24,7 +26,6 @@ const CartPage = () => {
 		clientSecret,
 		deliveryInfo,
 	} = useSelector((state) => state.project);
-
 	const { isAuth } = useSelector((state) => state.auth);
 
 	const removeItemFun = (itId) => {
@@ -59,31 +60,35 @@ const CartPage = () => {
 								}}>
 								Shopping Cart
 							</span>
-							{cartItems.map((dat) => {
-								const carddata = footballCards?.filter(
-									(dac) => dac.id === dat.pid
-								);
-								const otherp = otherProducts?.filter(
-									(dec) => dec.id === dat.pid
-								);
-								const currentdata =
-									carddata?.length > 0
-										? carddata[0]
-										: otherp?.length > 0
-										? otherp[0]
-										: { price: "not available", title: "not available" };
-								subtotal = subtotal + parseFloat(currentdata?.price);
-								return (
-									<CartPageCard
-										key={dat.pid}
-										id={dat?.pid}
-										title={currentdata?.title}
-										price={currentdata?.price}
-										imgSrc={dat?.imgSrc}
-										removeItemFun={removeItemFun}
-									/>
-								);
-							})}
+							{cartItems?.length ? (
+								cartItems.map((dat) => {
+									const carddata = footballCards?.filter(
+										(dac) => dac.id === dat.pid
+									);
+									const otherp = otherProducts?.filter(
+										(dec) => dec.id === dat.pid
+									);
+									const currentdata =
+										carddata?.length > 0
+											? carddata[0]
+											: otherp?.length > 0
+											? otherp[0]
+											: { price: "not available", title: "not available" };
+									subtotal = subtotal + parseFloat(currentdata?.price);
+									return (
+										<CartPageCard
+											key={dat.pid}
+											id={dat?.pid}
+											title={currentdata?.title}
+											price={currentdata?.price}
+											imgSrc={dat?.imgSrc}
+											removeItemFun={removeItemFun}
+										/>
+									);
+								})
+							) : (
+								<div className='errorDiv'>Please add items into cart</div>
+							)}
 						</div>
 					</div>
 					<div className='order-1 order-md-2 col-12 col-md-4 h-100 mb-4'>
@@ -139,7 +144,7 @@ const CartPage = () => {
 							</div>
 							<div className='row w-100 gx-0 mt-4'>
 								{isAuth ? (
-									deliveryInfo ? (
+									deliveryInfo?.length > 0 ? (
 										<>
 											{subtotal > 0 ? (
 												<Elements
@@ -163,14 +168,16 @@ const CartPage = () => {
 										</>
 									) : (
 										<>
-											<p style={{ color: "red" }}>
+											<div className='errorDiv'>
 												Please Fill delivery information
-											</p>
+											</div>
 										</>
 									)
 								) : (
 									<>
-										<p style={{ color: "red" }}>Please Login</p>
+										<div className='errorDiv' id='paerror'>
+											Please Login
+										</div>
 									</>
 								)}
 							</div>

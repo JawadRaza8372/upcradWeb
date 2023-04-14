@@ -66,18 +66,18 @@ const FooterComp = () => {
 					</div>
 					<div className='col-12 col-md-6 col-lg-3 h-100 d-flex align-items-center justify-content-center flex-row'>
 						<button className='btn'>
-							<FaFacebook
-								style={{ fontSize: "30px", color: "white !important" }}
-							/>
+							<FaFacebook className='whiteColor' style={{ fontSize: "30px" }} />
 						</button>
 						<button className='btn mx-3'>
 							<AiOutlineInstagram
-								style={{ fontSize: "30px", color: "white !important" }}
+								className='whiteColor'
+								style={{ fontSize: "30px" }}
 							/>
 						</button>
 						<button className='btn'>
 							<AiOutlineTwitter
-								style={{ fontSize: "30px", color: "white !important" }}
+								className='whiteColor'
+								style={{ fontSize: "30px" }}
 							/>
 						</button>
 					</div>

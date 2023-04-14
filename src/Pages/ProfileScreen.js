@@ -57,6 +57,7 @@ const ProfileScreen = () => {
 						dispatch(setAuth({ isAuth: null }));
 						window.localStorage.removeItem("upcradWebAuth");
 					}}
+					style={{ maxWidth: "150px" }}
 					className='btn mainColor secondarybg'>
 					Logout
 				</button>
