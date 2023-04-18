@@ -133,20 +133,26 @@ const CustomNavbar = ({ changeLanguage }) => {
 										{t("shpCrd")}
 									</button>
 								</NavLink>
-
-								<select
-									className='btn langsele nav-link text-center mx-1 my-auto'
-									onChange={(e) => setlang(e.target.value)}>
-									<option defaultChecked value={"en"}>
-										English
-									</option>
-									<option defaultChecked value={"es"}>
-										Spanish
-									</option>
-									<option defaultChecked value={"fr"}>
-										French
-									</option>
-								</select>
+								<NavLink
+									className={(isActive) =>
+										"nav-link text-center mx-1 my-auto" +
+										(!isActive ? "" : " active")
+									}
+									to='#'>
+									<select
+										className='btn langsele'
+										onChange={(e) => setlang(e.target.value)}>
+										<option defaultChecked value={"en"}>
+											English
+										</option>
+										<option defaultChecked value={"es"}>
+											Spanish
+										</option>
+										<option defaultChecked value={"fr"}>
+											French
+										</option>
+									</select>
+								</NavLink>
 							</Nav>
 						</Offcanvas.Body>
 					</Navbar.Offcanvas>
