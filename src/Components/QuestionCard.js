@@ -7,7 +7,6 @@ const QuestionCard = ({ question, answer }) => {
 			style={{
 				background: "rgba(206,210,220,0.5)",
 				marginBottom: "20px",
-				padding: "14px 20px",
 				borderRadius: "10px",
 			}}>
 			<QuestionMini question={question} answer={answer} />

@@ -98,6 +98,7 @@
 .firstSectionHeading {
 	font-size: 50px;
 	font-weight: bold;
+	max-width: 350px;
 }
 .scrolledImageContainer {
 	width: 100%;
@@ -147,9 +148,11 @@ canvas {
 @media screen and (max-width: 768px) {
 	.firstSectionHeading {
 		font-size: 30px;
+		max-width: none;
 	}
 	.resptextp {
 		font-size: 0.67rem;
+		max-width: 350px;
 	}
 	.secondContainerCard {
 		border-radius: 0px !important;

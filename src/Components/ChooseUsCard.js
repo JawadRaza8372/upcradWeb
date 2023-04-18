@@ -6,9 +6,10 @@ const ChooseUsCard = ({ imglink, title, subtitle }) => {
 			style={{
 				maxWidth: "380px",
 				width: "90%",
-				height: "230px",
+				minHeight: "230px",
 				border: "1px solid #21325E",
 				borderRadius: "10px",
+				padding: "10px 0px",
 			}}
 			className='d-flex align-items-center justify-content-evenly flex-column'>
 			<img

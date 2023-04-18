@@ -14,12 +14,15 @@ import "react-toastify/dist/ReactToastify.css";
 import { setAuth } from "./store/authSlice";
 import { collection, getDocs } from "firebase/firestore";
 import { dbs } from "./Database/Database";
+import { useTranslation } from "react-i18next";
 //import { useNavigate } from "react-router-dom";
 
 function App() {
 	const dispatch = useDispatch();
-	// const navigate = useNavigate();
-	// const { isAuth } = useSelector((state) => state.auth);
+	const { i18n } = useTranslation();
+	const changeLanguage = (code) => {
+		i18n.changeLanguage(code);
+	};
 	const fetchAuth = async () => {
 		const checkAuth = await window.localStorage.getItem("upcradWebAuth");
 		const finalrest = checkAuth ? JSON.parse(checkAuth) : null;
@@ -62,24 +65,9 @@ function App() {
 		);
 	});
 
-	// useEffect(() => {
-	// 	const getDelivery = async () => {
-	// 		const devRes = await getDeliveryInfo(isAuth?.uid);
-	// 		console.log("kya hy datat", devRes);
-	// 		if (devRes?.data) {
-	// 			dispatch(setDeliveryInfo({ deliveryInfo: devRes?.data }));
-	// 		} else {
-	// 			navigate("/profile");
-	// 		}
-	// 	};
-	// 	if (isAuth?.uid) {
-	// 		getDelivery();
-	// 	}
-	// }, [isAuth?.uid]);
-
 	return (
 		<>
-			<CustomNavbar />
+			<CustomNavbar changeLanguage={changeLanguage} />
 
 			<FileRoutes />
 			<FooterComp />

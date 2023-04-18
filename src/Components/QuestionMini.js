@@ -8,7 +8,7 @@ const QuestionMini = ({ question, answer }) => {
 			<div
 				className='row gx-0 d-flex align-item-center justify-content-between flex-row'
 				style={{
-					padding: "14px 20px",
+					padding: "10px 13px",
 				}}>
 				<div
 					className='d-flex align-items-center justify-content-center'
@@ -20,7 +20,7 @@ const QuestionMini = ({ question, answer }) => {
 					/>
 				</div>
 
-				<div style={{ width: "calc(100% - 60px )" }}>
+				<div style={{ width: "calc(100% - 35px )" }}>
 					<div className='allCenter justify-content-between flex-row'>
 						<span className='responsiveQuestion2'>{question}</span>
 						{answer && (
