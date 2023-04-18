@@ -6,7 +6,10 @@ import Slider from "react-slick";
 import "../../node_modules/slick-carousel/slick/slick.css";
 import "../../node_modules/slick-carousel/slick/slick-theme.css";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
+import { useTranslation } from "react-i18next";
+
 const ChooseCardPage = () => {
+	const { t } = useTranslation();
 	const navigate = useNavigate();
 	const { footballCards } = useSelector((state) => state.project);
 	const [selectedCard, setselectedCard] = useState(
@@ -96,7 +99,7 @@ const ChooseCardPage = () => {
 											download
 											// onClick={download}
 											className='btn mainColor secondarybg'>
-											Download as png
+											{t("downpng")}
 										</a>
 									</div>
 									<div className='col-12 col-md-6 d-flex align-items-center justify-content-center'>
@@ -108,7 +111,7 @@ const ChooseCardPage = () => {
 											}}
 											onClick={() => navigate(`/cardCustomization/${dat?.id}`)}
 											className='btn mainColor thirdbg'>
-											Buy in physical
+											{t("buyphy")}
 										</button>
 									</div>
 								</div>
@@ -119,133 +122,6 @@ const ChooseCardPage = () => {
 			<div
 				style={{ margin: "50px auto" }}
 				className='row d-none d-md-flex h-100 w-100 gx-0'>
-				{/* <div className='col-12 col-md-3  h-100'>
-					<CommonChooseCard title={"Personalize"}>
-						<>
-							<div className='d-flex align-items-center justify-content-center flex-column'>
-								<button
-									onClick={() => setfirstCompNumber(1)}
-									style={{ width: "100%", maxWidth: "180px" }}
-									className='btn secondarybg mainColor'>
-									Upload Photo
-									<IoPersonOutline
-										style={{
-											fontSize: "18px",
-											marginLeft: "5px",
-										}}
-										className='mainColor'
-									/>
-								</button>
-								<button
-									onClick={() => setfirstCompNumber(2)}
-									className='btn secondarybg mainColor'
-									style={{
-										margin: "30px auto",
-										width: "100%",
-										maxWidth: "180px",
-									}}>
-									Flags
-									<BsFlag
-										style={{
-											fontSize: "16px",
-											marginLeft: "5px",
-										}}
-										className='mainColor'
-									/>
-								</button>
-								<button
-									onClick={() => setfirstCompNumber(3)}
-									style={{ width: "100%", maxWidth: "180px" }}
-									className='btn secondarybg mainColor'>
-									Teams
-									<img
-										src={teambtnicon}
-										alt='team'
-										style={{
-											objectFit: "contain",
-											width: "17px",
-											marginLeft: "5px",
-										}}
-									/>
-								</button>
-							</div>
-							<div
-								style={{
-									height: "250px",
-									width: "100%",
-									marginTop: "20px",
-								}}
-								className='d-flex align-items-center justify-content-center flex-column'>
-								{firstCompNumber === 0 && (
-									<>
-										<span
-											style={{
-												width: "95%",
-												textAlign: "center",
-												fontSize: "14px",
-												fontWeight: "600",
-											}}>
-											Click on the buttons above to customize the elements of
-											your letter and click on the letter texts to edit them
-										</span>
-										<span
-											style={{
-												marginTop: "15px",
-												width: "95%",
-												textAlign: "center",
-												fontWeight: "600",
-												fontSize: "14px",
-											}}>
-											Watch this video if you need help
-										</span>
-									</>
-								)}
-								{firstCompNumber === 1 && (
-									<>
-										<span
-											style={{
-												width: "95%",
-												textAlign: "center",
-												fontSize: "14px",
-												fontWeight: "600",
-												marginBottom: "20px",
-											}}>
-											Upload your Image
-										</span>
-										<BiImageAdd
-											style={{ fontSize: "120px" }}
-											className='mainColor'
-										/>
-									</>
-								)}
-								{firstCompNumber === 2 && (
-									<>
-										<img
-											style={{
-												objectFit: "contain",
-												width: "200px",
-											}}
-											src={flagsIcxon}
-											alt='Flags'
-										/>
-									</>
-								)}
-								{firstCompNumber === 3 && (
-									<>
-										<img
-											style={{
-												objectFit: "contain",
-												width: "200px",
-											}}
-											src={teamIcxon}
-											alt='teams'
-										/>
-									</>
-								)}
-							</div>
-						</>
-					</CommonChooseCard>
-				</div> */}
 				<div className='col-12 col-md-8  h-100 d-flex align-items-center flex-column justify-content-center'>
 					<img
 						style={{
@@ -270,7 +146,7 @@ const ChooseCardPage = () => {
 								download
 								// onClick={download}
 								className='btn mainColor secondarybg'>
-								Download as png
+								{t("downpng")}
 							</a>
 						</div>
 						<div className='col-12 col-md-6 d-flex align-items-center justify-content-center'>
@@ -284,13 +160,13 @@ const ChooseCardPage = () => {
 									navigate(`/cardCustomization/${selectedCard?.id}`)
 								}
 								className='btn mainColor thirdbg'>
-								Buy in physical
+								{t("buyphy")}
 							</button>
 						</div>
 					</div>
 				</div>
 				<div className='col-12 col-md-4  h-100'>
-					<CommonChooseCard title={"Choose card"}>
+					<CommonChooseCard title={t("chooseard")}>
 						<div className='col-12 h-100'>
 							<div
 								style={{

@@ -13,7 +13,11 @@ import useImage from "use-image";
 import { toast } from "react-toastify";
 import { setCartItems } from "../store/projectSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
+
 export const CardCustomization = () => {
+	const { t } = useTranslation();
+
 	const { footballCards, cartItems } = useSelector((state) => state.project);
 	const dispatch = useDispatch();
 
@@ -59,6 +63,11 @@ export const CardCustomization = () => {
 	const navigate = useNavigate();
 	const [compSeq, setcompSeq] = useState(0);
 	const [fullScreeniew, setFullScreeniew] = useState(false);
+	const [extraService, setextraService] = useState({
+		title: "",
+		subtitle: "",
+		prie: "",
+	});
 	const stageRef = React.useRef();
 	const newref = React.useRef();
 	const [image] = useImage(`${currentData?.imgSrc}`, "Anonimus");
@@ -123,7 +132,31 @@ export const CardCustomization = () => {
 			});
 		}
 	};
+	// const removebgFunction = (secure_url) => {
+	// 	const formData = new FormData();
+	// 	formData.append("image_file", secure_url);
+	// 	fetch("https://clipdrop-api.co/remove-background/v1", {
+	// 		method: "POST",
+	// 		headers: {
+	// 			"x-api-key":
+	// 				"ffa8a9ee07e33dc9bde7a1530a6b62f92de4933117ce447f5a0ef8453db9b8120187c34a5c61173507da98d46806b40d",
+	// 		},
+	// 		body: formData,
+	// 	})
+	// 		.then((response) => response.arrayBuffer())
+	// 		.then((buffer) => {
+	// 			console.log(buffer);
+	// 			setBasicInfo({
+	// 				...BasicInfo,
+	// 				image: buffer,
+	// 				imageRef: buffer,
+	// 			});
+	// 			// buffer here is a binary representation of the returned image
+	// 		});
+	// };
 	const handleUpload = async (e) => {
+		//removebgFunction(e.target.files[0]);
+
 		const result = await uploadImageFun(e.target.files[0]);
 		if (result?.secure_url?.length > 0) {
 			setBasicInfo({
@@ -134,7 +167,10 @@ export const CardCustomization = () => {
 		}
 	};
 	const addToCartFunction = (imglink) => {
-		let newdata = [...cartItems, { pid: id, imgSrc: imglink }];
+		let newdata = [
+			...cartItems,
+			{ pid: id, imgSrc: imglink, extra: extraService },
+		];
 		dispatch(
 			setCartItems({
 				cartItems: newdata,
@@ -142,7 +178,7 @@ export const CardCustomization = () => {
 		);
 		window.localStorage.setItem("upCradCartArry", JSON.stringify(newdata));
 
-		toast.success("Product added to cart", {
+		toast.success(t("paddcrt"), {
 			position: "bottom-right",
 			autoClose: 5000,
 			hideProgressBar: false,
@@ -163,7 +199,7 @@ export const CardCustomization = () => {
 			) {
 				setcompSeq(1);
 			} else {
-				toast.error("Please fill all fields", {
+				toast.error(t("fillfields"), {
 					position: "bottom-right",
 					autoClose: 5000,
 					hideProgressBar: false,
@@ -182,7 +218,7 @@ export const CardCustomization = () => {
 			) {
 				setcompSeq(2);
 			} else {
-				toast.error("Please choose a club badge", {
+				toast.error(t("choosebadg"), {
 					position: "bottom-right",
 					autoClose: 5000,
 					hideProgressBar: false,
@@ -200,7 +236,7 @@ export const CardCustomization = () => {
 			) {
 				setcompSeq(3);
 			} else {
-				toast.error("Please choose a country", {
+				toast.error(t("choosecountry"), {
 					position: "bottom-right",
 					autoClose: 5000,
 					hideProgressBar: false,
@@ -222,7 +258,7 @@ export const CardCustomization = () => {
 			) {
 				setcompSeq(4);
 			} else {
-				toast.error("Please fill all fields or press Randomize", {
+				toast.error(t("porrand"), {
 					position: "bottom-right",
 					autoClose: 5000,
 					hideProgressBar: false,
@@ -234,18 +270,28 @@ export const CardCustomization = () => {
 				});
 			}
 		} else if (compSeq === 4) {
-			const downloadfunc = () => {
-				const uri = stageRef.current.toDataURL();
-				return uri;
-			};
-			const result = downloadfunc();
-			addToCartFunction(result);
+			if (extraService?.title?.length > 0) {
+				const downloadfunc = () => {
+					const uri = stageRef.current.toDataURL();
+					return uri;
+				};
+				const result = downloadfunc();
+				addToCartFunction(result);
+			} else {
+				toast.error(t("porrand"), {
+					position: "bottom-right",
+					autoClose: 5000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: "light",
+				});
+			}
 		}
 	};
-	useEffect(() => {
-		if (compSeq >= 4) {
-		}
-	}, [compSeq]);
+
 	return (
 		<>
 			{fullScreeniew && (
@@ -277,14 +323,10 @@ export const CardCustomization = () => {
 							<BasicInfoComp
 								nameValue={BasicInfo.name}
 								onChangeName={(d) => {
-									if (d.target.value.length > 12) {
-										alert("Only 14 letters Allowed");
-									} else {
-										setBasicInfo({
-											...BasicInfo,
-											name: d.target.value?.toUpperCase(),
-										});
-									}
+									setBasicInfo({
+										...BasicInfo,
+										name: d.target.value?.toUpperCase(),
+									});
 								}}
 								onChangeImage={handleUpload}
 								imglink={BasicInfo.image}
@@ -316,10 +358,17 @@ export const CardCustomization = () => {
 								overAllRating={overAllRatting}
 							/>
 						)}
-						{compSeq === 4 && <ExtraServiceComp />}
+						{compSeq === 4 && (
+							<ExtraServiceComp
+								value={extraService}
+								setvalue={(dat) => setextraService(dat)}
+							/>
+						)}
 					</div>
 					<div className='order-1 order-md-2 mb-4 col-12 col-md-6 allCenter flex-column'>
-						<button className='btn mainColor secondarybg'>Preview Only</button>
+						<button className='btn mainColor secondarybg'>
+							{t("pvwonly")}
+						</button>
 						<div ref={newref}>
 							<div className='d-none d-sm-block'>
 								<Stage ref={stageRef} width={377} height={599}>
@@ -883,7 +932,7 @@ export const CardCustomization = () => {
 							<div
 								style={{ fontSize: "16px", fontWeight: "bold" }}
 								className='col-4 d-flex align-items-center justify-content-center flex-row'>
-								Excellent
+								{t("Excellent")}
 							</div>
 							<div className='col-4 d-flex align-items-center justify-content-center flex-row'>
 								{ratting &&
@@ -936,7 +985,7 @@ export const CardCustomization = () => {
 									background: "rgba(33,50,94,0.25)",
 									color: "rgba(33,50,94,1)",
 								}}>
-								{compSeq > 0 ? "Previous" : "Home"}
+								{compSeq > 0 ? t("prevos") : t("home")}
 							</button>
 						</div>
 						<div className='order-3 order-md-2 col-12  mb-4 col-md-6 d-flex align-items-center justify-content-center'>
@@ -975,7 +1024,7 @@ export const CardCustomization = () => {
 										className='mainColor'
 										style={{ fontSize: "22px" }}
 									/> */}
-								{compSeq < 4 ? "Next" : "Done"}
+								{compSeq < 4 ? t("next") : t("save")}
 							</button>
 							{/* )} */}
 						</div>

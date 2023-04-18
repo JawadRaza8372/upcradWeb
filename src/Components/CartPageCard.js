@@ -24,24 +24,12 @@ const CartPageCard = ({ id, title, price, imgSrc, removeItemFun }) => {
 					}}>
 					<AiOutlineClose />
 				</button>
-				<div
-					className='col-2 d-flex align-items-center justify-content-center'
-					style={{ background: "white" }}>
-					<img
-						style={{
-							maxWidth: "90px",
-							height: "100%",
-							maxHeight: "90px",
-							width: "100%",
-							objectFit: "contain",
-						}}
-						src={imgSrc}
-						alt='product'
-					/>
+				<div className='col-12 col-md-2 d-flex align-items-center justify-content-center respoloront'>
+					<img className='cartimgrsp' src={imgSrc} alt='product' />
 				</div>
-				<div className='col-10 px-3 d-flex align-items-start justify-content-center flex-column'>
+				<div className='col-12 col-md-10 px-3 d-flex align-items-start justify-content-center flex-column'>
 					<span
-						className='mainColor'
+						className='mainColor my-3'
 						style={{ fontWeight: "bold", fontSize: "20px" }}>
 						{title}
 					</span>
@@ -51,7 +39,7 @@ const CartPageCard = ({ id, title, price, imgSrc, removeItemFun }) => {
 							fontSize: "16px",
 							color: "rgba(0, 0, 0, 0.5)",
 						}}>
-						${price}
+						{price}
 					</span>
 				</div>
 			</div>

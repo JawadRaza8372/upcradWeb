@@ -3,7 +3,11 @@ import { SignUp, login } from "../Database/Database";
 import { setAuth } from "../store/authSlice";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
+
 const LoginSignUp = () => {
+	const { t } = useTranslation();
+
 	const dispatch = useDispatch();
 	const [loginInfo, setloginInfo] = useState({ email: "", password: "" });
 	const [signupInfo, setsignupInfo] = useState({ email: "", password: "" });
@@ -57,10 +61,12 @@ const LoginSignUp = () => {
 			<div className='row gx-0'>
 				<div className='col-12 col-md-6 allCenter mx-auto'>
 					<div className='formContainer'>
-						<span>Login</span>
+						<span>{t("login")}</span>
 						<form className='customForm' onSubmit={handleLogin}>
 							<div>
-								<label>Enter Your Email</label>
+								<label>
+									{t("enteryor")} {t("email")}
+								</label>
 								<input
 									type={"email"}
 									placeholder='youremail@provider.com'
@@ -71,7 +77,9 @@ const LoginSignUp = () => {
 								/>
 							</div>
 							<div>
-								<label>Enter Your Password</label>
+								<label>
+									{t("enteryor")} {t("pass")}
+								</label>
 								<input
 									type={"password"}
 									placeholder='*****'
@@ -82,16 +90,18 @@ const LoginSignUp = () => {
 								/>
 							</div>
 
-							<button type='submit'>Login</button>
+							<button type='submit'>{t("login")}</button>
 						</form>
 					</div>
 				</div>
 				<div className='col-12 col-md-6 allCenter mx-auto'>
 					<div className='formContainer'>
-						<span>Register</span>
+						<span>{t("regis")}</span>
 						<form className='customForm' onSubmit={handleSignUp}>
 							<div>
-								<label>Enter Your Email</label>
+								<label>
+									{t("enteryor")} {t("email")}
+								</label>
 								<input
 									type={"email"}
 									placeholder='youremail@provider.com'
@@ -102,7 +112,9 @@ const LoginSignUp = () => {
 								/>
 							</div>
 							<div>
-								<label>Enter Your Password</label>
+								<label>
+									{t("enteryor")} {t("pass")}
+								</label>
 								<input
 									type={"password"}
 									placeholder='*****'
@@ -113,7 +125,7 @@ const LoginSignUp = () => {
 								/>
 							</div>
 
-							<button type='submit'>Register</button>
+							<button type='submit'>{t("regis")}</button>
 						</form>
 					</div>
 				</div>

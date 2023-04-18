@@ -1,43 +1,50 @@
 import React from "react";
 import truckicon from "../ownassets/truck.png";
-const ExtraServiceComp = () => {
+import { useTranslation } from "react-i18next";
+const ExtraServiceComp = ({ value, setvalue }) => {
+	const { t } = useTranslation();
 	const rawdata = [
 		{
 			title: "Super fast track",
 			subtitle: "Card designed, printed, shipped within 1-3 working days.",
-			price: "Rs.1,600.00",
+			price: "7",
 		},
 
 		{
-			title: "Super track",
-			subtitle: "Card designed, printed, shipped within 1-3 working days.",
-			price: "Rs.2,600.00",
+			title: "Super fast track with wall mounting kit",
+			subtitle:
+				"Card designed, printed, shipped within 1-3 working days.Will contain wall mounting Kit",
+			price: "20",
 		},
 		{
-			title: " fast track",
-			subtitle: "Card designed, printed, shipped within 1-3 working days.",
-			price: "Rs.3,600.00",
+			title: "Super fast track with premium acrylic stand",
+			subtitle:
+				"Card designed, printed, shipped within 1-3 working days.Will contain premium acrylic stand",
+			price: "27",
+		},
+		{
+			title: "Skip",
+			subtitle: "---",
+			price: "0",
 		},
 	];
 	return (
 		<div className='w-90 h-100 mx-auto d-flex align-items-start justify-content-center flex-column'>
-			<span className='mainColor CustHeadingRespComp'>
-				Extras to make your card perfect
-			</span>
-			<span className='CustSubHeadingRespComp'>
-				Add these to make your card perfect
-			</span>
+			<span className='mainColor CustHeadingRespComp'>{t("lasthead")}</span>
+			<span className='CustSubHeadingRespComp'>{t("lastsdead")}</span>
 			<div
 				className='w-100 p-4 d-flex align-items-start justify-content-center mt-3 flex-column'
 				style={{ background: "rgba(62,73,122,0.08)" }}>
 				{rawdata.map((dat, index) => (
 					<div
 						key={index}
+						onClick={() => setvalue(dat)}
 						className='row w-100 mb-3'
 						style={{
 							height: "fit-content",
 							minHeight: "80px",
-							border: "1px solid black",
+							border: value?.title === dat?.title ? "1px solid black" : "0px",
+							cursor: "pointer",
 						}}>
 						<div
 							className='col-3 col-md-2'
@@ -74,7 +81,7 @@ const ExtraServiceComp = () => {
 							<span
 								className='mainColor'
 								style={{ fontSize: "12px", fontWeight: "600" }}>
-								{dat.price}
+								${dat.price}
 							</span>
 						</div>
 					</div>

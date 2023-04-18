@@ -1,12 +1,16 @@
 import React from "react";
 import AttributesInput from "./AttributesInput";
 import QuestionLinee from "./QuestionLinee";
+import { useTranslation } from "react-i18next";
+
 const ChooseAttributComp = ({
 	selectedSubPositions,
 	positionValues,
 	onSetSubPositionValues,
 	overAllRating,
 }) => {
+	const { t } = useTranslation();
+
 	const randomizebtn = () => {
 		onSetSubPositionValues({
 			fastValue: Math.ceil(Math.random() * (98 - 80 + 1) + 80),
@@ -20,18 +24,14 @@ const ChooseAttributComp = ({
 
 	return (
 		<div className='w-90 h-100 mx-auto d-flex align-items-start justify-content-center flex-column'>
-			<span className='mainColor CustHeadingRespComp'>
-				Attributes customization
-			</span>
-			<span className='CustSubHeadingRespComp'>
-				Customize attributes and ratings or randomize them all.
-			</span>
+			<span className='mainColor CustHeadingRespComp'>{t("head4")}</span>
+			<span className='CustSubHeadingRespComp'>{t("shead4")}</span>
 			<QuestionLinee
 				label={"E"}
-				title={"Choose attributes"}
+				title={t("poptione")}
 				button={
 					<button onClick={() => randomizebtn()} className='smallBtnsSettings'>
-						Randomize
+						{t("random")}
 					</button>
 				}>
 				<div className='row w-100 mx-auto' style={{ marginTop: "20px" }}>
@@ -109,7 +109,7 @@ const ChooseAttributComp = ({
 						</div>
 					</div>
 					<div className='col-12 mt-1 col-md-9 d-flex align-items-center justify-content-evenly flex-row'>
-						<span className='respQuestionHeading'>suggested rattings</span>
+						<span className='respQuestionHeading'>{t("sugestrat")}</span>
 
 						<div className='smalltextdivRating'>
 							{overAllRating > 3 ? overAllRating - 1 : "00"}

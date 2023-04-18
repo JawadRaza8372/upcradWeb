@@ -80,6 +80,7 @@ function App() {
 	return (
 		<>
 			<CustomNavbar />
+
 			<FileRoutes />
 			<FooterComp />
 			<ToastContainer

@@ -13,6 +13,9 @@ import SupportPage from "../Pages/SupportPage";
 import ProfileScreen from "../Pages/ProfileScreen";
 import ProductInfo from "../Pages/ProductInfo";
 import { useSelector } from "react-redux";
+import PrivacyPage from "../Pages/PrivacyPage";
+import ContactUsPage from "../Pages/ContactUsPage";
+import ReturnPolicyPage from "../Pages/ReturnPolicyPage";
 
 const FileRoutes = () => {
 	let ProtectedRoute = ({ children }) => {
@@ -51,6 +54,9 @@ const FileRoutes = () => {
 			<Route path='/cardCustomization/:id' element={<CardCustomization />} />
 			<Route path='/success/:id' element={<SuccessPage />} />
 			<Route path='/cart' element={<CartPage />} />
+			<Route path='/privacy' element={<PrivacyPage />} />
+			<Route path='/contact' element={<ContactUsPage />} />
+			<Route path='/return' element={<ReturnPolicyPage />} />
 
 			<Route path='*' element={<ErrorPage />} />
 		</Routes>

@@ -3,13 +3,15 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { NavLink } from "react-router-dom";
-
+import { useTranslation } from "react-i18next";
 import logoimg from "../ownassets/logo.png";
 import { BiCartAlt } from "react-icons/bi";
 import { IoPersonOutline } from "react-icons/io5";
 import Offcanvas from "react-bootstrap/Offcanvas";
 
 const CustomNavbar = () => {
+	const { t } = useTranslation();
+
 	return (
 		<>
 			<Navbar sticky='top' bg='light' expand={"lg"} className='my-1 w-100'>
@@ -70,7 +72,7 @@ const CustomNavbar = () => {
 										(!isActive ? "" : " active")
 									}
 									to='/products'>
-									Cards
+									{t("cards")}
 								</NavLink>
 
 								<NavLink
@@ -79,7 +81,7 @@ const CustomNavbar = () => {
 										(!isActive ? "" : " active")
 									}
 									to='/cards'>
-									App
+									{t("app")}
 								</NavLink>
 
 								<NavLink
@@ -88,7 +90,7 @@ const CustomNavbar = () => {
 										(!isActive ? "" : " active")
 									}
 									to='/support'>
-									Support
+									{t("suprt")}
 								</NavLink>
 
 								<NavLink
@@ -120,7 +122,7 @@ const CustomNavbar = () => {
 									}
 									to='/products'>
 									<button className='btn mainColor secondarybg'>
-										Shop Cards
+										{t("shpCrd")}
 									</button>
 								</NavLink>
 							</Nav>

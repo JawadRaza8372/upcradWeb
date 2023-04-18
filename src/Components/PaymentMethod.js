@@ -6,8 +6,11 @@ import { setClientSecretId, setCartItems } from "../store/projectSlice";
 import { postData } from "../Database/Database";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const PaymentMethod = ({ price, data, userid }) => {
+	const { t } = useTranslation();
+
 	const navigate = useNavigate();
 	const stripe = useStripe();
 	const elements = useElements();
@@ -69,7 +72,8 @@ const PaymentMethod = ({ price, data, userid }) => {
 		});
 
 		if (payload.error) {
-			setError(`Payment failed ${payload.error.message}`);
+			setError(t("payfailed"));
+			console.log(`Payment failed ${payload.error.message}`);
 			setProcessing(false);
 		} else {
 			setError(null);
@@ -126,7 +130,7 @@ const PaymentMethod = ({ price, data, userid }) => {
 							disabled={processing || disabled || succeeded}
 							id='submit'>
 							<span id='button-text'>
-								{processing ? "Processing ... " : "Pay now"}
+								{processing ? t("process") + " ... " : t("paynow")}
 							</span>
 						</button>
 						{/* Show any error or success messages */}

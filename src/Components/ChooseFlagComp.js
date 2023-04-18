@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import QuestionLinee from "./QuestionLinee";
 import { countries } from "../Database/Database";
+import { useTranslation } from "react-i18next";
+
 const ChooseFlagComp = ({ selectedFlag, onSelectedFlag }) => {
+	const { t } = useTranslation();
+
 	const [inputValue, setInputValue] = useState("");
 	const filteredData = () => {
 		if (inputValue.length > 0) {
@@ -14,19 +18,15 @@ const ChooseFlagComp = ({ selectedFlag, onSelectedFlag }) => {
 	};
 	return (
 		<div className='w-90 h-100 mx-auto d-flex align-items-start justify-content-center flex-column'>
-			<span className='mainColor CustHeadingRespComp'>
-				Country flag customization
-			</span>
-			<span className='CustSubHeadingRespComp'>
-				Choose a country or upload a custom one.
-			</span>
-			<QuestionLinee label={"D"} title={"Choose a country flag"}>
-				<span className='inputLabelResp'>Search</span>
+			<span className='mainColor CustHeadingRespComp'>{t("head2")}</span>
+			<span className='CustSubHeadingRespComp'>{t("shead2")}</span>
+			<QuestionLinee label={"D"} title={t("poptiond")}>
+				<span className='inputLabelResp'>{t("search")}</span>
 				<input
 					className='inputCustmResp'
 					value={inputValue}
 					onChange={(e) => setInputValue(e.target.value)}
-					placeholder='search'
+					placeholder={t("search")}
 				/>
 				{/* <div
 					className='row w-100 gx-0'

@@ -3,12 +3,15 @@ import QuestionLinee from "./QuestionLinee";
 import { BiImageAdd } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import CustomSmallLoader from "./CustomSmallLoader";
+import { useTranslation } from "react-i18next";
 
 const ChooseClubComp = ({
 	selectedFlag,
 	setselectedFlag,
 	handleFlagUpload,
 }) => {
+	const { t } = useTranslation();
+
 	const { clubs } = useSelector((state) => state.project);
 	const [loading, setloading] = useState(false);
 	const [inputValue, setInputValue] = useState("");
@@ -37,13 +40,11 @@ const ChooseClubComp = ({
 	};
 	return (
 		<div className='w-90 h-100 mx-auto d-flex align-items-start justify-content-center flex-column'>
-			<span className='mainColor CustHeadingRespComp'>Choose a club</span>
-			<span className='CustSubHeadingRespComp'>
-				Choose a club badge or upload a custom one.
-			</span>
+			<span className='mainColor CustHeadingRespComp'>{t("head3")}</span>
+			<span className='CustSubHeadingRespComp'>{t("shead3")}</span>
 			<QuestionLinee
 				label={"C"}
-				title={"Search Club"}
+				title={t("poptionc")}
 				button={
 					<label className='w-100' htmlFor='file'>
 						{loading ? (
@@ -59,19 +60,19 @@ const ChooseClubComp = ({
 									onChange={(e) => clubFlagUploader(e)}
 								/>
 								<div className='d-flex align-items-center justify-content-center smallBtnsSettings'>
-									<span>Add Custom badge</span>
+									<span>{t("addustbadge")}</span>
 									<BiImageAdd className='mainColor' />
 								</div>
 							</>
 						)}
 					</label>
 				}>
-				<span className='inputLabelResp'>Search</span>
+				<span className='inputLabelResp'>{t("search")}</span>
 				<input
 					className='inputCustmResp'
 					value={inputValue}
 					onChange={(e) => setInputValue(e.target.value)}
-					placeholder='search'
+					placeholder={t("search")}
 				/>
 				<div
 					className='row w-100 gx-0'
@@ -85,21 +86,21 @@ const ChooseClubComp = ({
 						className={`col-2 customOptionSelector ${
 							selectData === 0 ? "actieOption" : ""
 						}`}>
-						Other
+						{t("other")}
 					</div>
 					<div
 						onClick={() => setselectData(1)}
 						className={`col-6 customOptionSelector ${
 							selectData === 1 ? "actieOption" : ""
 						}`}>
-						Premium League
+						{t("pleague")}
 					</div>
 					<div
 						onClick={() => setselectData(2)}
 						className={`col-4 customOptionSelector ${
 							selectData === 2 ? "actieOption" : ""
 						}`}>
-						Championship
+						{t("champ")}
 					</div>
 				</div>
 				<div
@@ -139,7 +140,7 @@ const ChooseClubComp = ({
 								</div>
 							))
 						) : (
-							<p>No data found</p>
+							<p>{t("Nothingness")}</p>
 						)}
 					</div>
 				</div>

@@ -1,10 +1,6 @@
 import React from "react";
-import design1 from "../ownassets/design1.png";
-import { BsStarFill, BsStar } from "react-icons/bs";
-
+import { FaGift } from "react-icons/fa";
 const SuccessPage = () => {
-	let ratting = 3;
-
 	return (
 		<div
 			style={{
@@ -14,7 +10,8 @@ const SuccessPage = () => {
 				padding: "40px 0px",
 			}}
 			className='w-100 d-flex align-items-center justify-content-center flex-column'>
-			<img
+			<FaGift style={{ width: "150px", height: "150px" }} />
+			{/* <img
 				src={design1}
 				style={{
 					objectFit: "contain",
@@ -22,21 +19,21 @@ const SuccessPage = () => {
 					maxWidth: "280px",
 				}}
 				alt='previewimg'
-			/>
-			<span
+			/> */}
+			{/* <span
 				style={{ fontSize: "28px", fontWeight: "bold", marginTop: "30px" }}
 				className='text-center mainColor mb-2'>
 				S23 football greatest
-			</span>
+			</span> */}
 			<div
 				style={{ maxWidth: "500px", marginBottom: "30px" }}
 				className='row w-100'>
-				<div
+				{/* <div
 					style={{ fontSize: "16px", fontWeight: "bold" }}
 					className='col-4 d-flex align-items-center justify-content-center flex-row'>
 					Excellent
-				</div>
-				<div className='col-4 d-flex align-items-center justify-content-center flex-row'>
+				</div> */}
+				{/* <div className='col-4 d-flex align-items-center justify-content-center flex-row'>
 					{ratting &&
 						Array(ratting)
 							.fill("a")
@@ -47,8 +44,17 @@ const SuccessPage = () => {
 									className='secondaryColor'
 								/>
 							))}
+					{Array(decimalpoint ? 1 : 0)
+						.fill("a")
+						.map((dat, index) => (
+							<BsStarHalf
+								key={index}
+								style={{ fontSize: "22px" }}
+								className='secondaryColor'
+							/>
+						))}
 					{(ratting || ratting === 0) &&
-						Array(5 - ratting)
+						Array(5 - Math.ceil(rattingdata))
 							.fill("a")
 							.map((dat, index) => (
 								<BsStar
@@ -62,7 +68,7 @@ const SuccessPage = () => {
 					style={{ fontSize: "14px", fontWeight: "500" }}
 					className='col-4  d-flex align-items-center justify-content-center flex-row'>
 					4 out of 5
-				</div>
+				</div> */}
 			</div>
 			<span
 				style={{

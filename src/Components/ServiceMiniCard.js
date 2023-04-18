@@ -8,7 +8,8 @@ const ServiceMiniCard = ({ sorce, title, onClickFun }) => {
 				style={{
 					background: "white",
 					width: "160px",
-					height: "200px",
+					minHeight: "200px",
+					height: "100%",
 					marginLeft: "auto",
 					marginRight: "auto",
 					overflow: "hidden",
@@ -20,7 +21,7 @@ const ServiceMiniCard = ({ sorce, title, onClickFun }) => {
 					cursor: "pointer",
 				}}>
 				<img
-					style={{ width: "160px", height: "160px" }}
+					style={{ width: "160px", height: "160px", marginBottom: "7px" }}
 					src={sorce}
 					alt={title}
 				/>
@@ -28,8 +29,11 @@ const ServiceMiniCard = ({ sorce, title, onClickFun }) => {
 					className='mainColor'
 					style={{
 						fontWeight: "bold",
-						marginTop: "7px",
+						margin: "0px",
 						marginBottom: "10px",
+						width: "95%",
+						textAlign: "center",
+						height: "calc(100% - 150px)",
 					}}>
 					{title}
 				</p>

@@ -2,7 +2,11 @@ import React from "react";
 import { FaTruck, FaScroll } from "react-icons/fa";
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import SupportCard from "../Components/SupportCard";
+import { useTranslation } from "react-i18next";
+
 const SupportPage = () => {
+	const { t } = useTranslation();
+
 	const questionsArrayMain = [
 		{
 			symbol: (
@@ -11,27 +15,23 @@ const SupportPage = () => {
 					className='mainColor'
 				/>
 			),
-			title: "Delivery",
+			title: t("delivery"),
 			questionsArray: [
 				{
-					question: "Production, Shipping & Delivery Information",
-					answer:
-						"Please be aware that weekends are not considered working days and will not be included in the production time. Our standard times may be subject to change due to unexpected delays or busy seasons. Production will begin the day after your order is placed, so please plan accordingly. If you are ordering for a specific event, we recommend placing your order in advance to ensure timely delivery.",
+					question: t("dliv1"),
+					answer: t("div1val"),
 				},
 				{
-					question: "Customs & Import Fees",
-					answer:
-						"The price you see at checkout includes all customs and duty fees, there may be extra fees to be paid if your order value reaches a certain threshold. This varies per country and we recommend a quick google search to find out what the threshold is for taxes on items coming from the UK. Most of the time it's very high and won't be applicable to our products. If you have any questions about this, we recommend contacting your local customs office for more information before ordering.",
+					question: t("dliv2"),
+					answer: t("div2val"),
 				},
 				{
-					question: "How do I track my UpCrad delivery?",
-					answer:
-						"You'll receive an email once your order has shipped titled Your CardsPlug order #9999 is on the way, containing your tracking link and the courier used.We use a variety of shipping couriers to ensure prompt delivery of your order. We work with Royal Mail, Parcelforce, Fedex Cross Border, and Fedex Express. ",
+					question: t("dliv3"),
+					answer: t("div3val"),
 				},
 				{
-					question: "My tracking information is not updating",
-					answer:
-						"If you have received a tracking number for your shipment and it has not been updated in a few days, there is no need to worry. Delays in shipment updates can occur due to various reasons, such as courier delays. However, please be aware that we have no control over these factors.",
+					question: t("dliv4"),
+					answer: t("div1va4"),
 				},
 			],
 		},
@@ -42,28 +42,23 @@ const SupportPage = () => {
 					className='mainColor'
 				/>
 			),
-			title: "Orders",
+			title: t("ordr"),
 			questionsArray: [
 				{
-					question:
-						"How can I make changes to my order after it has been placed",
-					answer:
-						"We’re happy to make changes if there has been an error or if the image quality is too poor to proceed. We will send a preview of your card once we have finished designing it. If there are any urgent and essential errors (such as a mistake with the name), please contact us immediately using the email option at the bottom of this article.Apart from these special cases, all orders are final once placed.Please note that any non-essential late changes made after ordering may incur a processing fee, this will only happen if your card has already been produced. ",
+					question: t("order1"),
+					answer: t("order1val"),
 				},
 				{
-					question: "My order arrived damaged",
-					answer:
-						"If your card arrives in poor condition, please contact our support team through email or messenger at the bottom of this article. Provide images of any damages and your order number so we can quickly resolve the issue. We strive for all orders to arrive in perfect condition, and we promptly address any exceptions.",
+					question: t("order2"),
+					answer: t("order2val"),
 				},
 				{
-					question: "My order has not been shipped",
-					answer:
-						"Have you placed an order over 7-10 business days ago and it still has not been shipped?First thing to do in this case is check all of your emails, including your spam folder for any emails from our team. If there has been any issues with your order our team would have emailed you about it. If you cannot find any emails from our team please use one of the contact buttons and get in touch with us so we can look into your order.",
+					question: t("ordr3"),
+					answer: t("ordr3val"),
 				},
 				{
-					question: "I have received the wrong card(s)",
-					answer:
-						"Did we get our wires crossed? If you’ve received the wrong card, please contact us immediately using the email or messenger option at the bottom of this article.Our friendly support team will make amends as quickly as possible and get the correct cards sent out to you.",
+					question: t("ordr4"),
+					answer: t("ordr4val"),
 				},
 			],
 		},
@@ -74,17 +69,15 @@ const SupportPage = () => {
 					className='mainColor'
 				/>
 			),
-			title: "Payment Methods",
+			title: t("payment"),
 			questionsArray: [
 				{
-					question: "What currency is the store using?",
-					answer:
-						"UpCrad's default currency is USD Dollars ($) however in future we will add feature that website automatically changes the currency to your local currency based on your location. For example,  if you are from France it will be Euro (€). ",
+					question: t("pay1"),
+					answer: t("pay1val"),
 				},
 				{
-					question: "Accepted Payment Methods",
-					answer:
-						"We offer a variety of convenient payment options to make your purchase as smooth as possible. We accept PayPal, Visa, Mastercard, Stripe.",
+					question: t("pay2"),
+					answer: t("pay2val"),
 				},
 			],
 		},
@@ -93,7 +86,7 @@ const SupportPage = () => {
 		<>
 			<div className='topHeadingDiv'>
 				<h1 className='responsiveHeading text-center mainColor'>
-					HOW CAN WE HELP?
+					{t("howhelp")}
 				</h1>
 			</div>
 			<div className='col-12 col-lg-10 mx-auto'>

@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { setCartItems } from "../store/projectSlice";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 const ProductInfo = () => {
+	const { t } = useTranslation();
 	const { id } = useParams();
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
@@ -12,7 +14,14 @@ const ProductInfo = () => {
 	const getdata = otherProducts?.filter((dat) => dat.id === id);
 	const currentdata = getdata?.length > 0 ? getdata[0] : {};
 	const addToCartFunction = () => {
-		let newdata = [...cartItems, { pid: id, imgSrc: currentdata?.imgSrc }];
+		let newdata = [
+			...cartItems,
+			{
+				pid: id,
+				imgSrc: currentdata?.imgSrc,
+				extra: { title: "Skip", subtitle: "---", price: "0" },
+			},
+		];
 		dispatch(
 			setCartItems({
 				cartItems: newdata,
@@ -20,7 +29,7 @@ const ProductInfo = () => {
 		);
 		window.localStorage.setItem("upCradCartArry", JSON.stringify(newdata));
 
-		toast.success("Product added to cart", {
+		toast.success(t("paddcrt"), {
 			position: "bottom-right",
 			autoClose: 5000,
 			hideProgressBar: false,
@@ -30,7 +39,7 @@ const ProductInfo = () => {
 			progress: undefined,
 			theme: "light",
 		});
-		navigate("/otherProducts");
+		navigate("/products");
 	};
 	const check = cartItems?.filter((dat) => dat.pid === id);
 	return (

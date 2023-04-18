@@ -5,8 +5,11 @@ import CartPageCard from "../Components/CartPageCard";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import PaymentMethod from "../Components/PaymentMethod";
+import { useTranslation } from "react-i18next";
 
 const CartPage = () => {
+	const { t } = useTranslation();
+
 	const dispatch = useDispatch();
 	const [stripePromise, setStripePromise] = useState(null);
 	useEffect(() => {
@@ -58,7 +61,7 @@ const CartPage = () => {
 									fontWeight: "bold",
 									marginBottom: "40px",
 								}}>
-								Shopping Cart
+								{t("scart")}
 							</span>
 							{cartItems?.length ? (
 								cartItems.map((dat) => {
@@ -70,24 +73,39 @@ const CartPage = () => {
 									);
 									const currentdata =
 										carddata?.length > 0
-											? carddata[0]
+											? { ...carddata[0], extra: dat?.extra }
 											: otherp?.length > 0
-											? otherp[0]
-											: { price: "not available", title: "not available" };
-									subtotal = subtotal + parseFloat(currentdata?.price);
+											? { ...otherp[0], extra: dat?.extra }
+											: {
+													price: "not available",
+													title: "not available",
+													extra: { price: "0" },
+											  };
+									let nowSubol =
+										parseFloat(currentdata?.price) +
+										parseFloat(currentdata?.extra?.price);
+									subtotal = subtotal + nowSubol;
 									return (
 										<CartPageCard
 											key={dat.pid}
 											id={dat?.pid}
 											title={currentdata?.title}
-											price={currentdata?.price}
+											price={
+												"Product Price + Extra Service = " +
+												currentdata?.price +
+												" + " +
+												currentdata?.extra?.price +
+												" = " +
+												"$" +
+												nowSubol
+											}
 											imgSrc={dat?.imgSrc}
 											removeItemFun={removeItemFun}
 										/>
 									);
 								})
 							) : (
-								<div className='errorDiv'>Please add items into cart</div>
+								<div className='errorDiv'>{t("paddart")}</div>
 							)}
 						</div>
 					</div>
@@ -102,11 +120,11 @@ const CartPage = () => {
 									fontWeight: "bold",
 									marginBottom: "40px",
 								}}>
-								Summary
+								{t("sumry")}
 							</span>
 							<div className='row w-100 gx-0'>
 								<div className='col-6' style={{ fontSize: "16px" }}>
-									Sub total
+									{t("subtol")}
 								</div>
 								<div
 									className='col-6 mainColor'
@@ -117,7 +135,7 @@ const CartPage = () => {
 									US ${subtotal}
 								</div>
 								<div className='col-6' style={{ fontSize: "16px" }}>
-									Shipping
+									{t("ship")}
 								</div>
 								<div
 									className='col-6 mainColor'
@@ -130,7 +148,7 @@ const CartPage = () => {
 								<div
 									className='col-6'
 									style={{ fontSize: "20px", fontWeight: "bold" }}>
-									Total
+									{t("total")}
 								</div>
 								<div
 									className='col-6 mainColor'
@@ -168,15 +186,13 @@ const CartPage = () => {
 										</>
 									) : (
 										<>
-											<div className='errorDiv'>
-												Please Fill delivery information
-											</div>
+											<div className='errorDiv'>{t("delvInfp")} </div>
 										</>
 									)
 								) : (
 									<>
 										<div className='errorDiv' id='paerror'>
-											Please Login
+											{t("loginp")}{" "}
 										</div>
 									</>
 								)}

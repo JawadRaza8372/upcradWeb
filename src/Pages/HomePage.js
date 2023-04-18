@@ -33,51 +33,55 @@ import fistImage3 from "../ownassets/firstimg (3).png";
 import fistImage4 from "../ownassets/firstimg (4).png";
 import ServiceMiniCard from "../Components/ServiceMiniCard";
 import { useSelector } from "react-redux";
-
+import { useTranslation } from "react-i18next";
 const HomePage = () => {
 	const { footballCards, otherProducts } = useSelector(
 		(state) => state.project
 	);
+	const { t } = useTranslation();
+
 	const navigate = useNavigate();
 	const ourServiceCardData = [
-		{ id: 0, imgSrc: service1, title: "Other Products" },
-		{ id: 0, imgSrc: service2, title: "Football Cards" },
-		{ id: 0, imgSrc: service3, title: "Match Moments" },
+		{ id: 0, imgSrc: service1, title: t("oprod") },
+		{ id: 0, imgSrc: service2, title: t("fotCards") },
+		{ id: 0, imgSrc: service3, title: t("mtchmomts") },
 	];
+	// useEffect(() => {
+	// 	try {
+	// 		(window.adsbygoogle = window.adsbygoogle || []).push({});
+	// 	} catch (e) {}
+	// }, []);
+
 	const specialFeatures = [
-		{ title: "Preview before printing", img: fistImage1 },
-		{ title: "Professional design", img: fistImage2 },
-		{ title: "High quality print", img: fistImage3 },
-		{ title: "Money back guarantee", img: fistImage4 },
+		{ title: t("f1"), img: fistImage1 },
+		{ title: t("f2"), img: fistImage2 },
+		{ title: t("f3"), img: fistImage3 },
+		{ title: t("f4"), img: fistImage4 },
 	];
 	const questioncardraw = [
-		{ question: "What is Soccer card?", answer: "" },
-		{ question: "What is AbcDef?", answer: "" },
+		{ question: t("faq1"), answer: t("faq1val") },
+		{ question: t("faq2"), answer: t("faq2val") },
 		{
-			question: "What is hdhd?",
-			answer:
-				"dhcfgd cdbcj djbjd ddbjbjd ddbjd jdwbjwhgdw jwhgdgwugdwkbdjkw dwkjdgwkjbkwjbdwjug d wdbnjwbd wjdbwbjw wdjwbjdbwbdw",
+			question: t("faq3"),
+			answer: t("faq3val"),
 		},
 	];
 	const choosedata = [
 		{
 			imglink: choose1img,
-			title: "Metal cards",
-			subtitle:
-				"nkjsnckj sackjnabdsknc cjbcjkbscj sbhc scjabjkca n dajhbsc asbjhbhcjbs ahbsc sabhjcbsahj c ahbchab",
+			title: t("yChoseUs1"),
+			subtitle: t("yChoseUs1Val"),
 		},
 		{
 			imglink: choose2img,
-			title: "Easy to use card builder",
-			subtitle:
-				"nkjsnckj sackjnabdsknc cjbcjkbscj sbhc scjabjkca n dajhbsc asbjhbhcjbs ahbsc sabhjcbsahj c ahbchab",
+			title: t("yChoseUs2"),
+			subtitle: t("yChoseUs2Val"),
 		},
 
 		{
 			imglink: choose3img,
-			title: "All image edit done for you",
-			subtitle:
-				"nkjsnckj sackjnabdsknc cjbcjkbscj sbhc scjabjkca n dajhbsc asbjhbhcjbs ahbsc sabhjcbsahj c ahbchab",
+			title: t("yChoseUs3"),
+			subtitle: t("yChoseUs3Val"),
 		},
 	];
 	const videodataraw = [
@@ -155,7 +159,7 @@ const HomePage = () => {
 			imageurl: design2,
 		},
 	];
-
+	let sellerspara = t("tbNewSellerPara");
 	return (
 		<>
 			{/*First Container */}
@@ -165,23 +169,17 @@ const HomePage = () => {
 						<div className='row h-100'>
 							<div className='col-12 gb-2 col-md-6 d-flex align-items-start justify-content-center flex-column'>
 								<h1 className='my-0 mainColor firstSectionHeading'>
-									The Perfect
-									<br />
-									Football gift
+									{t("perfect")}
 								</h1>
 								<p
 									className='mainColor resptextp'
 									style={{ marginTop: "30px", marginBottom: "30px" }}>
-									sggsjh sxjhvhjxs xshvxhjsx shxvhsx sxhvshjxs xshvxhsvxn snhxsh
-									<br />
-									xnskjxbs xmnsbxms xns bhxvsx sxjhsvhjxvsxs jhsvhxvsxs xshjb
-									<br />
-									xsmbxjs xsjbhxbsx sxbshvxhsxs shjxjhsvjhs
+									{t("subperfect")}
 								</p>
 								<button
 									onClick={() => navigate("/products")}
 									className='btn mainColor secondarybg'>
-									Shop cards
+									{t("shpCrd")}
 								</button>
 							</div>
 							<div className='col-12 col-md-6 allCenter'>
@@ -197,18 +195,19 @@ const HomePage = () => {
 							</div>
 						</div>
 					</div>
+
 					<div className='mainbg d-none d-md-flex bottomLineDiv allCenter'>
 						<div className='row gx-0 w-100 mx-auto'>
-							<div className='col-6 col-md-3 allCenter'>
+							<div className='col-12 col-md-3 allCenter'>
 								<span>
 									<BsStarFill
 										style={{ fontSize: "18px", marginRight: "10px" }}
 										className='secondaryColor'
 									/>
-									Trust Pilot
+									{t("tpilot1")}
 								</span>
 							</div>
-							<div className='col-6 col-md-4 allCenter'>
+							<div className='col-12 col-md-3 allCenter'>
 								<span style={{ margin: "0px 10px" }}>
 									{Array(4)
 										.fill()
@@ -225,8 +224,10 @@ const HomePage = () => {
 									/>
 								</span>
 							</div>
-							<div className='col-12 col-md-5 allCenter'>
-								<span>Trust score : 4.5 | 500+ Reviews</span>
+							<div className='col-12 col-md-6 allCenter'>
+								<span>
+									{t("TScore")} : 4.5 | 500+ {t("review")}
+								</span>
 							</div>
 						</div>
 					</div>
@@ -242,8 +243,10 @@ const HomePage = () => {
 							className='col-12 mb-4 col-lg-6 order-2 order-md-1 allCenter flex-column'
 							style={{ padding: "0px" }}>
 							<div className='allCenter flex-column secondContainerCard'>
-								<h3 style={{ fontWeight: "bold" }} className='mainColor'>
-									Shop Best Sellers
+								<h3
+									style={{ fontWeight: "bold", textTransform: "capitalize" }}
+									className='mainColor'>
+									{t("TBSeller")}
 								</h3>
 								<hr
 									className='mainbg'
@@ -255,13 +258,12 @@ const HomePage = () => {
 								/>
 								<div style={{ width: "80%" }}>
 									<p className='mainColor' style={{ fontWeight: "700" }}>
-										Customized Real life football cards ,made with high quality
-										material
+										{sellerspara}
 									</p>
 									<button
 										onClick={() => navigate("/products")}
 										className='btn mainColor secondarybg'>
-										Shop best-sellers
+										{t("TBSeller")}
 									</button>
 								</div>
 								<img
@@ -352,7 +354,7 @@ const HomePage = () => {
 			<div className='allCenter flex-column thirdContainer'>
 				<div className='allCenter flex-column'>
 					<h3 style={{ fontWeight: "bold" }} className='mainColor'>
-						Our Service
+						{t("service")}
 					</h3>
 					<hr
 						className='mainbg'
@@ -383,7 +385,7 @@ const HomePage = () => {
 					<div className='row w-100 mx-auto h-100'>
 						<div className='col-12 gb-2 col-md-5 col-lg-4 d-flex align-items-start justify-content-center flex-column'>
 							<h3 style={{ fontWeight: "bold" }} className='mainColor'>
-								Our Service
+								{t("service")}
 							</h3>
 							<hr
 								className='mainbg'
@@ -393,13 +395,7 @@ const HomePage = () => {
 									width: "40%",
 								}}
 							/>
-							<p className='mainColor'>
-								FIFA 23 video game cards isn’t the
-								<br />
-								only gift other personalized cards
-								<br />
-								are also available now
-							</p>
+							<p className='mainColor'>{t("servicep")}</p>
 						</div>
 						<div className='col-12 col-md-7 col-lg-8 allCenter flex-column'>
 							<div className='row w-100 h-100 d-flex d-md-none'>
@@ -418,7 +414,7 @@ const HomePage = () => {
 								{ourServiceCardData.map((dat) => (
 									<div
 										key={dat.id}
-										className='col-12 col-sm-6 col-md-4 allCenter'>
+										className='col-12 col-sm-6 col-md-4 h-100 allCenter'>
 										<ServiceMiniCard
 											onClickFun={() => navigate(`/otherProducts`)}
 											sorce={dat.imgSrc}
@@ -541,7 +537,7 @@ const HomePage = () => {
 									margin: "20px 0px",
 									textAlign: "center",
 								}}>
-								happy customers
+								{t("hcustmer")}
 							</span>
 							<span
 								className='mainColor'
@@ -554,7 +550,7 @@ const HomePage = () => {
 									className='secondaryColor'
 									style={{ fontSize: "20px", marginRight: "7px" }}
 								/>
-								Trust Pilot | 500+ Reviews
+								{t("tpilot1")}| 500+ {t("review")}
 							</span>
 						</div>
 					</div>
@@ -571,7 +567,7 @@ const HomePage = () => {
 							marginBottom: "30px",
 						}}
 						className='mainColor'>
-						why choose us?
+						{t("yChoseUs")}
 					</h3>
 					<div className='row d-flex align-items-center justify-content-start flex-row'>
 						{choosedata.map((dat, index) => (
@@ -591,7 +587,7 @@ const HomePage = () => {
 						<button
 							onClick={() => navigate("/products")}
 							className='btn mainColor secondarybg'>
-							Shop cards
+							{t("shpCrd")}
 						</button>
 					</div>
 				</div>
@@ -607,9 +603,9 @@ const HomePage = () => {
 							marginBottom: "30px",
 						}}
 						className='mainColor'>
-						Frequently asked questions
+						{t("faqs")}
 					</h3>
-					<div className='row'>
+					<div className='row w-100 gx-0'>
 						{questioncardraw.map((dat, index) => (
 							<QuestionCard
 								key={index}
@@ -622,7 +618,7 @@ const HomePage = () => {
 						<button
 							onClick={() => navigate("/support")}
 							className='btn mainColor secondarybg'>
-							Want more help?
+							{t("wnthlp")}
 						</button>
 					</div>
 				</div>
@@ -643,7 +639,7 @@ const HomePage = () => {
 							<h3
 								className='mainColor'
 								style={{ fontWeight: "bold", margin: "10px 0px" }}>
-								How it’s all started
+								{t("howStart")}
 							</h3>
 							<span
 								style={{
@@ -652,15 +648,7 @@ const HomePage = () => {
 									fontSize: "16px",
 									fontWeight: "400",
 								}}>
-								hwdq dhwbhqbd dwhbvdvw dwhgdhjw dwhvdjw qhvdhw dqhvshvq dwhvdhw
-								dwmbdjw dwhvbdhwvdw dhvwhvdw dhwvdvwhdw wbdh wdb mwhbdw
-								dhvwvdhwv
-							</span>
-							<span
-								style={{ width: "90%", fontSize: "16px", fontWeight: "400" }}>
-								hwdq dhwbhqbd dwhbvdvw dwhgdhjw dwhvdjw qhvdhw dqhvshvq dwhvdhw
-								dwmbdjw dwhvbdhwvdw dhvwhvdw dhwvdvwhdw wbdh wdb mwhbdw
-								dhvwvdhwv
+								{t("howStartVal")}
 							</span>
 						</div>
 						<div className='col-12  col-md-5 allCenter'>
@@ -683,7 +671,7 @@ const HomePage = () => {
 							<h3
 								className='mainColor'
 								style={{ fontWeight: "bold", margin: "10px 0px" }}>
-								My social media
+								{t("SocialMed")}
 							</h3>
 						</div>
 						<div className='col-12 col-md-7 d-flex align-items-center justify-content-start flex-row'>

@@ -2,8 +2,11 @@ import React from "react";
 import FootballCards from "../Components/FootballCards";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
+
 const OtherProducts = () => {
 	const { otherProducts } = useSelector((state) => state.project);
+	const { t } = useTranslation();
 
 	const navigate = useNavigate();
 
@@ -11,7 +14,7 @@ const OtherProducts = () => {
 		<>
 			<div className='topHeadingDiv'>
 				<h1 className='responsiveHeading text-center mainColor'>
-					Other Products
+					{t("oprod")}
 				</h1>
 			</div>
 			<div className='col-12 col-lg-10 mx-auto'>

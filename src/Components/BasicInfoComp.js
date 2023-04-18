@@ -3,6 +3,7 @@ import QuestionLinee from "./QuestionLinee";
 import { BiImageAdd } from "react-icons/bi";
 import { BsBell } from "react-icons/bs";
 import CustomLoader from "./CustomLoader";
+import { useTranslation } from "react-i18next";
 const BasicInfoComp = ({
 	nameValue,
 	onChangeName,
@@ -12,6 +13,8 @@ const BasicInfoComp = ({
 	activePosition,
 	setActiveSubPosition,
 }) => {
+	const { t } = useTranslation();
+
 	const [loading, setloading] = useState(false);
 	const [selectData, setselectData] = useState(0);
 	const onChangeImagefun = async (e) => {
@@ -232,17 +235,15 @@ const BasicInfoComp = ({
 			: null;
 	return (
 		<div className='w-90 h-100 mx-auto d-flex align-items-start justify-content-center flex-column'>
-			<span className='mainColor CustHeadingRespComp'>Basic Information</span>
-			<span className='CustSubHeadingRespComp'>
-				Enter name, upload image and choose a position
-			</span>
-			<QuestionLinee label={"A"} title={"Name and image upload"}>
-				<span className='inputLabelResp'>Name</span>
+			<span className='mainColor CustHeadingRespComp'>{t("head1")}</span>
+			<span className='CustSubHeadingRespComp'>{t("shead1")} </span>
+			<QuestionLinee label={"A"} title={t("poptiona")}>
+				<span className='inputLabelResp'>{t("name")}</span>
 				<input
 					value={nameValue?.toUpperCase()}
 					onChange={onChangeName}
 					className='inputCustmResp'
-					placeholder='name'
+					placeholder={t("name")}
 					maxLength={12}
 				/>
 				<label className='w-100' htmlFor='file'>
@@ -258,7 +259,7 @@ const BasicInfoComp = ({
 									accept='image/png,image/jpg,image/jpeg'
 								/>
 								<div className='d-flex mainColor align-items-center justify-content-center imgInptCustmResp'>
-									<span>Upload Again</span>
+									<span>{t("uplodagn")}</span>
 									<BiImageAdd className='mainColor' />
 								</div>
 							</div>
@@ -273,7 +274,7 @@ const BasicInfoComp = ({
 								accept='image/png,image/jpg,image/jpeg'
 							/>
 							<div className='d-flex align-items-center justify-content-center imgInptCustmResp'>
-								<span>Click to Upload</span>
+								<span>{t("clikupld")}</span>
 								<BiImageAdd
 									style={{ fontSize: "26px", marginLeft: "10px" }}
 									className='mainColor'
@@ -289,12 +290,11 @@ const BasicInfoComp = ({
 						style={{ fontSize: "20px", marginRight: "10px" }}
 						className='mainColor'
 					/>
-					If necessary background of the image will be removed by our design
-					team
+					{t("imgbgtxt")}
 				</span>
 			</QuestionLinee>
 
-			<QuestionLinee label={"B"} title={"Choose a position"}>
+			<QuestionLinee label={"B"} title={t("poptionb")}>
 				<div
 					className='row w-100 gx-0'
 					style={{
@@ -307,28 +307,28 @@ const BasicInfoComp = ({
 						className={`col-3 customOptionSelector ${
 							selectData === 0 ? "actieOption" : ""
 						}`}>
-						Defense
+						{t("defnce")}
 					</div>
 					<div
 						onClick={() => setselectData(1)}
 						className={`col-3 customOptionSelector ${
 							selectData === 1 ? "actieOption" : ""
 						}`}>
-						Midfield
+						{t("midfield")}
 					</div>
 					<div
 						onClick={() => setselectData(2)}
 						className={`col-3 customOptionSelector ${
 							selectData === 2 ? "actieOption" : ""
 						}`}>
-						Attack
+						{t("attack")}
 					</div>
 					<div
 						onClick={() => setselectData(3)}
 						className={`col-3 customOptionSelector ${
 							selectData === 3 ? "actieOption" : ""
 						}`}>
-						Custom
+						{t("custom")}
 					</div>
 				</div>
 				<div

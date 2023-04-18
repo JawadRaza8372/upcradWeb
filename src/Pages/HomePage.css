@@ -72,7 +72,7 @@
 }
 .bottomLineDiv {
 	width: 95%;
-	max-width: 750px;
+	max-width: 1000px;
 	position: absolute;
 	bottom: -20px;
 	left: 0px;
@@ -87,7 +87,9 @@
 }
 
 .secondContainerCard {
-	background: rgba(33, 50, 94, 0.22);
+	background: rgba(248, 154, 68, 0.18);
+
+	/* background: rgba(33, 50, 94, 0.22); */
 	height: 520px;
 	width: 100%;
 	max-width: 500px;

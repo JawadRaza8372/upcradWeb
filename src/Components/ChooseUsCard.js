@@ -17,7 +17,13 @@ const ChooseUsCard = ({ imglink, title, subtitle }) => {
 				alt='title'
 			/>
 			<span
-				style={{ fontSize: "20px", fontWeight: "bold", textAlign: "center" }}
+				style={{
+					fontSize: "20px",
+					fontWeight: "bold",
+					textAlign: "center",
+					width: "95%",
+					height: "65px",
+				}}
 				className='mainColor'>
 				{title}
 			</span>
