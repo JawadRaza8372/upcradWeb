@@ -13,44 +13,52 @@ const FootballCards = ({
 		<div
 			onClick={onClickFun}
 			style={{
-				border: "1.8px solid #21325E",
 				background: "white",
-				borderRadius: "28px",
+				borderRadius: "15px",
 				width: "90%",
-				height: "auto",
-				position: "relative",
+				height: "300px",
 				marginLeft: "auto",
 				marginRight: "auto",
 				overflow: "hidden",
 				marginBottom: "15px",
 				display: "flex",
 				alignItems: "center",
-				justifyContent: "space-evenly",
+				justifyContent: "space-between",
 				flexDirection: "column",
 				cursor: "pointer",
-				maxWidth: "220px",
+				maxWidth: "268px",
+				backgroundColor: "white",
 			}}>
 			{isbestSeller && (
 				<div
 					style={{
-						position: "absolute",
-						top: "9px",
-						right: "10px",
-						background: "rgba(0,185,30,0.15)",
-						color: "#00B91E",
-						fontSize: "10px",
-						fontWeight: "600px",
-						padding: "3px 7px",
-						borderRadius: "5px",
+						height: "20px",
+						width: "85%",
+						display: "flex",
+						alignItems: "center",
+						justifyContent: "flex-end",
+						flexDirection: "row",
+						margin: "10px auto",
 					}}>
-					Best Seller
+					<div
+						style={{
+							float: "right",
+							background: "rgba(0,185,30,0.15)",
+							color: "#00B91E",
+							fontSize: "10px",
+							fontWeight: "600px",
+							padding: "3px 7px",
+							borderRadius: "5px",
+						}}>
+						Best Seller
+					</div>
 				</div>
 			)}
 			<img
 				style={
 					isLargeImg
-						? { width: "100%", height: "150px" }
-						: { maxWidth: "210px", objectFit: "contain", height: "150px" }
+						? { width: "100%", height: "190px", objectFit: "cover" }
+						: { width: "100%", objectFit: "contain", height: "150px" }
 				}
 				src={sorce}
 				alt={title}
@@ -65,40 +73,44 @@ const FootballCards = ({
 					flexDirection: "column",
 					marginBottom: "10px",
 				}}>
-				<h5
-					className='m-0 mainColor'
-					style={{
-						fontWeight: "bold",
-						height: "50px",
-						width: "100%",
-						textTransform: "capitalize",
-						overflow: "hidden",
-					}}>
-					{title?.length > 33 ? title?.substring(0, 33) + " ..." : title}
-				</h5>
-				<p
-					style={{
-						height: "20px",
-						width: "100%",
-						textTransform: "capitalize",
-						fontSize: "16px",
-					}}
-					className='m-0'>
-					{price && (
-						<span style={{ color: "rgba(0, 0, 0, 0.5)" }}>
-							<b>From ${price}</b>
-						</span>
-					)}{" "}
-					{oldprice && (
-						<span
-							style={{
-								textDecorationLine: "line-through",
-								color: "red",
-							}}>
-							${oldprice}
-						</span>
-					)}
-				</p>
+				<div
+					style={{ height: "50px", width: "100%", overflow: "hidden" }}
+					className='allCenter'>
+					<h5
+						className='m-0 mainColor'
+						style={{
+							fontWeight: "bold",
+							fontSize: "14px",
+							textTransform: "capitalize",
+						}}>
+						{title?.length > 33 ? title?.substring(0, 33) + " ..." : title}
+					</h5>
+				</div>
+				<div
+					style={{ height: "20px", width: "100%", overflow: "hidden" }}
+					className='allCenter'>
+					<p
+						style={{
+							textTransform: "capitalize",
+							fontSize: "13px",
+						}}
+						className='m-0'>
+						{price && (
+							<span style={{ color: "rgba(0, 0, 0, 0.5)" }}>
+								<b>From ${price}</b>
+							</span>
+						)}{" "}
+						{oldprice && (
+							<span
+								style={{
+									textDecorationLine: "line-through",
+									color: "red",
+								}}>
+								${oldprice}
+							</span>
+						)}
+					</p>
+				</div>
 			</div>
 		</div>
 	);

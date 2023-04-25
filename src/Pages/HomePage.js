@@ -34,6 +34,7 @@ import fistImage4 from "../ownassets/firstimg (4).png";
 import ServiceMiniCard from "../Components/ServiceMiniCard";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
+import AdsComp from "../Components/AdsComp";
 const HomePage = () => {
 	const { footballCards, otherProducts } = useSelector(
 		(state) => state.project
@@ -186,8 +187,9 @@ const HomePage = () => {
 								<img
 									style={{
 										objectFit: "contain",
-										maxWidth: "350px",
-										height: "320px",
+										minHeight: "320px",
+										maxHeight: "450px",
+										margin: "30px auto",
 									}}
 									src={firstimg}
 									alt='first sectionimage'
@@ -235,10 +237,9 @@ const HomePage = () => {
 			</div>
 			{/*Second Container */}
 
-			<br />
 			<div className='secondContainer'>
-				<div className='col-11 col-lg-10 mx-auto h-100 allCenter flex-column'>
-					<div className='row w-100 h-88'>
+				<div className='col-11 col-lg-10 my-2 mx-auto h-100 allCenter flex-column'>
+					<div className='row w-100 h-88 my-4'>
 						<div
 							className='col-12 mb-4 col-lg-6 order-2 order-md-1 allCenter flex-column'
 							style={{ padding: "0px" }}>
@@ -273,8 +274,9 @@ const HomePage = () => {
 										objectFit: "contain",
 										marginLeft: "auto",
 										marginRight: "auto",
-										maxWidth: "350px",
-										height: "290px",
+										marginTop: "20px",
+										borderRadius: "24px",
+										height: "420px",
 									}}
 								/>
 							</div>
@@ -499,6 +501,7 @@ const HomePage = () => {
 				</div>
 			</div>
 			{/*Sixth Container */}
+			<AdsComp slotnumber='5755097747' />
 
 			<div className='allCenter sixthContainer flex-column'>
 				<div className='col-11 col-lg-10 mx-auto h-100'>

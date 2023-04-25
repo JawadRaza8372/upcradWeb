@@ -377,8 +377,8 @@ export const CardCustomization = () => {
 										<Text
 											width={50}
 											height={30}
-											x={80}
-											y={390}
+											x={70}
+											y={395}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
@@ -393,8 +393,8 @@ export const CardCustomization = () => {
 										<Text
 											width={50}
 											height={30}
-											x={130}
-											y={390}
+											x={120}
+											y={395}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
@@ -409,8 +409,8 @@ export const CardCustomization = () => {
 										<Text
 											width={50}
 											height={30}
-											x={80}
-											y={425}
+											x={70}
+											y={435}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
@@ -425,8 +425,8 @@ export const CardCustomization = () => {
 										<Text
 											width={50}
 											height={30}
-											x={130}
-											y={425}
+											x={120}
+											y={435}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
@@ -441,8 +441,8 @@ export const CardCustomization = () => {
 										<Text
 											width={50}
 											height={30}
-											x={80}
-											y={460}
+											x={70}
+											y={475}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
@@ -457,8 +457,8 @@ export const CardCustomization = () => {
 										<Text
 											width={50}
 											height={30}
-											x={130}
-											y={460}
+											x={120}
+											y={475}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
@@ -474,8 +474,8 @@ export const CardCustomization = () => {
 										<Text
 											width={50}
 											height={30}
-											x={200}
-											y={390}
+											x={190}
+											y={395}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
@@ -490,8 +490,8 @@ export const CardCustomization = () => {
 										<Text
 											width={50}
 											height={30}
-											x={250}
-											y={390}
+											x={240}
+											y={395}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
@@ -506,8 +506,8 @@ export const CardCustomization = () => {
 										<Text
 											width={50}
 											height={30}
-											x={200}
-											y={425}
+											x={190}
+											y={435}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
@@ -522,8 +522,8 @@ export const CardCustomization = () => {
 										<Text
 											width={50}
 											height={30}
-											x={250}
-											y={425}
+											x={240}
+											y={435}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
@@ -538,8 +538,8 @@ export const CardCustomization = () => {
 										<Text
 											width={50}
 											height={30}
-											x={200}
-											y={460}
+											x={190}
+											y={475}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
@@ -554,8 +554,8 @@ export const CardCustomization = () => {
 										<Text
 											width={50}
 											height={30}
-											x={250}
-											y={460}
+											x={240}
+											y={475}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
@@ -572,7 +572,7 @@ export const CardCustomization = () => {
 											width={220}
 											height={40}
 											x={80}
-											y={320}
+											y={337}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
@@ -587,8 +587,8 @@ export const CardCustomization = () => {
 										<Text
 											width={60}
 											height={50}
-											x={80}
-											y={90}
+											x={65}
+											y={105}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
@@ -603,8 +603,8 @@ export const CardCustomization = () => {
 										<Text
 											width={50}
 											height={40}
-											x={80}
-											y={140}
+											x={70}
+											y={150}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
@@ -617,17 +617,17 @@ export const CardCustomization = () => {
 											fontStyle={""}
 										/>
 										<Image
-											x={80}
-											y={193}
-											height={40}
-											width={50}
+											x={73}
+											y={205}
+											height={35}
+											width={45}
 											image={countryflagavtar}
 										/>
 										<Image
-											x={80}
-											y={246}
-											height={40}
-											width={50}
+											x={73}
+											y={260}
+											height={35}
+											width={45}
 											image={clubFlagavtar}
 										/>
 										<Image
@@ -648,7 +648,7 @@ export const CardCustomization = () => {
 											width={50}
 											height={30}
 											x={30}
-											y={255}
+											y={258}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
@@ -664,7 +664,7 @@ export const CardCustomization = () => {
 											width={50}
 											height={30}
 											x={80}
-											y={255}
+											y={258}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
@@ -680,7 +680,7 @@ export const CardCustomization = () => {
 											width={50}
 											height={30}
 											x={30}
-											y={283}
+											y={285}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
@@ -696,7 +696,7 @@ export const CardCustomization = () => {
 											width={50}
 											height={30}
 											x={80}
-											y={283}
+											y={285}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
@@ -745,7 +745,7 @@ export const CardCustomization = () => {
 											width={50}
 											height={30}
 											x={135}
-											y={255}
+											y={258}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
@@ -761,7 +761,7 @@ export const CardCustomization = () => {
 											width={50}
 											height={30}
 											x={185}
-											y={255}
+											y={258}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
@@ -777,7 +777,7 @@ export const CardCustomization = () => {
 											width={50}
 											height={30}
 											x={135}
-											y={283}
+											y={285}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
@@ -793,7 +793,7 @@ export const CardCustomization = () => {
 											width={50}
 											height={30}
 											x={185}
-											y={283}
+											y={285}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
@@ -842,7 +842,7 @@ export const CardCustomization = () => {
 											width={220}
 											height={40}
 											x={30}
-											y={210}
+											y={218}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
@@ -857,8 +857,8 @@ export const CardCustomization = () => {
 										<Text
 											width={60}
 											height={50}
-											x={52}
-											y={45}
+											x={40}
+											y={62}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
@@ -873,8 +873,8 @@ export const CardCustomization = () => {
 										<Text
 											width={50}
 											height={40}
-											x={52}
-											y={85}
+											x={43}
+											y={95}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
@@ -887,17 +887,17 @@ export const CardCustomization = () => {
 											fontStyle={""}
 										/>
 										<Image
-											x={56}
-											y={127}
-											height={28}
-											width={35}
+											x={52}
+											y={138}
+											height={23}
+											width={30}
 											image={countryflagavtar}
 										/>
 										<Image
-											x={56}
-											y={164}
-											height={28}
-											width={35}
+											x={52}
+											y={170}
+											height={23}
+											width={30}
 											image={clubFlagavtar}
 										/>
 										<Image

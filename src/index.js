@@ -8,10 +8,11 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { Provider } from "react-redux";
 import { store } from "./store/index";
 import "./i18n.js";
+import CustomLargeLoader from "./Components/CustomLargeLoader";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-	<Suspense fallback='loading'>
+	<Suspense fallback={<CustomLargeLoader />}>
 		<Provider store={store}>
 			<BrowserRouter>
 				<App />

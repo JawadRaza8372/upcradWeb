@@ -2,21 +2,21 @@
 	background: transparent;
 	min-height: 60vh;
 	height: max-content;
-	padding-bottom: 10px;
+	padding-bottom: 15px;
 	position: relative;
+	background: #f0f0f0;
 }
 .firstCont {
-	background: #f0f0f0;
 	min-height: 60vh;
 	height: fit-content;
 	overflow-y: visible;
 	overflow-x: hidden;
 }
 .secondContainer {
-	background: #ffffff;
+	background: #f0f0f0;
 	min-height: 80vh;
 	height: fit-content;
-	margin-top: 30px;
+	padding-top: 30px;
 	overflow-x: hidden;
 }
 .thirdContainer {
@@ -90,10 +90,12 @@
 	background: rgba(248, 154, 68, 0.18);
 
 	/* background: rgba(33, 50, 94, 0.22); */
-	height: 520px;
+	height: max-content;
+	min-height: 620px;
 	width: 100%;
 	max-width: 500px;
-	border-radius: 33px;
+	border-radius: 24px;
+	padding: 15px 0px;
 }
 .firstSectionHeading {
 	font-size: 50px;

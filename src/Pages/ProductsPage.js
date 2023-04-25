@@ -56,7 +56,7 @@ const ProductsPage = () => {
 	const navigate = useNavigate();
 
 	return (
-		<>
+		<div style={{ background: "#f0f0f0" }}>
 			{filterModel && (
 				<div className='modalContainer'>
 					<button
@@ -194,8 +194,8 @@ const ProductsPage = () => {
 				</h1>
 			</div>
 
-			<div className='col-12 col-lg-10 mx-auto mb-5 mt-3'>
-				<div className='row allCenter justify-content-end w-100 mb-5 '>
+			<div className='col-12 col-lg-10 mx-auto pb-5 mt-3'>
+				<div className='row allCenter justify-content-end w-100 mb-5'>
 					<button
 						disabled={
 							footballCards?.length > 0 && otherProducts?.length > 0
@@ -209,10 +209,10 @@ const ProductsPage = () => {
 					</button>
 				</div>
 
-				<div className='row w-100 mb-5'>
+				<div className='row w-100 gx-0 mb-5'>
 					{filterNewData(footballCards) &&
 						filterNewData(footballCards)?.map((dat) => (
-							<div key={dat.id} className='col-12 col-sm-6 col-md-4 '>
+							<div key={dat.id} className='col-12 col-sm-6 col-md-4 mx-auto'>
 								<FootballCards
 									onClickFun={() => navigate(`/cardCustomization/${dat.id}`)}
 									isbestSeller={true}
@@ -244,7 +244,7 @@ const ProductsPage = () => {
 					) : null}
 				</div>
 			</div>
-		</>
+		</div>
 	);
 };
 

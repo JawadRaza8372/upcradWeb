@@ -11,7 +11,7 @@ const OtherProducts = () => {
 	const navigate = useNavigate();
 
 	return (
-		<>
+		<div style={{ background: "#f0f0f0" }}>
 			<div className='topHeadingDiv'>
 				<h1 className='responsiveHeading text-center mainColor'>
 					{t("oprod")}
@@ -20,7 +20,7 @@ const OtherProducts = () => {
 			<div className='col-12 col-lg-10 mx-auto'>
 				<div className='row w-100'>
 					{otherProducts?.map((dat) => (
-						<div key={dat.id} className='col-12 col-sm-6 col-md-4 '>
+						<div key={dat.id} className='col-12 col-sm-6 col-md-4 mx-auto'>
 							<FootballCards
 								isLargeImg={true}
 								onClickFun={() => navigate(`/productInfo/${dat.id}`)}
@@ -33,7 +33,7 @@ const OtherProducts = () => {
 					))}
 				</div>
 			</div>
-		</>
+		</div>
 	);
 };
 

@@ -21,6 +21,7 @@ import {
 	createUserWithEmailAndPassword,
 	signInWithEmailAndPassword,
 } from "firebase/auth";
+import * as rtdb from "firebase/database";
 
 var FirebaseConfig = {
 	apiKey: "AIzaSyCRgDbNA14WDc6O3oIXZsElpldIZjdHdrs",
@@ -36,6 +37,12 @@ initializeApp(FirebaseConfig);
 const storage = getStorage();
 const dbs = getFirestore();
 const auth = getAuth();
+const database = rtdb.getDatabase();
+const chckstatusweb = async () => {
+	let { onValue, ref } = rtdb;
+	const starCountRef = onValue(ref(database, "/checigvalue/"));
+	console.log("checking---------", starCountRef);
+};
 const uploadImage = async (file) => {
 	const filename = new Date();
 	const imgref = `image/${filename}${file.name}`;
@@ -1225,4 +1232,5 @@ export {
 	countries,
 	getClubs,
 	dbs,
+	chckstatusweb,
 };
