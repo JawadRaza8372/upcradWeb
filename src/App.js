@@ -40,9 +40,7 @@ function App() {
 			}
 		);
 	};
-	useEffect(() => {
-		fetchstatus();
-		fetchAuth();
+	const fetchAlldata = () => {
 		getDocs(collection(dbs, "FootballClubs")).then((projectSnaps) => {
 			dispatch(
 				setClubs({
@@ -70,6 +68,11 @@ function App() {
 				})
 			);
 		});
+	};
+	useEffect(() => {
+		fetchstatus();
+		fetchAuth();
+		fetchAlldata();
 		const cartdata = window.localStorage.getItem("upCradCartArry");
 		dispatch(
 			setCartItems({
