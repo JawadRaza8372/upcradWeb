@@ -239,7 +239,7 @@ const HomePage = () => {
 
 			<div className='secondContainer'>
 				<div className='col-11 col-lg-10 my-2 mx-auto h-100 allCenter flex-column'>
-					<div className='row w-100 h-88 my-4'>
+					<div className='row w-100 h-88 my-0 my-md-4'>
 						<div
 							className='col-12 mb-4 col-lg-6 order-2 order-md-1 allCenter flex-column'
 							style={{ padding: "0px" }}>
