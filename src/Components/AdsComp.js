@@ -14,14 +14,14 @@ class AdsComp extends Component {
 				<AdSense.Google
 					client='ca-pub-3453611888054749'
 					slot={`${this.props.slotnumber}`}
-					style={{
-						display: "block",
-						width: "100%",
-						minHeight: "1px",
-						minWidth: "250px",
-					}}
-					layout='in-article'
-					format='fluid'
+					// style={{
+					// 	display: "block",
+					// 	width: "100%",
+					// 	minHeight: "1px",
+					// 	minWidth: "250px",
+					// }}
+					// layout='in-article'
+					// format='fluid'
 				/>
 			</div>
 		);
