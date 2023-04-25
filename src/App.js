@@ -13,7 +13,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { setAuth } from "./store/authSlice";
 import { collection, getDocs } from "firebase/firestore";
-import { chckstatusweb, dbs } from "./Database/Database";
+import { dbs } from "./Database/Database";
 import { useTranslation } from "react-i18next";
 import { getDatabase, ref, child, get } from "firebase/database";
 import CustomLargeLoader from "./Components/CustomLargeLoader";

@@ -1,32 +1,33 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCartItems } from "../store/projectSlice";
 import CartPageCard from "../Components/CartPageCard";
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
-import PaymentMethod from "../Components/PaymentMethod";
+//import { loadStripe } from "@stripe/stripe-js";
+// import { Elements } from "@stripe/react-stripe-js";
+// import PaymentMethod from "../Components/PaymentMethod";
 import { useTranslation } from "react-i18next";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 const CartPage = () => {
 	const { t } = useTranslation();
 
 	const dispatch = useDispatch();
-	const [stripePromise, setStripePromise] = useState(null);
-	useEffect(() => {
-		fetch("https://upcradstripepayment-production.up.railway.app/config").then(
-			async (r) => {
-				const result = await r.json();
-				if (result?.publishableKey) {
-					setStripePromise(loadStripe(`${result?.publishableKey}`));
-				}
-			}
-		);
-	}, []);
+	// const [stripePromise, setStripePromise] = useState(null);
+	// useEffect(() => {
+	// 	fetch("https://upcradstripepayment-production.up.railway.app/config").then(
+	// 		async (r) => {
+	// 			const result = await r.json();
+	// 			if (result?.publishableKey) {
+	// 				setStripePromise(loadStripe(`${result?.publishableKey}`));
+	// 			}
+	// 		}
+	// 	);
+	// }, []);
 	const {
 		footballCards,
 		otherProducts,
 		cartItems,
-		clientSecret,
+
 		deliveryInfo,
 	} = useSelector((state) => state.project);
 	const { isAuth } = useSelector((state) => state.auth);
@@ -161,11 +162,7 @@ const CartPage = () => {
 								</div>
 							</div>
 							<div className='row w-100 gx-0 mt-4'>
-								{isAuth ? (
-									deliveryInfo?.length > 0 ? (
-										<>
-											{subtotal > 0 ? (
-												<Elements
+								{/* <Elements
 													stripe={stripePromise}
 													options={
 														clientSecret
@@ -179,7 +176,36 @@ const CartPage = () => {
 														data={cartItems}
 														userid={isAuth?.uid}
 													/>
-												</Elements>
+												</Elements> */}
+								{isAuth ? (
+									deliveryInfo?.length > 0 ? (
+										<>
+											{subtotal > 0 ? (
+												<PayPalScriptProvider
+													options={{
+														"client-id": import.meta.env.VITE_CLIENT_ID,
+													}}>
+													<PayPalButtons
+														style={{ layout: "vertical" }}
+														createOrder={(data, actions) => {
+															return actions.order.create({
+																purchase_units: [
+																	{
+																		amount: {
+																			currency_code: "usd",
+																			value: `${subtotal}`,
+																		},
+																	},
+																],
+															});
+														}}
+														onApprove={async (data, actions) => {
+															const details = await actions.order.capture();
+															const name = details.payer.name.given_name;
+															alert("Transaction completed by " + name);
+														}}
+													/>
+												</PayPalScriptProvider>
 											) : (
 												<></>
 											)}

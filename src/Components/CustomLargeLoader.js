@@ -22,6 +22,7 @@ const CustomLargeLoader = () => {
 					className='allCenter'>
 					<img
 						src={smalllogo}
+						alt='upcard'
 						style={{ width: "120px", height: "120px", objectFit: "contain" }}
 					/>
 				</div>
