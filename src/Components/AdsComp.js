@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import AdSense from "react-adsense";
+//import AdSense from "react-adsense";
 
 class AdsComp extends Component {
 	componentDidMount() {
@@ -11,14 +11,19 @@ class AdsComp extends Component {
 			<div
 				className='allCenter'
 				style={{ width: "100%", margin: "0px auto", minWidth: "250px" }}>
-				{/* <ins
-					class='adsbygoogle'
-					style='display:block'
+				<ins
+					className='adsbygoogle'
+					style={{
+						display: "block",
+						width: "100%",
+						minHeight: "1px",
+						minWidth: "250px",
+					}}
 					data-ad-client='ca-pub-3453611888054749'
 					data-ad-slot={`${this.props.slotnumber}`}
 					data-ad-format='auto'
-					data-full-width-responsive='true'></ins> */}
-				<AdSense.Google
+					data-full-width-responsive='true'></ins>
+				{/* <AdSense.Google
 					client='ca-pub-3453611888054749'
 					slot={`${this.props.slotnumber}`}
 					style={{
@@ -29,7 +34,7 @@ class AdsComp extends Component {
 					}}
 					layout='in-article'
 					format='fluid'
-				/>
+				/> */}
 			</div>
 		);
 	}
