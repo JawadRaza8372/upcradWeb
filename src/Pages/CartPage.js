@@ -234,6 +234,7 @@ const CartPage = () => {
 															onApprove={async (data, actions) => {
 																const details = await actions.order.capture();
 																//const name = details.payer.name.given_name;
+																console.log("confirm", details);
 																saveorderFunc();
 															}}
 														/>
