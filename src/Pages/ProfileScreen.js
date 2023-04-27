@@ -1,9 +1,5 @@
-import React, { useState } from "react";
-import { getDeliveryInfo, postDeliveryInfo } from "../Database/Database";
-import { toast } from "react-toastify";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setDeliveryInfo } from "../store/projectSlice";
-import { useEffect } from "react";
 import { setAuth } from "../store/authSlice";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
@@ -11,65 +7,7 @@ import { useNavigate } from "react-router-dom";
 const ProfileScreen = () => {
 	const { t } = useTranslation();
 	const dispatch = useDispatch();
-
 	const { isAuth } = useSelector((state) => state.auth);
-
-	useEffect(() => {
-		const getDelivery = async () => {
-			const devRes = await getDeliveryInfo(isAuth?.uid);
-			if (devRes?.data) {
-				setdeliveryInfos(devRes?.data);
-				dispatch(
-					setDeliveryInfo({
-						deliveryInfo: { ...devRes?.data, email: isAuth?.email },
-					})
-				);
-			}
-		};
-		if (isAuth?.uid) {
-			getDelivery();
-		}
-	}, [isAuth?.uid, dispatch]);
-
-	const [deliveryInfos, setdeliveryInfos] = useState({
-		name: "",
-		phone: "",
-		address: "",
-	});
-	const succmsg = t("deliveryInfo") + " " + t("uploaded");
-	const errmsg = t("intrerr");
-	const handleDelieryData = async (e) => {
-		e.preventDefault();
-		const rest = await postDeliveryInfo(deliveryInfos, isAuth?.uid);
-		if (rest === "success") {
-			toast.success(`${succmsg}`, {
-				position: "bottom-right",
-				autoClose: 5000,
-				hideProgressBar: false,
-				closeOnClick: true,
-				pauseOnHover: true,
-				draggable: true,
-				progress: undefined,
-				theme: "light",
-			});
-			dispatch(
-				setDeliveryInfo({
-					deliveryInfo: { ...deliveryInfos, email: isAuth?.email },
-				})
-			);
-		} else {
-			toast.error(`${errmsg}`, {
-				position: "bottom-right",
-				autoClose: 5000,
-				hideProgressBar: false,
-				closeOnClick: true,
-				pauseOnHover: true,
-				draggable: true,
-				progress: undefined,
-				theme: "light",
-			});
-		}
-	};
 	const navigate = useNavigate();
 	if (isAuth) {
 		return (

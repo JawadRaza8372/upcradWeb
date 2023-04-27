@@ -1,40 +1,24 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setCartItems, setDeliveryInfo } from "../store/projectSlice";
+import { setCartItems } from "../store/projectSlice";
 import CartPageCard from "../Components/CartPageCard";
 //import { loadStripe } from "@stripe/stripe-js";
 // import { Elements } from "@stripe/react-stripe-js";
 // import PaymentMethod from "../Components/PaymentMethod";
 import { useTranslation } from "react-i18next";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-import { getDeliveryInfo, postData } from "../Database/Database";
+import { postData } from "../Database/Database";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const CartPage = () => {
 	const { t } = useTranslation();
-
 	const dispatch = useDispatch();
-
-	const { footballCards, otherProducts, cartItems, deliveryInfo } = useSelector(
+	const { footballCards, otherProducts, cartItems } = useSelector(
 		(state) => state.project
 	);
 	const { isAuth } = useSelector((state) => state.auth);
-	useEffect(() => {
-		const getDelivery = async () => {
-			const devRes = await getDeliveryInfo(isAuth?.uid);
-			if (devRes?.data) {
-				dispatch(
-					setDeliveryInfo({
-						deliveryInfo: { ...devRes?.data, email: isAuth?.email },
-					})
-				);
-			}
-		};
-		if (isAuth?.uid) {
-			getDelivery();
-		}
-	}, [isAuth?.uid, dispatch]);
+
 	const navigate = useNavigate();
 	const removeItemFun = (itId) => {
 		let newdata = cartItems.filter((dat) => dat.pid !== itId);
@@ -192,63 +176,42 @@ const CartPage = () => {
 								</div>
 							</div>
 							<div className='row w-100 gx-0 mt-4'>
-								{/* <Elements
-													stripe={stripePromise}
-													options={
-														clientSecret
-															? {
-																	clientSecret,
-															  }
-															: {}
-													}>
-													<PaymentMethod
-														price={subtotal + 25}
-														data={cartItems}
-														userid={isAuth?.uid}
-													/>
-												</Elements> */}
 								{isAuth ? (
-									deliveryInfo !== {} ? (
-										<>
-											{subtotal > 0 ? (
-												<>
-													<PayPalScriptProvider
-														options={{
-															"client-id":
-																"Af7bJjVcA0B6i1eyIW8E8UbvHVAPkyUFbqVafnFBwBNjs-oKr3FpJNwDFkB3QdHrw1mAXmJf-TRDlsYB",
-														}}>
-														<PayPalButtons
-															style={{ layout: "vertical" }}
-															createOrder={(data, actions) => {
-																return actions.order.create({
-																	purchase_units: [
-																		{
-																			amount: {
-																				value: `${subtotal + 25}`,
-																			},
+									<>
+										{subtotal > 0 ? (
+											<>
+												<PayPalScriptProvider
+													options={{
+														"client-id":
+															"Af7bJjVcA0B6i1eyIW8E8UbvHVAPkyUFbqVafnFBwBNjs-oKr3FpJNwDFkB3QdHrw1mAXmJf-TRDlsYB",
+													}}>
+													<PayPalButtons
+														style={{ layout: "vertical" }}
+														createOrder={(data, actions) => {
+															return actions.order.create({
+																purchase_units: [
+																	{
+																		amount: {
+																			value: `${subtotal + 25}`,
 																		},
-																	],
-																});
-															}}
-															onApprove={async (data, actions) => {
-																const details = await actions.order.capture();
-																//const name = details.payer.name.given_name;
-																let delivery =
-																	details?.purchase_units[0]?.shipping;
-																saveorderFunc(delivery);
-															}}
-														/>
-													</PayPalScriptProvider>
-												</>
-											) : (
-												<></>
-											)}
-										</>
-									) : (
-										<>
-											<div className='errorDiv'>{t("delvInfp")} </div>
-										</>
-									)
+																	},
+																],
+															});
+														}}
+														onApprove={async (data, actions) => {
+															const details = await actions.order.capture();
+															//const name = details.payer.name.given_name;
+															let delivery =
+																details?.purchase_units[0]?.shipping;
+															saveorderFunc(delivery);
+														}}
+													/>
+												</PayPalScriptProvider>
+											</>
+										) : (
+											<></>
+										)}
+									</>
 								) : (
 									<>
 										<div className='errorDiv' id='paerror'>
