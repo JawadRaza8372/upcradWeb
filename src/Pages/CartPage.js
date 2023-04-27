@@ -224,7 +224,6 @@ const CartPage = () => {
 																	purchase_units: [
 																		{
 																			amount: {
-																				currency_code: "usd",
 																				value: `${subtotal}`,
 																			},
 																		},
