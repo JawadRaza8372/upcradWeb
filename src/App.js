@@ -5,15 +5,12 @@ import FileRoutes from "./Navigation/FileRoutes";
 import { useDispatch } from "react-redux";
 import {
 	setCartItems,
-	setClubs,
 	setFootballCards,
 	setOtherProducts,
 } from "./store/projectSlice";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { setAuth } from "./store/authSlice";
-import { collection, getDocs } from "firebase/firestore";
-import { dbs } from "./Database/Database";
 import { useTranslation } from "react-i18next";
 import { getDatabase, ref, child, get } from "firebase/database";
 import CustomLargeLoader from "./Components/CustomLargeLoader";
@@ -27,59 +24,53 @@ function App() {
 	const changeLanguage = (code) => {
 		i18n.changeLanguage(code);
 	};
-	const fetchAuth = async () => {
-		const checkAuth = await window.localStorage.getItem("upcradWebAuth");
-		const finalrest = checkAuth ? JSON.parse(checkAuth) : null;
-		dispatch(setAuth({ isAuth: finalrest }));
-	};
-	const fetchstatus = async () => {
-		await get(child(ref(getDatabase()), "/checigvalue/status")).then(
-			(snapshot) => {
-				let result = snapshot.val();
-				setwebstatus(result);
-			}
-		);
-	};
-	const fetchAlldata = () => {
-		getDocs(collection(dbs, "FootballClubs")).then((projectSnaps) => {
-			dispatch(
-				setClubs({
-					clubs: projectSnaps.docs.map((doc) => {
-						return { id: doc?.id, ...doc.data() };
-					}),
-				})
-			);
-		});
-		getDocs(collection(dbs, `Products`)).then((projectSnaps) => {
-			dispatch(
-				setOtherProducts({
-					otherProducts: projectSnaps.docs.map((doc) => {
-						return { id: doc?.id, ...doc.data() };
-					}),
-				})
-			);
-		});
-		getDocs(collection(dbs, `metalCards`)).then((projectSnaps) => {
-			dispatch(
-				setFootballCards({
-					footballCards: projectSnaps.docs.map((doc) => {
-						return { id: doc?.id, ...doc.data() };
-					}),
-				})
-			);
-		});
-	};
+
 	useEffect(() => {
+		const fetchAuth = async () => {
+			const checkAuth = await window.localStorage.getItem("upcradWebAuth");
+			const finalrest = checkAuth ? JSON.parse(checkAuth) : null;
+			dispatch(setAuth({ isAuth: finalrest }));
+		};
+		const fetchstatus = async () => {
+			await get(child(ref(getDatabase()), "/checigvalue/status")).then(
+				(snapshot) => {
+					let result = snapshot.val();
+					setwebstatus(result);
+				}
+			);
+		};
 		fetchstatus();
 		fetchAuth();
-		fetchAlldata();
+		get(child(ref(getDatabase()), "/metalCards")).then((snapshot) => {
+			let result = snapshot.val();
+			let resultarry = Object.keys(result).map((dat, index) => {
+				return { id: dat, ...Object.values(result)[index] };
+			});
+			dispatch(
+				setFootballCards({
+					footballCards: resultarry,
+				})
+			);
+		});
+		get(child(ref(getDatabase()), "/Products")).then((snapshot) => {
+			let result = snapshot.val();
+			let resultarry = Object.keys(result).map((dat, index) => {
+				return { id: dat, ...Object.values(result)[index] };
+			});
+			dispatch(
+				setOtherProducts({
+					otherProducts: resultarry,
+				})
+			);
+		});
+
 		const cartdata = window.localStorage.getItem("upCradCartArry");
 		dispatch(
 			setCartItems({
 				cartItems: JSON.parse(cartdata),
 			})
 		);
-	});
+	}, [dispatch]);
 
 	return (
 		<>

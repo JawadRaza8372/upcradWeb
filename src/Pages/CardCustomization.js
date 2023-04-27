@@ -14,11 +14,15 @@ import { toast } from "react-toastify";
 import { setCartItems } from "../store/projectSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
+import { setClubs } from "../store/projectSlice";
+import { getDatabase, ref, child, get } from "firebase/database";
 
 export const CardCustomization = () => {
 	const { t } = useTranslation();
 
-	const { footballCards, cartItems } = useSelector((state) => state.project);
+	const { footballCards, cartItems, clubs } = useSelector(
+		(state) => state.project
+	);
 	const dispatch = useDispatch();
 
 	const [BasicInfo, setBasicInfo] = useState({
@@ -108,6 +112,28 @@ export const CardCustomization = () => {
 		);
 		setoverAllRatting(result);
 	}, [subPositionsVal]);
+
+	useEffect(() => {
+		const getclubs = () => {
+			if (clubs && clubs?.length > 0) {
+				console.log("data available");
+			} else {
+				get(child(ref(getDatabase()), "/FootballClubs")).then((snapshot) => {
+					let result = snapshot.val();
+					let resultarry = Object.keys(result).map((dat, index) => {
+						return { id: dat, ...Object.values(result)[index] };
+					});
+					dispatch(
+						setClubs({
+							clubs: resultarry,
+						})
+					);
+				});
+			}
+		};
+		getclubs();
+	});
+
 	const uploadImageFun = async (image) => {
 		const data = new FormData();
 		data.append("file", image);
@@ -193,9 +219,9 @@ export const CardCustomization = () => {
 	const nextBtnFunc = () => {
 		if (compSeq === 0) {
 			if (
-				BasicInfo?.name?.length > 0 &&
-				BasicInfo?.position?.length > 0 &&
-				BasicInfo?.image?.length > 0
+				BasicInfo?.name !== "" &&
+				BasicInfo?.position !== "" &&
+				BasicInfo?.image !== ""
 			) {
 				setcompSeq(1);
 			} else {
@@ -212,9 +238,9 @@ export const CardCustomization = () => {
 			}
 		} else if (compSeq === 1) {
 			if (
-				clubFlag?.badge?.length > 0 &&
-				clubFlag?.id?.length > 0 &&
-				clubFlag?.name?.length > 0
+				clubFlag?.badge !== "" &&
+				clubFlag?.id !== "" &&
+				clubFlag?.name !== ""
 			) {
 				setcompSeq(2);
 			} else {
@@ -230,10 +256,7 @@ export const CardCustomization = () => {
 				});
 			}
 		} else if (compSeq === 2) {
-			if (
-				selectedCountry?.name?.length > 0 &&
-				selectedCountry?.code?.length > 0
-			) {
+			if (selectedCountry?.name !== "" && selectedCountry?.code !== "") {
 				setcompSeq(3);
 			} else {
 				toast.error(t("choosecountry"), {
@@ -249,12 +272,12 @@ export const CardCustomization = () => {
 			}
 		} else if (compSeq === 3) {
 			if (
-				subPositionsVal?.fastValue &&
-				subPositionsVal?.secValue &&
-				subPositionsVal?.thrdValue &&
-				subPositionsVal?.forValue &&
-				subPositionsVal?.fifValue &&
-				subPositionsVal?.sixValue
+				subPositionsVal?.fastValue !== "" &&
+				subPositionsVal?.secValue !== "" &&
+				subPositionsVal?.thrdValue !== "" &&
+				subPositionsVal?.forValue !== "" &&
+				subPositionsVal?.fifValue !== "" &&
+				subPositionsVal?.sixValue !== ""
 			) {
 				setcompSeq(4);
 			} else {
@@ -270,7 +293,7 @@ export const CardCustomization = () => {
 				});
 			}
 		} else if (compSeq === 4) {
-			if (extraService?.title?.length > 0) {
+			if (extraService?.title !== "") {
 				const downloadfunc = () => {
 					const uri = stageRef.current.toDataURL();
 					return uri;
@@ -388,7 +411,7 @@ export const CardCustomization = () => {
 											fontSize={16}
 											verticalAlign={"middle"}
 											align={"center"}
-											fontStyle={""}
+											fontFamily='MYbold'
 										/>
 										<Text
 											width={50}
@@ -404,7 +427,7 @@ export const CardCustomization = () => {
 											fontSize={16}
 											verticalAlign={"middle"}
 											align={"center"}
-											fontStyle={""}
+											fontFamily='MYbold'
 										/>
 										<Text
 											width={50}
@@ -420,7 +443,7 @@ export const CardCustomization = () => {
 											fontSize={16}
 											verticalAlign={"middle"}
 											align={"center"}
-											fontStyle={""}
+											fontFamily='MYbold'
 										/>
 										<Text
 											width={50}
@@ -436,7 +459,7 @@ export const CardCustomization = () => {
 											fontSize={16}
 											verticalAlign={"middle"}
 											align={"center"}
-											fontStyle={""}
+											fontFamily='MYbold'
 										/>
 										<Text
 											width={50}
@@ -452,7 +475,7 @@ export const CardCustomization = () => {
 											fontSize={16}
 											verticalAlign={"middle"}
 											align={"center"}
-											fontStyle={""}
+											fontFamily='MYbold'
 										/>
 										<Text
 											width={50}
@@ -468,7 +491,7 @@ export const CardCustomization = () => {
 											fontSize={16}
 											verticalAlign={"middle"}
 											align={"center"}
-											fontStyle={""}
+											fontFamily='MYbold'
 										/>
 
 										<Text
@@ -485,7 +508,7 @@ export const CardCustomization = () => {
 											fontSize={16}
 											verticalAlign={"middle"}
 											align={"center"}
-											fontStyle={""}
+											fontFamily='MYbold'
 										/>
 										<Text
 											width={50}
@@ -501,7 +524,7 @@ export const CardCustomization = () => {
 											fontSize={16}
 											verticalAlign={"middle"}
 											align={"center"}
-											fontStyle={""}
+											fontFamily='MYbold'
 										/>
 										<Text
 											width={50}
@@ -517,7 +540,7 @@ export const CardCustomization = () => {
 											fontSize={16}
 											verticalAlign={"middle"}
 											align={"center"}
-											fontStyle={""}
+											fontFamily='MYbold'
 										/>
 										<Text
 											width={50}
@@ -533,7 +556,7 @@ export const CardCustomization = () => {
 											fontSize={16}
 											verticalAlign={"middle"}
 											align={"center"}
-											fontStyle={""}
+											fontFamily='MYbold'
 										/>
 										<Text
 											width={50}
@@ -549,7 +572,7 @@ export const CardCustomization = () => {
 											fontSize={16}
 											verticalAlign={"middle"}
 											align={"center"}
-											fontStyle={""}
+											fontFamily='MYbold'
 										/>
 										<Text
 											width={50}
@@ -565,7 +588,7 @@ export const CardCustomization = () => {
 											fontSize={16}
 											verticalAlign={"middle"}
 											align={"center"}
-											fontStyle={""}
+											fontFamily='MYbold'
 										/>
 
 										<Text
@@ -583,6 +606,7 @@ export const CardCustomization = () => {
 											verticalAlign={"middle"}
 											align={"center"}
 											fontStyle={"bold"}
+											fontFamily='MYbold'
 										/>
 										<Text
 											width={60}
@@ -599,6 +623,7 @@ export const CardCustomization = () => {
 											verticalAlign={"middle"}
 											align={"center"}
 											fontStyle={"bold"}
+											fontFamily='MYbold'
 										/>
 										<Text
 											width={50}
@@ -614,7 +639,7 @@ export const CardCustomization = () => {
 											fontSize={18}
 											verticalAlign={"middle"}
 											align={"center"}
-											fontStyle={""}
+											fontFamily='MYbold'
 										/>
 										<Image
 											x={73}
@@ -659,6 +684,7 @@ export const CardCustomization = () => {
 											verticalAlign={"middle"}
 											align={"center"}
 											fontStyle={""}
+											fontFamily='MYbold'
 										/>
 										<Text
 											width={50}
@@ -675,6 +701,7 @@ export const CardCustomization = () => {
 											verticalAlign={"middle"}
 											align={"center"}
 											fontStyle={""}
+											fontFamily='MYbold'
 										/>
 										<Text
 											width={50}
@@ -691,6 +718,7 @@ export const CardCustomization = () => {
 											verticalAlign={"middle"}
 											align={"center"}
 											fontStyle={""}
+											fontFamily='MYbold'
 										/>
 										<Text
 											width={50}
@@ -707,6 +735,7 @@ export const CardCustomization = () => {
 											verticalAlign={"middle"}
 											align={"center"}
 											fontStyle={""}
+											fontFamily='MYbold'
 										/>
 										<Text
 											width={50}
@@ -723,6 +752,7 @@ export const CardCustomization = () => {
 											verticalAlign={"middle"}
 											align={"center"}
 											fontStyle={""}
+											fontFamily='MYbold'
 										/>
 										<Text
 											width={50}
@@ -739,6 +769,7 @@ export const CardCustomization = () => {
 											verticalAlign={"middle"}
 											align={"center"}
 											fontStyle={""}
+											fontFamily='MYbold'
 										/>
 
 										<Text
@@ -756,6 +787,7 @@ export const CardCustomization = () => {
 											verticalAlign={"middle"}
 											align={"center"}
 											fontStyle={""}
+											fontFamily='MYbold'
 										/>
 										<Text
 											width={50}
@@ -772,6 +804,7 @@ export const CardCustomization = () => {
 											verticalAlign={"middle"}
 											align={"center"}
 											fontStyle={""}
+											fontFamily='MYbold'
 										/>
 										<Text
 											width={50}
@@ -788,6 +821,7 @@ export const CardCustomization = () => {
 											verticalAlign={"middle"}
 											align={"center"}
 											fontStyle={""}
+											fontFamily='MYbold'
 										/>
 										<Text
 											width={50}
@@ -804,6 +838,7 @@ export const CardCustomization = () => {
 											verticalAlign={"middle"}
 											align={"center"}
 											fontStyle={""}
+											fontFamily='MYbold'
 										/>
 										<Text
 											width={50}
@@ -820,6 +855,7 @@ export const CardCustomization = () => {
 											verticalAlign={"middle"}
 											align={"center"}
 											fontStyle={""}
+											fontFamily='MYbold'
 										/>
 										<Text
 											width={50}
@@ -836,6 +872,7 @@ export const CardCustomization = () => {
 											verticalAlign={"middle"}
 											align={"center"}
 											fontStyle={""}
+											fontFamily='MYbold'
 										/>
 
 										<Text
@@ -853,6 +890,7 @@ export const CardCustomization = () => {
 											verticalAlign={"middle"}
 											align={"center"}
 											fontStyle={"bold"}
+											fontFamily='MYbold'
 										/>
 										<Text
 											width={60}
@@ -869,6 +907,7 @@ export const CardCustomization = () => {
 											verticalAlign={"middle"}
 											align={"center"}
 											fontStyle={"bold"}
+											fontFamily='MYbold'
 										/>
 										<Text
 											width={50}
@@ -884,6 +923,7 @@ export const CardCustomization = () => {
 											fontSize={18}
 											verticalAlign={"middle"}
 											align={"center"}
+											fontFamily='MYbold'
 											fontStyle={""}
 										/>
 										<Image

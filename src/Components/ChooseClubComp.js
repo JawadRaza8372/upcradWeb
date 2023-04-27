@@ -17,7 +17,7 @@ const ChooseClubComp = ({
 	const [inputValue, setInputValue] = useState("");
 	const [selectData, setselectData] = useState(0);
 	const filteredData = () => {
-		if (inputValue?.length > 0) {
+		if (inputValue !== "") {
 			return clubs?.filter((dat) =>
 				dat?.name?.toLowerCase()?.includes(inputValue?.toLowerCase())
 			);
@@ -113,7 +113,7 @@ const ChooseClubComp = ({
 						padding: "10px 0px",
 					}}>
 					<div className='row w-100 gx-0'>
-						{filteredData().length > 0 ? (
+						{filteredData() ? (
 							filteredData().map((dat) => (
 								<div
 									key={dat.id}

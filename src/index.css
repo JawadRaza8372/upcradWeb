@@ -71,6 +71,11 @@ code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
 		monospace;
 }
+@font-face {
+	font-family: "MYbold"; /*Can be any text*/
+	src: local("DINPro-CondensedBold"),
+		url("./fonsts/DINPro-CondensedBold.ttf") format("truetype");
+}
 p,
 span,
 a,

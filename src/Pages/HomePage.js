@@ -3,7 +3,6 @@ import startedimage from "../ownassets/image 18.png";
 import FootballCards from "../Components/FootballCards";
 import firstimg from "../ownassets/firstsesion.png";
 import secssion from "../ownassets/secsesion.png";
-import design1 from "../ownassets/design1.png";
 import design2 from "../ownassets/design2.png";
 import ourservices1 from "../ownassets/ourservices1.png";
 import service1 from "../ownassets/servis1.png";
@@ -86,10 +85,10 @@ const HomePage = () => {
 		},
 	];
 	const videodataraw = [
-		{ videolink: "https://www.youtube.com/embed/FMdgidP2qbE" },
-		{ videolink: "https://www.youtube.com/embed/FMdgidP2qbE" },
-		{ videolink: "https://www.youtube.com/embed/FMdgidP2qbE" },
-		{ videolink: "https://www.youtube.com/embed/FMdgidP2qbE" },
+		{ videolink: "https://www.youtube.com/embed/brMnOm206cw" },
+		{ videolink: "https://www.youtube.com/embed/ymDzA0luT5g" },
+		{ videolink: "https://www.youtube.com/embed/TtIoPVRgqpQ" },
+		{ videolink: "https://www.youtube.com/embed/xSD71AoO6WA" },
 	];
 	const CustomLeftArrow = (props) => {
 		const { className, onClick } = props;
@@ -138,19 +137,26 @@ const HomePage = () => {
 		],
 	};
 	const reviewraw = [
-		{ name: "Alex Hall", stars: 4, message: "very good", imageurl: design1 },
+		{
+			name: "Alex Hall",
+			stars: 4,
+			message: "very good",
+			imageurl:
+				"https://res.cloudinary.com/dpjk8xcld/image/upload/v1682419516/vznx6dzacukjxtvgn4yn.png",
+		},
 		{
 			name: "Paul Hill",
 			stars: 3,
-			message:
-				"sjbjkabkb asjbvchavbcja hbavsjvcahjvca scsvhchvhas chsvcvasvah sc ahsbv csvhcavshc svhavhsvha shavsvjbskhabshja shvbdsvhd sndksnd sdhsbahjvs dahbvdhba a cvhdabhdfa schdvehfdvaha hhe aknjkna sm,anbjs ajbsbad jbdjads ajbda",
-			imageurl: design2,
+			message: "Liked this one so much",
+			imageurl:
+				"https://res.cloudinary.com/dpjk8xcld/image/upload/v1682422279/ph5jdcfgowmuxckimfrx.png",
 		},
 		{
 			name: "Alex johnthan",
 			stars: 4,
 			message: "very good",
-			imageurl: design2,
+			imageurl:
+				"https://res.cloudinary.com/dpjk8xcld/image/upload/v1682422399/btm7mfscum9coujglogs.png",
 		},
 		{
 			name: "Paul kim",
@@ -292,7 +298,7 @@ const HomePage = () => {
 													onClickFun={() =>
 														navigate(`/cardCustomization/${dat.id}`)
 													}
-													key={dat.id}
+													key={dat.id + dat.title + "slider"}
 													isbestSeller={true}
 													sorce={dat.imgSrc}
 													title={dat.title}
@@ -405,7 +411,7 @@ const HomePage = () => {
 									{ourServiceCardData.map((dat) => (
 										<ServiceMiniCard
 											onClickFun={() => navigate(`/otherProducts`)}
-											key={dat.id}
+											key={dat.id + "slider" + dat.title}
 											sorce={dat.imgSrc}
 											title={dat.title}
 										/>
@@ -438,68 +444,54 @@ const HomePage = () => {
 				</div>
 			</div>
 			{/*fifth Container */}
-
-			<div className='allCenter fifthContainer flex-column'>
-				<div className='col-11 col-lg-11 mx-auto h-100'>
-					{/* <div className=' row mx-auto' style={{ marginBottom: "20px" }}>
-						<div className='col-8 col-md-6 d-flex align-items-center justify-content-start'>
-							<h3 style={{ fontWeight: "bold" }} className='mainColor'>
-								Our Service
-							</h3>
-						</div>
-						<div className='col-4 col-md-6 d-flex align-items-center justify-content-end'>
-							<button
-								onClick={() => navigate("/otherProducts")}
-								className='btn'
-								style={{ outline: "0px", boxShadow: "none !important" }}>
-								<AiOutlineRight
-									style={{ fontSize: "30px" }}
-									className='mainColor'
-								/>
-							</button>
-						</div>
-					</div> */}
-					<div className=' row w-100 mx-auto'>
-						<div className='col-12 mb-4 allCenter flex-row'>
-							<div className='row w-100 h-100 d-flex d-md-none'>
-								<Slider {...settings2}>
+			{otherProducts && (
+				<div className='allCenter fifthContainer flex-column'>
+					<div className='col-11 col-lg-11 mx-auto h-100'>
+						<div className=' row w-100 mx-auto'>
+							<div className='col-12 mb-4 allCenter flex-row'>
+								<div className='row w-100 h-100 d-flex d-md-none'>
+									<Slider {...settings2}>
+										{otherProducts &&
+											otherProducts
+												?.slice(0, 6)
+												?.map((dat) => (
+													<FootballCards
+														isLargeImg={true}
+														onClickFun={() =>
+															navigate(`/productInfo/${dat.id}`)
+														}
+														key={dat.id + dat.title + "slider"}
+														sorce={dat.imgSrc}
+														title={dat.title}
+														price={dat.price}
+														oldprice={dat.oldprice}
+													/>
+												))}
+									</Slider>
+								</div>
+								<div className='row w-100 d-none d-md-flex align-items-center justify-content-evenly'>
 									{otherProducts &&
-										otherProducts
-											?.slice(0, 6)
-											?.map((dat) => (
+										otherProducts?.slice(0, 4)?.map((dat) => (
+											<div
+												key={dat.id}
+												className='col-12 col-sm-6 col-md-4 col-lg-3 allCenter'>
 												<FootballCards
 													isLargeImg={true}
 													onClickFun={() => navigate(`/productInfo/${dat.id}`)}
-													key={dat.id}
 													sorce={dat.imgSrc}
 													title={dat.title}
 													price={dat.price}
 													oldprice={dat.oldprice}
 												/>
-											))}
-								</Slider>
-							</div>
-							<div className='row w-100 d-none d-md-flex align-items-center justify-content-evenly'>
-								{otherProducts &&
-									otherProducts?.slice(0, 4)?.map((dat) => (
-										<div
-											key={dat.id}
-											className='col-12 col-sm-6 col-md-4 col-lg-3 allCenter'>
-											<FootballCards
-												isLargeImg={true}
-												onClickFun={() => navigate(`/productInfo/${dat.id}`)}
-												sorce={dat.imgSrc}
-												title={dat.title}
-												price={dat.price}
-												oldprice={dat.oldprice}
-											/>
-										</div>
-									))}
+											</div>
+										))}
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+			)}
+
 			{/*Sixth Container */}
 			<AdsComp slotnumber='5755097747' />
 
@@ -511,7 +503,7 @@ const HomePage = () => {
 								<Slider {...settings}>
 									{reviewraw.map((dat, index) => (
 										<Reviewcard
-											key={index}
+											key={"slider" + index}
 											imaglink={dat.imageurl}
 											name={dat.name}
 											message={dat.message}
@@ -575,7 +567,7 @@ const HomePage = () => {
 					<div className='row d-flex align-items-center justify-content-start flex-row'>
 						{choosedata.map((dat, index) => (
 							<div
-								key={index}
+								key={index + dat.title}
 								className='col-12 col-md-6 col-lg-4 allCenter'
 								style={{ marginBottom: "20px" }}>
 								<ChooseUsCard
@@ -611,7 +603,7 @@ const HomePage = () => {
 					<div className='row w-100 gx-0'>
 						{questioncardraw.map((dat, index) => (
 							<QuestionCard
-								key={index}
+								key={index + dat.question}
 								question={dat.question}
 								answer={dat.answer}
 							/>
@@ -678,16 +670,29 @@ const HomePage = () => {
 							</h3>
 						</div>
 						<div className='col-12 col-md-7 d-flex align-items-center justify-content-start flex-row'>
-							<button className='btn'>
+							<button
+								onClick={() => {
+									window.location.href = "https://www.tiktok.com/@upcardsfc";
+								}}
+								className='btn'>
 								<BsTiktok style={{ fontSize: "35px" }} className='mainColor' />
 							</button>
-							<button className='btn'>
+							<button
+								onClick={() => {
+									window.location.href = "https://www.instagram.com/upcardsfc/";
+								}}
+								className='btn'>
 								<AiOutlineInstagram
 									style={{ fontSize: "40px" }}
 									className='mainColor'
 								/>
 							</button>
-							<button className='btn'>
+							<button
+								onClick={() => {
+									window.location.href =
+										"https://www.youtube.com/channel/UCeMtYgcM-546smTRkCSx-og";
+								}}
+								className='btn'>
 								<AiOutlineYoutube
 									style={{ fontSize: "40px" }}
 									className='mainColor'
@@ -698,14 +703,16 @@ const HomePage = () => {
 					<div className='row w-100 mx-auto h-100 d-flex d-md-none'>
 						<Slider {...settings2}>
 							{videodataraw.map((dat, index) => (
-								<div key={index} className='col-12 mx-auto d-flex allCenter'>
+								<div
+									key={index + "slider"}
+									className='col-12 mx-auto d-flex allCenter'>
 									<iframe
 										title={`${index}`}
 										src={`${dat.videolink}`}
 										allowFullScreen
 										scrolling='no'
 										style={{ width: "90%", margin: "0 auto" }}
-										height='200px'
+										height='400px'
 										allow='encrypted-media;'></iframe>
 								</div>
 							))}

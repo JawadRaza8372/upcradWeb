@@ -178,12 +178,12 @@ const CartPage = () => {
 													/>
 												</Elements> */}
 								{isAuth ? (
-									deliveryInfo?.length > 0 ? (
+									deliveryInfo ? (
 										<>
 											{subtotal > 0 ? (
 												<PayPalScriptProvider
 													options={{
-														"client-id": import.meta.env.VITE_CLIENT_ID,
+														"client-id": "287382738273827",
 													}}>
 													<PayPalButtons
 														style={{ layout: "vertical" }}

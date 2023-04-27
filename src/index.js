@@ -9,7 +9,7 @@ import { Provider } from "react-redux";
 import { store } from "./store/index";
 import "./i18n.js";
 import CustomLargeLoader from "./Components/CustomLargeLoader";
-
+import "./fonsts/DINPro-CondensedBold.ttf";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<Suspense fallback={<CustomLargeLoader />}>
