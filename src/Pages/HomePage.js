@@ -33,7 +33,7 @@ import fistImage4 from "../ownassets/firstimg (4).png";
 import ServiceMiniCard from "../Components/ServiceMiniCard";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import AdsComp from "../Components/AdsComp";
+//import AdsComp from "../Components/AdsComp";
 const HomePage = () => {
 	const { footballCards, otherProducts } = useSelector(
 		(state) => state.project
@@ -493,7 +493,7 @@ const HomePage = () => {
 			)}
 
 			{/*Sixth Container */}
-			<AdsComp slotnumber='5755097747' />
+			{/* <AdsComp slotnumber='5755097747' /> */}
 
 			<div className='allCenter sixthContainer flex-column'>
 				<div className='col-11 col-lg-10 mx-auto h-100'>
