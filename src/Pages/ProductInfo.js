@@ -77,7 +77,7 @@ const ProductInfo = () => {
 							className='m-0'>
 							{currentdata?.price && (
 								<span className='mainColor'>
-									<b>Price {currentdata?.price}</b>
+									<b>Price: ${currentdata?.price}</b>
 								</span>
 							)}{" "}
 							{currentdata?.oldprice && (
@@ -86,7 +86,7 @@ const ProductInfo = () => {
 										textDecorationLine: "line-through",
 										color: "red",
 									}}>
-									{currentdata?.oldprice}
+									${currentdata?.oldprice}
 								</span>
 							)}
 						</p>

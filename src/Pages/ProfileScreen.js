@@ -19,7 +19,11 @@ const ProfileScreen = () => {
 			const devRes = await getDeliveryInfo(isAuth?.uid);
 			if (devRes?.data) {
 				setdeliveryInfos(devRes?.data);
-				dispatch(setDeliveryInfo({ deliveryInfo: devRes?.data }));
+				dispatch(
+					setDeliveryInfo({
+						deliveryInfo: { ...devRes?.data, email: isAuth?.email },
+					})
+				);
 			}
 		};
 		if (isAuth?.uid) {
@@ -29,7 +33,6 @@ const ProfileScreen = () => {
 
 	const [deliveryInfos, setdeliveryInfos] = useState({
 		name: "",
-		email: "",
 		phone: "",
 		address: "",
 	});
@@ -49,7 +52,11 @@ const ProfileScreen = () => {
 				progress: undefined,
 				theme: "light",
 			});
-			dispatch(setDeliveryInfo({ deliveryInfo: deliveryInfos }));
+			dispatch(
+				setDeliveryInfo({
+					deliveryInfo: { ...deliveryInfos, email: isAuth?.email },
+				})
+			);
 		} else {
 			toast.error(`${errmsg}`, {
 				position: "bottom-right",
@@ -66,8 +73,22 @@ const ProfileScreen = () => {
 	const navigate = useNavigate();
 	if (isAuth) {
 		return (
-			<div className='container my-4 mx-auto'>
-				<div className='row gx-0'>
+			<div
+				className='container my-4 mx-auto allCenter flex-column'
+				style={{ minHeight: "70vh" }}>
+				<div className='row gx-0 h-100'>
+					<h4 className='thirdClr'>
+						User Email :{" "}
+						<span style={{ textTransform: "lowercase" }}>{isAuth?.email}</span>
+					</h4>
+				</div>
+				<div className='row gx-0 h-100 my-4'>
+					<p style={{ fontWeight: "bold" }}>
+						User ID :{" "}
+						<span style={{ textTransform: "lowercase" }}>{isAuth?.uid}</span>
+					</p>
+				</div>
+				<div className='row gx-0 h-100'>
 					<button
 						onClick={() => {
 							dispatch(setAuth({ isAuth: null }));
@@ -78,7 +99,8 @@ const ProfileScreen = () => {
 						{t("logout")}
 					</button>
 				</div>
-				<div className='row gx-0'>
+
+				{/* <div className='row gx-0'>
 					<div className='col-12 col-md-11 allCenter mx-auto'>
 						<div className='deliveryFormContainer allCenter flex-column'>
 							<span> {t("deliveryInfo")}</span>
@@ -101,24 +123,7 @@ const ProfileScreen = () => {
 										}
 									/>
 								</div>
-								<div>
-									<label>
-										{" "}
-										{t("enteryor")} {t("email")}
-									</label>
-									<input
-										type={"email"}
-										required
-										placeholder='youremail@provider.com'
-										value={deliveryInfos?.email}
-										onChange={(e) =>
-											setdeliveryInfos({
-												...deliveryInfos,
-												email: e.target.value,
-											})
-										}
-									/>
-								</div>
+
 								<div>
 									<label>
 										{t("enteryor")} {t("phone")}
@@ -156,9 +161,7 @@ const ProfileScreen = () => {
 
 								<button type='submit'>{t("save")}</button>
 							</form>
-						</div>
-					</div>
-				</div>
+						</div> </div></div>*/}
 			</div>
 		);
 	} else {
