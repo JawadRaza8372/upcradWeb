@@ -7,6 +7,9 @@ import CartPageCard from "../Components/CartPageCard";
 // import PaymentMethod from "../Components/PaymentMethod";
 import { useTranslation } from "react-i18next";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { postData } from "../Database/Database";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const CartPage = () => {
 	const { t } = useTranslation();
@@ -31,14 +34,40 @@ const CartPage = () => {
 		deliveryInfo,
 	} = useSelector((state) => state.project);
 	const { isAuth } = useSelector((state) => state.auth);
-
+	const navigate = useNavigate();
 	const removeItemFun = (itId) => {
 		let newdata = cartItems.filter((dat) => dat.pid !== itId);
 		window.localStorage.setItem("upCradCartArry", JSON.stringify(newdata));
 		dispatch(setCartItems({ cartItems: newdata }));
 	};
 	let subtotal = 0;
-
+	const saveorderFunc = async () => {
+		const rest = await postData(
+			{
+				products: cartItems,
+				price: subtotal,
+				postedBy: isAuth?.uid,
+				deliveryInfo: deliveryInfo,
+			},
+			"Orders"
+		);
+		if (rest?.data) {
+			dispatch(setCartItems({ cartItems: [] }));
+			window.localStorage.removeItem("upCradCartArry");
+			navigate(`/success/${rest?.data}`);
+		} else {
+			toast.error(`${rest?.error}`, {
+				position: "bottom-right",
+				autoClose: 5000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+				theme: "light",
+			});
+		}
+	};
 	return (
 		<>
 			<div
@@ -181,31 +210,35 @@ const CartPage = () => {
 									deliveryInfo ? (
 										<>
 											{subtotal > 0 ? (
-												<PayPalScriptProvider
-													options={{
-														"client-id": "287382738273827",
-													}}>
-													<PayPalButtons
-														style={{ layout: "vertical" }}
-														createOrder={(data, actions) => {
-															return actions.order.create({
-																purchase_units: [
-																	{
-																		amount: {
-																			currency_code: "usd",
-																			value: `${subtotal}`,
+												<>
+													<button>Place Order</button>
+													<PayPalScriptProvider
+														options={{
+															"client-id":
+																"Af7bJjVcA0B6i1eyIW8E8UbvHVAPkyUFbqVafnFBwBNjs-oKr3FpJNwDFkB3QdHrw1mAXmJf-TRDlsYB",
+														}}>
+														<PayPalButtons
+															style={{ layout: "vertical" }}
+															createOrder={(data, actions) => {
+																return actions.order.create({
+																	purchase_units: [
+																		{
+																			amount: {
+																				currency_code: "usd",
+																				value: `${subtotal}`,
+																			},
 																		},
-																	},
-																],
-															});
-														}}
-														onApprove={async (data, actions) => {
-															const details = await actions.order.capture();
-															const name = details.payer.name.given_name;
-															alert("Transaction completed by " + name);
-														}}
-													/>
-												</PayPalScriptProvider>
+																	],
+																});
+															}}
+															onApprove={async (data, actions) => {
+																const details = await actions.order.capture();
+																//const name = details.payer.name.given_name;
+																saveorderFunc();
+															}}
+														/>
+													</PayPalScriptProvider>
+												</>
 											) : (
 												<></>
 											)}
