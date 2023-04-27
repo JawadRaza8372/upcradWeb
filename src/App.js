@@ -24,21 +24,21 @@ function App() {
 	const changeLanguage = (code) => {
 		i18n.changeLanguage(code);
 	};
-
+	const fetchstatus = async () => {
+		await get(child(ref(getDatabase()), "/checigvalue/status")).then(
+			(snapshot) => {
+				let result = snapshot.val();
+				setwebstatus(result);
+			}
+		);
+	};
 	useEffect(() => {
 		const fetchAuth = async () => {
 			const checkAuth = await window.localStorage.getItem("upcradWebAuth");
 			const finalrest = checkAuth ? JSON.parse(checkAuth) : null;
 			dispatch(setAuth({ isAuth: finalrest }));
 		};
-		const fetchstatus = async () => {
-			await get(child(ref(getDatabase()), "/checigvalue/status")).then(
-				(snapshot) => {
-					let result = snapshot.val();
-					setwebstatus(result);
-				}
-			);
-		};
+
 		fetchstatus();
 		fetchAuth();
 		get(child(ref(getDatabase()), "/metalCards")).then((snapshot) => {
@@ -70,6 +70,7 @@ function App() {
 				cartItems: JSON.parse(cartdata),
 			})
 		);
+		console.log("-----------------------welcome");
 	}, [dispatch]);
 
 	return (

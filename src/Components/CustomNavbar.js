@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -8,17 +8,9 @@ import logoimg from "../ownassets/logo.png";
 import { BiCartAlt } from "react-icons/bi";
 import { IoPersonOutline } from "react-icons/io5";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import { useEffect } from "react";
 
 const CustomNavbar = ({ changeLanguage }) => {
 	const { t } = useTranslation();
-	const [lang, setlang] = useState("en");
-	useEffect(() => {
-		const newfunc = () => {
-			changeLanguage(lang);
-		};
-		newfunc();
-	}, [lang, changeLanguage]);
 
 	return (
 		<>
@@ -141,7 +133,9 @@ const CustomNavbar = ({ changeLanguage }) => {
 									to='#'>
 									<select
 										className='btn langsele'
-										onChange={(e) => setlang(e.target.value)}>
+										onChange={(e) => {
+											changeLanguage(e.target.value);
+										}}>
 										<option defaultChecked value={"en"}>
 											English
 										</option>

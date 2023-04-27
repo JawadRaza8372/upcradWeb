@@ -34,38 +34,32 @@ const FooterComp = () => {
 					className='widthissue marginIssue row d-flex align-items-start justify-content-start flex-row'>
 					<div className='col-12 col-md-6 col-lg-4 h-100 d-flex align-items-center justify-content-evenly flex-column'>
 						{firstwala.map((dat, index) => (
-							<>
-								<Link
-									to={dat?.path}
-									key={dat.title + "12" + index}
-									className='footerlinks'>
-									{dat.title}
-								</Link>
-							</>
+							<Link
+								to={dat?.path}
+								key={dat.title + index}
+								className='footerlinks'>
+								{dat.title}
+							</Link>
 						))}
 					</div>
 					<div className='col-12 col-md-6 col-lg-4 h-100 d-flex align-items-center justify-content-evenly flex-column'>
 						{secondwala.map((dat, index) => (
-							<>
-								<Link
-									to={dat?.path}
-									key={dat.title + "14" + index}
-									className='footerlinks'>
-									{dat.title}
-								</Link>
-							</>
+							<Link
+								to={dat?.path}
+								key={dat.title + index}
+								className='footerlinks'>
+								{dat.title}
+							</Link>
 						))}
 					</div>
 					<div className='col-12 col-md-6 col-lg-4 h-100 d-flex align-items-center justify-content-evenly flex-column'>
 						{thirdwala.map((dat, index) => (
-							<>
-								<Link
-									to={dat?.path}
-									key={dat.title + "15" + index}
-									className='footerlinks'>
-									{dat.title}
-								</Link>
-							</>
+							<Link
+								to={dat?.path}
+								key={dat.title + index}
+								className='footerlinks'>
+								{dat.title}
+							</Link>
 						))}
 					</div>
 				</div>

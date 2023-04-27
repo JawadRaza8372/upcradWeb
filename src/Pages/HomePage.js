@@ -43,8 +43,8 @@ const HomePage = () => {
 	const navigate = useNavigate();
 	const ourServiceCardData = [
 		{ id: 0, imgSrc: service1, title: t("oprod") },
-		{ id: 0, imgSrc: service2, title: t("fotCards") },
-		{ id: 0, imgSrc: service3, title: t("mtchmomts") },
+		{ id: 1, imgSrc: service2, title: t("fotCards") },
+		{ id: 2, imgSrc: service3, title: t("mtchmomts") },
 	];
 	// useEffect(() => {
 	// 	try {
@@ -94,7 +94,7 @@ const HomePage = () => {
 		const { className, onClick } = props;
 
 		return (
-			<button className={className} onClick={() => onClick()}>
+			<button className={className} onClick={onClick}>
 				<AiOutlineLeft className='mainColor' style={{ fontSize: "20px" }} />
 			</button>
 		);
@@ -104,7 +104,7 @@ const HomePage = () => {
 		const { className, onClick } = props;
 
 		return (
-			<button className={className} onClick={() => onClick()}>
+			<button className={className} onClick={onClick}>
 				<AiOutlineRight className='mainColor' style={{ fontSize: "20px" }} />
 			</button>
 		);
@@ -161,8 +161,7 @@ const HomePage = () => {
 		{
 			name: "Paul kim",
 			stars: 3,
-			message:
-				"sjbjkabkb asjbvchavbcja hbavsjvcahjvca scsvhchvhas chsvcvasvah sc ahsbv csvhcavshc svhavhsvha shavsvjbskhabshja shvbdsvhd sndksnd sdhsbahjvs dahbvdhba a cvhdabhdfa schdvehfdvaha hhe aknjkna sm,anbjs ajbsbad jbdjads ajbda",
+			message: "My Favorite loved it so much",
 			imageurl: design2,
 		},
 	];
@@ -298,7 +297,7 @@ const HomePage = () => {
 													onClickFun={() =>
 														navigate(`/cardCustomization/${dat.id}`)
 													}
-													key={dat.id + dat.title + "slider"}
+													key={dat.id + dat.title + "sliderfootball"}
 													isbestSeller={true}
 													sorce={dat.imgSrc}
 													title={dat.title}
@@ -408,10 +407,10 @@ const HomePage = () => {
 						<div className='col-12 col-md-7 col-lg-8 allCenter flex-column'>
 							<div className='row w-100 h-100 d-flex d-md-none'>
 								<Slider {...settings2}>
-									{ourServiceCardData.map((dat) => (
+									{ourServiceCardData.map((dat, index) => (
 										<ServiceMiniCard
 											onClickFun={() => navigate(`/otherProducts`)}
-											key={dat.id + "slider" + dat.title}
+											key={dat.id + index + "sliderservice" + dat.title}
 											sorce={dat.imgSrc}
 											title={dat.title}
 										/>
@@ -460,7 +459,7 @@ const HomePage = () => {
 														onClickFun={() =>
 															navigate(`/productInfo/${dat.id}`)
 														}
-														key={dat.id + dat.title + "slider"}
+														key={dat.id + dat.title + "sliderProduct"}
 														sorce={dat.imgSrc}
 														title={dat.title}
 														price={dat.price}
@@ -503,7 +502,7 @@ const HomePage = () => {
 								<Slider {...settings}>
 									{reviewraw.map((dat, index) => (
 										<Reviewcard
-											key={"slider" + index}
+											key={"sliderReview" + index}
 											imaglink={dat.imageurl}
 											name={dat.name}
 											message={dat.message}
@@ -704,7 +703,7 @@ const HomePage = () => {
 						<Slider {...settings2}>
 							{videodataraw.map((dat, index) => (
 								<div
-									key={index + "slider"}
+									key={index + "slidervideo"}
 									className='col-12 mx-auto d-flex allCenter'>
 									<iframe
 										title={`${index}`}
