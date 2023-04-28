@@ -132,6 +132,7 @@ const CustomNavbar = ({ changeLanguage }) => {
 									}
 									to='#'>
 									<select
+										defaultValue={"en"}
 										className='btn langsele'
 										onChange={(e) => {
 											changeLanguage(e.target.value);
@@ -139,12 +140,8 @@ const CustomNavbar = ({ changeLanguage }) => {
 										<option defaultChecked value={"en"}>
 											English
 										</option>
-										<option defaultChecked value={"es"}>
-											Spanish
-										</option>
-										<option defaultChecked value={"fr"}>
-											French
-										</option>
+										<option value={"es"}>Spanish</option>
+										<option value={"fr"}>French</option>
 									</select>
 								</NavLink>
 							</Nav>

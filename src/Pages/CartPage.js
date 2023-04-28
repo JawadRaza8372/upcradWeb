@@ -100,24 +100,28 @@ const CartPage = () => {
 										parseFloat(currentdata?.price) +
 										parseFloat(currentdata?.extra?.price);
 									subtotal = subtotal + nowSubol;
-									return (
-										<CartPageCard
-											key={dat.pid}
-											id={dat?.pid}
-											title={currentdata?.title}
-											price={
-												"Product Price + Extra Service = " +
-												currentdata?.price +
-												" + " +
-												currentdata?.extra?.price +
-												" = " +
-												"$" +
-												nowSubol
-											}
-											imgSrc={dat?.imgSrc}
-											removeItemFun={removeItemFun}
-										/>
-									);
+									if (isNaN(nowSubol) === false) {
+										return (
+											<CartPageCard
+												key={dat.pid}
+												id={dat?.pid}
+												title={currentdata?.title}
+												price={
+													"Product Price + Extra Service = " +
+													currentdata?.price +
+													" + " +
+													currentdata?.extra?.price +
+													" = " +
+													"$" +
+													nowSubol
+												}
+												imgSrc={dat?.imgSrc}
+												removeItemFun={removeItemFun}
+											/>
+										);
+									} else {
+										return null;
+									}
 								})
 							) : (
 								<div className='errorDiv'>{t("paddart")}</div>
@@ -183,7 +187,7 @@ const CartPage = () => {
 												<PayPalScriptProvider
 													options={{
 														"client-id":
-															"Af7bJjVcA0B6i1eyIW8E8UbvHVAPkyUFbqVafnFBwBNjs-oKr3FpJNwDFkB3QdHrw1mAXmJf-TRDlsYB",
+															"AaA2A7a4kGda8oEuQ6Gh1rGgfb9LqSvFmSYubvs2duBVGoeN7hCn14ktXvR4SM3bGDq-v3AXkOmIGrXm",
 													}}>
 													<PayPalButtons
 														style={{ layout: "vertical" }}
