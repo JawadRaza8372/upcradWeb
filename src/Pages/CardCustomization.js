@@ -408,7 +408,7 @@ export const CardCustomization = () => {
 													: "white"
 											}
 											text={`${subPositionsVal.fastValue}`}
-											fontSize={16}
+											fontSize={26}
 											verticalAlign={"middle"}
 											align={"center"}
 											fontFamily='MYbold'
@@ -424,7 +424,7 @@ export const CardCustomization = () => {
 													: "white"
 											}
 											text={`${subPositions.fastValue}`}
-											fontSize={16}
+											fontSize={26}
 											verticalAlign={"middle"}
 											align={"center"}
 											fontFamily='MYbold'
@@ -440,7 +440,7 @@ export const CardCustomization = () => {
 													: "white"
 											}
 											text={`${subPositionsVal.secValue}`}
-											fontSize={16}
+											fontSize={26}
 											verticalAlign={"middle"}
 											align={"center"}
 											fontFamily='MYbold'
@@ -456,7 +456,7 @@ export const CardCustomization = () => {
 													: "white"
 											}
 											text={`${subPositions.secValue}`}
-											fontSize={16}
+											fontSize={26}
 											verticalAlign={"middle"}
 											align={"center"}
 											fontFamily='MYbold'
@@ -472,7 +472,7 @@ export const CardCustomization = () => {
 													: "white"
 											}
 											text={`${subPositionsVal.thrdValue}`}
-											fontSize={16}
+											fontSize={26}
 											verticalAlign={"middle"}
 											align={"center"}
 											fontFamily='MYbold'
@@ -488,7 +488,7 @@ export const CardCustomization = () => {
 													: "white"
 											}
 											text={`${subPositions.thrdValue}`}
-											fontSize={16}
+											fontSize={26}
 											verticalAlign={"middle"}
 											align={"center"}
 											fontFamily='MYbold'
@@ -505,7 +505,7 @@ export const CardCustomization = () => {
 													: "white"
 											}
 											text={`${subPositionsVal.forValue}`}
-											fontSize={16}
+											fontSize={26}
 											verticalAlign={"middle"}
 											align={"center"}
 											fontFamily='MYbold'
@@ -521,7 +521,7 @@ export const CardCustomization = () => {
 													: "white"
 											}
 											text={`${subPositions.forValue}`}
-											fontSize={16}
+											fontSize={26}
 											verticalAlign={"middle"}
 											align={"center"}
 											fontFamily='MYbold'
@@ -537,7 +537,7 @@ export const CardCustomization = () => {
 													: "white"
 											}
 											text={`${subPositionsVal.fifValue}`}
-											fontSize={16}
+											fontSize={26}
 											verticalAlign={"middle"}
 											align={"center"}
 											fontFamily='MYbold'
@@ -553,7 +553,7 @@ export const CardCustomization = () => {
 													: "white"
 											}
 											text={`${subPositions.fifValue}`}
-											fontSize={16}
+											fontSize={26}
 											verticalAlign={"middle"}
 											align={"center"}
 											fontFamily='MYbold'
@@ -569,7 +569,7 @@ export const CardCustomization = () => {
 													: "white"
 											}
 											text={`${subPositionsVal.sixValue}`}
-											fontSize={16}
+											fontSize={26}
 											verticalAlign={"middle"}
 											align={"center"}
 											fontFamily='MYbold'
@@ -585,7 +585,7 @@ export const CardCustomization = () => {
 													: "white"
 											}
 											text={`${subPositions.sixValue}`}
-											fontSize={16}
+											fontSize={26}
 											verticalAlign={"middle"}
 											align={"center"}
 											fontFamily='MYbold'
@@ -602,7 +602,7 @@ export const CardCustomization = () => {
 													: "white"
 											}
 											text={`${BasicInfo?.name}`}
-											fontSize={25}
+											fontSize={40}
 											verticalAlign={"middle"}
 											align={"center"}
 											fontStyle={"bold"}
@@ -612,14 +612,14 @@ export const CardCustomization = () => {
 											width={60}
 											height={50}
 											x={65}
-											y={105}
+											y={110}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
 													: "white"
 											}
 											text={`${overAllRatting > 0 ? overAllRatting : ""}`}
-											fontSize={30}
+											fontSize={56}
 											verticalAlign={"middle"}
 											align={"center"}
 											fontStyle={"bold"}
@@ -629,14 +629,14 @@ export const CardCustomization = () => {
 											width={50}
 											height={40}
 											x={70}
-											y={150}
+											y={155}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
 													: "white"
 											}
 											text={`${BasicInfo?.position}`}
-											fontSize={18}
+											fontSize={28}
 											verticalAlign={"middle"}
 											align={"center"}
 											fontFamily='MYbold'
@@ -656,11 +656,12 @@ export const CardCustomization = () => {
 											image={clubFlagavtar}
 										/>
 										<Image
-											x={155}
+											x={140}
 											y={115}
-											height={165}
-											width={140}
+											height={185}
+											width={220}
 											image={useravtar}
+											scale={{ x: 0.8, y: 1.1 }}
 										/>
 									</Layer>
 								</Stage>
@@ -673,14 +674,14 @@ export const CardCustomization = () => {
 											width={50}
 											height={30}
 											x={30}
-											y={258}
+											y={260}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
 													: "white"
 											}
 											text={`${subPositionsVal.fastValue}`}
-											fontSize={14}
+											fontSize={19}
 											verticalAlign={"middle"}
 											align={"center"}
 											fontStyle={""}
@@ -690,14 +691,14 @@ export const CardCustomization = () => {
 											width={50}
 											height={30}
 											x={80}
-											y={258}
+											y={260}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
 													: "white"
 											}
 											text={`${subPositions.fastValue}`}
-											fontSize={14}
+											fontSize={19}
 											verticalAlign={"middle"}
 											align={"center"}
 											fontStyle={""}
@@ -707,14 +708,14 @@ export const CardCustomization = () => {
 											width={50}
 											height={30}
 											x={30}
-											y={285}
+											y={287}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
 													: "white"
 											}
 											text={`${subPositionsVal.secValue}`}
-											fontSize={14}
+											fontSize={19}
 											verticalAlign={"middle"}
 											align={"center"}
 											fontStyle={""}
@@ -724,14 +725,14 @@ export const CardCustomization = () => {
 											width={50}
 											height={30}
 											x={80}
-											y={285}
+											y={287}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
 													: "white"
 											}
 											text={`${subPositions.secValue}`}
-											fontSize={14}
+											fontSize={19}
 											verticalAlign={"middle"}
 											align={"center"}
 											fontStyle={""}
@@ -741,14 +742,14 @@ export const CardCustomization = () => {
 											width={50}
 											height={30}
 											x={30}
-											y={310}
+											y={312}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
 													: "white"
 											}
 											text={`${subPositionsVal.thrdValue}`}
-											fontSize={14}
+											fontSize={19}
 											verticalAlign={"middle"}
 											align={"center"}
 											fontStyle={""}
@@ -758,14 +759,14 @@ export const CardCustomization = () => {
 											width={50}
 											height={30}
 											x={80}
-											y={310}
+											y={312}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
 													: "white"
 											}
 											text={`${subPositions.thrdValue}`}
-											fontSize={14}
+											fontSize={19}
 											verticalAlign={"middle"}
 											align={"center"}
 											fontStyle={""}
@@ -776,14 +777,14 @@ export const CardCustomization = () => {
 											width={50}
 											height={30}
 											x={135}
-											y={258}
+											y={260}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
 													: "white"
 											}
 											text={`${subPositionsVal.forValue}`}
-											fontSize={14}
+											fontSize={19}
 											verticalAlign={"middle"}
 											align={"center"}
 											fontStyle={""}
@@ -793,14 +794,14 @@ export const CardCustomization = () => {
 											width={50}
 											height={30}
 											x={185}
-											y={258}
+											y={260}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
 													: "white"
 											}
 											text={`${subPositions.forValue}`}
-											fontSize={14}
+											fontSize={19}
 											verticalAlign={"middle"}
 											align={"center"}
 											fontStyle={""}
@@ -810,14 +811,14 @@ export const CardCustomization = () => {
 											width={50}
 											height={30}
 											x={135}
-											y={285}
+											y={287}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
 													: "white"
 											}
 											text={`${subPositionsVal.fifValue}`}
-											fontSize={14}
+											fontSize={19}
 											verticalAlign={"middle"}
 											align={"center"}
 											fontStyle={""}
@@ -827,14 +828,14 @@ export const CardCustomization = () => {
 											width={50}
 											height={30}
 											x={185}
-											y={285}
+											y={287}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
 													: "white"
 											}
 											text={`${subPositions.fifValue}`}
-											fontSize={14}
+											fontSize={19}
 											verticalAlign={"middle"}
 											align={"center"}
 											fontStyle={""}
@@ -844,14 +845,14 @@ export const CardCustomization = () => {
 											width={50}
 											height={30}
 											x={135}
-											y={310}
+											y={312}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
 													: "white"
 											}
 											text={`${subPositionsVal.sixValue}`}
-											fontSize={14}
+											fontSize={19}
 											verticalAlign={"middle"}
 											align={"center"}
 											fontStyle={""}
@@ -861,14 +862,14 @@ export const CardCustomization = () => {
 											width={50}
 											height={30}
 											x={185}
-											y={310}
+											y={312}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
 													: "white"
 											}
 											text={`${subPositions.sixValue}`}
-											fontSize={14}
+											fontSize={19}
 											verticalAlign={"middle"}
 											align={"center"}
 											fontStyle={""}
@@ -878,7 +879,7 @@ export const CardCustomization = () => {
 										<Text
 											width={220}
 											height={40}
-											x={30}
+											x={23}
 											y={218}
 											fill={
 												currentData?.textColor
@@ -886,7 +887,7 @@ export const CardCustomization = () => {
 													: "white"
 											}
 											text={`${BasicInfo?.name}`}
-											fontSize={20}
+											fontSize={28}
 											verticalAlign={"middle"}
 											align={"center"}
 											fontStyle={"bold"}
@@ -896,14 +897,14 @@ export const CardCustomization = () => {
 											width={60}
 											height={50}
 											x={40}
-											y={62}
+											y={64}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
 													: "white"
 											}
 											text={`${overAllRatting > 0 ? overAllRatting : ""}`}
-											fontSize={25}
+											fontSize={38}
 											verticalAlign={"middle"}
 											align={"center"}
 											fontStyle={"bold"}
@@ -913,14 +914,14 @@ export const CardCustomization = () => {
 											width={50}
 											height={40}
 											x={43}
-											y={95}
+											y={97}
 											fill={
 												currentData?.textColor
 													? currentData?.textColor
 													: "white"
 											}
 											text={`${BasicInfo?.position}`}
-											fontSize={18}
+											fontSize={22}
 											verticalAlign={"middle"}
 											align={"center"}
 											fontFamily='MYbold'
@@ -941,11 +942,12 @@ export const CardCustomization = () => {
 											image={clubFlagavtar}
 										/>
 										<Image
-											x={115}
+											x={105}
 											y={80}
 											height={120}
-											width={100}
+											width={150}
 											image={useravtar}
+											scale={{ x: 0.8, y: 1.1 }}
 										/>
 									</Layer>
 								</Stage>
