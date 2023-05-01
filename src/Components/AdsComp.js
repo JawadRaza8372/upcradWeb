@@ -10,7 +10,12 @@ class AdsComp extends Component {
 		return (
 			<div
 				className='allCenter'
-				style={{ width: "100%", margin: "0px auto", minWidth: "250px" }}>
+				style={{
+					width: "100%",
+					margin: "0px auto",
+					minWidth: "250px",
+					height: "100%",
+				}}>
 				<ins
 					className='adsbygoogle'
 					style={{

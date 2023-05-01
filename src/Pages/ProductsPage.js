@@ -16,6 +16,7 @@ const ProductsPage = () => {
 		price: "All",
 		title: "",
 		productType: "Both",
+		category: "Both",
 	});
 	const first2cond = (dataArry) => {
 		const titlewala =
@@ -42,7 +43,14 @@ const ProductsPage = () => {
 			filterdata?.productType === "Card" || filterdata?.productType === "Both"
 				? priceWali
 				: [];
-		return typewali;
+		const smalledategory = filterdata?.category?.toLowerCase();
+		if (smalledategory === "football") {
+			return typewali?.filter((dat) => dat?.category === "football");
+		} else if (smalledategory !== "football" && smalledategory !== "both") {
+			return typewali?.filter((dat) => dat?.category !== "football");
+		} else {
+			return typewali;
+		}
 	};
 	const filterNewData2 = (dataArry) => {
 		const priceWali = first2cond(dataArry);
@@ -93,7 +101,7 @@ const ProductsPage = () => {
 						</div>
 
 						<div className='row w-100'>
-							<div className='col-12 col-md-6 mb-4'>
+							<div className='col-12 col-md-6 col-lg-4 mb-4'>
 								<div className='filterBox'>
 									<h6> {t("price")}</h6>
 									<label>
@@ -131,9 +139,12 @@ const ProductsPage = () => {
 									</label>
 								</div>
 							</div>
-							<div className='col-12 col-md-6 mb-4'>
+							<div className='col-12 col-md-6 col-lg-4 mb-4'>
 								<div className='filterBox'>
-									<h6> {t("ptype")}</h6>
+									<h6>
+										{t("prdcts")}
+										{t("ptype")}
+									</h6>
 									<label>
 										<input
 											type='radio'
@@ -148,7 +159,7 @@ const ProductsPage = () => {
 												})
 											}
 										/>
-										{t("scards")}
+										{t("cards")}
 									</label>
 									<label>
 										<input
@@ -181,6 +192,58 @@ const ProductsPage = () => {
 											}
 										/>
 										{t("both")}
+									</label>
+								</div>
+							</div>
+							<div className='col-12 col-md-6 col-lg-4 mb-4'>
+								<div className='filterBox'>
+									<h6>
+										{t("chooseard")}
+										{t("ptype")}
+									</h6>
+									<label>
+										<input
+											type='radio'
+											value={"Football"}
+											checked={
+												filterdata?.category === "Football" ? true : false
+											}
+											onChange={(e) =>
+												setfilterdata({
+													...filterdata,
+													category: e.target.value,
+												})
+											}
+										/>
+										{t("scards")}
+									</label>
+									<label>
+										<input
+											type='radio'
+											value={"Other"}
+											checked={filterdata?.category === "Other" ? true : false}
+											onChange={(e) =>
+												setfilterdata({
+													...filterdata,
+													category: e.target.value,
+												})
+											}
+										/>
+										{t("other")}
+									</label>
+									<label>
+										<input
+											type='radio'
+											value={"Both"}
+											checked={filterdata?.category === "Both" ? true : false}
+											onChange={(e) =>
+												setfilterdata({
+													...filterdata,
+													category: e.target.value,
+												})
+											}
+										/>
+										{t("all")}
 									</label>
 								</div>
 							</div>

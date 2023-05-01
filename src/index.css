@@ -42,6 +42,22 @@ body {
 .mainColor {
 	color: #21325e !important;
 }
+.cardsadsdiv {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 100vh !important;
+	width: 100vw;
+	background: rgba(0, 0, 0, 0.9);
+	z-index: 2000;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	flex-direction: column;
+}
+.nonColor {
+	color: gray !important;
+}
 .secondaryColor {
 	color: #f1d00a !important;
 }
@@ -122,6 +138,21 @@ h6 {
 	font-size: 50px;
 	font-weight: bold;
 }
+.searhedCard {
+	width: 100%;
+	min-height: 60px;
+	height: fit-content;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	flex-direction: row;
+	overflow: hidden;
+	margin-bottom: 10px;
+	border: 0px;
+	padding: 10px 0px;
+	border-bottom: 1px solid lightgray;
+	cursor: pointer;
+}
 .nillbtn {
 	box-shadow: none !important;
 	--bs-btn-focus-box-shadow: none !important;
@@ -190,6 +221,23 @@ h6 {
 	padding: 0px 14px;
 	outline: none !important;
 	color: #21325e;
+}
+.searhinputtt {
+	width: 100%;
+	height: 50px;
+	border: 2px solid #21325e;
+	border-radius: 5px;
+	padding: 0px 14px;
+	outline: none !important;
+	color: #21325e;
+	margin-top: 15px;
+}
+.scrolledDivCards {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 320px 320px 240px;
+	overflow-y: hidden;
+	overflow-x: auto;
 }
 .deliveryFormContainer .customForm div textarea {
 	width: 100%;
@@ -416,6 +464,7 @@ h6 {
 	background-color: #f89a44 !important;
 	padding: 0px 10px;
 }
+
 @media screen and (max-width: 768px) {
 	.respoloront {
 		background-color: transparent !important;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import QuestionLinee from "./QuestionLinee";
-import { countries } from "../Database/Database";
+import { countries, recomadCuntries } from "../Database/Database";
 import { useTranslation } from "react-i18next";
 
 const ChooseFlagComp = ({ selectedFlag, onSelectedFlag }) => {
@@ -13,7 +13,7 @@ const ChooseFlagComp = ({ selectedFlag, onSelectedFlag }) => {
 				dat.name.toLowerCase().includes(inputValue.toLowerCase())
 			);
 		} else {
-			return countries.slice(0, 9);
+			return recomadCuntries;
 		}
 	};
 	return (
@@ -78,7 +78,10 @@ const ChooseFlagComp = ({ selectedFlag, onSelectedFlag }) => {
 								<div
 									className='customOptionCircle overflow-hidden'
 									style={{ border: "0px" }}>
-									<img src={dat.flag} alt='demoflag' />
+									<img
+										src={`https://cdn.shopify.com/s/files/1/2412/8291/files/${dat?.code}_120x.png`}
+										alt='demoflag'
+									/>
 								</div>
 								{dat.name}
 							</div>

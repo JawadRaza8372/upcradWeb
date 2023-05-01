@@ -3,17 +3,48 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import logoimg from "../ownassets/logo.png";
+import logoimg from "../ownassets/smalllog.png";
 import { BiCartAlt } from "react-icons/bi";
 import { IoPersonOutline } from "react-icons/io5";
 import Offcanvas from "react-bootstrap/Offcanvas";
-
+import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
+import { useSelector } from "react-redux";
 const CustomNavbar = ({ changeLanguage }) => {
 	const { t } = useTranslation();
+	const navigate = useNavigate();
 	const [selectedLang, setSelectedLang] = useState("en");
+	const [inputval, setinputval] = useState("");
+	const [openModel, setopenModel] = useState(false);
+	const { footballCards, otherProducts } = useSelector(
+		(state) => state.project
+	);
+	const filteredData = () => {
+		if (inputval !== "") {
+			let res1 = footballCards?.filter(
+				(dat) =>
+					dat?.title?.toLowerCase().includes(inputval?.toLowerCase()) ||
+					dat?.title?.toLowerCase() === inputval?.toLowerCase()
+			);
 
+			return res1;
+		} else {
+			return footballCards?.slice(0, 3);
+		}
+	};
+	const filteredDataOther = () => {
+		if (inputval !== "") {
+			let res2 = otherProducts?.filter(
+				(dat) =>
+					dat?.title?.toLowerCase().includes(inputval?.toLowerCase()) ||
+					dat?.title?.toLowerCase() === inputval?.toLowerCase()
+			);
+			return res2;
+		} else {
+			return otherProducts?.slice(0, 3);
+		}
+	};
 	return (
 		<>
 			<Navbar
@@ -49,15 +80,15 @@ const CustomNavbar = ({ changeLanguage }) => {
 							/>
 						</NavLink>
 
-						<NavLink
-							className={(isActive) =>
-								"nav-link my-auto" + (!isActive ? "" : " active")
-							}
-							to='/auth'>
-							<IoPersonOutline
+						<div
+							onClick={() => {
+								setopenModel(true);
+							}}
+							className={"nav-link my-auto active"}>
+							<AiOutlineSearch
 								style={{ fontSize: "30px", color: "rgba(0,0,0,0.5)" }}
 							/>
-						</NavLink>
+						</div>
 					</div>
 					<Navbar.Offcanvas
 						id={`offcanvasNavbar-expand-lg`}
@@ -78,7 +109,7 @@ const CustomNavbar = ({ changeLanguage }) => {
 									<NavLink
 										className={(isActive) => (!isActive ? "" : "active")}
 										to='/products'>
-										{t("cards")}
+										{t("prdcts")}
 									</NavLink>
 								</Nav.Link>
 								<Nav.Link eventKey='2' className=' text-center mx-1 my-auto'>
@@ -87,7 +118,7 @@ const CustomNavbar = ({ changeLanguage }) => {
 										to='/cards'>
 										{t("app")}
 									</NavLink>
-								</Nav.Link>{" "}
+								</Nav.Link>
 								<Nav.Link eventKey='3' className=' text-center mx-1 my-auto'>
 									<NavLink
 										className={(isActive) => (!isActive ? "" : "active")}
@@ -95,6 +126,17 @@ const CustomNavbar = ({ changeLanguage }) => {
 										{t("suprt")}
 									</NavLink>
 								</Nav.Link>{" "}
+								<Nav.Link eventKey='32' className=' text-center mx-1 my-auto'>
+									<div
+										onClick={() => {
+											setopenModel(true);
+										}}
+										className={"nav-link my-auto active"}>
+										<AiOutlineSearch
+											style={{ fontSize: "30px", color: "rgba(0,0,0,0.5)" }}
+										/>
+									</div>
+								</Nav.Link>
 								<Nav.Link eventKey='4' className=' text-center mx-1 my-auto'>
 									<NavLink
 										className={(isActive) => (!isActive ? "" : "active")}
@@ -131,7 +173,7 @@ const CustomNavbar = ({ changeLanguage }) => {
 											? "Spanish"
 											: selectedLang === "fr"
 											? "French"
-											: ""
+											: "Language"
 									}
 									style={{
 										maxWidth: "106.15px",
@@ -165,17 +207,106 @@ const CustomNavbar = ({ changeLanguage }) => {
 										French
 									</NavDropdown.Item>
 								</NavDropdown>
-								<NavLink
-									className={(isActive) =>
-										"nav-link text-center mx-1 my-auto" +
-										(!isActive ? "" : " active")
-									}
-									to='#'></NavLink>
 							</Nav>
 						</Offcanvas.Body>
 					</Navbar.Offcanvas>
 				</Container>
 			</Navbar>
+			<div
+				className={`offcanvas offcanvas-end ${openModel ? "show" : "close"}`}>
+				<Offcanvas.Header>
+					<div className='allCenter justify-content-between flex-column w-100'>
+						<div className='allCenter justify-content-between flex-row w-100'>
+							<img
+								style={{ objectFit: "contain", height: "50px" }}
+								src={logoimg}
+								alt='logo'
+							/>
+							<button
+								onClick={() => {
+									setopenModel(false);
+								}}
+								className='btn'>
+								<AiOutlineClose
+									style={{ fontSize: "30px", color: "rgba(0,0,0,0.5)" }}
+								/>
+							</button>
+						</div>
+						<input
+							className='searhinputtt'
+							value={inputval}
+							onChange={(e) => {
+								setinputval(e.target.value);
+							}}
+							placeholder={t("search")}
+						/>
+					</div>
+				</Offcanvas.Header>
+				<Offcanvas.Body>
+					{filteredData()?.map((dat) => (
+						<div
+							key={dat?.id}
+							onClick={() => {
+								setopenModel(false);
+								navigate(`/cardCustomization/${dat?.id}`);
+							}}
+							className='searhedCard'>
+							<div
+								style={{ width: "70px", height: "60px", marginRight: "10px" }}>
+								<img
+									style={{
+										objectFit: "contain",
+										width: "100%",
+										height: "60px",
+									}}
+									src={dat?.imgSrc}
+									alt={dat.title}
+								/>
+							</div>
+							<div
+								className='d-flex align-items-start justify-content-evenly flex-column'
+								style={{ width: "calc(100% - 80px)", height: "100%" }}>
+								<span>{dat.title}</span>
+								<span>${dat.price}</span>
+							</div>
+						</div>
+					))}
+					{filteredDataOther()?.map((dat) => (
+						<div
+							key={dat?.id}
+							onClick={() => {
+								setopenModel(false);
+								navigate(`/productInfo/${dat?.id}`);
+							}}
+							className='searhedCard'>
+							<div
+								style={{
+									width: "70px",
+									borderRadius: "10px",
+									height: "60px",
+									marginRight: "10px",
+									overflow: "hidden",
+								}}>
+								<img
+									style={{
+										objectFit: "cover",
+										width: "100%",
+										height: "60px",
+									}}
+									src={dat?.imgSrc}
+									alt={dat.title}
+								/>
+							</div>
+							<div
+								className='d-flex align-items-start justify-content-evenly flex-column'
+								style={{ width: "calc(100% - 80px)", height: "100%" }}>
+								<span>{dat.title}</span>
+								<span>${dat.price}</span>
+							</div>
+						</div>
+					))}
+				</Offcanvas.Body>
+			</div>
 		</>
 	);
 };

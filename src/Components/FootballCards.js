@@ -9,6 +9,7 @@ const FootballCards = ({
 	onClickFun,
 	isLargeImg,
 }) => {
+	let showbestSeller = title?.toLowerCase() === "tots" ? true : false;
 	return (
 		<div
 			onClick={onClickFun}
@@ -16,7 +17,7 @@ const FootballCards = ({
 				background: "white",
 				borderRadius: "15px",
 				width: "90%",
-				height: "300px",
+				height: "310px",
 				marginLeft: "auto",
 				marginRight: "auto",
 				overflow: "hidden",
@@ -38,27 +39,37 @@ const FootballCards = ({
 						alignItems: "center",
 						justifyContent: "flex-end",
 						flexDirection: "row",
-						margin: "10px auto",
+						marginTop: "10px",
+						marginBottom: "0px",
+						marginLeft: "auto",
+						marginRight: "auto",
 					}}>
-					<div
-						style={{
-							float: "right",
-							background: "rgba(0,185,30,0.15)",
-							color: "#00B91E",
-							fontSize: "10px",
-							fontWeight: "600px",
-							padding: "3px 7px",
-							borderRadius: "5px",
-						}}>
-						Best Seller
-					</div>
+					{showbestSeller && (
+						<div
+							style={{
+								float: "right",
+								background: "rgba(0,185,30,0.15)",
+								color: "#00B91E",
+								fontSize: "10px",
+								fontWeight: "600px",
+								padding: "3px 7px",
+								borderRadius: "5px",
+							}}>
+							Best Seller
+						</div>
+					)}
 				</div>
 			)}
 			<img
 				style={
 					isLargeImg
-						? { width: "100%", height: "190px", objectFit: "cover" }
-						: { width: "100%", objectFit: "contain", height: "150px" }
+						? { width: "100%", height: "230px", objectFit: "cover" }
+						: {
+								width: "100%",
+								objectFit: "contain",
+								height: "calc(100% - 95px)",
+								maxWidth: "200px",
+						  }
 				}
 				src={sorce}
 				alt={title}
@@ -66,7 +77,7 @@ const FootballCards = ({
 			<div
 				style={{
 					width: "90%",
-					height: "100px",
+					height: "55px",
 					display: "flex",
 					alignItems: "center",
 					justifyContent: "space-evenly",
@@ -74,7 +85,7 @@ const FootballCards = ({
 					marginBottom: "10px",
 				}}>
 				<div
-					style={{ height: "50px", width: "100%", overflow: "hidden" }}
+					style={{ height: "30px", width: "100%", overflow: "hidden" }}
 					className='allCenter'>
 					<h5
 						className='m-0 mainColor'
@@ -83,7 +94,7 @@ const FootballCards = ({
 							fontSize: "14px",
 							textTransform: "capitalize",
 						}}>
-						{title?.length > 33 ? title?.substring(0, 33) + " ..." : title}
+						{title?.length > 29 ? title?.substring(0, 26) + " ..." : title}
 					</h5>
 				</div>
 				<div

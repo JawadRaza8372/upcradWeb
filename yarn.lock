@@ -2184,18 +2184,6 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@stripe/react-stripe-js@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@stripe/react-stripe-js/-/react-stripe-js-2.1.0.tgz#71541107628731fb790e1f31d8994fecbcd6cf13"
-  integrity sha512-Zb6Ycrj5QuhYkvtlvvLzo+cysUyA6wkx3zWHQ7uVnHRYRM/n1jtQD6VGBrdmptC8e8PJN6L091gBCyB5P0FqmA==
-  dependencies:
-    prop-types "^15.7.2"
-
-"@stripe/stripe-js@^1.52.1":
-  version "1.52.1"
-  resolved "https://registry.yarnpkg.com/@stripe/stripe-js/-/stripe-js-1.52.1.tgz#d821bcd627a34227c20fe87d7c8f8bd4386eaf2e"
-  integrity sha512-fza40OPSpGQlFxc5TZWiYC/6Lk89Sep1fLuv9ss33YS6lCAF8UZbfA1E6W+lwO4c7WRKZIZumHIEbPJfP/O9uw==
-
 "@surma/rollup-plugin-off-main-thread@^2.2.3":
   version "2.2.3"
   resolved "https://registry.npmjs.org/@surma/rollup-plugin-off-main-thread/-/rollup-plugin-off-main-thread-2.2.3.tgz"
@@ -3890,6 +3878,11 @@ cosmiconfig@^7.0.0:
     path-type "^4.0.0"
     yaml "^1.10.0"
 
+cropperjs@^1.5.13:
+  version "1.5.13"
+  resolved "https://registry.yarnpkg.com/cropperjs/-/cropperjs-1.5.13.tgz#eb1682f01d17c70ed5244317091d745c9a249ef8"
+  integrity sha512-by7jKAo73y5/Do0K6sxdTKHgndY0NMjG2bEdgeJxycbcmHuCiMXqw8sxy5C5Y5WTOTcDGmbT7Sr5CgKOXR06OA==
+
 cross-fetch@3.1.5:
   version "3.1.5"
   resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-3.1.5.tgz#e1389f44d9e7ba767907f7af8454787952ab534f"
@@ -5033,6 +5026,11 @@ file-loader@^6.2.0:
   dependencies:
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
+
+file-saver@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/file-saver/-/file-saver-2.0.5.tgz#d61cfe2ce059f414d899e9dd6d4107ee25670c38"
+  integrity sha512-P9bmyZ3h/PRG+Nzga+rbdI4OEpNDzAVyy74uVO9ATgzLK6VtAsYybF/+TOCvrc0MO793d6+42lLyZTw7/ArVzA==
 
 filelist@^1.0.1:
   version "1.0.4"
@@ -8126,7 +8124,7 @@ prop-types-extra@^1.1.0:
     react-is "^16.3.2"
     warning "^4.0.0"
 
-prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
+prop-types@^15.6.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -8246,11 +8244,6 @@ raw-body@2.5.1:
     iconv-lite "0.4.24"
     unpipe "1.0.0"
 
-react-adsense@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/react-adsense/-/react-adsense-0.1.0.tgz#f170007a9ab05ee2cd1c915cdc9788624658e3c1"
-  integrity sha512-VzGMH9qA7bBKAveK1joFWphhB7e2Y1ToSGzUa8b7eit3+VSkg/2MSvKxe5d/r4mcmkOHu6CHNJW0nn6RQC3IZA==
-
 react-app-polyfill@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npmjs.org/react-app-polyfill/-/react-app-polyfill-3.0.0.tgz"
@@ -8280,6 +8273,13 @@ react-bootstrap@^2.7.2:
     react-transition-group "^4.4.2"
     uncontrollable "^7.2.1"
     warning "^4.0.3"
+
+react-cropper@^2.3.3:
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/react-cropper/-/react-cropper-2.3.3.tgz#aced0d045d9fd56168ba4d17287a40c287754dee"
+  integrity sha512-zghiEYkUb41kqtu+2jpX2Ntigf+Jj1dF9ew4lAobPzI2adaPE31z0p+5TcWngK6TvmWQUwK3lj4G+NDh1PDQ1w==
+  dependencies:
+    cropperjs "^1.5.13"
 
 react-dev-utils@^12.0.1:
   version "12.0.1"
@@ -8323,19 +8323,6 @@ react-error-overlay@^6.0.11:
   version "6.0.11"
   resolved "https://registry.npmjs.org/react-error-overlay/-/react-error-overlay-6.0.11.tgz"
   integrity sha512-/6UZ2qgEyH2aqzYZgQPxEnz33NJ2gNsnHA2o5+o4wW9bLM/JYQitNP9xPhsXwC08hMMovfGe/8retsdDsczPRg==
-
-react-google-ad@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/react-google-ad/-/react-google-ad-1.0.2.tgz#ae95e1dbc4c5fc5e1c7054c585e545cf10d0509d"
-  integrity sha512-nDf+ByY6slowpOAkqDd+hAOGa1G3Nux6dGSjqG7ev7fp+5quDocpMNnI7tsRc76I98J66H1hT0EA3EV/L8q4nw==
-
-react-google-ads@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/react-google-ads/-/react-google-ads-1.0.5.tgz#ac212acc63fc1935a0132713d4f4403d9b84df18"
-  integrity sha512-roBqS6tboUBTdjGdz5ZAgVxW6yCcfcpN68sgySm7dOt5A1bT7ZQovx6B8/AEyahEBeNuS6TsGzCnIZYJZHmChQ==
-  dependencies:
-    prop-types "^15.6.1"
-    react "^16.3.0"
 
 react-i18next@^12.2.0:
   version "12.2.0"
@@ -8501,15 +8488,6 @@ react-transition-group@^4.4.2:
     "@babel/runtime" "^7.5.5"
     dom-helpers "^5.0.1"
     loose-envify "^1.4.0"
-    prop-types "^15.6.2"
-
-react@^16.3.0:
-  version "16.14.0"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.14.0.tgz#94d776ddd0aaa37da3eda8fc5b6b18a4c9a3114d"
-  integrity sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g==
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
     prop-types "^15.6.2"
 
 react@^18.2.0:

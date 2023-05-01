@@ -136,6 +136,38 @@ const deltImage = async (fileref) => {
 	const resp = await deleteObject(desertRef);
 	return resp;
 };
+const recomadCuntries = [
+	{
+		name: "England",
+		code: "England_49161f3f-680e-4e53-9015-21b8026f6f68",
+		flag: "https://cdn.shopify.com/s/files/1/2412/8291/files/England_49161f3f-680e-4e53-9015-21b8026f6f68_120x.png?v=6143570213532283916",
+	},
+	{
+		name: "France",
+		code: "fr",
+		flag: "https://cdn.shopify.com/s/files/1/2412/8291/files/fr_120x.png?v=17090636548594691676",
+	},
+	{
+		name: "Germany",
+		code: "de",
+		flag: "	https://cdn.shopify.com/s/files/1/2412/8291/files/de_120x.png?v=12845330531226090274",
+	},
+	{
+		name: "Italy",
+		code: "it",
+		flag: "https://media-3.api-sports.io/flags/it.svg",
+	},
+	{
+		name: "Scotland",
+		code: "Scotland",
+		flag: "https://media-3.api-sports.io/flags/gb.svg",
+	},
+	{
+		name: "Spain",
+		code: "es",
+		flag: "https://media-3.api-sports.io/flags/es.svg",
+	},
+];
 const countries = [
 	{
 		name: "Afghanistan",
@@ -1157,6 +1189,7 @@ const countries = [
 		code: "ug",
 		flag: "https://media-3.api-sports.io/flags/ug.svg",
 	},
+
 	{
 		name: "Ukraine",
 		code: "ua",
@@ -1233,4 +1266,5 @@ export {
 	getClubs,
 	dbs,
 	chckstatusweb,
+	recomadCuntries,
 };

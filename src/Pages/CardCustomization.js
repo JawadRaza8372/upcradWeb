@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import design1 from "../ownassets/design1.png";
 import BasicInfoComp from "../Components/BasicInfoComp";
 import ChooseClubComp from "../Components/ChooseClubComp";
 import ChooseFlagComp from "../Components/ChooseFlagComp";
 import ChooseAttributComp from "../Components/ChooseAttributComp";
 import ExtraServiceComp from "../Components/ExtraServiceComp";
-import { AiOutlineClose } from "react-icons/ai";
 import { BsStarFill, BsStar, BsStarHalf } from "react-icons/bs";
-import { Stage, Layer, Image, Text } from "react-konva";
+import { Stage, Layer, Image, Text, Line } from "react-konva";
 import useImage from "use-image";
 import { toast } from "react-toastify";
 import { setCartItems } from "../store/projectSlice";
@@ -66,12 +64,13 @@ export const CardCustomization = () => {
 	const currentData = getData?.length > 0 ? getData[0] : {};
 	const navigate = useNavigate();
 	const [compSeq, setcompSeq] = useState(0);
-	const [fullScreeniew, setFullScreeniew] = useState(false);
+	//const [fullScreeniew, setFullScreeniew] = useState(false);
 	const [extraService, setextraService] = useState({
 		title: "",
 		subtitle: "",
 		prie: "",
 	});
+	const [openCropper, setopenCropper] = useState(false);
 	const stageRef = React.useRef();
 	const newref = React.useRef();
 	const [image] = useImage(`${currentData?.imgSrc}`, "Anonimus");
@@ -133,7 +132,7 @@ export const CardCustomization = () => {
 		};
 		getclubs();
 	});
-
+	const [templinkImg, settemplinkImg] = useState("");
 	const uploadImageFun = async (image) => {
 		const data = new FormData();
 		data.append("file", image);
@@ -181,16 +180,17 @@ export const CardCustomization = () => {
 	// 		});
 	// };
 	const handleUpload = async (e) => {
-		//removebgFunction(e.target.files[0]);
-
 		const result = await uploadImageFun(e.target.files[0]);
-		if (result?.secure_url?.length > 0) {
-			setBasicInfo({
-				...BasicInfo,
-				image: result?.secure_url,
-				imageRef: result?.secure_url,
-			});
-		}
+		setopenCropper(true);
+		settemplinkImg(result?.secure_url);
+	};
+	const onCropomplete = (link) => {
+		setBasicInfo({
+			...BasicInfo,
+			image: link,
+			imageRef: link,
+		});
+		setopenCropper(false);
 	};
 	const addToCartFunction = (imglink) => {
 		let newdata = [
@@ -214,7 +214,7 @@ export const CardCustomization = () => {
 			progress: undefined,
 			theme: "light",
 		});
-		navigate("/products");
+		navigate("/cart");
 	};
 	const nextBtnFunc = () => {
 		if (compSeq === 0) {
@@ -295,7 +295,7 @@ export const CardCustomization = () => {
 		} else if (compSeq === 4) {
 			if (extraService?.title !== "") {
 				const downloadfunc = () => {
-					const uri = stageRef.current.toDataURL();
+					const uri = stageRef.current.toDataURL({ pixelRatio: 3 });
 					return uri;
 				};
 				const result = downloadfunc();
@@ -317,7 +317,7 @@ export const CardCustomization = () => {
 
 	return (
 		<>
-			{fullScreeniew && (
+			{/* {fullScreeniew && (
 				<div className='modalContainer d-flex d-md-none'>
 					<button
 						onClick={() => setFullScreeniew(false)}
@@ -330,7 +330,7 @@ export const CardCustomization = () => {
 						alt='previewimg'
 					/>
 				</div>
-			)}
+			)} */}
 			<div
 				className='col-10 mx-auto'
 				style={{
@@ -357,6 +357,9 @@ export const CardCustomization = () => {
 									setBasicInfo({ ...BasicInfo, position: d })
 								}
 								activePosition={BasicInfo.position}
+								imgsrc={templinkImg}
+								model={openCropper}
+								onCropComp={onCropomplete}
 								setActiveSubPosition={(dat) => setsubPositions(dat)}
 							/>
 						)}
@@ -397,6 +400,56 @@ export const CardCustomization = () => {
 								<Stage ref={stageRef} width={377} height={599}>
 									<Layer>
 										<Image x={0} y={0} height={599} width={377} image={image} />
+										<Line
+											x={74}
+											y={196}
+											points={[0, 0, 40, 0]}
+											stroke={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+										/>
+										<Line
+											x={74}
+											y={250}
+											points={[0, 0, 40, 0]}
+											stroke={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+										/>
+										<Line
+											x={162}
+											y={523}
+											points={[0, 0, 47, 0]}
+											stroke={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+										/>
+										<Line
+											x={72}
+											y={380}
+											points={[0, 0, 230, 0]}
+											stroke={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+										/>
+										<Line
+											x={186}
+											y={398}
+											points={[0, 0, 0, 107]}
+											stroke={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+										/>
 										<Text
 											width={50}
 											height={30}
@@ -493,7 +546,6 @@ export const CardCustomization = () => {
 											align={"center"}
 											fontFamily='MYbold'
 										/>
-
 										<Text
 											width={50}
 											height={30}
@@ -590,7 +642,6 @@ export const CardCustomization = () => {
 											align={"center"}
 											fontFamily='MYbold'
 										/>
-
 										<Text
 											width={220}
 											height={40}
@@ -642,11 +693,12 @@ export const CardCustomization = () => {
 											fontFamily='MYbold'
 										/>
 										<Image
-											x={73}
-											y={205}
+											x={71.5}
+											y={210}
 											height={35}
 											width={45}
 											image={countryflagavtar}
+											scale={{ x: 1, y: 0.8 }}
 										/>
 										<Image
 											x={73}
@@ -654,6 +706,7 @@ export const CardCustomization = () => {
 											height={35}
 											width={45}
 											image={clubFlagavtar}
+											scale={{ x: 0.9, y: 0.96 }}
 										/>
 										<Image
 											x={140}
@@ -670,6 +723,56 @@ export const CardCustomization = () => {
 								<Stage ref={stageRef} width={270} height={400}>
 									<Layer>
 										<Image x={0} y={0} height={400} width={270} image={image} />
+										<Line
+											x={54}
+											y={130}
+											points={[0, 0, 27, 0]}
+											stroke={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+										/>
+										<Line
+											x={54}
+											y={168}
+											points={[0, 0, 27, 0]}
+											stroke={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+										/>
+										<Line
+											x={115}
+											y={349}
+											points={[0, 0, 36, 0]}
+											stroke={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+										/>
+										<Line
+											x={50}
+											y={254}
+											points={[0, 0, 166, 0]}
+											stroke={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+										/>
+										<Line
+											x={133.3}
+											y={266}
+											points={[0, 0, 0, 71]}
+											stroke={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+										/>
 										<Text
 											width={50}
 											height={30}
@@ -933,13 +1036,15 @@ export const CardCustomization = () => {
 											height={23}
 											width={30}
 											image={countryflagavtar}
+											scale={{ x: 1, y: 0.9 }}
 										/>
 										<Image
-											x={52}
-											y={170}
+											x={54}
+											y={172}
 											height={23}
 											width={30}
 											image={clubFlagavtar}
+											scale={{ x: 0.9, y: 0.98 }}
 										/>
 										<Image
 											x={105}

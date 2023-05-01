@@ -3,8 +3,6 @@ import startedimage from "../ownassets/image 18.png";
 import FootballCards from "../Components/FootballCards";
 import firstimg from "../ownassets/firstsesion.png";
 import secssion from "../ownassets/secsesion.png";
-import design2 from "../ownassets/design2.png";
-import ourservices1 from "../ownassets/ourservices1.png";
 import service1 from "../ownassets/servis1.png";
 import service2 from "../ownassets/servis2.png";
 import service3 from "../ownassets/servis3.png";
@@ -33,6 +31,7 @@ import fistImage4 from "../ownassets/firstimg (4).png";
 import ServiceMiniCard from "../Components/ServiceMiniCard";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
+import OurServicesCard from "../Components/OurServicesCard";
 //import AdsComp from "../Components/AdsComp";
 const HomePage = () => {
 	const { footballCards, otherProducts } = useSelector(
@@ -162,7 +161,8 @@ const HomePage = () => {
 			name: "Paul kim",
 			stars: 3,
 			message: "My Favorite loved it so much",
-			imageurl: design2,
+			imageurl:
+				"https://res.cloudinary.com/dpjk8xcld/image/upload/v1682422399/btm7mfscum9coujglogs.png",
 		},
 	];
 	let sellerspara = t("tbNewSellerPara");
@@ -184,21 +184,28 @@ const HomePage = () => {
 								</p>
 								<button
 									onClick={() => navigate("/products")}
-									className='btn mainColor secondarybg'>
+									className='btn mainColor secondarybg d-none d-md-block'>
 									{t("shpCrd")}
 								</button>
 							</div>
-							<div className='col-12 col-md-6 allCenter'>
+							<div className='col-12 col-md-6 allCenter flex-column'>
 								<img
 									style={{
 										objectFit: "contain",
 										minHeight: "320px",
 										maxHeight: "450px",
-										margin: "30px auto",
+										margin: "20px auto",
+										marginBottom: "10px",
+										width: "100%",
 									}}
 									src={firstimg}
 									alt='first sectionimage'
 								/>
+								<button
+									onClick={() => navigate("/products")}
+									className='btn mainColor secondarybg d-block d-md-none mb-4'>
+									{t("shpCrd")}
+								</button>
 							</div>
 						</div>
 					</div>
@@ -262,13 +269,13 @@ const HomePage = () => {
 										width: "40%",
 									}}
 								/>
-								<div style={{ width: "80%" }}>
+								<div className='allCenter flex-column' style={{ width: "80%" }}>
 									<p className='mainColor' style={{ fontWeight: "700" }}>
 										{sellerspara}
 									</p>
 									<button
 										onClick={() => navigate("/products")}
-										className='btn mainColor secondarybg'>
+										className='btn mainColor secondarybg d-none d-lg-block'>
 										{t("TBSeller")}
 									</button>
 								</div>
@@ -284,6 +291,11 @@ const HomePage = () => {
 										height: "420px",
 									}}
 								/>
+								<button
+									onClick={() => navigate("/products")}
+									className='btn mainColor secondarybg d-block d-lg-none mt-3'>
+									{t("TBSeller")}
+								</button>
 							</div>
 						</div>
 						<div className='col-12 mb-4 col-lg-6  order-1 order-md-2 allCenter flex-row'>
@@ -372,18 +384,8 @@ const HomePage = () => {
 						}}
 					/>
 				</div>
-				<div className='scrolledImageContainer'>
-					<img
-						alt='our services'
-						style={{
-							width: "95%",
-							objectFit: "contain",
-							// height: "450px",
-							marginTop: "30px",
-						}}
-						src={ourservices1}
-					/>
-				</div>
+
+				<OurServicesCard />
 			</div>
 			{/*fourth Container */}
 
@@ -392,7 +394,7 @@ const HomePage = () => {
 					<div className='row w-100 mx-auto h-100'>
 						<div className='col-12 gb-2 col-md-5 col-lg-4 d-flex align-items-start justify-content-center flex-column'>
 							<h3 style={{ fontWeight: "bold" }} className='mainColor'>
-								{t("service")}
+								{t("oprod")}
 							</h3>
 							<hr
 								className='mainbg'
@@ -563,11 +565,13 @@ const HomePage = () => {
 						className='mainColor'>
 						{t("yChoseUs")}
 					</h3>
-					<div className='row d-flex align-items-center justify-content-start flex-row'>
+					<div
+						className='row d-flex align-items-center justify-content-start flex-row'
+						style={{ height: "max-content" }}>
 						{choosedata.map((dat, index) => (
 							<div
 								key={index + dat.title}
-								className='col-12 col-md-6 col-lg-4 allCenter'
+								className='col-12 col-md-6 col-lg-4 allCenter h-100'
 								style={{ marginBottom: "20px" }}>
 								<ChooseUsCard
 									imglink={dat.imglink}
