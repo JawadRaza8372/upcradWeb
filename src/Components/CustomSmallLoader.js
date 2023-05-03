@@ -1,13 +1,13 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
+import { CustomHook } from "../CustomHook/CustomHook";
 
 const CustomSmallLoader = () => {
-	const { t } = useTranslation();
+	const { dbTranslator } = CustomHook();
 
 	return (
 		<div className='w-100 d-flex align-items-center justify-content-evenly flex-row'>
 			<div className='smallloader mb-1' />
-			<span className='smallloadertxt'>{t("process")}!...</span>
+			<span className='smallloadertxt'>{dbTranslator("process")}!...</span>
 		</div>
 	);
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import AttributesInput from "./AttributesInput";
 import QuestionLinee from "./QuestionLinee";
-import { useTranslation } from "react-i18next";
+import { CustomHook } from "../CustomHook/CustomHook";
 
 const ChooseAttributComp = ({
 	selectedSubPositions,
@@ -9,7 +9,7 @@ const ChooseAttributComp = ({
 	onSetSubPositionValues,
 	overAllRating,
 }) => {
-	const { t } = useTranslation();
+	const { dbTranslator } = CustomHook();
 
 	const randomizebtn = () => {
 		onSetSubPositionValues({
@@ -24,14 +24,16 @@ const ChooseAttributComp = ({
 
 	return (
 		<div className='w-90 h-100 mx-auto d-flex align-items-start justify-content-center flex-column'>
-			<span className='mainColor CustHeadingRespComp'>{t("head4")}</span>
-			<span className='CustSubHeadingRespComp'>{t("shead4")}</span>
+			<span className='mainColor CustHeadingRespComp'>
+				{dbTranslator("head4")}
+			</span>
+			<span className='CustSubHeadingRespComp'>{dbTranslator("shead4")}</span>
 			<QuestionLinee
 				label={"E"}
-				title={t("poptione")}
+				title={dbTranslator("poptione")}
 				button={
 					<button onClick={() => randomizebtn()} className='smallBtnsSettings'>
-						{t("random")}
+						{dbTranslator("random")}
 					</button>
 				}>
 				<div className='row w-100 mx-auto' style={{ marginTop: "20px" }}>
@@ -109,7 +111,9 @@ const ChooseAttributComp = ({
 						</div>
 					</div>
 					<div className='col-12 mt-1 col-md-9 d-flex align-items-center justify-content-evenly flex-row'>
-						<span className='respQuestionHeading'>{t("sugestrat")}</span>
+						<span className='respQuestionHeading'>
+							{dbTranslator("sugestrat")}
+						</span>
 
 						<div className='smalltextdivRating'>
 							{overAllRating > 3 ? overAllRating - 1 : "00"}

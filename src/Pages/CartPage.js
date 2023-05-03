@@ -5,14 +5,14 @@ import CartPageCard from "../Components/CartPageCard";
 //import { loadStripe } from "@stripe/stripe-js";
 // import { Elements } from "@stripe/react-stripe-js";
 // import PaymentMethod from "../Components/PaymentMethod";
-import { useTranslation } from "react-i18next";
+import { CustomHook } from "../CustomHook/CustomHook";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { postData } from "../Database/Database";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const CartPage = () => {
-	const { t } = useTranslation();
+	const { dbTranslator } = CustomHook();
 	const dispatch = useDispatch();
 	const { footballCards, otherProducts, cartItems } = useSelector(
 		(state) => state.project
@@ -76,7 +76,7 @@ const CartPage = () => {
 									fontWeight: "bold",
 									marginBottom: "40px",
 								}}>
-								{t("scart")}
+								{dbTranslator("scart")}
 							</span>
 							{cartItems?.length ? (
 								cartItems.map((dat) => {
@@ -124,7 +124,7 @@ const CartPage = () => {
 									}
 								})
 							) : (
-								<div className='errorDiv'>{t("paddart")}</div>
+								<div className='errorDiv'>{dbTranslator("paddart")}</div>
 							)}
 						</div>
 					</div>
@@ -139,11 +139,11 @@ const CartPage = () => {
 									fontWeight: "bold",
 									marginBottom: "40px",
 								}}>
-								{t("sumry")}
+								{dbTranslator("sumry")}
 							</span>
 							<div className='row w-100 gx-0'>
 								<div className='col-6' style={{ fontSize: "16px" }}>
-									{t("subtol")}
+									{dbTranslator("subtol")}
 								</div>
 								<div
 									className='col-6 mainColor'
@@ -154,7 +154,7 @@ const CartPage = () => {
 									US ${subtotal}
 								</div>
 								<div className='col-6' style={{ fontSize: "16px" }}>
-									{t("ship")}
+									{dbTranslator("ship")}
 								</div>
 								<div
 									className='col-6 mainColor'
@@ -167,7 +167,7 @@ const CartPage = () => {
 								<div
 									className='col-6'
 									style={{ fontSize: "20px", fontWeight: "bold" }}>
-									{t("total")}
+									{dbTranslator("total")}
 								</div>
 								<div
 									className='col-6 mainColor'
@@ -211,7 +211,7 @@ const CartPage = () => {
 									</>
 								) : (
 									<>
-										<div className='errorDiv'>{t("paddart")}</div>
+										<div className='errorDiv'>{dbTranslator("paddart")}</div>
 									</>
 								)}
 							</div>

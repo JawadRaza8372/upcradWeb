@@ -3,7 +3,6 @@ import QuestionLinee from "./QuestionLinee";
 import { BiImageAdd } from "react-icons/bi";
 import { BsBell } from "react-icons/bs";
 import CustomLoader from "./CustomLoader";
-import { useTranslation } from "react-i18next";
 import Cropper from "react-cropper";
 import "../../node_modules/cropperjs/dist/cropper.css";
 import {
@@ -28,6 +27,7 @@ import {
 	frdefencedata,
 	frmiddata,
 } from "../Harddata";
+import { CustomHook } from "../CustomHook/CustomHook";
 const BasicInfoComp = ({
 	nameValue,
 	onChangeName,
@@ -40,7 +40,7 @@ const BasicInfoComp = ({
 	imgsrc,
 	model,
 }) => {
-	const { t } = useTranslation();
+	const { dbTranslator } = CustomHook();
 
 	const [loading, setloading] = useState(false);
 	const [selectData, setselectData] = useState(0);
@@ -153,21 +153,25 @@ const BasicInfoComp = ({
 							className='btn mainColor secondarybg'
 							style={{ margin: "20px auto" }}
 							onClick={oncrop}>
-							{t("save")}
+							{dbTranslator("save")}
 						</button>
 					</div>
 				</div>
 			)}
 			<div className='w-90 h-100 mx-auto d-flex align-items-start justify-content-center flex-column'>
-				<span className='mainColor CustHeadingRespComp'>{t("head1")}</span>
-				<span className='CustSubHeadingRespComp'>{t("shead1")} </span>
-				<QuestionLinee label={"A"} title={t("poptiona")}>
-					<span className='inputLabelResp'>{t("name")}</span>
+				<span className='mainColor CustHeadingRespComp'>
+					{dbTranslator("head1")}
+				</span>
+				<span className='CustSubHeadingRespComp'>
+					{dbTranslator("shead1")}{" "}
+				</span>
+				<QuestionLinee label={"A"} title={dbTranslator("poptiona")}>
+					<span className='inputLabelResp'>{dbTranslator("name")}</span>
 					<input
 						value={nameValue?.toUpperCase()}
 						onChange={onChangeName}
 						className='inputCustmResp'
-						placeholder={t("name")}
+						placeholder={dbTranslator("name")}
 						maxLength={12}
 					/>
 					<label className='w-100' htmlFor='file'>
@@ -183,7 +187,7 @@ const BasicInfoComp = ({
 										accept='image/png,image/jpg,image/jpeg'
 									/>
 									<div className='d-flex mainColor align-items-center justify-content-center imgInptCustmResp'>
-										<span>{t("uplodagn")}</span>
+										<span>{dbTranslator("uplodagn")}</span>
 										<BiImageAdd className='mainColor' />
 									</div>
 								</div>
@@ -198,7 +202,7 @@ const BasicInfoComp = ({
 									accept='image/png,image/jpg,image/jpeg'
 								/>
 								<div className='d-flex align-items-center justify-content-center imgInptCustmResp'>
-									<span>{t("clikupld")}</span>
+									<span>{dbTranslator("clikupld")}</span>
 									<BiImageAdd
 										style={{ fontSize: "26px", marginLeft: "10px" }}
 										className='mainColor'
@@ -214,13 +218,13 @@ const BasicInfoComp = ({
 							style={{ fontSize: "20px", marginRight: "10px" }}
 							className='mainColor'
 						/>
-						{t("imgbgtxt")}
+						{dbTranslator("imgbgtxt")}
 					</span>
 				</QuestionLinee>
 
 				<QuestionLinee
 					label={"B"}
-					title={t("poptionb")}
+					title={dbTranslator("poptionb")}
 					button={
 						<div className='row'>
 							<button
@@ -287,28 +291,28 @@ const BasicInfoComp = ({
 							className={`col-3 customOptionSelector ${
 								selectData === 0 ? "actieOption" : ""
 							}`}>
-							{t("defnce")}
+							{dbTranslator("defnce")}
 						</div>
 						<div
 							onClick={() => setselectData(1)}
 							className={`col-3 customOptionSelector ${
 								selectData === 1 ? "actieOption" : ""
 							}`}>
-							{t("midfield")}
+							{dbTranslator("midfield")}
 						</div>
 						<div
 							onClick={() => setselectData(2)}
 							className={`col-3 customOptionSelector ${
 								selectData === 2 ? "actieOption" : ""
 							}`}>
-							{t("attack")}
+							{dbTranslator("attack")}
 						</div>
 						<div
 							onClick={() => setselectData(3)}
 							className={`col-3 customOptionSelector ${
 								selectData === 3 ? "actieOption" : ""
 							}`}>
-							{t("custom")}
+							{dbTranslator("custom")}
 						</div>
 					</div>
 					<div

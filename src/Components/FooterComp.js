@@ -1,12 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Footer.css";
-import { AiOutlineTwitter, AiOutlineInstagram } from "react-icons/ai";
-import { FaFacebook } from "react-icons/fa";
-import { useTranslation } from "react-i18next";
+import { AiOutlineInstagram, AiOutlineYoutube } from "react-icons/ai";
+import { BsTiktok } from "react-icons/bs";
+//import { AiOutlineTwitter } from "react-icons/ai";
+//import { FaFacebook } from "react-icons/fa";
+import { CustomHook } from "../CustomHook/CustomHook";
 
 const FooterComp = () => {
-	const { t } = useTranslation();
+	const { dbTranslator } = CustomHook();
 
 	const firstwala = [
 		{ title: "website", path: "/" },
@@ -67,23 +69,40 @@ const FooterComp = () => {
 					style={{ width: "80%" }}
 					className='marginIssue widthissue row d-flex align-items-start justify-content-evenly flex-row'>
 					<div className='col-12 col-md-6 col-lg-9 h-100 d-flex align-items-center justify-content-center flex-column'>
-						<span className='text-center footerlinks'>{t("rightresr")}</span>
+						<span className='text-center footerlinks'>
+							{dbTranslator("rightresr")}
+						</span>
 					</div>
 					<div className='col-12 col-md-6 col-lg-3 h-100 d-flex align-items-center justify-content-center flex-row'>
-						<button className='btn'>
-							<FaFacebook className='whiteColor' style={{ fontSize: "30px" }} />
+						<button
+							onClick={() => {
+								window.open(
+									"https://www.youtube.com/channel/UCeMtYgcM-546smTRkCSx-og",
+									"_blank"
+								);
+							}}
+							className='btn'>
+							<AiOutlineYoutube
+								className='whiteColor'
+								style={{ fontSize: "30px" }}
+							/>
 						</button>
-						<button className='btn mx-3'>
+						<button
+							onClick={() => {
+								window.open("https://www.instagram.com/upcardsfc/", "_blank");
+							}}
+							className='btn mx-3'>
 							<AiOutlineInstagram
 								className='whiteColor'
 								style={{ fontSize: "30px" }}
 							/>
 						</button>
-						<button className='btn'>
-							<AiOutlineTwitter
-								className='whiteColor'
-								style={{ fontSize: "30px" }}
-							/>
+						<button
+							onClick={() => {
+								window.open("https://www.tiktok.com/@upcardsfc", "_blank");
+							}}
+							className='btn'>
+							<BsTiktok className='whiteColor' style={{ fontSize: "30px" }} />
 						</button>
 					</div>
 				</div>

@@ -3,11 +3,11 @@ import { SignUp, login } from "../Database/Database";
 import { setAuth } from "../store/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { useTranslation } from "react-i18next";
+import { CustomHook } from "../CustomHook/CustomHook";
 import { useNavigate } from "react-router-dom";
 
 const LoginSignUp = () => {
-	const { t } = useTranslation();
+	const { dbTranslator } = CustomHook();
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const [loginInfoEmail, setloginInfoEmail] = useState("");
@@ -68,11 +68,11 @@ const LoginSignUp = () => {
 				<div className='row gx-0'>
 					<div className='col-12 col-md-6 allCenter mx-auto'>
 						<div className='formContainer'>
-							<span>{t("login")}</span>
+							<span>{dbTranslator("login")}</span>
 							<form className='customForm' onSubmit={handleLogin}>
 								<div>
 									<label>
-										{t("enteryor")} {t("email")}
+										{dbTranslator("enteryor")} {dbTranslator("email")}
 									</label>
 									<input
 										type={"email"}
@@ -85,7 +85,7 @@ const LoginSignUp = () => {
 								</div>
 								<div>
 									<label>
-										{t("enteryor")} {t("pass")}
+										{dbTranslator("enteryor")} {dbTranslator("pass")}
 									</label>
 									<input
 										type={"password"}
@@ -97,17 +97,17 @@ const LoginSignUp = () => {
 									/>
 								</div>
 
-								<button type='submit'>{t("login")}</button>
+								<button type='submit'>{dbTranslator("login")}</button>
 							</form>
 						</div>
 					</div>
 					<div className='col-12 col-md-6 allCenter mx-auto'>
 						<div className='formContainer'>
-							<span>{t("regis")}</span>
+							<span>{dbTranslator("regis")}</span>
 							<form className='customForm' onSubmit={handleSignUp}>
 								<div>
 									<label>
-										{t("enteryor")} {t("email")}
+										{dbTranslator("enteryor")} {dbTranslator("email")}
 									</label>
 									<input
 										type={"email"}
@@ -120,7 +120,7 @@ const LoginSignUp = () => {
 								</div>
 								<div>
 									<label>
-										{t("enteryor")} {t("pass")}
+										{dbTranslator("enteryor")} {dbTranslator("pass")}
 									</label>
 									<input
 										type={"password"}
@@ -132,7 +132,7 @@ const LoginSignUp = () => {
 									/>
 								</div>
 
-								<button type='submit'>{t("regis")}</button>
+								<button type='submit'>{dbTranslator("regis")}</button>
 							</form>
 						</div>
 					</div>

@@ -2,10 +2,10 @@ import React from "react";
 import { FaTruck, FaScroll } from "react-icons/fa";
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import SupportCard from "../Components/SupportCard";
-import { useTranslation } from "react-i18next";
+import { CustomHook } from "../CustomHook/CustomHook";
 
 const SupportPage = () => {
-	const { t } = useTranslation();
+	const { dbTranslator } = CustomHook();
 
 	const questionsArrayMain = [
 		{
@@ -15,23 +15,23 @@ const SupportPage = () => {
 					className='mainColor'
 				/>
 			),
-			title: t("delivery"),
+			title: dbTranslator("delivery"),
 			questionsArray: [
 				{
-					question: t("dliv1"),
-					answer: t("div1val"),
+					question: dbTranslator("dliv1"),
+					answer: dbTranslator("div1val"),
 				},
 				{
-					question: t("dliv2"),
-					answer: t("div2val"),
+					question: dbTranslator("dliv2"),
+					answer: dbTranslator("div2val"),
 				},
 				{
-					question: t("dliv3"),
-					answer: t("div3val"),
+					question: dbTranslator("dliv3"),
+					answer: dbTranslator("div3val"),
 				},
 				{
-					question: t("dliv4"),
-					answer: t("div1va4"),
+					question: dbTranslator("dliv4"),
+					answer: dbTranslator("div1va4"),
 				},
 			],
 		},
@@ -42,23 +42,23 @@ const SupportPage = () => {
 					className='mainColor'
 				/>
 			),
-			title: t("ordr"),
+			title: dbTranslator("ordr"),
 			questionsArray: [
 				{
-					question: t("order1"),
-					answer: t("order1val"),
+					question: dbTranslator("order1"),
+					answer: dbTranslator("order1val"),
 				},
 				{
-					question: t("order2"),
-					answer: t("order2val"),
+					question: dbTranslator("order2"),
+					answer: dbTranslator("order2val"),
 				},
 				{
-					question: t("ordr3"),
-					answer: t("ordr3val"),
+					question: dbTranslator("ordr3"),
+					answer: dbTranslator("ordr3val"),
 				},
 				{
-					question: t("ordr4"),
-					answer: t("ordr4val"),
+					question: dbTranslator("ordr4"),
+					answer: dbTranslator("ordr4val"),
 				},
 			],
 		},
@@ -69,15 +69,15 @@ const SupportPage = () => {
 					className='mainColor'
 				/>
 			),
-			title: t("payment"),
+			title: dbTranslator("payment"),
 			questionsArray: [
 				{
-					question: t("pay1"),
-					answer: t("pay1val"),
+					question: dbTranslator("pay1"),
+					answer: dbTranslator("pay1val"),
 				},
 				{
-					question: t("pay2"),
-					answer: t("pay2val"),
+					question: dbTranslator("pay2"),
+					answer: dbTranslator("pay2val"),
 				},
 			],
 		},
@@ -86,7 +86,7 @@ const SupportPage = () => {
 		<>
 			<div className='topHeadingDiv'>
 				<h1 className='responsiveHeading text-center mainColor'>
-					{t("howhelp")}
+					{dbTranslator("howhelp")}
 				</h1>
 			</div>
 			<div className='col-12 col-lg-10 mx-auto'>

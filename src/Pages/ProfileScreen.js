@@ -1,11 +1,11 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setAuth } from "../store/authSlice";
-import { useTranslation } from "react-i18next";
+import { CustomHook } from "../CustomHook/CustomHook";
 import { useNavigate } from "react-router-dom";
 
 const ProfileScreen = () => {
-	const { t } = useTranslation();
+	const { dbTranslator } = CustomHook();
 	const dispatch = useDispatch();
 	const { isAuth } = useSelector((state) => state.auth);
 	const navigate = useNavigate();
@@ -34,19 +34,19 @@ const ProfileScreen = () => {
 						}}
 						style={{ maxWidth: "150px" }}
 						className='btn mainColor secondarybg'>
-						{t("logout")}
+						{dbTranslator("logout")}
 					</button>
 				</div>
 
 				{/* <div className='row gx-0'>
 					<div className='col-12 col-md-11 allCenter mx-auto'>
 						<div className='deliveryFormContainer allCenter flex-column'>
-							<span> {t("deliveryInfo")}</span>
-							<p>{t("delivryInfotxt")}</p>
+							<span> {dbTranslator("deliveryInfo")}</span>
+							<p>{dbTranslator("delivryInfotxt")}</p>
 							<form className='customForm' onSubmit={handleDelieryData}>
 								<div>
 									<label>
-										{t("enteryor")} {t("name")}
+										{dbTranslator("enteryor")} {dbTranslator("name")}
 									</label>
 									<input
 										type={"text"}
@@ -64,7 +64,7 @@ const ProfileScreen = () => {
 
 								<div>
 									<label>
-										{t("enteryor")} {t("phone")}
+										{dbTranslator("enteryor")} {dbTranslator("phone")}
 									</label>
 									<input
 										type={"number"}
@@ -81,7 +81,7 @@ const ProfileScreen = () => {
 								</div>
 								<div>
 									<label>
-										{t("enteryor")} {t("address")}
+										{dbTranslator("enteryor")} {dbTranslator("address")}
 									</label>
 									<input
 										type={"text"}
@@ -97,7 +97,7 @@ const ProfileScreen = () => {
 									/>
 								</div>
 
-								<button type='submit'>{t("save")}</button>
+								<button type='submit'>{dbTranslator("save")}</button>
 							</form>
 						</div> </div></div>*/}
 			</div>

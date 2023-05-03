@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
+import { CustomHook } from "../CustomHook/CustomHook";
 import { toast } from "react-toastify";
 import { postData } from "../Database/Database";
 const ContactUsPage = () => {
-	const { t } = useTranslation();
+	const { dbTranslator } = CustomHook();
 	const [contactdata, setcontactdata] = useState({
 		name: "",
 		email: "",
 		msg: "",
 	});
-	const succmsg = t("Message") + " " + t("uploaded");
-	const errmsg = t("intrerr");
+	const succmsg = dbTranslator("Message") + " " + dbTranslator("uploaded");
+	const errmsg = dbTranslator("intrerr");
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const resul = await postData({ ...contactdata }, "contactUs");
@@ -46,7 +46,9 @@ const ContactUsPage = () => {
 	return (
 		<>
 			<div className='topHeadingDiv'>
-				<h1 className='responsiveHeading text-center mainColor'>Contact Us</h1>
+				<h1 className='responsiveHeading text-center mainColor'>
+					{dbTranslator("ContactUs")}
+				</h1>
 			</div>
 			<div className='row gx-0'>
 				<div className='col-12 col-md-11 allCenter mx-auto'>
@@ -54,11 +56,11 @@ const ContactUsPage = () => {
 						<form className='customForm' onSubmit={handleSubmit}>
 							<div>
 								<label>
-									{t("enteryor")} {t("name")}
+									{dbTranslator("enteryor")} {dbTranslator("name")}
 								</label>
 								<input
 									type={"text"}
-									placeholder={t("name")}
+									placeholder={dbTranslator("name")}
 									required
 									value={contactdata?.name}
 									onChange={(e) =>
@@ -69,7 +71,7 @@ const ContactUsPage = () => {
 							<div>
 								<label>
 									{" "}
-									{t("enteryor")} {t("email")}
+									{dbTranslator("enteryor")} {dbTranslator("email")}
 								</label>
 								<input
 									type={"email"}
@@ -86,11 +88,11 @@ const ContactUsPage = () => {
 							</div>
 							<div>
 								<label>
-									{t("enteryor")} {t("Message")}
+									{dbTranslator("enteryor")} {dbTranslator("Message")}
 								</label>
 								<textarea
 									type={"text"}
-									placeholder={t("Message")}
+									placeholder={dbTranslator("Message")}
 									value={contactdata?.msg}
 									required
 									onChange={(e) =>
@@ -102,7 +104,7 @@ const ContactUsPage = () => {
 								/>
 							</div>
 
-							<button type='submit'>{t("save")}</button>
+							<button type='submit'>{dbTranslator("save")}</button>
 						</form>
 					</div>
 				</div>

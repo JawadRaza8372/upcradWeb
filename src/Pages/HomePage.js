@@ -30,57 +30,57 @@ import fistImage3 from "../ownassets/firstimg (3).png";
 import fistImage4 from "../ownassets/firstimg (4).png";
 import ServiceMiniCard from "../Components/ServiceMiniCard";
 import { useSelector } from "react-redux";
-import { useTranslation } from "react-i18next";
+import { CustomHook } from "../CustomHook/CustomHook";
 import OurServicesCard from "../Components/OurServicesCard";
 //import AdsComp from "../Components/AdsComp";
 const HomePage = () => {
 	const { footballCards, otherProducts } = useSelector(
 		(state) => state.project
 	);
-	const { t } = useTranslation();
+	const { dbTranslator } = CustomHook();
 
 	const navigate = useNavigate();
 	const ourServiceCardData = [
-		{ id: 0, imgSrc: service1, title: t("oprod") },
-		{ id: 1, imgSrc: service2, title: t("fotCards") },
-		{ id: 2, imgSrc: service3, title: t("mtchmomts") },
+		{ id: 0, imgSrc: service1, title: dbTranslator("oprod") },
+		{ id: 1, imgSrc: service2, title: dbTranslator("fotCards") },
+		{ id: 2, imgSrc: service3, title: dbTranslator("mtchmomts") },
 	];
-	// useEffect(() => {
+	// useEffecdbTranslator(() => {
 	// 	try {
 	// 		(window.adsbygoogle = window.adsbygoogle || []).push({});
 	// 	} catch (e) {}
 	// }, []);
 
 	const specialFeatures = [
-		{ title: t("f1"), img: fistImage1 },
-		{ title: t("f2"), img: fistImage2 },
-		{ title: t("f3"), img: fistImage3 },
-		{ title: t("f4"), img: fistImage4 },
+		{ title: dbTranslator("f1"), img: fistImage1 },
+		{ title: dbTranslator("f2"), img: fistImage2 },
+		{ title: dbTranslator("f3"), img: fistImage3 },
+		{ title: dbTranslator("f4"), img: fistImage4 },
 	];
 	const questioncardraw = [
-		{ question: t("faq1"), answer: t("faq1val") },
-		{ question: t("faq2"), answer: t("faq2val") },
+		{ question: dbTranslator("faq1"), answer: dbTranslator("faq1val") },
+		{ question: dbTranslator("faq2"), answer: dbTranslator("faq2val") },
 		{
-			question: t("faq3"),
-			answer: t("faq3val"),
+			question: dbTranslator("faq3"),
+			answer: dbTranslator("faq3val"),
 		},
 	];
 	const choosedata = [
 		{
 			imglink: choose1img,
-			title: t("yChoseUs1"),
-			subtitle: t("yChoseUs1Val"),
+			title: dbTranslator("yChoseUs1"),
+			subtitle: dbTranslator("yChoseUs1Val"),
 		},
 		{
 			imglink: choose2img,
-			title: t("yChoseUs2"),
-			subtitle: t("yChoseUs2Val"),
+			title: dbTranslator("yChoseUs2"),
+			subtitle: dbTranslator("yChoseUs2Val"),
 		},
 
 		{
 			imglink: choose3img,
-			title: t("yChoseUs3"),
-			subtitle: t("yChoseUs3Val"),
+			title: dbTranslator("yChoseUs3"),
+			subtitle: dbTranslator("yChoseUs3Val"),
 		},
 	];
 	const videodataraw = [
@@ -165,7 +165,7 @@ const HomePage = () => {
 				"https://res.cloudinary.com/dpjk8xcld/image/upload/v1682422399/btm7mfscum9coujglogs.png",
 		},
 	];
-	let sellerspara = t("tbNewSellerPara");
+	let sellerspara = dbTranslator("tbNewSellerPara");
 	return (
 		<>
 			{/*First Container */}
@@ -175,17 +175,17 @@ const HomePage = () => {
 						<div className='row h-100'>
 							<div className='col-12 gb-2 col-md-6 d-flex align-items-start justify-content-center flex-column'>
 								<h1 className='my-0 mainColor firstSectionHeading'>
-									{t("perfect")}
+									{dbTranslator("perfect")}
 								</h1>
 								<p
 									className='mainColor resptextp'
 									style={{ marginTop: "30px", marginBottom: "30px" }}>
-									{t("subperfect")}
+									{dbTranslator("subperfect")}
 								</p>
 								<button
 									onClick={() => navigate("/products")}
 									className='btn mainColor secondarybg d-none d-md-block'>
-									{t("shpCrd")}
+									{dbTranslator("shpCrd")}
 								</button>
 							</div>
 							<div className='col-12 col-md-6 allCenter flex-column'>
@@ -204,7 +204,7 @@ const HomePage = () => {
 								<button
 									onClick={() => navigate("/products")}
 									className='btn mainColor secondarybg d-block d-md-none mb-4'>
-									{t("shpCrd")}
+									{dbTranslator("shpCrd")}
 								</button>
 							</div>
 						</div>
@@ -218,7 +218,7 @@ const HomePage = () => {
 										style={{ fontSize: "18px", marginRight: "10px" }}
 										className='secondaryColor'
 									/>
-									{t("tpilot1")}
+									{dbTranslator("tpilot1")}
 								</span>
 							</div>
 							<div className='col-12 col-md-3 allCenter'>
@@ -240,7 +240,7 @@ const HomePage = () => {
 							</div>
 							<div className='col-12 col-md-6 allCenter'>
 								<span>
-									{t("TScore")} : 4.5 | 500+ {t("review")}
+									{dbTranslator("TScore")} : 4.5 | 500+ {dbTranslator("review")}
 								</span>
 							</div>
 						</div>
@@ -259,7 +259,7 @@ const HomePage = () => {
 								<h3
 									style={{ fontWeight: "bold", textTransform: "capitalize" }}
 									className='mainColor'>
-									{t("TBSeller")}
+									{dbTranslator("TBSeller")}
 								</h3>
 								<hr
 									className='mainbg'
@@ -276,7 +276,7 @@ const HomePage = () => {
 									<button
 										onClick={() => navigate("/products")}
 										className='btn mainColor secondarybg d-none d-lg-block'>
-										{t("TBSeller")}
+										{dbTranslator("TBSeller")}
 									</button>
 								</div>
 								<img
@@ -294,7 +294,7 @@ const HomePage = () => {
 								<button
 									onClick={() => navigate("/products")}
 									className='btn mainColor secondarybg d-block d-lg-none mt-3'>
-									{t("TBSeller")}
+									{dbTranslator("TBSeller")}
 								</button>
 							</div>
 						</div>
@@ -373,7 +373,7 @@ const HomePage = () => {
 			<div className='allCenter flex-column thirdContainer'>
 				<div className='allCenter flex-column'>
 					<h3 style={{ fontWeight: "bold" }} className='mainColor'>
-						{t("service")}
+						{dbTranslator("service")}
 					</h3>
 					<hr
 						className='mainbg'
@@ -394,7 +394,7 @@ const HomePage = () => {
 					<div className='row w-100 mx-auto h-100'>
 						<div className='col-12 gb-2 col-md-5 col-lg-4 d-flex align-items-start justify-content-center flex-column'>
 							<h3 style={{ fontWeight: "bold" }} className='mainColor'>
-								{t("oprod")}
+								{dbTranslator("oprod")}
 							</h3>
 							<hr
 								className='mainbg'
@@ -404,7 +404,7 @@ const HomePage = () => {
 									width: "40%",
 								}}
 							/>
-							<p className='mainColor'>{t("servicep")}</p>
+							<p className='mainColor'>{dbTranslator("servicep")}</p>
 						</div>
 						<div className='col-12 col-md-7 col-lg-8 allCenter flex-column'>
 							<div className='row w-100 h-100 d-flex d-md-none'>
@@ -533,7 +533,7 @@ const HomePage = () => {
 									margin: "20px 0px",
 									textAlign: "center",
 								}}>
-								{t("hcustmer")}
+								{dbTranslator("hcustmer")}
 							</span>
 							<span
 								className='mainColor'
@@ -546,7 +546,7 @@ const HomePage = () => {
 									className='secondaryColor'
 									style={{ fontSize: "20px", marginRight: "7px" }}
 								/>
-								{t("tpilot1")}| 500+ {t("review")}
+								{dbTranslator("tpilot1")}| 500+ {dbTranslator("review")}
 							</span>
 						</div>
 					</div>
@@ -563,7 +563,7 @@ const HomePage = () => {
 							marginBottom: "30px",
 						}}
 						className='mainColor'>
-						{t("yChoseUs")}
+						{dbTranslator("yChoseUs")}
 					</h3>
 					<div
 						className='row d-flex align-items-center justify-content-start flex-row'
@@ -585,7 +585,7 @@ const HomePage = () => {
 						<button
 							onClick={() => navigate("/products")}
 							className='btn mainColor secondarybg'>
-							{t("shpCrd")}
+							{dbTranslator("shpCrd")}
 						</button>
 					</div>
 				</div>
@@ -601,7 +601,7 @@ const HomePage = () => {
 							marginBottom: "30px",
 						}}
 						className='mainColor'>
-						{t("faqs")}
+						{dbTranslator("faqs")}
 					</h3>
 					<div className='row w-100 gx-0'>
 						{questioncardraw.map((dat, index) => (
@@ -616,7 +616,7 @@ const HomePage = () => {
 						<button
 							onClick={() => navigate("/support")}
 							className='btn mainColor secondarybg'>
-							{t("wnthlp")}
+							{dbTranslator("wnthlp")}
 						</button>
 					</div>
 				</div>
@@ -637,7 +637,7 @@ const HomePage = () => {
 							<h3
 								className='mainColor'
 								style={{ fontWeight: "bold", margin: "10px 0px" }}>
-								{t("howStart")}
+								{dbTranslator("howStart")}
 							</h3>
 							<span
 								style={{
@@ -646,7 +646,7 @@ const HomePage = () => {
 									fontSize: "16px",
 									fontWeight: "400",
 								}}>
-								{t("howStartVal")}
+								{dbTranslator("howStartVal")}
 							</span>
 						</div>
 						<div className='col-12  col-md-5 allCenter'>
@@ -669,20 +669,20 @@ const HomePage = () => {
 							<h3
 								className='mainColor'
 								style={{ fontWeight: "bold", margin: "10px 0px" }}>
-								{t("SocialMed")}
+								{dbTranslator("SocialMed")}
 							</h3>
 						</div>
 						<div className='col-12 col-md-7 d-flex align-items-center justify-content-start flex-row'>
 							<button
 								onClick={() => {
-									window.location.href = "https://www.tiktok.com/@upcardsfc";
+									window.open("https://www.tiktok.com/@upcardsfc", "_blank");
 								}}
 								className='btn'>
 								<BsTiktok style={{ fontSize: "35px" }} className='mainColor' />
 							</button>
 							<button
 								onClick={() => {
-									window.location.href = "https://www.instagram.com/upcardsfc/";
+									window.open("https://www.instagram.com/upcardsfc/", "_blank");
 								}}
 								className='btn'>
 								<AiOutlineInstagram
@@ -692,8 +692,10 @@ const HomePage = () => {
 							</button>
 							<button
 								onClick={() => {
-									window.location.href =
-										"https://www.youtube.com/channel/UCeMtYgcM-546smTRkCSx-og";
+									window.open(
+										"https://www.youtube.com/channel/UCeMtYgcM-546smTRkCSx-og",
+										"_blank"
+									);
 								}}
 								className='btn'>
 								<AiOutlineYoutube

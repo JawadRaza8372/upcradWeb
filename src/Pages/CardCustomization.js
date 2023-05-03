@@ -11,12 +11,12 @@ import useImage from "use-image";
 import { toast } from "react-toastify";
 import { setCartItems } from "../store/projectSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useTranslation } from "react-i18next";
+import { CustomHook } from "../CustomHook/CustomHook";
 import { setClubs } from "../store/projectSlice";
 import { getDatabase, ref, child, get } from "firebase/database";
 
 export const CardCustomization = () => {
-	const { t } = useTranslation();
+	const { dbTranslator } = CustomHook();
 
 	const { footballCards, cartItems, clubs } = useSelector(
 		(state) => state.project
@@ -204,7 +204,7 @@ export const CardCustomization = () => {
 		);
 		window.localStorage.setItem("upCradCartArry", JSON.stringify(newdata));
 
-		toast.success(t("paddcrt"), {
+		toast.success(dbTranslator("paddcrt"), {
 			position: "bottom-right",
 			autoClose: 5000,
 			hideProgressBar: false,
@@ -225,7 +225,7 @@ export const CardCustomization = () => {
 			) {
 				setcompSeq(1);
 			} else {
-				toast.error(t("fillfields"), {
+				toast.error(dbTranslator("fillfields"), {
 					position: "bottom-right",
 					autoClose: 5000,
 					hideProgressBar: false,
@@ -244,7 +244,7 @@ export const CardCustomization = () => {
 			) {
 				setcompSeq(2);
 			} else {
-				toast.error(t("choosebadg"), {
+				toast.error(dbTranslator("choosebadg"), {
 					position: "bottom-right",
 					autoClose: 5000,
 					hideProgressBar: false,
@@ -259,7 +259,7 @@ export const CardCustomization = () => {
 			if (selectedCountry?.name !== "" && selectedCountry?.code !== "") {
 				setcompSeq(3);
 			} else {
-				toast.error(t("choosecountry"), {
+				toast.error(dbTranslator("choosecountry"), {
 					position: "bottom-right",
 					autoClose: 5000,
 					hideProgressBar: false,
@@ -281,7 +281,7 @@ export const CardCustomization = () => {
 			) {
 				setcompSeq(4);
 			} else {
-				toast.error(t("porrand"), {
+				toast.error(dbTranslator("porrand"), {
 					position: "bottom-right",
 					autoClose: 5000,
 					hideProgressBar: false,
@@ -301,7 +301,7 @@ export const CardCustomization = () => {
 				const result = downloadfunc();
 				addToCartFunction(result);
 			} else {
-				toast.error(t("porrand"), {
+				toast.error(dbTranslator("porrand"), {
 					position: "bottom-right",
 					autoClose: 5000,
 					hideProgressBar: false,
@@ -393,7 +393,7 @@ export const CardCustomization = () => {
 					</div>
 					<div className='order-1 order-md-2 mb-4 col-12 col-md-6 allCenter flex-column'>
 						<button className='btn mainColor secondarybg'>
-							{t("pvwonly")}
+							{dbTranslator("pvwonly")}
 						</button>
 						<div ref={newref}>
 							<div className='d-none d-sm-block'>
@@ -1079,7 +1079,7 @@ export const CardCustomization = () => {
 							<div
 								style={{ fontSize: "16px", fontWeight: "bold" }}
 								className='col-4 d-flex align-items-center justify-content-center flex-row'>
-								{t("Excellent")}
+								{dbTranslator("Excellent")}
 							</div>
 							<div className='col-4 d-flex align-items-center justify-content-center flex-row'>
 								{ratting &&
@@ -1132,7 +1132,7 @@ export const CardCustomization = () => {
 									background: "rgba(33,50,94,0.25)",
 									color: "rgba(33,50,94,1)",
 								}}>
-								{compSeq > 0 ? t("prevos") : t("home")}
+								{compSeq > 0 ? dbTranslator("prevos") : dbTranslator("home")}
 							</button>
 						</div>
 						<div className='order-3 order-md-2 col-12  mb-4 col-md-6 d-flex align-items-center justify-content-center'>
@@ -1171,7 +1171,7 @@ export const CardCustomization = () => {
 										className='mainColor'
 										style={{ fontSize: "22px" }}
 									/> */}
-								{compSeq < 4 ? t("next") : t("save")}
+								{compSeq < 4 ? dbTranslator("next") : dbTranslator("save")}
 							</button>
 							{/* )} */}
 						</div>

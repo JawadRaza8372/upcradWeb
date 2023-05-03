@@ -1,8 +1,8 @@
 import React from "react";
 import truckicon from "../ownassets/truck.png";
-import { useTranslation } from "react-i18next";
+import { CustomHook } from "../CustomHook/CustomHook";
 const ExtraServiceComp = ({ value, setvalue }) => {
-	const { t } = useTranslation();
+	const { dbTranslator } = CustomHook();
 	const rawdata = [
 		{
 			title: "Super fast track",
@@ -30,8 +30,12 @@ const ExtraServiceComp = ({ value, setvalue }) => {
 	];
 	return (
 		<div className='w-90 h-100 mx-auto d-flex align-items-start justify-content-center flex-column'>
-			<span className='mainColor CustHeadingRespComp'>{t("lasthead")}</span>
-			<span className='CustSubHeadingRespComp'>{t("lastsdead")}</span>
+			<span className='mainColor CustHeadingRespComp'>
+				{dbTranslator("lasthead")}
+			</span>
+			<span className='CustSubHeadingRespComp'>
+				{dbTranslator("lastsdead")}
+			</span>
 			<div
 				className='w-100 p-4 d-flex align-items-start justify-content-center mt-3 flex-column'
 				style={{ background: "rgba(62,73,122,0.08)" }}>

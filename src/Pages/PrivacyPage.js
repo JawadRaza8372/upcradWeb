@@ -1,40 +1,42 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
+import { CustomHook } from "../CustomHook/CustomHook";
 
 const PrivacyPage = () => {
-	const { t } = useTranslation();
+	const { dbTranslator } = CustomHook();
 
 	return (
 		<>
 			<div className='topHeadingDiv'>
-				<h1 className='responsiveHeading text-center mainColor'>{t("pp")}</h1>
+				<h1 className='responsiveHeading text-center mainColor'>
+					{dbTranslator("pp")}
+				</h1>
 			</div>
 			<div className='col-12 col-lg-10 mx-auto mb-5 mt-3'>
-				<p>{t("pp1")}</p>
-				<p>{t("pp2")}</p>
+				<p>{dbTranslator("pp1")}</p>
+				<p>{dbTranslator("pp2")}</p>
 				<p>
-					<b>{t("pp3")}: </b>
-					{t("pp3val")}
+					<b>{dbTranslator("pp3")}: </b>
+					{dbTranslator("pp3val")}
 				</p>
 				<p>
-					<b>{t("pp4")}: </b>
-					{t("pp4val")}{" "}
+					<b>{dbTranslator("pp4")}: </b>
+					{dbTranslator("pp4val")}{" "}
 				</p>
 				<p>
-					<b>{t("pp5")}: </b>
-					{t("pp5val")}
+					<b>{dbTranslator("pp5")}: </b>
+					{dbTranslator("pp5val")}
 				</p>
 				<ul>
-					<li>{t("pp51")}</li>
-					<li>{t("pp52")}</li>
-					<li>{t("pp53")}</li>
-					<li>{t("pp54")}</li>
-					<li>{t("pp55")}</li>
-					<li>{t("pp56")}</li>
+					<li>{dbTranslator("pp51")}</li>
+					<li>{dbTranslator("pp52")}</li>
+					<li>{dbTranslator("pp53")}</li>
+					<li>{dbTranslator("pp54")}</li>
+					<li>{dbTranslator("pp55")}</li>
+					<li>{dbTranslator("pp56")}</li>
 				</ul>
 				<p>
-					<b>{t("pp6")}: </b>
-					{t("pp6val")}
+					<b>{dbTranslator("pp6")}: </b>
+					{dbTranslator("pp6val")}
 				</p>
 			</div>
 		</>

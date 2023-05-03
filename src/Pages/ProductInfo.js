@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { setCartItems } from "../store/projectSlice";
 import { toast } from "react-toastify";
-import { useTranslation } from "react-i18next";
+import { CustomHook } from "../CustomHook/CustomHook";
 
 const ProductInfo = () => {
-	const { t } = useTranslation();
+	const { dbTranslator } = CustomHook();
 	const { id } = useParams();
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
@@ -29,7 +29,7 @@ const ProductInfo = () => {
 		);
 		window.localStorage.setItem("upCradCartArry", JSON.stringify(newdata));
 
-		toast.success(t("paddcrt"), {
+		toast.success(dbTranslator("paddcrt"), {
 			position: "bottom-right",
 			autoClose: 5000,
 			hideProgressBar: false,

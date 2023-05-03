@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import {
 	setCartItems,
 	setFootballCards,
+	setLanguages,
 	setOtherProducts,
 } from "./store/projectSlice";
 import { ToastContainer } from "react-toastify";
@@ -49,6 +50,17 @@ function App() {
 			dispatch(
 				setFootballCards({
 					footballCards: resultarry,
+				})
+			);
+		});
+		get(child(ref(getDatabase()), "/languages")).then((snapshot) => {
+			let result = snapshot.val();
+			// let resultarry = Object.keys(result).map((dat, index) => {
+			// 	return { id: dat, ...Object.values(result)[index] };
+			// });
+			dispatch(
+				setLanguages({
+					languages: result,
 				})
 			);
 		});

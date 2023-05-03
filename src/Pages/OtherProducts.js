@@ -2,11 +2,11 @@ import React from "react";
 import FootballCards from "../Components/FootballCards";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useTranslation } from "react-i18next";
+import { CustomHook } from "../CustomHook/CustomHook";
 
 const OtherProducts = () => {
 	const { otherProducts } = useSelector((state) => state.project);
-	const { t } = useTranslation();
+	const { dbTranslator } = CustomHook();
 
 	const navigate = useNavigate();
 
@@ -14,7 +14,7 @@ const OtherProducts = () => {
 		<div style={{ background: "#f0f0f0" }}>
 			<div className='topHeadingDiv'>
 				<h1 className='responsiveHeading text-center mainColor'>
-					{t("oprod")}
+					{dbTranslator("oprod")}
 				</h1>
 			</div>
 			<div className='col-12 col-lg-10 mx-auto'>

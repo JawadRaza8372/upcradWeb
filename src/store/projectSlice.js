@@ -8,12 +8,20 @@ const initialState = {
 	clubs: [],
 	deliveryInfo: {},
 	clientSecret: null,
+	languages: {},
 };
 
 export const projectSlice = createSlice({
 	name: "project",
 	initialState,
 	reducers: {
+		setLanguages: (state, action) => {
+			if (action.payload.languages === null) {
+				state.languages = {};
+			} else {
+				state.languages = action.payload.languages;
+			}
+		},
 		setFootballCards: (state, action) => {
 			if (action.payload.footballCards === null) {
 				state.footballCards = [];
@@ -60,6 +68,7 @@ export const projectSlice = createSlice({
 });
 
 export const {
+	setLanguages,
 	setClubs,
 	setFootballCards,
 	setOtherProducts,

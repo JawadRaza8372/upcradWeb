@@ -4,10 +4,10 @@ import FootballCards from "../Components/FootballCards";
 import { useSelector } from "react-redux";
 import { AiOutlineClose } from "react-icons/ai";
 import { FcClearFilters } from "react-icons/fc";
-import { useTranslation } from "react-i18next";
+import { CustomHook } from "../CustomHook/CustomHook";
 
 const ProductsPage = () => {
-	const { t } = useTranslation();
+	const { dbTranslator } = CustomHook();
 
 	const { footballCards, otherProducts } = useSelector(
 		(state) => state.project
@@ -76,7 +76,7 @@ const ProductsPage = () => {
 						<div className='row w-100 my-4 inputContainer'>
 							<input
 								type='text'
-								placeholder={t("pnme")}
+								placeholder={dbTranslator("pnme")}
 								value={filterdata?.title}
 								onChange={(e) =>
 									setfilterdata({ ...filterdata, title: e.target.value })
@@ -103,7 +103,7 @@ const ProductsPage = () => {
 						<div className='row w-100'>
 							<div className='col-12 col-md-6 col-lg-4 mb-4'>
 								<div className='filterBox'>
-									<h6> {t("price")}</h6>
+									<h6> {dbTranslator("price")}</h6>
 									<label>
 										<input
 											type='radio'
@@ -113,7 +113,7 @@ const ProductsPage = () => {
 												setfilterdata({ ...filterdata, price: e.target.value })
 											}
 										/>
-										{t("less100")}
+										{dbTranslator("less100")}
 									</label>
 									<label>
 										<input
@@ -124,7 +124,7 @@ const ProductsPage = () => {
 												setfilterdata({ ...filterdata, price: e.target.value })
 											}
 										/>
-										{t("great100")}
+										{dbTranslator("great100")}
 									</label>
 									<label>
 										<input
@@ -135,15 +135,15 @@ const ProductsPage = () => {
 												setfilterdata({ ...filterdata, price: e.target.value })
 											}
 										/>
-										{t("all")}
+										{dbTranslator("all")}
 									</label>
 								</div>
 							</div>
 							<div className='col-12 col-md-6 col-lg-4 mb-4'>
 								<div className='filterBox'>
 									<h6>
-										{t("prdcts")}
-										{t("ptype")}
+										{dbTranslator("prdcts")}
+										{dbTranslator("ptype")}
 									</h6>
 									<label>
 										<input
@@ -159,7 +159,7 @@ const ProductsPage = () => {
 												})
 											}
 										/>
-										{t("cards")}
+										{dbTranslator("cards")}
 									</label>
 									<label>
 										<input
@@ -175,7 +175,7 @@ const ProductsPage = () => {
 												})
 											}
 										/>
-										{t("oprod")}
+										{dbTranslator("oprod")}
 									</label>
 									<label>
 										<input
@@ -191,15 +191,15 @@ const ProductsPage = () => {
 												})
 											}
 										/>
-										{t("both")}
+										{dbTranslator("both")}
 									</label>
 								</div>
 							</div>
 							<div className='col-12 col-md-6 col-lg-4 mb-4'>
 								<div className='filterBox'>
 									<h6>
-										{t("chooseard")}
-										{t("ptype")}
+										{dbTranslator("chooseard")}
+										{dbTranslator("ptype")}
 									</h6>
 									<label>
 										<input
@@ -215,7 +215,7 @@ const ProductsPage = () => {
 												})
 											}
 										/>
-										{t("scards")}
+										{dbTranslator("scards")}
 									</label>
 									<label>
 										<input
@@ -229,7 +229,7 @@ const ProductsPage = () => {
 												})
 											}
 										/>
-										{t("other")}
+										{dbTranslator("other")}
 									</label>
 									<label>
 										<input
@@ -243,7 +243,7 @@ const ProductsPage = () => {
 												})
 											}
 										/>
-										{t("all")}
+										{dbTranslator("all")}
 									</label>
 								</div>
 							</div>
@@ -253,7 +253,7 @@ const ProductsPage = () => {
 			)}
 			<div className='topHeadingDiv'>
 				<h1 className='responsiveHeading text-center mainColor'>
-					{t("prdcts")}
+					{dbTranslator("prdcts")}
 				</h1>
 			</div>
 
@@ -268,7 +268,7 @@ const ProductsPage = () => {
 						onClick={() => setfilterModel(true)}
 						style={{ maxWidth: "150px" }}
 						className='btn mainColor secondarybg'>
-						{t("fltr")}
+						{dbTranslator("fltr")}
 					</button>
 				</div>
 
@@ -302,7 +302,7 @@ const ProductsPage = () => {
 					{filterNewData(footballCards)?.length <= 0 &&
 					filterNewData2(otherProducts)?.length <= 0 ? (
 						<div className='allCenter w-100 mb-5' style={{ height: "400px" }}>
-							<p>{t("Nothingness")}</p>
+							<p>{dbTranslator("Nothingness")}</p>
 						</div>
 					) : null}
 				</div>

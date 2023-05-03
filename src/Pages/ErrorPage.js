@@ -1,9 +1,9 @@
 import React from "react";
 import logo from "../ownassets/logo.png";
-import { useTranslation } from "react-i18next";
+import { CustomHook } from "../CustomHook/CustomHook";
 
 const ErrorPage = () => {
-	const { t } = useTranslation();
+	const { dbTranslator } = CustomHook();
 
 	return (
 		<div
@@ -19,7 +19,7 @@ const ErrorPage = () => {
 				alt='logo'
 				style={{ width: "95%", maxWidth: "450px", objectFit: "contain" }}
 			/>
-			<h1 className='mainColor'>{t("404text")}</h1>
+			<h1 className='mainColor'>{dbTranslator("text404")}</h1>
 		</div>
 	);
 };

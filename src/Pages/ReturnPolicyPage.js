@@ -1,19 +1,19 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
+import { CustomHook } from "../CustomHook/CustomHook";
 
 const ReturnPolicyPage = () => {
-	const { t } = useTranslation();
+	const { dbTranslator } = CustomHook();
 	return (
 		<>
 			<div className='topHeadingDiv'>
 				<h1 className='responsiveHeading text-center mainColor'>
-					{t("refplicy")}
+					{dbTranslator("refplicy")}
 				</h1>
 			</div>
 			<div
 				style={{ height: "60vh" }}
 				className='col-12 col-lg-10 mx-auto mb-5 mt-3'>
-				<p className='py-5'> {t("retrnpolicy")}</p>
+				<p className='py-5'> {dbTranslator("retrnpolicy")}</p>
 			</div>
 		</>
 	);

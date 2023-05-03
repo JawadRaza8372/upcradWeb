@@ -6,10 +6,10 @@ import { setClientSecretId, setCartItems } from "../store/projectSlice";
 import { postData } from "../Database/Database";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+import { CustomHook } from "../CustomHook/CustomHook";
 
 const PaymentMethod = ({ price, data, userid }) => {
-	const { t } = useTranslation();
+	const { dbTranslator } = CustomHook();
 
 	const navigate = useNavigate();
 	const stripe = useStripe();

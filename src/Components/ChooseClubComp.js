@@ -3,14 +3,14 @@ import QuestionLinee from "./QuestionLinee";
 import { BiImageAdd } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import CustomSmallLoader from "./CustomSmallLoader";
-import { useTranslation } from "react-i18next";
+import { CustomHook } from "../CustomHook/CustomHook";
 
 const ChooseClubComp = ({
 	selectedFlag,
 	setselectedFlag,
 	handleFlagUpload,
 }) => {
-	const { t } = useTranslation();
+	const { dbTranslator } = CustomHook();
 
 	const { clubs } = useSelector((state) => state.project);
 	const [loading, setloading] = useState(false);
@@ -40,11 +40,13 @@ const ChooseClubComp = ({
 	};
 	return (
 		<div className='w-90 h-100 mx-auto d-flex align-items-start justify-content-center flex-column'>
-			<span className='mainColor CustHeadingRespComp'>{t("head3")}</span>
-			<span className='CustSubHeadingRespComp'>{t("shead3")}</span>
+			<span className='mainColor CustHeadingRespComp'>
+				{dbTranslator("head3")}
+			</span>
+			<span className='CustSubHeadingRespComp'>{dbTranslator("shead3")}</span>
 			<QuestionLinee
 				label={"C"}
-				title={t("poptionc")}
+				title={dbTranslator("poptionc")}
 				button={
 					<label className='w-100' htmlFor='file'>
 						{loading ? (
@@ -60,19 +62,19 @@ const ChooseClubComp = ({
 									onChange={(e) => clubFlagUploader(e)}
 								/>
 								<div className='d-flex align-items-center justify-content-center smallBtnsSettings'>
-									<span>{t("addustbadge")}</span>
+									<span>{dbTranslator("addustbadge")}</span>
 									<BiImageAdd className='mainColor' />
 								</div>
 							</>
 						)}
 					</label>
 				}>
-				<span className='inputLabelResp'>{t("search")}</span>
+				<span className='inputLabelResp'>{dbTranslator("search")}</span>
 				<input
 					className='inputCustmResp'
 					value={inputValue}
 					onChange={(e) => setInputValue(e.target.value)}
-					placeholder={t("search")}
+					placeholder={dbTranslator("search")}
 				/>
 				<div
 					className='row w-100 gx-0'
@@ -86,21 +88,21 @@ const ChooseClubComp = ({
 						className={`col-2 customOptionSelector ${
 							selectData === 0 ? "actieOption" : ""
 						}`}>
-						{t("other")}
+						{dbTranslator("other")}
 					</div>
 					<div
 						onClick={() => setselectData(1)}
 						className={`col-6 customOptionSelector ${
 							selectData === 1 ? "actieOption" : ""
 						}`}>
-						{t("pleague")}
+						{dbTranslator("pleague")}
 					</div>
 					<div
 						onClick={() => setselectData(2)}
 						className={`col-4 customOptionSelector ${
 							selectData === 2 ? "actieOption" : ""
 						}`}>
-						{t("champ")}
+						{dbTranslator("champ")}
 					</div>
 				</div>
 				<div
@@ -140,7 +142,7 @@ const ChooseClubComp = ({
 								</div>
 							))
 						) : (
-							<p>{t("Nothingness")}</p>
+							<p>{dbTranslator("Nothingness")}</p>
 						)}
 					</div>
 				</div>

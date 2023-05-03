@@ -6,12 +6,12 @@ import Slider from "react-slick";
 import "../../node_modules/slick-carousel/slick/slick.css";
 import "../../node_modules/slick-carousel/slick/slick-theme.css";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
-import { useTranslation } from "react-i18next";
+import { CustomHook } from "../CustomHook/CustomHook";
 import { saveAs } from "file-saver";
 import AdsComp from "../Components/AdsComp";
 
 const ChooseCardPage = () => {
-	const { t } = useTranslation();
+	const { dbTranslator } = CustomHook();
 	const navigate = useNavigate();
 	const { footballCards } = useSelector((state) => state.project);
 	const [selectedCard, setselectedCard] = useState(
@@ -113,7 +113,7 @@ const ChooseCardPage = () => {
 												}}
 												onClick={() => download(`${dat?.imgSrc}`)}
 												className='btn mainColor secondarybg'>
-												{t("downpng")}
+												{dbTranslator("downpng")}
 											</button>
 										</div>
 										<div className='col-12 col-md-6 d-flex align-items-center justify-content-center'>
@@ -127,7 +127,7 @@ const ChooseCardPage = () => {
 													navigate(`/cardCustomization/${dat?.id}`)
 												}
 												className='btn mainColor thirdbg'>
-												{t("buyphy")}
+												{dbTranslator("buyphy")}
 											</button>
 										</div>
 									</div>
@@ -160,7 +160,7 @@ const ChooseCardPage = () => {
 									}}
 									onClick={() => download(`${selectedCard?.imgSrc}`)}
 									className='btn mainColor secondarybg'>
-									{t("downpng")}
+									{dbTranslator("downpng")}
 								</button>
 							</div>
 							<div className='col-12 col-md-6 d-flex align-items-center justify-content-center'>
@@ -174,13 +174,13 @@ const ChooseCardPage = () => {
 										navigate(`/cardCustomization/${selectedCard?.id}`)
 									}
 									className='btn mainColor thirdbg'>
-									{t("buyphy")}
+									{dbTranslator("buyphy")}
 								</button>
 							</div>
 						</div>
 					</div>
 					<div className='col-12 col-md-4  h-100'>
-						<CommonChooseCard title={t("chooseard")}>
+						<CommonChooseCard title={dbTranslator("chooseard")}>
 							<div className='col-12 h-100'>
 								<div
 									style={{

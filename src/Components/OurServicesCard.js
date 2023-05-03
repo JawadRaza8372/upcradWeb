@@ -2,46 +2,11 @@ import React from "react";
 import step1 from "../ownassets/ourservices1step.png";
 import step2 from "../ownassets/ourservices2step.png";
 import step3 from "../ownassets/ourservices3step.png";
-import { useTranslation } from "react-i18next";
 import { BsArrowRight } from "react-icons/bs";
+import { CustomHook } from "../CustomHook/CustomHook";
 const OurServicesCard = () => {
-	const { i18n } = useTranslation();
-	const engl = {
-		step1head: "Uploaded Image",
-		step2head: "Preview shown on builder",
-		step3head: "Final design",
-		step1: "Upload your image with background included, for best practices.",
-		step2: "Our builder will show you an unedited version of your card.",
-		step3: "Final product will have the image edited  by our experts.",
-	};
-	const esp = {
-		step1head: "Imagen cargada",
-		step2head: "Vista previa mostrada en el constructor",
-		step3head: "Diseño final",
-		step1:
-			"Cargue su imagen con el fondo incluido, para conocer las mejores prácticas.",
-		step2:
-			"Nuestro constructor le mostrará una versión sin editar de su tarjeta.",
-		step3: "El producto final tendrá la imagen editada por nuestros expertos.",
-	};
-	const fre = {
-		step1head: "Image téléchargée",
-		step2head: "Aperçu affiché sur le constructeur",
-		step3head: "Conception finale",
-		step1:
-			"Téléchargez votre image avec l'arrière-plan inclus, pour les meilleures pratiques.",
-		step2:
-			"Notre constructeur vous montrera une version non éditée de votre carte.",
-		step3: "Le produit final aura l'image éditée par nos experts.",
-	};
-	const finallag =
-		i18n?.language === "en"
-			? engl
-			: i18n?.language === "es"
-			? esp
-			: i18n?.language === "fr"
-			? fre
-			: engl;
+	const { dbTranslator } = CustomHook();
+
 	return (
 		<div className='scrolledDivCards p-3 px-md-0 justify-content-lg-center'>
 			<div
@@ -64,10 +29,10 @@ const OurServicesCard = () => {
 					</div>
 					<div style={{ width: "100%", flex: "1" }}>
 						<h5 className='mainColor' style={{ textAlign: "center" }}>
-							{finallag?.step1head}
+							{dbTranslator("step1head")}
 						</h5>
 						<p style={{ fontSize: "12px", textAlign: "center" }}>
-							{finallag?.step1}
+							{dbTranslator("step1")}
 						</p>
 					</div>
 				</div>
@@ -100,10 +65,10 @@ const OurServicesCard = () => {
 					</div>
 					<div style={{ width: "100%", flex: "1" }}>
 						<h5 className='mainColor' style={{ textAlign: "center" }}>
-							{finallag?.step2head}
+							{dbTranslator("step2head")}
 						</h5>
 						<p style={{ fontSize: "12px", textAlign: "center" }}>
-							{finallag?.step2}
+							{dbTranslator("step2")}
 						</p>
 					</div>
 				</div>
@@ -135,10 +100,10 @@ const OurServicesCard = () => {
 				</div>
 				<div style={{ width: "100%", flex: "1" }}>
 					<h5 className='mainColor' style={{ textAlign: "center" }}>
-						{finallag?.step3head}
+						{dbTranslator("step3head")}
 					</h5>
 					<p style={{ fontSize: "12px", textAlign: "center" }}>
-						{finallag?.step3}
+						{dbTranslator("step3")}
 					</p>
 				</div>
 			</div>

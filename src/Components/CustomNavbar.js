@@ -4,17 +4,20 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+import { CustomHook } from "../CustomHook/CustomHook";
 import logoimg from "../ownassets/smalllog.png";
 import { BiCartAlt } from "react-icons/bi";
 import { IoPersonOutline } from "react-icons/io5";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 const CustomNavbar = ({ changeLanguage }) => {
-	const { t } = useTranslation();
+	const { dbTranslator } = CustomHook();
+	const { i18n } = useTranslation();
 	const navigate = useNavigate();
-	const [selectedLang, setSelectedLang] = useState("en");
+	const deflng = i18n?.language ? i18n?.language : "en";
+	const [selectedLang, setSelectedLang] = useState(deflng);
 	const [inputval, setinputval] = useState("");
 	const [openModel, setopenModel] = useState(false);
 	const { footballCards, otherProducts } = useSelector(
@@ -109,21 +112,21 @@ const CustomNavbar = ({ changeLanguage }) => {
 									<NavLink
 										className={(isActive) => (!isActive ? "" : "active")}
 										to='/products'>
-										{t("prdcts")}
+										{dbTranslator("prdcts")}
 									</NavLink>
 								</Nav.Link>
 								<Nav.Link eventKey='2' className=' text-center mx-1 my-auto'>
 									<NavLink
 										className={(isActive) => (!isActive ? "" : "active")}
 										to='/cards'>
-										{t("app")}
+										{dbTranslator("app")}
 									</NavLink>
 								</Nav.Link>
 								<Nav.Link eventKey='3' className=' text-center mx-1 my-auto'>
 									<NavLink
 										className={(isActive) => (!isActive ? "" : "active")}
 										to='/support'>
-										{t("suprt")}
+										{dbTranslator("suprt")}
 									</NavLink>
 								</Nav.Link>{" "}
 								<Nav.Link eventKey='32' className=' text-center mx-1 my-auto'>
@@ -160,7 +163,7 @@ const CustomNavbar = ({ changeLanguage }) => {
 										className={(isActive) => (!isActive ? "" : "active")}
 										to='/products'>
 										<button className='btn mainColor secondarybg'>
-											{t("shpCrd")}
+											{dbTranslator("shpCrd")}
 										</button>
 									</NavLink>
 								</Nav.Link>
@@ -238,7 +241,7 @@ const CustomNavbar = ({ changeLanguage }) => {
 							onChange={(e) => {
 								setinputval(e.target.value);
 							}}
-							placeholder={t("search")}
+							placeholder={dbTranslator("search")}
 						/>
 					</div>
 				</Offcanvas.Header>

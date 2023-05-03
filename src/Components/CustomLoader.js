@@ -1,12 +1,12 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
+import { CustomHook } from "../CustomHook/CustomHook";
 
 function CustomLoader() {
-	const { t } = useTranslation();
+	const { dbTranslator } = CustomHook();
 	return (
 		<div className='w-100 d-flex align-items-center justify-content-center flex-column mb-3'>
 			<div className='loader mb-1' />
-			<span>{t("process")}!...</span>
+			<span>{dbTranslator("process")}!...</span>
 		</div>
 	);
 }
