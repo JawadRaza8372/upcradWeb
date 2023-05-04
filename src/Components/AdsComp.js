@@ -8,14 +8,7 @@ class AdsComp extends Component {
 
 	render() {
 		return (
-			<div
-				className='allCenter'
-				style={{
-					width: "100%",
-					margin: "0px auto",
-					minWidth: "250px",
-					height: "100%",
-				}}>
+			<div className='allCenter adsContainerdiv'>
 				<ins
 					className='adsbygoogle'
 					style={{

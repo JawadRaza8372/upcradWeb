@@ -213,7 +213,8 @@ const HomePage = () => {
 								</p>
 								<button
 									onClick={() => navigate("/products")}
-									className='btn mainColor secondarybg'>
+									className='btn mainColor'
+									style={{ background: "white" }}>
 									{dbTranslator("shpCrd")}
 								</button>
 							</div>

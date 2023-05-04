@@ -57,19 +57,9 @@ const CustomNavbar = ({ changeLanguage }) => {
 					width: "100%",
 					height: "40px",
 					background: "white",
-					zIndex: "3500",
+					zIndex: "1020",
 				}}>
-				<div
-					className='allCenter mainColor'
-					style={{
-						background: "rgba(248, 154, 68, 0.18)",
-						width: "100%",
-						height: "100%",
-						textAlign: "center",
-						fontSize: "12px",
-						textTransform: "capitalize",
-						fontWeight: "bold",
-					}}>
+				<div className='allCenter mainColor mainColoerdDiv'>
 					{dbTranslator("smallbanner")}
 				</div>
 			</div>

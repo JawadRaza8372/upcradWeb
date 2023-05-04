@@ -9,6 +9,7 @@ import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import { CustomHook } from "../CustomHook/CustomHook";
 import { saveAs } from "file-saver";
 import AdsComp from "../Components/AdsComp";
+import { Modal } from "react-bootstrap";
 
 const ChooseCardPage = () => {
 	const { dbTranslator } = CustomHook();
@@ -17,7 +18,7 @@ const ChooseCardPage = () => {
 	const [selectedCard, setselectedCard] = useState(
 		footballCards?.length > 0 ? footballCards[0] : {}
 	);
-	const [showAds, setshowAds] = useState(true);
+	const [showAds, setshowAds] = useState(false);
 	useEffect(() => {
 		setselectedCard(footballCards?.length > 0 ? footballCards[0] : {});
 	}, [footballCards]);
@@ -67,12 +68,7 @@ const ChooseCardPage = () => {
 		],
 	};
 	return (
-		<>
-			{showAds && (
-				<div className='cardsadsdiv'>
-					<AdsComp slotnumber='5755097747' />
-				</div>
-			)}
+		<div style={{ overflowX: "hidden" }}>
 			<div
 				className='col-10 mx-auto'
 				style={{
@@ -223,7 +219,12 @@ const ChooseCardPage = () => {
 					</div>
 				</div>
 			</div>
-		</>
+			<Modal fullscreen show={showAds}>
+				<div className='shwoadscardsadsdiv'>
+					<AdsComp slotnumber='5755097747' />
+				</div>
+			</Modal>
+		</div>
 	);
 };
 
