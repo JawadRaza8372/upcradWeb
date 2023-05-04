@@ -17,7 +17,7 @@ const ChooseCardPage = () => {
 	const [selectedCard, setselectedCard] = useState(
 		footballCards?.length > 0 ? footballCards[0] : {}
 	);
-	const [showAds, setshowAds] = useState(false);
+	const [showAds, setshowAds] = useState(true);
 	useEffect(() => {
 		setselectedCard(footballCards?.length > 0 ? footballCards[0] : {});
 	}, [footballCards]);

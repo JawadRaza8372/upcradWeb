@@ -392,9 +392,9 @@ export const CardCustomization = () => {
 						)}
 					</div>
 					<div className='order-1 order-md-2 mb-4 col-12 col-md-6 allCenter flex-column'>
-						<button className='btn mainColor secondarybg'>
+						<div className='btn nillbtn mainColor'>
 							{dbTranslator("pvwonly")}
-						</button>
+						</div>
 						<div ref={newref}>
 							<div className='d-none d-sm-block'>
 								<Stage ref={stageRef} width={377} height={599}>
@@ -421,8 +421,8 @@ export const CardCustomization = () => {
 											}
 										/>
 										<Line
-											x={162}
-											y={523}
+											x={165}
+											y={515}
 											points={[0, 0, 47, 0]}
 											stroke={
 												currentData?.textColor
@@ -744,8 +744,8 @@ export const CardCustomization = () => {
 											}
 										/>
 										<Line
-											x={115}
-											y={349}
+											x={117}
+											y={343}
 											points={[0, 0, 36, 0]}
 											stroke={
 												currentData?.textColor

@@ -11,22 +11,22 @@ const FooterComp = () => {
 	const { dbTranslator } = CustomHook();
 
 	const firstwala = [
-		{ title: "website", path: "/" },
-		{ title: "Affiliate", path: "/" },
-		{ title: "Terms and conditions", path: "/privacy" },
-		{ title: "Shipping information", path: "/" },
-		{ title: "Return policy", path: "/return" },
+		{ title: dbTranslator("website"), path: "/" },
+		{ title: dbTranslator("affiliate"), path: "/" },
+		{ title: dbTranslator("termscond"), path: "/privacy" },
+		{ title: dbTranslator("deliveryInfo"), path: "/" },
+		{ title: dbTranslator("rpolicy"), path: "/return" },
 	];
 	const secondwala = [
-		{ title: "Support", path: "/support" },
-		{ title: "Review", path: "/" },
-		{ title: "About us", path: "/" },
-		{ title: "Terms and refunds", path: "/return" },
+		{ title: dbTranslator("suprt"), path: "/support" },
+		{ title: dbTranslator("review"), path: "/" },
+		{ title: dbTranslator("aboutus"), path: "/" },
+		{ title: dbTranslator("termRefnd"), path: "/return" },
 	];
 	const thirdwala = [
-		{ title: "Contact us", path: "/contact" },
-		{ title: "FAQ", path: "/support" },
-		{ title: "Privacy policy", path: "/privacy" },
+		{ title: dbTranslator("ContactUs"), path: "/contact" },
+		{ title: dbTranslator("faqftr"), path: "/support" },
+		{ title: dbTranslator("pp"), path: "/privacy" },
 	];
 	return (
 		<>
@@ -35,34 +35,37 @@ const FooterComp = () => {
 					style={{ width: "80%" }}
 					className='widthissue marginIssue row d-flex align-items-start justify-content-start flex-row'>
 					<div className='col-12 col-md-6 col-lg-4 h-100 d-flex align-items-center justify-content-evenly flex-column'>
-						{firstwala.map((dat, index) => (
-							<Link
-								to={dat?.path}
-								key={dat.title + index}
-								className='footerlinks'>
-								{dat.title}
-							</Link>
-						))}
+						{firstwala[0]?.title &&
+							firstwala.map((dat, index) => (
+								<Link
+									to={dat?.path}
+									key={dat.title + index}
+									className='footerlinks'>
+									{dat.title}
+								</Link>
+							))}
 					</div>
 					<div className='col-12 col-md-6 col-lg-4 h-100 d-flex align-items-center justify-content-evenly flex-column'>
-						{secondwala.map((dat, index) => (
-							<Link
-								to={dat?.path}
-								key={dat.title + index}
-								className='footerlinks'>
-								{dat.title}
-							</Link>
-						))}
+						{secondwala[0]?.title &&
+							secondwala.map((dat, index) => (
+								<Link
+									to={dat?.path}
+									key={dat.title + index}
+									className='footerlinks'>
+									{dat.title}
+								</Link>
+							))}
 					</div>
 					<div className='col-12 col-md-6 col-lg-4 h-100 d-flex align-items-center justify-content-evenly flex-column'>
-						{thirdwala.map((dat, index) => (
-							<Link
-								to={dat?.path}
-								key={dat.title + index}
-								className='footerlinks'>
-								{dat.title}
-							</Link>
-						))}
+						{thirdwala[0]?.title &&
+							thirdwala.map((dat, index) => (
+								<Link
+									to={dat?.path}
+									key={dat.title + index}
+									className='footerlinks'>
+									{dat.title}
+								</Link>
+							))}
 					</div>
 				</div>
 				<div

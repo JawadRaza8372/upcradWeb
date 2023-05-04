@@ -50,6 +50,29 @@ const CustomNavbar = ({ changeLanguage }) => {
 	};
 	return (
 		<>
+			<div
+				style={{
+					position: "sticky",
+					top: "0px",
+					width: "100%",
+					height: "40px",
+					background: "white",
+					zIndex: "3500",
+				}}>
+				<div
+					className='allCenter mainColor'
+					style={{
+						background: "rgba(248, 154, 68, 0.18)",
+						width: "100%",
+						height: "100%",
+						textAlign: "center",
+						fontSize: "12px",
+						textTransform: "capitalize",
+						fontWeight: "bold",
+					}}>
+					{dbTranslator("smallbanner")}
+				</div>
+			</div>
 			<Navbar
 				collapseOnSelect
 				sticky='top'

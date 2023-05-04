@@ -49,7 +49,7 @@ body {
 	height: 100vh !important;
 	width: 100vw;
 	background: rgba(0, 0, 0, 0.9);
-	z-index: 2000;
+	z-index: 4000;
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
@@ -178,9 +178,15 @@ h6 {
 	top: 0px;
 	left: 0px;
 	display: flex;
-	z-index: 2000;
+	z-index: 4000;
 	align-items: center;
 	justify-content: center;
+}
+.offcanvas.offcanvas-end.show {
+	z-index: 5000;
+}
+.sticky-top {
+	top: 40px !important;
 }
 .closeBtnn {
 	position: absolute;

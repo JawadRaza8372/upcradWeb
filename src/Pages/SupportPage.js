@@ -1,6 +1,6 @@
 import React from "react";
 import { FaTruck, FaScroll } from "react-icons/fa";
-import { RiMoneyDollarCircleFill } from "react-icons/ri";
+import { RiMoneyDollarCircleFill, RiQuestionnaireFill } from "react-icons/ri";
 import SupportCard from "../Components/SupportCard";
 import { CustomHook } from "../CustomHook/CustomHook";
 
@@ -8,6 +8,23 @@ const SupportPage = () => {
 	const { dbTranslator } = CustomHook();
 
 	const questionsArrayMain = [
+		{
+			symbol: (
+				<RiQuestionnaireFill
+					style={{ width: "50px", height: "50px" }}
+					className='mainColor'
+				/>
+			),
+			title: dbTranslator("general"),
+			questionsArray: [
+				{
+					question: dbTranslator("faq3"),
+					answer: dbTranslator("faq3val"),
+				},
+				{ question: dbTranslator("faq1"), answer: dbTranslator("faq1val") },
+				{ question: dbTranslator("faq2"), answer: dbTranslator("faq2val") },
+			],
+		},
 		{
 			symbol: (
 				<FaTruck
@@ -91,16 +108,17 @@ const SupportPage = () => {
 			</div>
 			<div className='col-12 col-lg-10 mx-auto'>
 				<div className='row w-100 mx-auto'>
-					{questionsArrayMain?.map((dat, index) => (
-						<div className='col-11 mx-auto col-md-6 mb-3'>
-							<SupportCard
-								symbol={dat.symbol}
-								key={index}
-								title={dat.title}
-								questionsArray={dat.questionsArray}
-							/>
-						</div>
-					))}
+					{questionsArrayMain[0]?.title &&
+						questionsArrayMain?.map((dat, index) => (
+							<div className='col-11 mx-auto col-md-6 mb-3'>
+								<SupportCard
+									symbol={dat.symbol}
+									key={index}
+									title={dat.title}
+									questionsArray={dat.questionsArray}
+								/>
+							</div>
+						))}
 				</div>
 			</div>
 		</>
