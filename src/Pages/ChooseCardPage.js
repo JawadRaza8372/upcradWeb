@@ -47,7 +47,7 @@ const ChooseCardPage = () => {
 		setTimeout(() => {
 			setshowAds(false);
 			saveAs(`${link}`, "upCardSoccerLetter.jpg");
-		}, 12000);
+		}, 7000);
 	};
 	const settings2 = {
 		dots: false,
