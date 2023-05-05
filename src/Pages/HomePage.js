@@ -369,6 +369,7 @@ const HomePage = () => {
 							</div>
 							<div className='row w-100 h-100 allCenter'>
 								<button
+									onClick={() => navigate("/products")}
 									className='btn mainColor secondarybg'
 									style={{ maxWidth: "170px", textTransform: "capitalize" }}>
 									{dbTranslator("showmore")}
