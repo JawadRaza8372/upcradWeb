@@ -58,7 +58,14 @@ const ProductsPage = () => {
 			filterdata?.productType === "Other" || filterdata?.productType === "Both"
 				? priceWali
 				: [];
-		return typewali;
+		const smalledategory = filterdata?.category?.toLowerCase();
+		if (smalledategory === "football") {
+			return [];
+		} else if (smalledategory !== "football" && smalledategory !== "both") {
+			return [];
+		} else {
+			return typewali;
+		}
 	};
 	const [filterModel, setfilterModel] = useState(false);
 	const navigate = useNavigate();
@@ -74,15 +81,16 @@ const ProductsPage = () => {
 					</button>
 					<div className='container firldsContainer'>
 						<div className='row w-100 my-4 inputContainer'>
-							<input
+							{/* <input
 								type='text'
+								hidden
 								placeholder={dbTranslator("pnme")}
 								value={filterdata?.title}
 								onChange={(e) =>
 									setfilterdata({ ...filterdata, title: e.target.value })
 								}
-							/>
-
+							/> */}
+							<div />
 							<button
 								className='clearbtnFilter'
 								onClick={() =>
@@ -101,10 +109,11 @@ const ProductsPage = () => {
 						</div>
 
 						<div className='row w-100'>
-							<div className='col-12 col-md-6 col-lg-4 mb-4'>
+							<div className='col-12 col-md-6 mb-4'>
 								<div className='filterBox'>
 									<h6> {dbTranslator("price")}</h6>
 									<label>
+										<div className='' />
 										<input
 											type='radio'
 											value={"Less"}
@@ -139,7 +148,7 @@ const ProductsPage = () => {
 									</label>
 								</div>
 							</div>
-							<div className='col-12 col-md-6 col-lg-4 mb-4'>
+							<div className='col-12 col-md-6 mb-4'>
 								<div className='filterBox'>
 									<h6>
 										{dbTranslator("prdcts")}
@@ -195,58 +204,6 @@ const ProductsPage = () => {
 									</label>
 								</div>
 							</div>
-							<div className='col-12 col-md-6 col-lg-4 mb-4'>
-								<div className='filterBox'>
-									<h6>
-										{dbTranslator("chooseard")}
-										{dbTranslator("ptype")}
-									</h6>
-									<label>
-										<input
-											type='radio'
-											value={"Football"}
-											checked={
-												filterdata?.category === "Football" ? true : false
-											}
-											onChange={(e) =>
-												setfilterdata({
-													...filterdata,
-													category: e.target.value,
-												})
-											}
-										/>
-										{dbTranslator("scards")}
-									</label>
-									<label>
-										<input
-											type='radio'
-											value={"Other"}
-											checked={filterdata?.category === "Other" ? true : false}
-											onChange={(e) =>
-												setfilterdata({
-													...filterdata,
-													category: e.target.value,
-												})
-											}
-										/>
-										{dbTranslator("other")}
-									</label>
-									<label>
-										<input
-											type='radio'
-											value={"Both"}
-											checked={filterdata?.category === "Both" ? true : false}
-											onChange={(e) =>
-												setfilterdata({
-													...filterdata,
-													category: e.target.value,
-												})
-											}
-										/>
-										{dbTranslator("all")}
-									</label>
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -258,18 +215,84 @@ const ProductsPage = () => {
 			</div>
 
 			<div className='col-12 col-lg-10 mx-auto pb-5 mt-3'>
-				<div className='row allCenter justify-content-end w-100 mb-5'>
-					<button
-						disabled={
-							footballCards?.length > 0 && otherProducts?.length > 0
-								? false
-								: true
-						}
-						onClick={() => setfilterModel(true)}
-						style={{ maxWidth: "150px" }}
-						className='btn mainColor secondarybg'>
-						{dbTranslator("fltr")}
-					</button>
+				<div className='row allCenter justify-content-center gx-0 w-100 mb-5'>
+					<div className='col-12 h-100 col-md-10 allCenter'>
+						<div
+							className='requiredfilter allCenter row gx-0 mx-auto'
+							style={{ width: "90%" }}>
+							<div className='col-8 col-md-4'>
+								<label
+									onClick={() =>
+										setfilterdata({
+											...filterdata,
+											category: "Football",
+										})
+									}>
+									<div
+										className={
+											filterdata?.category === "Football"
+												? "activeLabel"
+												: "notactive"
+										}
+									/>
+
+									{dbTranslator("scards")}
+								</label>
+							</div>
+							<div className='col-4 col-md-4'>
+								<label
+									onClick={() =>
+										setfilterdata({
+											...filterdata,
+											category: "Other",
+										})
+									}>
+									<div
+										className={
+											filterdata?.category === "Other"
+												? "activeLabel"
+												: "notactive"
+										}
+									/>
+
+									{dbTranslator("basketball")}
+								</label>
+							</div>
+
+							<div className='col-12 col-md-4'>
+								<label
+									onClick={() =>
+										setfilterdata({
+											...filterdata,
+											category: "Both",
+										})
+									}>
+									<div
+										className={
+											filterdata?.category === "Both"
+												? "activeLabel"
+												: "notactive"
+										}
+									/>
+
+									{dbTranslator("all")}
+								</label>
+							</div>
+						</div>
+					</div>
+					<div className='col-12 col-md-2 h-100 allCenter'>
+						<button
+							disabled={
+								footballCards?.length > 0 && otherProducts?.length > 0
+									? false
+									: true
+							}
+							onClick={() => setfilterModel(true)}
+							style={{ maxWidth: "250px" }}
+							className='btn mainColor secondarybg'>
+							{dbTranslator("fltr")}
+						</button>
+					</div>
 				</div>
 
 				<div className='row w-100 gx-0 mb-5'>

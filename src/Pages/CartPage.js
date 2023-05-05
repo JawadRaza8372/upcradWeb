@@ -2,9 +2,6 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCartItems } from "../store/projectSlice";
 import CartPageCard from "../Components/CartPageCard";
-//import { loadStripe } from "@stripe/stripe-js";
-// import { Elements } from "@stripe/react-stripe-js";
-// import PaymentMethod from "../Components/PaymentMethod";
 import { CustomHook } from "../CustomHook/CustomHook";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { postData } from "../Database/Database";
@@ -79,7 +76,7 @@ const CartPage = () => {
 								{dbTranslator("scart")}
 							</span>
 							{cartItems?.length ? (
-								cartItems.map((dat) => {
+								cartItems.map((dat, indea) => {
 									const carddata = footballCards?.filter(
 										(dac) => dac.id === dat.pid
 									);
@@ -103,7 +100,7 @@ const CartPage = () => {
 									if (isNaN(nowSubol) === false) {
 										return (
 											<CartPageCard
-												key={dat.pid}
+												key={dat.pid + indea}
 												id={dat?.pid}
 												title={currentdata?.title}
 												price={
@@ -184,11 +181,12 @@ const CartPage = () => {
 									<>
 										<PayPalScriptProvider
 											options={{
+												components: "buttons",
 												"client-id":
 													"AaA2A7a4kGda8oEuQ6Gh1rGgfb9LqSvFmSYubvs2duBVGoeN7hCn14ktXvR4SM3bGDq-v3AXkOmIGrXm",
 											}}>
 											<PayPalButtons
-												style={{ layout: "vertical" }}
+												style={{ layout: "vertical", color: "blue" }}
 												createOrder={(data, actions) => {
 													return actions.order.create({
 														purchase_units: [

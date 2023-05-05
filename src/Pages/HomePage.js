@@ -166,28 +166,28 @@ const HomePage = () => {
 	};
 	const reviewraw = [
 		{
-			name: "Alex Hall",
+			name: "Lucas",
 			stars: 4,
 			message: "very good",
 			imageurl:
 				"https://res.cloudinary.com/dpjk8xcld/image/upload/v1682419516/vznx6dzacukjxtvgn4yn.png",
 		},
 		{
-			name: "Paul Hill",
+			name: "Adrian Cintado",
 			stars: 3,
 			message: "Liked this one so much",
 			imageurl:
 				"https://res.cloudinary.com/dpjk8xcld/image/upload/v1682422279/ph5jdcfgowmuxckimfrx.png",
 		},
 		{
-			name: "Alex johnthan",
+			name: "Leon",
 			stars: 4,
 			message: "very good",
 			imageurl:
 				"https://res.cloudinary.com/dpjk8xcld/image/upload/v1682422399/btm7mfscum9coujglogs.png",
 		},
 		{
-			name: "Paul kim",
+			name: "Izan",
 			stars: 3,
 			message: "My Favorite loved it so much",
 			imageurl:
@@ -213,8 +213,7 @@ const HomePage = () => {
 								</p>
 								<button
 									onClick={() => navigate("/products")}
-									className='btn mainColor'
-									style={{ background: "white" }}>
+									className='btn mainColor secondarybg'>
 									{dbTranslator("shpCrd")}
 								</button>
 							</div>
@@ -328,7 +327,7 @@ const HomePage = () => {
 								</button>
 							</div>
 						</div>
-						<div className='col-12 mb-4 col-lg-6  order-1 order-md-2 allCenter flex-row'>
+						<div className='col-12 mb-4 col-lg-6  order-1 order-md-2 allCenter flex-column'>
 							<div className='row w-100 h-100  d-flex d-md-none'>
 								<Slider {...settings2}>
 									{footballCards &&
@@ -367,6 +366,13 @@ const HomePage = () => {
 											/>
 										</div>
 									))}
+							</div>
+							<div className='row w-100 h-100 allCenter'>
+								<button
+									className='btn mainColor secondarybg'
+									style={{ maxWidth: "170px", textTransform: "capitalize" }}>
+									{dbTranslator("showmore")}
+								</button>
 							</div>
 						</div>
 					</div>
@@ -582,6 +588,64 @@ const HomePage = () => {
 							</span>
 						</div>
 					</div>
+					<div className='row w-100 mt-4 mx-auto h-100 d-flex d-md-none'>
+						<Slider {...settings2}>
+							{instaImages.map((dat, index) => (
+								<div
+									key={index + "slidervideo"}
+									className='col-12 h-100 mx-auto d-flex allCenter'>
+									<div
+										style={{
+											width: "100%",
+											maxWidth: "250px",
+											height: "100%",
+											overflow: "hidden",
+											cursor: "pointer",
+										}}
+										onClick={() => {
+											window.open(
+												"https://www.instagram.com/upcardsfc/",
+												"_blank"
+											);
+										}}>
+										<img
+											className='rounded img-fluid'
+											src={dat?.imglink}
+											alt=''
+										/>
+									</div>
+								</div>
+							))}
+						</Slider>
+					</div>
+					<div className='row mt-4 d-none d-md-flex align-items-center justify-content-start w-100'>
+						{instaImages.map((dat, index) => (
+							<div
+								key={index}
+								className='col-12 h-100 col-sm-6 col-md-4 mb-4 col-lg-3 allCenter'>
+								<div
+									style={{
+										width: "100%",
+										maxWidth: "250px",
+										height: "100%",
+										overflow: "hidden",
+										cursor: "pointer",
+									}}
+									onClick={() => {
+										window.open(
+											"https://www.instagram.com/upcardsfc/",
+											"_blank"
+										);
+									}}>
+									<img
+										className='rounded img-fluid'
+										src={dat?.imglink}
+										alt=''
+									/>
+								</div>
+							</div>
+						))}
+					</div>
 				</div>
 			</div>
 			{/*Seventh Container */}
@@ -770,64 +834,6 @@ const HomePage = () => {
 									style={{ width: "95%", maxWidth: "260px" }}
 									height='500px'
 									allow='encrypted-media;'></iframe>
-							</div>
-						))}
-					</div>
-					<div className='row w-100 mt-4 mx-auto h-100 d-flex d-md-none'>
-						<Slider {...settings2}>
-							{instaImages.map((dat, index) => (
-								<div
-									key={index + "slidervideo"}
-									className='col-12 h-100 mx-auto d-flex allCenter'>
-									<div
-										style={{
-											width: "100%",
-											maxWidth: "250px",
-											height: "100%",
-											overflow: "hidden",
-											cursor: "pointer",
-										}}
-										onClick={() => {
-											window.open(
-												"https://www.instagram.com/upcardsfc/",
-												"_blank"
-											);
-										}}>
-										<img
-											className='rounded img-fluid'
-											src={dat?.imglink}
-											alt=''
-										/>
-									</div>
-								</div>
-							))}
-						</Slider>
-					</div>
-					<div className='row mt-4 d-none d-md-flex align-items-center justify-content-start w-100'>
-						{instaImages.map((dat, index) => (
-							<div
-								key={index}
-								className='col-12 h-100 col-sm-6 col-md-4 mb-4 col-lg-3 allCenter'>
-								<div
-									style={{
-										width: "100%",
-										maxWidth: "250px",
-										height: "100%",
-										overflow: "hidden",
-										cursor: "pointer",
-									}}
-									onClick={() => {
-										window.open(
-											"https://www.instagram.com/upcardsfc/",
-											"_blank"
-										);
-									}}>
-									<img
-										className='rounded img-fluid'
-										src={dat?.imglink}
-										alt=''
-									/>
-								</div>
 							</div>
 						))}
 					</div>
