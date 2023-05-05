@@ -1,17 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCartItems } from "../store/projectSlice";
 import CartPageCard from "../Components/CartPageCard";
 import { CustomHook } from "../CustomHook/CustomHook";
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { postData } from "../Database/Database";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import PaymentMethod from "../Components/PaymentMethod";
 
 const CartPage = () => {
 	const { dbTranslator } = CustomHook();
 	const dispatch = useDispatch();
-	const { footballCards, otherProducts, cartItems } = useSelector(
+	const [dopayment, setdopayment] = useState(false);
+	const { footballCards, otherProducts, cartItems, clientSecret } = useSelector(
 		(state) => state.project
 	);
 	const { isAuth } = useSelector((state) => state.auth);
@@ -22,14 +25,17 @@ const CartPage = () => {
 		window.localStorage.setItem("upCradCartArry", JSON.stringify(newdata));
 		dispatch(setCartItems({ cartItems: newdata }));
 	};
+
 	let subtotal = 0;
 	const saveorderFunc = async (deta) => {
+		console.log({
+			products: cartItems,
+			...deta,
+		});
 		const rest = await postData(
 			{
 				products: cartItems,
-				price: subtotal,
-				postedBy: isAuth ? isAuth?.uid : "---",
-				deliveryInfo: deta,
+				...deta,
 			},
 			"Orders"
 		);
@@ -50,6 +56,15 @@ const CartPage = () => {
 			});
 		}
 	};
+	const [stripePromise, setStripePromise] = useState(null);
+	useEffect(() => {
+		fetch("/config").then(async (r) => {
+			const result = await r.json();
+			if (result?.publishableKey) {
+				setStripePromise(loadStripe(`${result?.publishableKey}`));
+			}
+		});
+	}, []);
 	return (
 		<>
 			<div
@@ -179,33 +194,22 @@ const CartPage = () => {
 							<div className='row w-100 gx-0 mt-4'>
 								{subtotal > 0 ? (
 									<>
-										<PayPalScriptProvider
-											options={{
-												components: "buttons",
-												"client-id":
-													"AaA2A7a4kGda8oEuQ6Gh1rGgfb9LqSvFmSYubvs2duBVGoeN7hCn14ktXvR4SM3bGDq-v3AXkOmIGrXm",
-											}}>
-											<PayPalButtons
-												style={{ layout: "vertical", color: "blue" }}
-												createOrder={(data, actions) => {
-													return actions.order.create({
-														purchase_units: [
-															{
-																amount: {
-																	value: `${subtotal + 25}`,
-																},
-															},
-														],
-													});
-												}}
-												onApprove={async (data, actions) => {
-													const details = await actions.order.capture();
-													//const name = details.payer.name.given_name;
-													let delivery = details?.purchase_units[0]?.shipping;
-													saveorderFunc(delivery);
-												}}
-											/>
-										</PayPalScriptProvider>
+										{dopayment ? (
+											<Elements
+												stripe={stripePromise}
+												options={clientSecret ? { clientSecret } : {}}>
+												<PaymentMethod
+													price={subtotal + 25}
+													data={cartItems}
+													userid={isAuth?.uid ? isAuth?.uid : "---"}
+													saveOrderInfo={saveorderFunc}
+												/>
+											</Elements>
+										) : (
+											<button onClick={() => setdopayment(true)}>
+												Proceed
+											</button>
+										)}
 									</>
 								) : (
 									<>

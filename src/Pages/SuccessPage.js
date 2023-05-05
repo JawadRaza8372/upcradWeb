@@ -1,6 +1,8 @@
 import React from "react";
 import { FaGift } from "react-icons/fa";
+import { CustomHook } from "../CustomHook/CustomHook";
 const SuccessPage = () => {
+	const { dbTranslator } = CustomHook();
 	return (
 		<div
 			style={{
@@ -78,7 +80,7 @@ const SuccessPage = () => {
 					textAlign: "center",
 					width: "90%",
 				}}>
-				Congratulations! your order has been placed
+				{dbTranslator("congrat")}
 			</span>
 		</div>
 	);

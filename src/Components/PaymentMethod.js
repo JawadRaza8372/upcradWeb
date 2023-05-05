@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useStripe, useElements } from "@stripe/react-stripe-js";
+import {
+	useStripe,
+	useElements,
+	AddressElement,
+} from "@stripe/react-stripe-js";
 import { CardElement } from "@stripe/react-stripe-js";
 import { useDispatch, useSelector } from "react-redux";
 import { setClientSecretId, setCartItems } from "../store/projectSlice";
@@ -8,26 +12,33 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { CustomHook } from "../CustomHook/CustomHook";
 
-const PaymentMethod = ({ price, data, userid }) => {
+const PaymentMethod = ({ price, data, userid, saveOrderInfo }) => {
 	const { dbTranslator } = CustomHook();
-
+	const [showPay, setshowPay] = useState(false);
 	const navigate = useNavigate();
 	const stripe = useStripe();
 	const elements = useElements();
-	const { clientSecret, deliveryInfo } = useSelector((state) => state.project);
+	const [deliveryinfo, setdeliveryinfo] = useState({
+		name: { full_name: "" },
+		address: {
+			address_line_1: "",
+			admin_area_1: "",
+			admin_area_2: "",
+			country_code: "",
+			postal_code: "",
+		},
+	});
+	const { clientSecret } = useSelector((state) => state.project);
 	const dispatch = useDispatch();
 	useEffect(() => {
 		let data = { priceit: `${price}` };
-		fetch(
-			"https://upcradstripepayment-production.up.railway.app/create-payment-intent",
-			{
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(data),
-			}
-		).then(async (result) => {
+		fetch("/create-payment-intent", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(data),
+		}).then(async (result) => {
 			var newRest = await result.json();
 			dispatch(setClientSecretId({ clientSecret: newRest?.clientSecret }));
 		});
@@ -35,31 +46,11 @@ const PaymentMethod = ({ price, data, userid }) => {
 	const [succeeded, setSucceeded] = useState(false);
 	const [error, setError] = useState(null);
 	const [processing, setProcessing] = useState(false);
-	const [disabled, setDisabled] = useState(true);
 	useEffect(() => {
 		setTimeout(() => {
 			setError(null);
 		}, 7000);
 	}, [error]);
-
-	const cardStyle = {
-		style: {
-			base: {
-				color: "#32325d",
-				fontFamily: "Arial, sans-serif",
-				fontSmoothing: "antialiased",
-				fontSize: "16px",
-				"::placeholder": {
-					color: "#32325d",
-				},
-			},
-			invalid: {
-				fontFamily: "Arial, sans-serif",
-				color: "#fa755a",
-				iconColor: "#fa755a",
-			},
-		},
-	};
 
 	const handleSubmitNewWala = async (ev) => {
 		ev.preventDefault();
@@ -72,38 +63,22 @@ const PaymentMethod = ({ price, data, userid }) => {
 		});
 
 		if (payload.error) {
-			setError(t("payfailed"));
+			setError(dbTranslator("payfailed"));
 			console.log(`Payment failed ${payload.error.message}`);
 			setProcessing(false);
 		} else {
 			setError(null);
 			setProcessing(false);
+			await saveOrderInfo({
+				price: price,
+				postedBy: userid,
+				deliveryInfo: deliveryinfo,
+			});
 			setSucceeded(true);
-			const rest = await postData(
-				{ ...data, price: price, postedBy: userid, deliveryInfo: deliveryInfo },
-				"Orders"
-			);
-			if (rest?.data) {
-				dispatch(setCartItems({ cartItems: [] }));
-				window.localStorage.removeItem("upCradCartArry");
-				navigate(`/success/${rest?.data}`);
-			} else {
-				toast.error(`${rest?.error}`, {
-					position: "bottom-right",
-					autoClose: 5000,
-					hideProgressBar: false,
-					closeOnClick: true,
-					pauseOnHover: true,
-					draggable: true,
-					progress: undefined,
-					theme: "light",
-				});
-			}
 		}
 	};
 
 	const handleChangeCard = async (event) => {
-		setDisabled(event.empty);
 		setError(event.error ? event.error.message : "");
 	};
 
@@ -112,27 +87,47 @@ const PaymentMethod = ({ price, data, userid }) => {
 			{clientSecret ? (
 				<>
 					<form id='payment-form' onSubmit={handleSubmitNewWala}>
-						{/* <PaymentElement
-											options={{
-												layout: "auto",
-											}}
-											id='payment-element'
-										/> */}
-						<CardElement
-							id='card-element'
-							options={cardStyle}
-							onChange={handleChangeCard}
+						<div className='sameasshippinginp'>
+							<CardElement id='card-element' onChange={handleChangeCard} />
+						</div>
+
+						<AddressElement
+							options={{ mode: "shipping" }}
+							onChange={(event) => {
+								if (event.complete) {
+									const address = event.value;
+									let newformdata = {
+										name: { full_name: address?.name },
+										address: {
+											address_line_1:
+												address?.address?.line1 + "," + address?.address?.line2,
+											admin_area_1: address?.address?.state,
+											admin_area_2: address?.address?.city,
+											country_code: address?.address?.country,
+											postal_code: address?.address?.postal_code,
+										},
+									};
+									setdeliveryinfo(newformdata);
+									setshowPay(true);
+								} else {
+									console.log("event", event);
+								}
+							}}
 						/>
 
-						<button
-							className='btn mainColor secondarybg'
-							style={{ width: "100%", marginTop: "20px" }}
-							disabled={processing || disabled || succeeded}
-							id='submit'>
-							<span id='button-text'>
-								{processing ? t("process") + " ... " : t("paynow")}
-							</span>
-						</button>
+						{showPay && (
+							<button
+								className='btn mainColor secondarybg'
+								style={{ width: "100%", marginTop: "20px" }}
+								disabled={processing || succeeded}
+								id='submit'>
+								<span id='button-text'>
+									{processing
+										? dbTranslator("process") + " ... "
+										: dbTranslator("paynow")}
+								</span>
+							</button>
+						)}
 						{/* Show any error or success messages */}
 						{error && (
 							<div className='errorDiv' id='paerror'>

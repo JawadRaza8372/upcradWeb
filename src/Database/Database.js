@@ -14,6 +14,7 @@ import {
 	uploadBytes,
 	getDownloadURL,
 	deleteObject,
+	uploadString,
 } from "firebase/storage";
 
 import {
@@ -44,14 +45,26 @@ const chckstatusweb = async () => {
 	console.log("checking---------", starCountRef);
 };
 const uploadImage = async (file) => {
-	const filename = new Date();
-	const imgref = `image/${filename}${file.name}`;
-	const storageRef = ref(storage, `${imgref}`);
+	var byteString = window.atob(file.split(",")[1]);
+	var mimeString = file.split(",")[0].split(":")[1].split(";")[0];
 
-	const resp = await uploadBytes(storageRef, file);
+	var ab = new ArrayBuffer(byteString.length);
+
+	var ia = new Uint8Array(ab);
+
+	for (var i = 0; i < byteString.length; i++) {
+		ia[i] = byteString.charCodeAt(i);
+	}
+
+	var blob = new Blob([ab], { type: mimeString });
+	const storageRef = ref(storage, `${new Date().getTime()}.jpg`);
+
+	const resp = await uploadBytes(storageRef, blob);
 	if (resp) {
 		const imglink = await getDownloadURL(storageRef);
-		return { imglink, imgref };
+		return { data: imglink, error: "" };
+	} else {
+		return { data: "", error: "error" };
 	}
 };
 const login = async (email, password) => {
