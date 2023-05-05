@@ -6,16 +6,12 @@ import {
 } from "@stripe/react-stripe-js";
 import { CardElement } from "@stripe/react-stripe-js";
 import { useDispatch, useSelector } from "react-redux";
-import { setClientSecretId, setCartItems } from "../store/projectSlice";
-import { postData } from "../Database/Database";
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { setClientSecretId } from "../store/projectSlice";
 import { CustomHook } from "../CustomHook/CustomHook";
 
 const PaymentMethod = ({ price, data, userid, saveOrderInfo }) => {
 	const { dbTranslator } = CustomHook();
 	const [showPay, setshowPay] = useState(false);
-	const navigate = useNavigate();
 	const stripe = useStripe();
 	const elements = useElements();
 	const [deliveryinfo, setdeliveryinfo] = useState({

@@ -14,7 +14,6 @@ import {
 	uploadBytes,
 	getDownloadURL,
 	deleteObject,
-	uploadString,
 } from "firebase/storage";
 
 import {
