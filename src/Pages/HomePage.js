@@ -217,7 +217,7 @@ const HomePage = () => {
 									{dbTranslator("shpCrd")}
 								</button>
 							</div>
-							<div className='order-1 order-md-2 col-12 col-md-6 allCenter flex-column'>
+							<div className='order-1 order-md-2 p-0 col-12 col-md-6 allCenter flex-column'>
 								<img
 									style={{
 										objectFit: "contain",
@@ -367,7 +367,7 @@ const HomePage = () => {
 										</div>
 									))}
 							</div>
-							<div className='row w-100 h-100 allCenter'>
+							<div className='row w-100 mt-3 h-100 allCenter'>
 								<button
 									onClick={() => navigate("/products")}
 									className='btn mainColor secondarybg'
