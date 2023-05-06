@@ -76,7 +76,7 @@ function App() {
 			);
 		});
 
-		const cartdata = window.localStorage.getItem("upCradCartArry");
+		const cartdata = window.localStorage.getItem("upcardcartArry");
 		dispatch(
 			setCartItems({
 				cartItems: JSON.parse(cartdata),

@@ -21,8 +21,8 @@ const CartPage = () => {
 
 	const navigate = useNavigate();
 	const removeItemFun = (itId) => {
-		let newdata = cartItems.filter((dat) => dat.pid !== itId);
-		window.localStorage.setItem("upCradCartArry", JSON.stringify(newdata));
+		let newdata = cartItems.filter((dat) => dat.id !== itId);
+		window.localStorage.setItem("upcardcartArry", JSON.stringify(newdata));
 		dispatch(setCartItems({ cartItems: newdata }));
 		setdopayment(false);
 	};
@@ -42,7 +42,7 @@ const CartPage = () => {
 		);
 		if (rest?.data) {
 			dispatch(setCartItems({ cartItems: [] }));
-			window.localStorage.removeItem("upCradCartArry");
+			window.localStorage.removeItem("upcardcartArry");
 			navigate(`/success/${rest?.data}`);
 		} else {
 			toast.error(`${rest?.error}`, {
@@ -118,8 +118,8 @@ const CartPage = () => {
 									if (isNaN(nowSubol) === false) {
 										return (
 											<CartPageCard
-												key={dat.pid + indea}
-												id={dat?.pid}
+												key={dat?.id ? dat.id : new Date().getTime()}
+												id={dat?.id ? dat.id : new Date().getTime()}
 												title={currentdata?.title}
 												price={
 													"Product Price + Extra Service = " +

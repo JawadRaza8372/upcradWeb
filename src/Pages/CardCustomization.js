@@ -134,7 +134,6 @@ export const CardCustomization = () => {
 		getclubs();
 	});
 	const [templinkImg, settemplinkImg] = useState("");
-	const [templinkImg2, settemplinkImg2] = useState("");
 
 	const uploadImageFun = async (image) => {
 		const data = new FormData();
@@ -160,53 +159,43 @@ export const CardCustomization = () => {
 			});
 		}
 	};
+	const getBase64 = (file) => {
+		return new Promise((resolve) => {
+			let baseURL = "";
+			let reader = new FileReader();
+			reader.readAsDataURL(file);
+			reader.onload = () => {
+				baseURL = reader.result;
+				resolve(baseURL);
+			};
+		});
+	};
+
 	const uploadImageFunNew = async (image) => {
-		let reader = new FileReader();
-		reader.onloadend = async () => {
-			await settemplinkImg2(reader.result.toString());
-		};
-		reader.readAsDataURL(image);
-		if (templinkImg2) {
-			const rest = await fetch(
-				"https://upcradstripepayment-production.up.railway.app/imgeUpload",
-				{
-					method: "post",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify({
-						imglink: templinkImg2?.split("base64,")[1],
-						starter: `${templinkImg2?.split("base64,")[0]}base64,`,
-					}),
-				}
-			);
-			return rest.json();
-		}
-
-		// const data = new FormData();
-		// data.append("file", image);
-
-		// const result = await fetch("/imgeUpload", {
-		// 	method: "post",
-		// 	headers: {
-		// 		"Content-Type": "application/json",
-		// 	},
-		// 	body: JSON.stringify(data),
-		// });
-		// return result?.json();
+		const results = await getBase64(image);
+		const rest = await fetch(
+			"https://upcradstripepayment-production.up.railway.app/imgeUpload",
+			{
+				method: "post",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					imglink: results?.split("base64,")[1],
+					starter: `${results?.split("base64,")[0]}base64,`,
+				}),
+			}
+		);
+		return rest.json();
 	};
 	const handleUpload = async (e) => {
 		const result = await uploadImageFunNew(e.target.files[0]);
-
-		console.log("hecking", result);
 		if (result?.imglink) {
 			settemplinkImg(result?.imglink);
 			setopenCropper(true);
 		} else {
 			console.log(result?.error);
 		}
-		//
-		//
 	};
 	const onCropomplete = (link) => {
 		setBasicInfo({
@@ -219,14 +208,19 @@ export const CardCustomization = () => {
 	const addToCartFunction = (imglink) => {
 		let newdata = [
 			...cartItems,
-			{ pid: id, imgSrc: imglink, extra: extraService },
+			{
+				id: new Date().getTime(),
+				pid: id,
+				imgSrc: imglink,
+				extra: extraService,
+			},
 		];
 		dispatch(
 			setCartItems({
 				cartItems: newdata,
 			})
 		);
-		window.localStorage.setItem("upCradCartArry", JSON.stringify(newdata));
+		window.localStorage.setItem("upcardcartArry", JSON.stringify(newdata));
 
 		toast.success(dbTranslator("paddcrt"), {
 			position: "bottom-right",

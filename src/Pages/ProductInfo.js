@@ -17,6 +17,7 @@ const ProductInfo = () => {
 		let newdata = [
 			...cartItems,
 			{
+				id: new Date().getTime(),
 				pid: id,
 				imgSrc: currentdata?.imgSrc,
 				extra: { title: "Skip", subtitle: "---", price: "0" },
@@ -27,7 +28,7 @@ const ProductInfo = () => {
 				cartItems: newdata,
 			})
 		);
-		window.localStorage.setItem("upCradCartArry", JSON.stringify(newdata));
+		window.localStorage.setItem("upcardcartArry", JSON.stringify(newdata));
 
 		toast.success(dbTranslator("paddcrt"), {
 			position: "bottom-right",

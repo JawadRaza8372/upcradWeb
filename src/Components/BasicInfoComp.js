@@ -133,7 +133,7 @@ const BasicInfoComp = ({
 						width: "100%",
 						height: "100vh",
 						background: "rgba(255,255,255,0.9)",
-						zIndex: "3000",
+						zIndex: "1000",
 						left: "0px",
 						top: "0px",
 						transform: "translate(-50% , -50%),",
