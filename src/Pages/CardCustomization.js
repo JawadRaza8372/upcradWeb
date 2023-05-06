@@ -14,7 +14,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { CustomHook } from "../CustomHook/CustomHook";
 import { setClubs } from "../store/projectSlice";
 import { getDatabase, ref, child, get } from "firebase/database";
-import { uploadImage } from "../Database/Database";
 import CustomLargeLoader from "../Components/CustomLargeLoader";
 
 export const CardCustomization = () => {
@@ -135,6 +134,8 @@ export const CardCustomization = () => {
 		getclubs();
 	});
 	const [templinkImg, settemplinkImg] = useState("");
+	const [templinkImg2, settemplinkImg2] = useState("");
+
 	const uploadImageFun = async (image) => {
 		const data = new FormData();
 		data.append("file", image);
@@ -159,11 +160,53 @@ export const CardCustomization = () => {
 			});
 		}
 	};
+	const uploadImageFunNew = async (image) => {
+		let reader = new FileReader();
+		reader.onloadend = async () => {
+			await settemplinkImg2(reader.result.toString());
+		};
+		reader.readAsDataURL(image);
+		if (templinkImg2) {
+			const rest = await fetch(
+				"https://upcradstripepayment-production.up.railway.app/imgeUpload",
+				{
+					method: "post",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						imglink: templinkImg2?.split("base64,")[1],
+						starter: `${templinkImg2?.split("base64,")[0]}base64,`,
+					}),
+				}
+			);
+			return rest.json();
+		}
 
+		// const data = new FormData();
+		// data.append("file", image);
+
+		// const result = await fetch("/imgeUpload", {
+		// 	method: "post",
+		// 	headers: {
+		// 		"Content-Type": "application/json",
+		// 	},
+		// 	body: JSON.stringify(data),
+		// });
+		// return result?.json();
+	};
 	const handleUpload = async (e) => {
-		const result = await uploadImageFun(e.target.files[0]);
-		setopenCropper(true);
-		settemplinkImg(result?.secure_url);
+		const result = await uploadImageFunNew(e.target.files[0]);
+
+		console.log("hecking", result);
+		if (result?.imglink) {
+			settemplinkImg(result?.imglink);
+			setopenCropper(true);
+		} else {
+			console.log(result?.error);
+		}
+		//
+		//
 	};
 	const onCropomplete = (link) => {
 		setBasicInfo({
@@ -280,14 +323,10 @@ export const CardCustomization = () => {
 					return uri;
 				};
 				const result = downloadfunc();
-				const rest = await uploadImage(result);
-				if (rest?.data) {
-					setbigloading(true);
-					addToCartFunction(rest?.data);
-					setbigloading(false);
-				} else {
-					console.log("error");
-				}
+				addToCartFunction({
+					imglink: result?.split("base64,")[1],
+					starter: `${result?.split("base64,")[0]}base64,`,
+				});
 			} else {
 				toast.error(dbTranslator("porrand"), {
 					position: "bottom-right",

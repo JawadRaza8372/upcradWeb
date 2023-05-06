@@ -4,7 +4,9 @@ import { BiImageAdd } from "react-icons/bi";
 import { BsBell } from "react-icons/bs";
 import CustomLoader from "./CustomLoader";
 import Cropper from "react-cropper";
+import ReactImageBase64 from "react-image-base64";
 import "../../node_modules/cropperjs/dist/cropper.css";
+
 import {
 	customData,
 	attackdata,
@@ -28,6 +30,8 @@ import {
 	frmiddata,
 } from "../Harddata";
 import { CustomHook } from "../CustomHook/CustomHook";
+import FileBase from "react-file-base64";
+
 const BasicInfoComp = ({
 	nameValue,
 	onChangeName,
@@ -41,7 +45,7 @@ const BasicInfoComp = ({
 	model,
 }) => {
 	const { dbTranslator } = CustomHook();
-
+	const [img, setimg] = useState("");
 	const [loading, setloading] = useState(false);
 	const [selectData, setselectData] = useState(0);
 	const [currentselct, setcurrentselct] = useState("en");
@@ -122,6 +126,7 @@ const BasicInfoComp = ({
 				?.toDataURL({ pixelRatio: 3 })
 		);
 	};
+	console.log("check", img);
 	return (
 		<div style={{ position: "relative" }}>
 			{model && (
@@ -194,7 +199,17 @@ const BasicInfoComp = ({
 							</>
 						) : imglink?.length <= 0 && loading === false ? (
 							<>
+								{/* <FileBase
+									type='file'
+									multiple={false}
+									onDone={({ base64 }) => {
+										console.log(base64);
+									}}
+									accept='image/png,image/jpg,image/jpeg'
+								/> */}
+
 								<input
+									//onChange={}
 									onChange={onChangeImagefun}
 									type='file'
 									id='file'

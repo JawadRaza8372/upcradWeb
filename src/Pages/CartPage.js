@@ -24,6 +24,7 @@ const CartPage = () => {
 		let newdata = cartItems.filter((dat) => dat.pid !== itId);
 		window.localStorage.setItem("upCradCartArry", JSON.stringify(newdata));
 		dispatch(setCartItems({ cartItems: newdata }));
+		setdopayment(false);
 	};
 
 	let subtotal = 0;
@@ -58,12 +59,14 @@ const CartPage = () => {
 	};
 	const [stripePromise, setStripePromise] = useState(null);
 	useEffect(() => {
-		fetch("/config").then(async (r) => {
-			const result = await r.json();
-			if (result?.publishableKey) {
-				setStripePromise(loadStripe(`${result?.publishableKey}`));
+		fetch("https://upcradstripepayment-production.up.railway.app/config").then(
+			async (r) => {
+				const result = await r.json();
+				if (result?.publishableKey) {
+					setStripePromise(loadStripe(`${result?.publishableKey}`));
+				}
 			}
-		});
+		);
 	}, []);
 	return (
 		<>
@@ -127,7 +130,11 @@ const CartPage = () => {
 													"$" +
 													nowSubol
 												}
-												imgSrc={dat?.imgSrc}
+												imgSrc={
+													typeof dat?.imgSrc === "object"
+														? `${dat?.imgSrc?.starter}${dat?.imgSrc?.imglink}`
+														: dat?.imgSrc
+												}
 												removeItemFun={removeItemFun}
 											/>
 										);
@@ -206,8 +213,11 @@ const CartPage = () => {
 												/>
 											</Elements>
 										) : (
-											<button onClick={() => setdopayment(true)}>
-												Proceed
+											<button
+												className='btn mainColor secondarybg'
+												style={{ width: "100%", marginTop: "20px" }}
+												onClick={() => setdopayment(true)}>
+												{dbTranslator("paynow")}
 											</button>
 										)}
 									</>
