@@ -53,11 +53,6 @@ const HomePage = () => {
 		{ id: 1, imgSrc: service2, title: dbTranslator("fotCards") },
 		{ id: 2, imgSrc: service3, title: dbTranslator("mtchmomts") },
 	];
-	// useEffecdbTranslator(() => {
-	// 	try {
-	// 		(window.adsbygoogle = window.adsbygoogle || []).push({});
-	// 	} catch (e) {}
-	// }, []);
 	const instaImages = [
 		{
 			imglink: instaImag0,

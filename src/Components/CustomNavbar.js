@@ -189,6 +189,10 @@ const CustomNavbar = ({ changeLanguage }) => {
 											? "Spanish"
 											: selectedLang === "fr"
 											? "French"
+											: selectedLang === "de"
+											? "German"
+											: selectedLang === "it"
+											? "Italian"
 											: "Language"
 									}
 									style={{
@@ -221,6 +225,22 @@ const CustomNavbar = ({ changeLanguage }) => {
 										}}
 										href='#'>
 										French
+									</NavDropdown.Item>
+									<NavDropdown.Item
+										onClick={() => {
+											changeLanguage("it");
+											setSelectedLang("it");
+										}}
+										href='#'>
+										Italian
+									</NavDropdown.Item>
+									<NavDropdown.Item
+										onClick={() => {
+											changeLanguage("de");
+											setSelectedLang("de");
+										}}
+										href='#'>
+										German
 									</NavDropdown.Item>
 								</NavDropdown>
 							</Nav>

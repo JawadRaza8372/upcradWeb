@@ -12,6 +12,10 @@ export const CustomHook = () => {
 					? "spain"
 					: i18n?.language === "fr"
 					? "french"
+					: i18n?.language === "de"
+					? "german"
+					: i18n?.language === "it"
+					? "italy"
 					: "english"
 			];
 		} else {

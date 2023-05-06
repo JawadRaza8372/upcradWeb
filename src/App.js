@@ -55,9 +55,6 @@ function App() {
 		});
 		get(child(ref(getDatabase()), "/languages")).then((snapshot) => {
 			let result = snapshot.val();
-			// let resultarry = Object.keys(result).map((dat, index) => {
-			// 	return { id: dat, ...Object.values(result)[index] };
-			// });
 			dispatch(
 				setLanguages({
 					languages: result,
