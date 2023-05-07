@@ -499,7 +499,7 @@ export const CardCustomization = () => {
 												fontSize={26}
 												verticalAlign={"middle"}
 												align={"center"}
-												fontFamily='MYbold'
+												fontFamily='NormalFont'
 											/>
 											<Text
 												width={50}
@@ -531,7 +531,7 @@ export const CardCustomization = () => {
 												fontSize={26}
 												verticalAlign={"middle"}
 												align={"center"}
-												fontFamily='MYbold'
+												fontFamily='NormalFont'
 											/>
 											<Text
 												width={50}
@@ -563,7 +563,7 @@ export const CardCustomization = () => {
 												fontSize={26}
 												verticalAlign={"middle"}
 												align={"center"}
-												fontFamily='MYbold'
+												fontFamily='NormalFont'
 											/>
 											<Text
 												width={50}
@@ -595,7 +595,7 @@ export const CardCustomization = () => {
 												fontSize={26}
 												verticalAlign={"middle"}
 												align={"center"}
-												fontFamily='MYbold'
+												fontFamily='NormalFont'
 											/>
 											<Text
 												width={50}
@@ -627,7 +627,7 @@ export const CardCustomization = () => {
 												fontSize={26}
 												verticalAlign={"middle"}
 												align={"center"}
-												fontFamily='MYbold'
+												fontFamily='NormalFont'
 											/>
 											<Text
 												width={50}
@@ -659,7 +659,7 @@ export const CardCustomization = () => {
 												fontSize={26}
 												verticalAlign={"middle"}
 												align={"center"}
-												fontFamily='MYbold'
+												fontFamily='NormalFont'
 											/>
 											<Text
 												width={220}
@@ -692,8 +692,7 @@ export const CardCustomization = () => {
 												fontSize={56}
 												verticalAlign={"middle"}
 												align={"center"}
-												fontStyle={"bold"}
-												fontFamily='MYbold'
+												fontFamily='NormalFont'
 											/>
 											<Text
 												width={50}
@@ -709,7 +708,7 @@ export const CardCustomization = () => {
 												fontSize={28}
 												verticalAlign={"middle"}
 												align={"center"}
-												fontFamily='MYbold'
+												fontFamily='NormalFont'
 											/>
 											<Image
 												x={71.5}
@@ -722,10 +721,10 @@ export const CardCustomization = () => {
 											<Image
 												x={73}
 												y={260}
-												height={35}
+												height={45}
 												width={45}
 												image={clubFlagavtar}
-												scale={{ x: 0.9, y: 0.96 }}
+												scale={{ x: 1, y: 1 }}
 											/>
 											<Image
 												x={140}
@@ -830,7 +829,7 @@ export const CardCustomization = () => {
 												verticalAlign={"middle"}
 												align={"center"}
 												fontStyle={""}
-												fontFamily='MYbold'
+												fontFamily='NormalFont'
 											/>
 											<Text
 												width={50}
@@ -864,7 +863,7 @@ export const CardCustomization = () => {
 												verticalAlign={"middle"}
 												align={"center"}
 												fontStyle={""}
-												fontFamily='MYbold'
+												fontFamily='NormalFont'
 											/>
 											<Text
 												width={50}
@@ -898,7 +897,7 @@ export const CardCustomization = () => {
 												verticalAlign={"middle"}
 												align={"center"}
 												fontStyle={""}
-												fontFamily='MYbold'
+												fontFamily='NormalFont'
 											/>
 
 											<Text
@@ -933,7 +932,7 @@ export const CardCustomization = () => {
 												verticalAlign={"middle"}
 												align={"center"}
 												fontStyle={""}
-												fontFamily='MYbold'
+												fontFamily='NormalFont'
 											/>
 											<Text
 												width={50}
@@ -967,7 +966,7 @@ export const CardCustomization = () => {
 												verticalAlign={"middle"}
 												align={"center"}
 												fontStyle={""}
-												fontFamily='MYbold'
+												fontFamily='NormalFont'
 											/>
 											<Text
 												width={50}
@@ -1001,7 +1000,7 @@ export const CardCustomization = () => {
 												verticalAlign={"middle"}
 												align={"center"}
 												fontStyle={""}
-												fontFamily='MYbold'
+												fontFamily='NormalFont'
 											/>
 
 											<Text
@@ -1035,8 +1034,8 @@ export const CardCustomization = () => {
 												fontSize={38}
 												verticalAlign={"middle"}
 												align={"center"}
-												fontStyle={"bold"}
-												fontFamily='MYbold'
+												fontStyle={""}
+												fontFamily='NormalFont'
 											/>
 											<Text
 												width={50}
@@ -1052,8 +1051,8 @@ export const CardCustomization = () => {
 												fontSize={22}
 												verticalAlign={"middle"}
 												align={"center"}
-												fontFamily='MYbold'
-												fontStyle={""}
+												fontFamily='NormalFont'
+												fontStyle={"normal"}
 											/>
 											<Image
 												x={52}
@@ -1064,12 +1063,12 @@ export const CardCustomization = () => {
 												scale={{ x: 1, y: 0.9 }}
 											/>
 											<Image
-												x={54}
+												x={53}
 												y={172}
-												height={23}
+												height={30}
 												width={30}
 												image={clubFlagavtar}
-												scale={{ x: 0.9, y: 0.98 }}
+												scale={{ x: 1, y: 1 }}
 											/>
 											<Image
 												x={105}

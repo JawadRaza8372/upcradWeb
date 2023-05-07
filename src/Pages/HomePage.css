@@ -1,15 +1,12 @@
 .firstContWrapper {
 	background: transparent;
-	min-height: 60vh;
 	height: max-content;
-	padding-bottom: 25px;
 	position: relative;
-	background: white;
+	background: #221ba7;
 }
 .firstCont {
-	min-height: 60vh;
-	height: fit-content;
-	overflow-y: visible;
+	min-height: 40vh;
+	max-height: max-content;
 	overflow-x: hidden;
 }
 .secondContainer {
@@ -96,9 +93,8 @@
 	padding: 15px 0px;
 }
 .firstSectionHeading {
-	font-size: 50px;
+	font-size: 45px;
 	font-weight: bold;
-	max-width: 350px;
 }
 .scrolledImageContainer {
 	width: 100%;
@@ -145,6 +141,13 @@
 canvas {
 	max-width: 100%;
 }
+@media (max-width: 991.98px) {
+	.firstSectionHeading {
+		font-size: 30px;
+		max-width: none;
+	}
+}
+
 @media screen and (max-width: 768px) {
 	.firstSectionHeading {
 		font-size: 30px;

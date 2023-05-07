@@ -41,7 +41,12 @@ const QuestionMini = ({ question, answer }) => {
 
 					{showAnswer && answer && (
 						<>
-							<span style={{ color: "rgba(0, 0, 0, 0.5)", fontSize: "15px" }}>
+							<span
+								style={{
+									color: "rgba(0, 0, 0, 0.5)",
+									fontSize: "15px",
+									textTransform: "none",
+								}}>
 								{answer}
 							</span>
 						</>

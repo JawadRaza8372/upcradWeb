@@ -9,7 +9,7 @@ import instaImag7 from "../ownassets/insta7.jpg";
 import instaImag8 from "../ownassets/insta8.jpg";
 import startedimage from "../ownassets/image 18.png";
 import FootballCards from "../Components/FootballCards";
-import firstimg from "../ownassets/firstsesion.png";
+import firstimg from "../ownassets/firstsesion.jpg";
 import secssion from "../ownassets/secsesion.png";
 import service1 from "../ownassets/servis1.png";
 import service2 from "../ownassets/servis2.png";
@@ -195,15 +195,28 @@ const HomePage = () => {
 			{/*First Container */}
 			<div className='firstContWrapper'>
 				<div className='allCenter flex-column firstCont'>
-					<div className='col-11 col-lg-10 mx-auto h-100'>
-						<div className='row h-100'>
-							<div className='order-2 order-md-1 col-12 gb-2 col-md-6 d-flex align-items-start justify-content-center flex-column'>
-								<h1 className='my-0 mainColor firstSectionHeading'>
+					<div className='col-12 mx-auto h-100'>
+						<div className='row h-100 m-0'>
+							<div
+								style={{ padding: "25px 20px", paddingTop: "0px" }}
+								className='order-2 order-md-1 col-12 gb-2 col-md-6 d-flex align-items-start justify-content-center flex-column'>
+								<h1
+									className='firstSectionHeading'
+									style={{
+										color: "white",
+										margin: "10px 0px",
+										textTransform: "none",
+									}}>
 									{dbTranslator("perfect")}
 								</h1>
 								<p
-									className='mainColor resptextp'
-									style={{ marginTop: "30px", marginBottom: "30px" }}>
+									className='resptextp'
+									style={{
+										marginTop: "20px",
+										marginBottom: "20px",
+										color: "white",
+										textTransform: "none",
+									}}>
 									{dbTranslator("subperfect")}
 								</p>
 								<button
@@ -215,9 +228,6 @@ const HomePage = () => {
 							<div className='order-1 order-md-2 p-0 col-12 col-md-6 allCenter flex-column'>
 								<img
 									style={{
-										objectFit: "contain",
-										minHeight: "320px",
-										maxHeight: "450px",
 										margin: "20px auto",
 										marginBottom: "10px",
 										width: "100%",

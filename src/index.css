@@ -120,9 +120,13 @@ code {
 		monospace;
 }
 @font-face {
-	font-family: "MYbold"; /*Can be any text*/
+	font-family: "MYbold";
 	src: local("DINPro-CondensedBold"),
 		url("./fonsts/DINPro-CondensedBold.ttf") format("truetype");
+}
+@font-face {
+	font-family: "NormalFont";
+	src: local("646-font"), url("./fonsts/646-font.otf") format("opentype");
 }
 p,
 span,
@@ -133,7 +137,7 @@ h3,
 h4,
 h4,
 h6 {
-	text-transform: capitalize;
+	text-transform: none;
 }
 .slick-dots .slick-active {
 	width: 10px !important;
@@ -158,6 +162,7 @@ h6 {
 	font-weight: bold;
 	font-size: 18px;
 	line-height: 30px;
+	text-transform: none !important;
 }
 .responsiveHeading {
 	font-size: 50px;

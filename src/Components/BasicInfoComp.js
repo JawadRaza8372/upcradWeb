@@ -45,7 +45,7 @@ const BasicInfoComp = ({
 	const { dbTranslator } = CustomHook();
 	const [loading, setloading] = useState(false);
 	const [selectData, setselectData] = useState(0);
-	const [currentselct, setcurrentselct] = useState("en");
+	const [currentselct, setcurrentselct] = useState("es");
 	const onChangeImagefun = async (e) => {
 		setloading(true);
 		await onChangeImage(e);
@@ -230,23 +230,13 @@ const BasicInfoComp = ({
 						<div className='row'>
 							<button
 								className={`col btn nillbtn ${
-									currentselct === "en" ? "mainColor" : "nonColor"
+									currentselct === "es" ? "mainColor" : "nonColor"
 								}`}
 								style={{
-									fontWeight: currentselct === "en" ? "bold" : "400",
+									fontWeight: currentselct === "es" ? "bold" : "400",
 								}}
-								onClick={() => setcurrentselct("en")}>
-								En
-							</button>
-							<button
-								className={`col btn nillbtn ${
-									currentselct === "fr" ? "mainColor" : "nonColor"
-								}`}
-								style={{
-									fontWeight: currentselct === "fr" ? "bold" : "400",
-								}}
-								onClick={() => setcurrentselct("fr")}>
-								Fr
+								onClick={() => setcurrentselct("es")}>
+								ES
 							</button>
 							<button
 								className={`col btn nillbtn ${
@@ -256,18 +246,30 @@ const BasicInfoComp = ({
 									fontWeight: currentselct === "de" ? "bold" : "400",
 								}}
 								onClick={() => setcurrentselct("de")}>
-								De
+								DE
+							</button>
+
+							<button
+								className={`col btn nillbtn ${
+									currentselct === "en" ? "mainColor" : "nonColor"
+								}`}
+								style={{
+									fontWeight: currentselct === "en" ? "bold" : "400",
+								}}
+								onClick={() => setcurrentselct("en")}>
+								EN
 							</button>
 							<button
 								className={`col btn nillbtn ${
-									currentselct === "es" ? "mainColor" : "nonColor"
+									currentselct === "fr" ? "mainColor" : "nonColor"
 								}`}
 								style={{
-									fontWeight: currentselct === "es" ? "bold" : "400",
+									fontWeight: currentselct === "fr" ? "bold" : "400",
 								}}
-								onClick={() => setcurrentselct("es")}>
-								Es
+								onClick={() => setcurrentselct("fr")}>
+								FR
 							</button>
+
 							<button
 								className={`col btn nillbtn ${
 									currentselct === "it" ? "mainColor" : "nonColor"
@@ -276,7 +278,7 @@ const BasicInfoComp = ({
 									fontWeight: currentselct === "it" ? "bold" : "400",
 								}}
 								onClick={() => setcurrentselct("it")}>
-								It
+								IT
 							</button>
 						</div>
 					}>
