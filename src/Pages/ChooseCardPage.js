@@ -214,7 +214,11 @@ const ChooseCardPage = () => {
 	const [previewOn, setpreviewOn] = useState(false);
 	const newDownloadBrandNewFunction = () => {
 		const uri = stageRef.current.toDataURL({ pixelRatio: 3 });
-		saveAs(`${uri}`, "upCardSoccerLetter.jpg");
+		setshowAds(true);
+		setTimeout(() => {
+			setshowAds(false);
+			saveAs(`${uri}`, "upCardSoccerLetter.jpg");
+		}, 7000);
 	};
 	const cropperRef = React.createRef(null);
 	const oncrop = () => {
@@ -224,24 +228,18 @@ const ChooseCardPage = () => {
 				?.getCroppedCanvas()
 				?.toDataURL({ pixelRatio: 3 }),
 		});
+		setopenCropper(false);
 	};
 	if (isLargeLoading) {
 		return <CustomLargeLoader />;
 	}
 	return (
 		<div style={{ overflowX: "hidden" }}>
-			{openCropper && (
+			<Modal fullscreen show={openCropper}>
 				<div
 					style={{
-						position: "absolute",
-						width: "100%",
 						height: "100vh",
 						background: "rgba(255,255,255,0.9)",
-						left: "0px",
-						top: "0px",
-						zIndex: "1030",
-
-						transform: "translate(-50% , -50%),",
 					}}
 					className='allCenter flex-row'>
 					<div className='col-11 col-lg-6 allCenter flex-column'>
@@ -263,7 +261,8 @@ const ChooseCardPage = () => {
 						</button>
 					</div>
 				</div>
-			)}
+			</Modal>
+
 			<Modal fullscreen show={showClubs}>
 				<div className='h-100 allCenter flex-column' style={{ width: "97.2%" }}>
 					<div className='w-100 h-100'>
