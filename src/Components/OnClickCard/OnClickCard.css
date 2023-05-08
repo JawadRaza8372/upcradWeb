@@ -1,0 +1,368 @@
+.editablecARD {
+	width: 377px !important;
+	height: 599px;
+	position: relative;
+	padding: 0px;
+}
+input::placeholder {
+	color: lightslategray;
+}
+.editablecARD > img {
+	width: 377px;
+	height: 599px;
+}
+.editablecARD > .editableContent {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: transparent;
+}
+.editablecARD > .editableContent > .upperhalf {
+	width: 100%;
+	height: 380px;
+	background-color: transparent;
+}
+.editablecARD > .editableContent > .upperhalf > .inputConatiners {
+	width: 100%;
+	height: calc(100% - 60px);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+	padding-top: 100px;
+}
+.editablecARD > .editableContent > .upperhalf > .nameContaiber {
+	width: 100%;
+	background-color: transparent;
+	height: 60px;
+	padding: 0px 54px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+.verticalLine {
+	width: 2px;
+	border-radius: 2px;
+	background-color: white;
+	height: 120px;
+}
+.editablecARD > .editableContent > .upperhalf > .nameContaiber > input {
+	width: 100%;
+	height: calc(100% - 10px);
+	background-color: transparent;
+	text-align: center;
+	outline: none !important;
+	border: 0px !important;
+	text-align: center;
+	font-weight: bold;
+	color: white;
+	font-size: 41px;
+}
+.editablecARD
+	> .editableContent
+	> .upperhalf
+	> .inputConatiners
+	> .imgContainer {
+	width: 200px;
+	height: 100%;
+	background-color: transparent;
+	margin-left: 7px;
+}
+.editablecARD
+	> .editableContent
+	> .upperhalf
+	> .inputConatiners
+	> .imgContainer
+	> label {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+.editablecARD
+	> .editableContent
+	> .upperhalf
+	> .inputConatiners
+	> .imgContainer
+	> label
+	> img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+.editablecARD
+	> .editableContent
+	> .upperhalf
+	> .inputConatiners
+	> .imgContainer
+	> input {
+	width: 100%;
+	height: 100%;
+	background-color: transparent !important;
+	outline: none !important;
+	border: 0px !important;
+	text-align: center;
+}
+.editablecARD
+	> .editableContent
+	> .upperhalf
+	> .inputConatiners
+	> .blackcontainer {
+	width: 60px;
+	height: 100%;
+	background-color: transparent;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	flex-direction: column;
+}
+.editablecARD
+	> .editableContent
+	> .upperhalf
+	> .inputConatiners
+	> .blackcontainer
+	> input {
+	width: 100%;
+	background-color: transparent !important;
+	outline: none !important;
+	border: 0px !important;
+	height: 50px;
+	text-align: center;
+	font-size: 30px;
+	color: white;
+}
+
+.editablecARD
+	> .editableContent
+	> .upperhalf
+	> .inputConatiners
+	> .blackcontainer
+	> .smallImg {
+	width: 100%;
+	height: 50px;
+}
+.editablecARD
+	> .editableContent
+	> .upperhalf
+	> .inputConatiners
+	> .blackcontainer
+	> .smallImg
+	> img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+.smallSelctors {
+	width: 100%;
+	background-color: transparent !important;
+	outline: none !important;
+	border: 0px !important;
+	height: 100%;
+	text-align: center;
+	color: white;
+}
+.smallLinehh {
+	width: 60%;
+	height: 2px;
+	background-color: white;
+	border-radius: 2px;
+	margin: 5px 0px;
+}
+.largelinh {
+	width: 100%;
+	height: 2px;
+	background-color: white;
+	border-radius: 2px;
+	margin-top: 5px;
+}
+.smallSelctors > img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+.editablecARD
+	> .editableContent
+	> .upperhalf
+	> .inputConatiners
+	> .blackcontainer
+	> input:first-child {
+	height: 60px;
+	color: white;
+	font-size: 42px;
+}
+.editablecARD > .editableContent > .lowerhalf {
+	width: 100%;
+	height: 134px;
+	background-color: transparent;
+	padding: 7px 55px;
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	flex-direction: row;
+}
+.smallestLineh {
+	width: 50px;
+	height: 2px;
+	border-radius: 2px;
+	background-color: white;
+}
+.editablecARD > .editableContent > .seclowehalf {
+	width: 100%;
+	height: 85px;
+	background-color: transparent;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	flex-direction: row;
+}
+.editablecARD > .editableContent > .lowerhalf > .leftinputs {
+	width: 48%;
+	background-color: transparent;
+}
+.editablecARD > .editableContent > .lowerhalf > .leftinputs > .fieldsContainer {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 5px;
+}
+.editablecARD
+	> .editableContent
+	> .lowerhalf
+	> .leftinputs
+	> .fieldsContainer
+	> input {
+	width: 100%;
+	height: 40px;
+	text-align: center;
+	background-color: transparent !important;
+	border: 0px !important;
+	outline: none !important;
+	color: white;
+	font-size: 20px;
+}
+@media screen and (max-width: 576px) {
+	.editablecARD {
+		width: 270px !important;
+		height: 400px;
+	}
+	.editablecARD > img {
+		width: 270px;
+		height: 400px;
+	}
+
+	.editablecARD > .editableContent > .upperhalf {
+		width: 100%;
+		height: 250px;
+	}
+	.editablecARD > .editableContent > .upperhalf > .inputConatiners {
+		height: calc(100% - 40px);
+		padding-top: 70px;
+	}
+	.editablecARD > .editableContent > .upperhalf > .nameContaiber {
+		height: 40px;
+		padding: 0px 40px;
+	}
+	.verticalLine {
+		height: 100%;
+		width: 1px;
+	}
+	.editablecARD > .editableContent > .upperhalf > .nameContaiber > input {
+		font-size: 29px;
+		height: calc(100% - 5px);
+	}
+	.editablecARD
+		> .editableContent
+		> .upperhalf
+		> .inputConatiners
+		> .imgContainer {
+		width: 150px;
+		margin-left: 4px;
+	}
+
+	.editablecARD
+		> .editableContent
+		> .upperhalf
+		> .inputConatiners
+		> .blackcontainer {
+		width: 40px;
+	}
+	.editablecARD
+		> .editableContent
+		> .upperhalf
+		> .inputConatiners
+		> .blackcontainer
+		> input {
+		height: 30px;
+		font-size: 20px;
+	}
+
+	.editablecARD
+		> .editableContent
+		> .upperhalf
+		> .inputConatiners
+		> .blackcontainer
+		> .smallImg {
+		width: 100%;
+		height: 30px;
+	}
+	.editablecARD
+		> .editableContent
+		> .upperhalf
+		> .inputConatiners
+		> .blackcontainer
+		> .smallImg
+		> img {
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+	}
+	.smallLinehh {
+		margin: 2.5px 0px;
+		height: 1px;
+	}
+	.largelinh {
+		margin-top: 3px;
+		height: 1px;
+	}
+	.smallSelctors > svg {
+		font-size: 27px;
+		color: white;
+	}
+	.editablecARD
+		> .editableContent
+		> .upperhalf
+		> .inputConatiners
+		> .blackcontainer
+		> input:first-child {
+		height: 35px;
+		color: white;
+		font-size: 28px;
+	}
+	.editablecARD > .editableContent > .lowerhalf {
+		width: 100%;
+		height: 94px;
+		padding: 3px 40px;
+	}
+	.smallestLineh {
+		width: 30px;
+		height: 1px;
+	}
+	.editablecARD > .editableContent > .seclowehalf {
+		height: 53px;
+	}
+
+	.editablecARD
+		> .editableContent
+		> .lowerhalf
+		> .leftinputs
+		> .fieldsContainer
+		> input {
+		height: 29px;
+		font-size: 15px;
+	}
+}
