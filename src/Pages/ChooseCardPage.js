@@ -456,7 +456,7 @@ const ChooseCardPage = () => {
 				<div
 					style={{ margin: "50px auto" }}
 					className='row d-flex h-100 w-100 gx-0'>
-					<div className='col-12 col-md-6  h-100 d-flex align-items-center flex-column justify-content-center'>
+					<div className='col-12 col-md-8  h-100 d-flex align-items-center flex-column justify-content-center'>
 						{/* Editor Start */}
 
 						{/*Editor start */}
@@ -1252,6 +1252,7 @@ const ChooseCardPage = () => {
 															placeholder='image'
 															hidden
 															type='file'
+															accept='image/png,image/jpg,image/jpeg'
 															onChange={handleUpload}
 														/>
 														<img src={carddataImages?.imglink} alt='title' />
@@ -1506,7 +1507,7 @@ const ChooseCardPage = () => {
 
 						{/*Editor End */}
 					</div>
-					<div className='col-12 col-md-6 mx-auto h-100'>
+					<div className='col-12 col-md-4 mx-auto h-100'>
 						<CommonChooseCard title={dbTranslator("chooseard")}>
 							<div className='col-12 h-100'>
 								<div

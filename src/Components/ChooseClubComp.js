@@ -59,6 +59,7 @@ const ChooseClubComp = ({
 									type='file'
 									id='file'
 									hidden
+									accept='image/png,image/jpg,image/jpeg'
 									onChange={(e) => clubFlagUploader(e)}
 								/>
 								<div className='d-flex align-items-center justify-content-center smallBtnsSettings'>
