@@ -8,6 +8,7 @@ import {
 	setFootballCards,
 	setLanguages,
 	setOtherProducts,
+	setBanner,
 } from "./store/projectSlice";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -25,15 +26,20 @@ function App() {
 	const changeLanguage = (code) => {
 		i18n.changeLanguage(code);
 	};
-	const fetchstatus = async () => {
-		await get(child(ref(getDatabase()), "/checigvalue/status")).then(
-			(snapshot) => {
-				let result = snapshot.val();
-				setwebstatus(result);
-			}
-		);
-	};
 	useEffect(() => {
+		const fetchstatus = async () => {
+			get(child(ref(getDatabase()), "/bannerimg/banner")).then((snapshot) => {
+				let result = snapshot.val();
+				dispatch(setBanner({ banner: result }));
+			});
+			await get(child(ref(getDatabase()), "/checigvalue/status")).then(
+				(snapshot) => {
+					let result = snapshot.val();
+					setwebstatus(result);
+				}
+			);
+		};
+
 		const fetchAuth = async () => {
 			const checkAuth = await window.localStorage.getItem("upcradWebAuth");
 			const finalrest = checkAuth ? JSON.parse(checkAuth) : null;

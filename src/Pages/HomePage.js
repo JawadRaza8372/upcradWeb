@@ -9,7 +9,6 @@ import instaImag7 from "../ownassets/insta7.jpg";
 import instaImag8 from "../ownassets/insta8.jpg";
 import startedimage from "../ownassets/image 18.png";
 import FootballCards from "../Components/FootballCards";
-import firstimg from "../ownassets/firstsesion.jpg";
 import secssion from "../ownassets/secsesion.png";
 import service1 from "../ownassets/servis1.png";
 import service2 from "../ownassets/servis2.png";
@@ -40,9 +39,8 @@ import ServiceMiniCard from "../Components/ServiceMiniCard";
 import { useSelector } from "react-redux";
 import { CustomHook } from "../CustomHook/CustomHook";
 import OurServicesCard from "../Components/OurServicesCard";
-//import AdsComp from "../Components/AdsComp";
 const HomePage = () => {
-	const { footballCards, otherProducts } = useSelector(
+	const { footballCards, otherProducts, banner } = useSelector(
 		(state) => state.project
 	);
 	const { dbTranslator } = CustomHook();
@@ -193,7 +191,7 @@ const HomePage = () => {
 	return (
 		<>
 			{/*First Container */}
-			<div className='firstContWrapper'>
+			<div id='mainSection' className='firstContWrapper'>
 				<div className='allCenter flex-column firstCont'>
 					<div className='col-12 mx-auto h-100'>
 						<div className='row h-100 m-0'>
@@ -231,8 +229,10 @@ const HomePage = () => {
 										margin: "20px auto",
 										marginBottom: "10px",
 										width: "100%",
+										objectFit: "contain",
+										height: "226px",
 									}}
-									src={firstimg}
+									src={banner}
 									alt='first sectionimage'
 								/>
 								{/* <button

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import localimg from "../ownassets/firstsesion.jpg";
 const initialState = {
 	footballCards: [],
 	otherProducts: [],
@@ -9,6 +9,7 @@ const initialState = {
 	deliveryInfo: {},
 	clientSecret: null,
 	languages: {},
+	banner: localimg,
 };
 
 export const projectSlice = createSlice({
@@ -64,6 +65,13 @@ export const projectSlice = createSlice({
 				state.clientSecret = action.payload.clientSecret;
 			}
 		},
+		setBanner: (state, action) => {
+			if (action.payload.banner === null) {
+				state.banner = localimg;
+			} else {
+				state.banner = action.payload.banner;
+			}
+		},
 	},
 });
 
@@ -75,6 +83,7 @@ export const {
 	setCartItems,
 	setDeliveryInfo,
 	setClientSecretId,
+	setBanner,
 } = projectSlice.actions;
 
 export default projectSlice.reducer;

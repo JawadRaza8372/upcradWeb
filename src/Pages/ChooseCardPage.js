@@ -457,7 +457,9 @@ const ChooseCardPage = () => {
 					style={{ margin: "50px auto" }}
 					className='row d-flex h-100 w-100 gx-0'>
 					<div className='col-12 col-md-8  h-100 d-flex align-items-center flex-column justify-content-center'>
-						{/* Editor Start */}
+						<p className='respiveLabel mainColor w-100'>
+							{dbTranslator("appPagetxt")}
+						</p>
 
 						{/*Editor start */}
 						{previewOn ? (
@@ -1484,7 +1486,7 @@ const ChooseCardPage = () => {
 											}}
 											onClick={() => setpreviewOn(true)}
 											className='btn mainColor secondarybg'>
-											{dbTranslator("preview")}
+											{dbTranslator("downpng")}
 										</button>
 									</div>
 									<div className='col-12 col-md-6 d-flex align-items-center justify-content-center'>

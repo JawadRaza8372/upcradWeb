@@ -70,19 +70,32 @@ const CustomNavbar = ({ changeLanguage }) => {
 				expand={"lg"}
 				className='my-1 w-100'>
 				<Container>
-					<div style={{ width: "fit-content" }} className='allCenter flex-row'>
+					<div style={{ width: "auto", flex: "1" }} className='d-flex'>
 						<Navbar.Toggle aria-controls={`offcanvasNavbar-expand-lg`} />
 
-						<NavLink
-							style={{ marginRight: "0px" }}
-							className='navbar-brand d-flex align-items-center h-100'
-							to='/'>
+						<button
+							onClick={() => {
+								navigate("/");
+								const section = document.querySelector("#mainSection");
+								section?.scrollIntoView({
+									behavior: "smooth",
+									block: "end",
+									inline: "nearest",
+								});
+							}}
+							style={{
+								marginRight: "0px",
+								width: "auto",
+								flex: "1",
+								background: "transparent",
+							}}
+							className='navbar-brand d-flex nillbtn align-items-center h-100'>
 							<img
 								style={{ objectFit: "contain", height: "50px" }}
 								src={logoimg}
 								alt='logo'
 							/>
-						</NavLink>
+						</button>
 					</div>
 					<div className='d-flex d-lg-none'>
 						<NavLink
