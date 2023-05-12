@@ -20,7 +20,6 @@ import { CardCustomization1 } from "../Pages/CardCustomization1";
 const FileRoutes = () => {
 	return (
 		<Routes>
-			<Route path='/' element={<HomePage />} />
 			<Route path='/cards' element={<ChooseCardPage />} />
 			<Route path='/auth' element={<LoginSignUp />} />
 			<Route path='/profile' element={<ProfileScreen />} />
@@ -35,7 +34,7 @@ const FileRoutes = () => {
 			<Route path='/privacy' element={<PrivacyPage />} />
 			<Route path='/contact' element={<ContactUsPage />} />
 			<Route path='/return' element={<ReturnPolicyPage />} />
-
+			<Route path='/' element={<HomePage />} />
 			<Route path='*' element={<ErrorPage />} />
 		</Routes>
 	);

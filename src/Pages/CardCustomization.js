@@ -16,6 +16,7 @@ import { setClubs } from "../store/projectSlice";
 import { getDatabase, ref, child, get } from "firebase/database";
 import { uploadImage } from "../Database/Database";
 import CustomLargeLoader from "../Components/CustomLargeLoader";
+import ContinueShopping from "../Components/ContinueShopping";
 export const CardCustomization = () => {
 	const { dbTranslator } = CustomHook();
 	const [isbigloading, setisbigloading] = useState(false);
@@ -51,6 +52,7 @@ export const CardCustomization = () => {
 		name: "",
 		code: "",
 	});
+
 	const [clubFlag, setClubFlag] = useState({
 		badge: "",
 		name: "",
@@ -61,6 +63,8 @@ export const CardCustomization = () => {
 	let ratting = Math.floor(rattingdata);
 	let decimalpoint = rattingdata - ratting;
 	const { id } = useParams();
+	const [openModal, setopenModal] = useState(false);
+	const [finalImage, setFinalImage] = useState("");
 	const getData = footballCards?.filter((dat) => dat.id === id);
 	const currentData = getData?.length > 0 ? getData[0] : {};
 	const navigate = useNavigate();
@@ -232,7 +236,7 @@ export const CardCustomization = () => {
 			progress: undefined,
 			theme: "light",
 		});
-		navigate("/cart");
+		setopenModal(true);
 	};
 	const nextBtnFunc = async () => {
 		if (compSeq === 0) {
@@ -320,6 +324,7 @@ export const CardCustomization = () => {
 				setisbigloading(true);
 				const rest = await uploadImage(result);
 				if (rest?.data) {
+					setFinalImage(result);
 					addToCartFunction(rest?.data);
 				} else {
 					console.log(rest?.error);
@@ -344,6 +349,12 @@ export const CardCustomization = () => {
 	} else {
 		return (
 			<>
+				<ContinueShopping
+					title={currentData?.title}
+					imgSrc={finalImage}
+					show={openModal}
+					hide={() => setopenModal(false)}
+				/>
 				<div
 					className='col-10 mx-auto'
 					style={{

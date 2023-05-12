@@ -127,6 +127,7 @@ const ChooseCardPage = () => {
 		};
 		getclubs();
 	});
+
 	const [carddata, setcarddata] = useState({
 		overallRatting: "98",
 		mainPosition: "POR",
@@ -215,7 +216,6 @@ const ChooseCardPage = () => {
 			return clubs;
 		}
 	};
-	const [previewOn, setpreviewOn] = useState(false);
 	const newDownloadBrandNewFunction = () => {
 		const uri = stageRef.current.toDataURL({ pixelRatio: 3 });
 		setshowAds(true);
@@ -460,7 +460,9 @@ const ChooseCardPage = () => {
 				<div
 					style={{ margin: "50px auto" }}
 					className='row d-flex h-100 w-100 gx-0'>
-					<div className='col-12 col-md-8  h-100 d-flex align-items-center flex-column justify-content-center'>
+					<div
+						id='topdiv'
+						className='col-12 col-md-8  h-100 d-flex align-items-center flex-column justify-content-center'>
 						<p
 							className='respiveLabel mainColor w-100'
 							style={{ textAlign: "center" }}>
@@ -468,1057 +470,1017 @@ const ChooseCardPage = () => {
 						</p>
 
 						{/*Editor start */}
-
-						{previewOn ? (
-							<>
-								<div className='d-none d-sm-block allCenter'>
-									<Stage
-										ref={stageRef}
-										width={377}
-										height={599}
-										className='mx-auto'>
-										<Layer>
-											<Image
-												x={0}
-												y={0}
-												height={599}
-												width={377}
-												image={image}
+						<div style={{ position: "relative" }}>
+							<div className='editableContent'>
+								<div className='upperhalf'>
+									<div className='inputConatiners'>
+										<div className='blackcontainer'>
+											<input
+												maxLength={2}
+												placeholder='00'
+												value={carddata?.overallRatting}
+												onChange={(e) => {
+													e.target.setSelectionRange(
+														e.target.value.length,
+														e.target.value.length
+													);
+													setcarddata({
+														...carddata,
+														overallRatting: e.target.value,
+													});
+												}}
 											/>
-											<Line
-												x={74}
-												y={196}
-												points={[0, 0, 40, 0]}
-												stroke={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
+											<input
+												maxLength={3}
+												placeholder='PS'
+												value={carddata?.mainPosition}
+												onChange={(e) => {
+													e.target.setSelectionRange(
+														e.target.value.length,
+														e.target.value.length
+													);
+													setcarddata({
+														...carddata,
+														mainPosition: e.target.value,
+													});
+												}}
 											/>
-											<Line
-												x={74}
-												y={250}
-												points={[0, 0, 40, 0]}
-												stroke={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-											/>
-											<Line
-												x={165}
-												y={515}
-												points={[0, 0, 47, 0]}
-												stroke={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-											/>
-											<Line
-												x={72}
-												y={380}
-												points={[0, 0, 230, 0]}
-												stroke={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-											/>
-											<Line
-												x={186}
-												y={398}
-												points={[0, 0, 0, 107]}
-												stroke={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={70}
-												y={395}
-												fill={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-												text={`${carddata?.subpValue1}`}
-												fontSize={26}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontFamily='MYbold'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={120}
-												y={395}
-												fill={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-												text={`${carddata?.subp1}`}
-												fontSize={26}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontFamily='NormalFont'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={70}
-												y={435}
-												fill={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-												text={`${carddata?.subpValue2}`}
-												fontSize={26}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontFamily='MYbold'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={120}
-												y={435}
-												fill={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-												text={`${carddata?.subp2}`}
-												fontSize={26}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontFamily='NormalFont'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={70}
-												y={475}
-												fill={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-												text={`${carddata?.subpValue3}`}
-												fontSize={26}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontFamily='MYbold'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={120}
-												y={475}
-												fill={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-												text={`${carddata?.subp3}`}
-												fontSize={26}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontFamily='NormalFont'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={190}
-												y={395}
-												fill={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-												text={`${carddata?.subpValue4}`}
-												fontSize={26}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontFamily='MYbold'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={240}
-												y={395}
-												fill={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-												text={`${carddata?.subp4}`}
-												fontSize={26}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontFamily='NormalFont'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={190}
-												y={435}
-												fill={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-												text={`${carddata?.subpValue5}`}
-												fontSize={26}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontFamily='MYbold'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={240}
-												y={435}
-												fill={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-												text={`${carddata?.subp5}`}
-												fontSize={26}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontFamily='NormalFont'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={190}
-												y={475}
-												fill={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-												text={`${carddata?.subpValue6}`}
-												fontSize={26}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontFamily='MYbold'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={240}
-												y={475}
-												fill={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-												text={`${carddata?.subp6}`}
-												fontSize={26}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontFamily='NormalFont'
-											/>
-											<Text
-												width={220}
-												height={40}
-												x={80}
-												y={337}
-												fill={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-												text={`${carddata?.name}`}
-												fontSize={40}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontStyle={"bold"}
-												fontFamily='MYbold'
-											/>
-											<Text
-												width={60}
-												height={50}
-												x={65}
-												y={110}
-												fill={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-												text={`${
-													carddata?.overallRatting
-														? carddata?.overallRatting
-														: ""
-												}`}
-												fontSize={56}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontFamily='NormalFont'
-											/>
-											<Text
-												width={50}
-												height={40}
-												x={70}
-												y={155}
-												fill={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-												text={`${carddata?.mainPosition}`}
-												fontSize={28}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontFamily='NormalFont'
-											/>
-											<Image
-												x={71.5}
-												y={210}
-												height={35}
-												width={45}
-												image={countryflagavtar}
-												scale={{ x: 1, y: 0.8 }}
-											/>
-											<Image
-												x={73}
-												y={260}
-												height={45}
-												width={45}
-												image={clubFlagavtar}
-												scale={{ x: 1, y: 1 }}
-											/>
-											<Image
-												x={140}
-												y={115}
-												height={185}
-												width={220}
-												image={useravtar}
-												scale={{ x: 0.8, y: 1.1 }}
-											/>
-										</Layer>
-									</Stage>
-								</div>
-								<div className='d-block d-sm-none allCenter'>
-									<Stage
-										ref={stageRef}
-										width={270}
-										height={400}
-										className='mx-auto'>
-										<Layer>
-											<Image
-												x={0}
-												y={0}
-												height={400}
-												width={270}
-												image={image}
-											/>
-											<Line
-												x={54}
-												y={130}
-												points={[0, 0, 27, 0]}
-												stroke={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-											/>
-											<Line
-												x={54}
-												y={168}
-												points={[0, 0, 27, 0]}
-												stroke={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-											/>
-											<Line
-												x={117}
-												y={343}
-												points={[0, 0, 36, 0]}
-												stroke={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-											/>
-											<Line
-												x={50}
-												y={254}
-												points={[0, 0, 166, 0]}
-												stroke={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-											/>
-											<Line
-												x={133.3}
-												y={266}
-												points={[0, 0, 0, 71]}
-												stroke={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={30}
-												y={260}
-												fill={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-												text={`${carddata?.subpValue1}`}
-												fontSize={19}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontStyle={""}
-												fontFamily='MYbold'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={80}
-												y={260}
-												fill={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-												text={`${carddata?.subp1}`}
-												fontSize={19}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontStyle={""}
-												fontFamily='NormalFont'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={30}
-												y={287}
-												fill={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-												text={`${carddata?.subpValue2}`}
-												fontSize={19}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontStyle={""}
-												fontFamily='MYbold'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={80}
-												y={287}
-												fill={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-												text={`${carddata?.subp2}`}
-												fontSize={19}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontStyle={""}
-												fontFamily='NormalFont'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={30}
-												y={312}
-												fill={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-												text={`${carddata?.subpValue3}`}
-												fontSize={19}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontStyle={""}
-												fontFamily='MYbold'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={80}
-												y={312}
-												fill={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-												text={`${carddata?.subp3}`}
-												fontSize={19}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontStyle={""}
-												fontFamily='NormalFont'
-											/>
-
-											<Text
-												width={50}
-												height={30}
-												x={135}
-												y={260}
-												fill={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-												text={`${carddata?.subpValue4}`}
-												fontSize={19}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontStyle={""}
-												fontFamily='MYbold'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={185}
-												y={260}
-												fill={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-												text={`${carddata?.subp4}`}
-												fontSize={19}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontStyle={""}
-												fontFamily='NormalFont'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={135}
-												y={287}
-												fill={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-												text={`${carddata?.subpValue5}`}
-												fontSize={19}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontStyle={""}
-												fontFamily='MYbold'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={185}
-												y={287}
-												fill={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-												text={`${carddata?.subp5}`}
-												fontSize={19}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontStyle={""}
-												fontFamily='NormalFont'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={135}
-												y={312}
-												fill={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-												text={`${carddata?.subpValue6}`}
-												fontSize={19}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontStyle={""}
-												fontFamily='MYbold'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={185}
-												y={312}
-												fill={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-												text={`${carddata?.subp6}`}
-												fontSize={19}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontStyle={""}
-												fontFamily='NormalFont'
-											/>
-
-											<Text
-												width={220}
-												height={40}
-												x={23}
-												y={218}
-												fill={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-												text={`${carddata?.name}`}
-												fontSize={28}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontStyle={"bold"}
-												fontFamily='MYbold'
-											/>
-											<Text
-												width={60}
-												height={50}
-												x={40}
-												y={64}
-												fill={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-												text={`${
-													carddata?.overallRatting
-														? carddata?.overallRatting
-														: ""
-												}`}
-												fontSize={38}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontStyle={""}
-												fontFamily='NormalFont'
-											/>
-											<Text
-												width={50}
-												height={40}
-												x={43}
-												y={97}
-												fill={
-													selectedCard?.textColor
-														? selectedCard?.textColor
-														: "white"
-												}
-												text={`${carddata?.mainPosition}`}
-												fontSize={22}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontFamily='NormalFont'
-												fontStyle={"normal"}
-											/>
-											<Image
-												x={52}
-												y={138}
-												height={23}
-												width={30}
-												image={countryflagavtar}
-												scale={{ x: 1, y: 0.9 }}
-											/>
-											<Image
-												x={53}
-												y={172}
-												height={30}
-												width={30}
-												image={clubFlagavtar}
-												scale={{ x: 1, y: 1 }}
-											/>
-											<Image
-												x={105}
-												y={80}
-												height={120}
-												width={150}
-												image={useravtar}
-												scale={{ x: 0.8, y: 1.1 }}
-											/>
-										</Layer>
-									</Stage>
-								</div>
-								<div
-									className='row w-100 mx-auto'
-									style={{ marginTop: "30px" }}>
-									<div className='col-12 col-md-6 d-flex align-items-center justify-content-center'>
-										<button
-											style={{
-												width: "100%",
-												maxWidth: "180px",
-												textDecoration: "none !important",
-												marginBottom: "20px",
-												textTransform: "initial",
-											}}
-											onClick={() => setpreviewOn(false)}
-											className='btn mainColor secondarybg'>
-											{dbTranslator("editor")}
-										</button>
-									</div>
-									<div className='col-12 col-md-6 d-flex align-items-center justify-content-center'>
-										<button
-											style={{
-												width: "100%",
-												maxWidth: "180px",
-												textDecoration: "none !important",
-												marginBottom: "20px",
-												textTransform: "initial",
-											}}
-											onClick={newDownloadBrandNewFunction}
-											className='btn mainColor thirdbg'>
-											{dbTranslator("downpng")}
-										</button>
-									</div>
-								</div>
-							</>
-						) : (
-							<>
-								<div className='editablecARD'>
-									<img
-										crossOrigin='anonymous'
-										src={selectedCard?.imgSrc}
-										alt='text'
-									/>
-									<div className='editableContent'>
-										<div className='upperhalf'>
-											<div className='inputConatiners'>
-												<div className='blackcontainer'>
-													<input
-														maxLength={2}
-														placeholder='00'
-														style={{ color: selectedCard?.textColor }}
-														value={carddata?.overallRatting}
-														onChange={(e) => {
-															setcarddata({
-																...carddata,
-																overallRatting: e.target.value,
-															});
-														}}
+											<div className='smallImg my-1'>
+												<button
+													onClick={() => setshowCountry(true)}
+													className='smallSelctors'>
+													<img
+														src={
+															"https://upload.wikimedia.org/wikipedia/commons/8/89/HD_transparent_picture.png"
+														}
+														alt='country'
 													/>
-													<input
-														maxLength={3}
-														placeholder='PS'
-														style={{ color: selectedCard?.textColor }}
-														value={carddata?.mainPosition}
-														onChange={(e) => {
-															setcarddata({
-																...carddata,
-																mainPosition: e.target.value,
-															});
-														}}
-													/>
-													<div
-														className='smallLinehh'
-														style={{ background: selectedCard?.textColor }}
-													/>
-													<div className='smallImg'>
-														<button
-															onClick={() => setshowCountry(true)}
-															className='smallSelctors'>
-															<img
-																src={carddataImages?.country}
-																alt='country'
-															/>
-														</button>
-													</div>
-													<div
-														className='smallLinehh'
-														style={{ background: selectedCard?.textColor }}
-													/>
-													<div className='smallImg'>
-														<button
-															onClick={() => setshowClubs(true)}
-															className='smallSelctors'>
-															<img src={carddataImages?.team} alt='country' />
-														</button>
-													</div>
-												</div>
-												<div className='imgContainer'>
-													<label htmlFor='file'>
-														<input
-															id='file'
-															placeholder='image'
-															hidden
-															type='file'
-															accept='image/png,image/jpg,image/jpeg'
-															onChange={handleUpload}
-														/>
-														<img src={carddataImages?.imglink} alt='title' />
-													</label>
-												</div>
+												</button>
 											</div>
-											<div className='nameContaiber'>
+											<div className='smallImg'>
+												<button
+													onClick={() => setshowClubs(true)}
+													className='smallSelctors'>
+													<img
+														src={
+															"https://upload.wikimedia.org/wikipedia/commons/8/89/HD_transparent_picture.png"
+														}
+														alt='country'
+													/>
+												</button>
+											</div>
+										</div>
+										<div className='imgContainer'>
+											<label htmlFor='file'>
 												<input
-													maxLength={12}
-													placeholder='Your Name'
-													style={{ color: selectedCard?.textColor }}
-													value={carddata?.name}
-													onChange={(e) => {
-														setcarddata({
-															...carddata,
-															name: e.target.value,
-														});
-													}}
+													id='file'
+													placeholder='image'
+													hidden
+													type='file'
+													accept='image/png,image/jpg,image/jpeg'
+													onChange={handleUpload}
 												/>
-												<div
-													className='largelinh'
-													style={{ background: selectedCard?.textColor }}
+												<img
+													src={
+														"https://upload.wikimedia.org/wikipedia/commons/8/89/HD_transparent_picture.png"
+													}
+													alt='title'
 												/>
-											</div>
-										</div>
-										<div className='lowerhalf'>
-											<div className='leftinputs'>
-												<div className='fieldsContainer'>
-													<input
-														maxLength={2}
-														placeholder='00'
-														style={{
-															fontWeight: "bold",
-															color: selectedCard?.textColor,
-														}}
-														value={carddata?.subpValue1}
-														onChange={(e) => {
-															setcarddata({
-																...carddata,
-																subpValue1: e.target.value,
-															});
-														}}
-													/>
-													<input
-														maxLength={3}
-														placeholder='PS1'
-														style={{ color: selectedCard?.textColor }}
-														value={carddata?.subp1}
-														onChange={(e) => {
-															setcarddata({
-																...carddata,
-																subp1: e.target.value,
-															});
-														}}
-													/>
-												</div>
-												<div className='fieldsContainer'>
-													<input
-														maxLength={2}
-														placeholder='00'
-														style={{
-															fontWeight: "bold",
-															color: selectedCard?.textColor,
-														}}
-														value={carddata?.subpValue2}
-														onChange={(e) => {
-															setcarddata({
-																...carddata,
-																subpValue2: e.target.value,
-															});
-														}}
-													/>
-													<input
-														maxLength={3}
-														placeholder='PS1'
-														style={{ color: selectedCard?.textColor }}
-														value={carddata?.subp2}
-														onChange={(e) => {
-															setcarddata({
-																...carddata,
-																subp2: e.target.value,
-															});
-														}}
-													/>
-												</div>
-												<div className='fieldsContainer'>
-													<input
-														maxLength={2}
-														placeholder='00'
-														style={{
-															fontWeight: "bold",
-															color: selectedCard?.textColor,
-														}}
-														value={carddata?.subpValue3}
-														onChange={(e) => {
-															setcarddata({
-																...carddata,
-																subpValue3: e.target.value,
-															});
-														}}
-													/>
-													<input
-														maxLength={3}
-														placeholder='PS1'
-														style={{ color: selectedCard?.textColor }}
-														value={carddata?.subp3}
-														onChange={(e) => {
-															setcarddata({
-																...carddata,
-																subp3: e.target.value,
-															});
-														}}
-													/>
-												</div>
-											</div>
-											<div
-												className='verticalLine'
-												style={{ background: selectedCard?.textColor }}
-											/>
-											<div className='leftinputs'>
-												<div className='fieldsContainer'>
-													<input
-														maxLength={2}
-														placeholder='00'
-														value={carddata?.subpValue4}
-														style={{
-															fontWeight: "bold",
-															color: selectedCard?.textColor,
-														}}
-														onChange={(e) => {
-															setcarddata({
-																...carddata,
-																subpValue4: e.target.value,
-															});
-														}}
-													/>
-													<input
-														maxLength={3}
-														placeholder='PS1'
-														style={{ color: selectedCard?.textColor }}
-														value={carddata?.subp4}
-														onChange={(e) => {
-															setcarddata({
-																...carddata,
-																subp4: e.target.value,
-															});
-														}}
-													/>
-												</div>
-												<div className='fieldsContainer'>
-													<input
-														maxLength={2}
-														placeholder='00'
-														value={carddata?.subpValue5}
-														style={{
-															fontWeight: "bold",
-															color: selectedCard?.textColor,
-														}}
-														onChange={(e) => {
-															setcarddata({
-																...carddata,
-																subpValue5: e.target.value,
-															});
-														}}
-													/>
-													<input
-														maxLength={3}
-														placeholder='PS1'
-														style={{ color: selectedCard?.textColor }}
-														value={carddata?.subp5}
-														onChange={(e) => {
-															setcarddata({
-																...carddata,
-																subp5: e.target.value,
-															});
-														}}
-													/>
-												</div>
-												<div className='fieldsContainer'>
-													<input
-														maxLength={2}
-														placeholder='00'
-														value={carddata?.subpValue6}
-														style={{
-															fontWeight: "bold",
-															color: selectedCard?.textColor,
-														}}
-														onChange={(e) => {
-															setcarddata({
-																...carddata,
-																subpValue6: e.target.value,
-															});
-														}}
-													/>
-													<input
-														maxLength={3}
-														placeholder='PS1'
-														style={{ color: selectedCard?.textColor }}
-														value={carddata?.subp6}
-														onChange={(e) => {
-															setcarddata({
-																...carddata,
-																subp6: e.target.value,
-															});
-														}}
-													/>
-												</div>
-											</div>
-										</div>
-										<div className='seclowehalf'>
-											<div
-												className='smallestLineh'
-												style={{ background: selectedCard?.textColor }}
-											/>
+											</label>
 										</div>
 									</div>
-								</div>
-								<div
-									className='row w-100 mx-auto'
-									style={{ marginTop: "30px" }}>
-									<div className='col-12 col-md-6 d-flex align-items-center justify-content-center'>
-										<button
-											style={{
-												width: "100%",
-												maxWidth: "180px",
-												textDecoration: "none !important",
-												marginBottom: "20px",
-												textTransform: "initial",
-											}}
-											onClick={() => setpreviewOn(true)}
-											className='btn mainColor secondarybg'>
-											{dbTranslator("downpng")}
-										</button>
-									</div>
-									<div className='col-12 col-md-6 d-flex align-items-center justify-content-center'>
-										<button
-											style={{
-												width: "100%",
-												maxWidth: "180px",
-												marginBottom: "20px",
-											}}
-											onClick={() => {
-												dispatch(setCardInfo({ cardinfo: carddata }));
-												dispatch(
-													setCardInfoImages({
-														cardInfoImages: carddataImages,
-													})
+									<div className='nameContaiber'>
+										<input
+											maxLength={12}
+											placeholder='Your Name'
+											value={carddata?.name}
+											onChange={(e) => {
+												e.target.setSelectionRange(
+													e.target.value.length,
+													e.target.value.length
 												);
-												navigate(`/cardCustomization1/${selectedCard?.id}`);
+												setcarddata({
+													...carddata,
+													name: e.target.value,
+												});
 											}}
-											className='btn mainColor thirdbg'>
-											{dbTranslator("buyphy")}
-										</button>
+										/>
 									</div>
 								</div>
-							</>
-						)}
+								<div className='lowerhalf'>
+									<div className='leftinputs'>
+										<div className='fieldsContainer'>
+											<input
+												maxLength={2}
+												placeholder='00'
+												value={carddata?.subpValue1}
+												onChange={(e) => {
+													e.target.setSelectionRange(
+														e.target.value.length,
+														e.target.value.length
+													);
+													setcarddata({
+														...carddata,
+														subpValue1: e.target.value,
+													});
+												}}
+											/>
+											<input
+												maxLength={3}
+												placeholder='PS1'
+												value={carddata?.subp1}
+												onChange={(e) => {
+													e.target.setSelectionRange(
+														e.target.value.length,
+														e.target.value.length
+													);
+													setcarddata({
+														...carddata,
+														subp1: e.target.value,
+													});
+												}}
+											/>
+										</div>
+										<div className='fieldsContainer'>
+											<input
+												maxLength={2}
+												placeholder='00'
+												value={carddata?.subpValue2}
+												onChange={(e) => {
+													e.target.setSelectionRange(
+														e.target.value.length,
+														e.target.value.length
+													);
+													setcarddata({
+														...carddata,
+														subpValue2: e.target.value,
+													});
+												}}
+											/>
+											<input
+												maxLength={3}
+												placeholder='PS1'
+												value={carddata?.subp2}
+												onChange={(e) => {
+													e.target.setSelectionRange(
+														e.target.value.length,
+														e.target.value.length
+													);
+													setcarddata({
+														...carddata,
+														subp2: e.target.value,
+													});
+												}}
+											/>
+										</div>
+										<div className='fieldsContainer'>
+											<input
+												maxLength={2}
+												placeholder='00'
+												value={carddata?.subpValue3}
+												onChange={(e) => {
+													e.target.setSelectionRange(
+														e.target.value.length,
+														e.target.value.length
+													);
+													setcarddata({
+														...carddata,
+														subpValue3: e.target.value,
+													});
+												}}
+											/>
+											<input
+												maxLength={3}
+												placeholder='PS1'
+												value={carddata?.subp3}
+												onChange={(e) => {
+													e.target.setSelectionRange(
+														e.target.value.length,
+														e.target.value.length
+													);
+													setcarddata({
+														...carddata,
+														subp3: e.target.value,
+													});
+												}}
+											/>
+										</div>
+									</div>
+									<div className='verticalLine' />
+									<div className='leftinputs'>
+										<div className='fieldsContainer'>
+											<input
+												maxLength={2}
+												placeholder='00'
+												value={carddata?.subpValue4}
+												onChange={(e) => {
+													e.target.setSelectionRange(
+														e.target.value.length,
+														e.target.value.length
+													);
+													setcarddata({
+														...carddata,
+														subpValue4: e.target.value,
+													});
+												}}
+											/>
+											<input
+												maxLength={3}
+												placeholder='PS1'
+												value={carddata?.subp4}
+												onChange={(e) => {
+													e.target.setSelectionRange(
+														e.target.value.length,
+														e.target.value.length
+													);
+													setcarddata({
+														...carddata,
+														subp4: e.target.value,
+													});
+												}}
+											/>
+										</div>
+										<div className='fieldsContainer'>
+											<input
+												maxLength={2}
+												placeholder='00'
+												value={carddata?.subpValue5}
+												onChange={(e) => {
+													e.target.setSelectionRange(
+														e.target.value.length,
+														e.target.value.length
+													);
+													setcarddata({
+														...carddata,
+														subpValue5: e.target.value,
+													});
+												}}
+											/>
+											<input
+												maxLength={3}
+												placeholder='PS1'
+												value={carddata?.subp5}
+												onChange={(e) => {
+													e.target.setSelectionRange(
+														e.target.value.length,
+														e.target.value.length
+													);
+													setcarddata({
+														...carddata,
+														subp5: e.target.value,
+													});
+												}}
+											/>
+										</div>
+										<div className='fieldsContainer'>
+											<input
+												maxLength={2}
+												placeholder='00'
+												value={carddata?.subpValue6}
+												onChange={(e) => {
+													e.target.setSelectionRange(
+														e.target.value.length,
+														e.target.value.length
+													);
+													setcarddata({
+														...carddata,
+														subpValue6: e.target.value,
+													});
+												}}
+											/>
+											<input
+												maxLength={3}
+												placeholder='PS1'
+												value={carddata?.subp6}
+												onChange={(e) => {
+													e.target.setSelectionRange(
+														e.target.value.length,
+														e.target.value.length
+													);
+													setcarddata({
+														...carddata,
+														subp6: e.target.value,
+													});
+												}}
+											/>
+										</div>
+									</div>
+								</div>
+								<div className='seclowehalf'>
+									<div className='smallestLineh' />
+								</div>
+							</div>
+
+							<div className='d-none d-sm-block allCenter'>
+								<Stage
+									ref={stageRef}
+									width={377}
+									height={599}
+									className='mx-auto'>
+									<Layer>
+										<Image x={0} y={0} height={599} width={377} image={image} />
+										<Line
+											x={74}
+											y={196}
+											points={[0, 0, 40, 0]}
+											stroke={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+										/>
+										<Line
+											x={74}
+											y={250}
+											points={[0, 0, 40, 0]}
+											stroke={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+										/>
+										<Line
+											x={165}
+											y={515}
+											points={[0, 0, 47, 0]}
+											stroke={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+										/>
+										<Line
+											x={72}
+											y={380}
+											points={[0, 0, 230, 0]}
+											stroke={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+										/>
+										<Line
+											x={186}
+											y={398}
+											points={[0, 0, 0, 107]}
+											stroke={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={70}
+											y={395}
+											fill={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+											text={`${carddata?.subpValue1}`}
+											fontSize={26}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontFamily='MYbold'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={120}
+											y={395}
+											fill={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+											text={`${carddata?.subp1}`}
+											fontSize={26}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontFamily='NormalFont'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={70}
+											y={435}
+											fill={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+											text={`${carddata?.subpValue2}`}
+											fontSize={26}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontFamily='MYbold'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={120}
+											y={435}
+											fill={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+											text={`${carddata?.subp2}`}
+											fontSize={26}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontFamily='NormalFont'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={70}
+											y={475}
+											fill={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+											text={`${carddata?.subpValue3}`}
+											fontSize={26}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontFamily='MYbold'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={120}
+											y={475}
+											fill={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+											text={`${carddata?.subp3}`}
+											fontSize={26}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontFamily='NormalFont'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={190}
+											y={395}
+											fill={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+											text={`${carddata?.subpValue4}`}
+											fontSize={26}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontFamily='MYbold'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={240}
+											y={395}
+											fill={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+											text={`${carddata?.subp4}`}
+											fontSize={26}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontFamily='NormalFont'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={190}
+											y={435}
+											fill={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+											text={`${carddata?.subpValue5}`}
+											fontSize={26}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontFamily='MYbold'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={240}
+											y={435}
+											fill={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+											text={`${carddata?.subp5}`}
+											fontSize={26}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontFamily='NormalFont'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={190}
+											y={475}
+											fill={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+											text={`${carddata?.subpValue6}`}
+											fontSize={26}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontFamily='MYbold'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={240}
+											y={475}
+											fill={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+											text={`${carddata?.subp6}`}
+											fontSize={26}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontFamily='NormalFont'
+										/>
+										<Text
+											width={220}
+											height={40}
+											x={80}
+											y={337}
+											fill={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+											text={`${carddata?.name}`}
+											fontSize={40}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontStyle={"bold"}
+											fontFamily='MYbold'
+										/>
+										<Text
+											width={60}
+											height={50}
+											x={65}
+											y={110}
+											fill={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+											text={`${
+												carddata?.overallRatting ? carddata?.overallRatting : ""
+											}`}
+											fontSize={56}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontFamily='NormalFont'
+										/>
+										<Text
+											width={50}
+											height={40}
+											x={70}
+											y={155}
+											fill={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+											text={`${carddata?.mainPosition}`}
+											fontSize={28}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontFamily='NormalFont'
+										/>
+										<Image
+											x={71.5}
+											y={210}
+											height={35}
+											width={45}
+											image={countryflagavtar}
+											scale={{ x: 1, y: 0.8 }}
+										/>
+										<Image
+											x={73}
+											y={260}
+											height={45}
+											width={45}
+											image={clubFlagavtar}
+											scale={{ x: 1, y: 1 }}
+										/>
+										<Image
+											x={140}
+											y={115}
+											height={185}
+											width={220}
+											image={useravtar}
+											scale={{ x: 0.8, y: 1.1 }}
+										/>
+									</Layer>
+								</Stage>
+							</div>
+							<div className='d-block d-sm-none allCenter'>
+								<Stage
+									ref={stageRef}
+									width={270}
+									height={400}
+									className='mx-auto'>
+									<Layer>
+										<Image x={0} y={0} height={400} width={270} image={image} />
+										<Line
+											x={54}
+											y={130}
+											points={[0, 0, 27, 0]}
+											stroke={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+										/>
+										<Line
+											x={54}
+											y={168}
+											points={[0, 0, 27, 0]}
+											stroke={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+										/>
+										<Line
+											x={117}
+											y={343}
+											points={[0, 0, 36, 0]}
+											stroke={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+										/>
+										<Line
+											x={50}
+											y={254}
+											points={[0, 0, 166, 0]}
+											stroke={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+										/>
+										<Line
+											x={133.3}
+											y={266}
+											points={[0, 0, 0, 71]}
+											stroke={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={30}
+											y={260}
+											fill={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+											text={`${carddata?.subpValue1}`}
+											fontSize={19}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontStyle={""}
+											fontFamily='MYbold'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={80}
+											y={260}
+											fill={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+											text={`${carddata?.subp1}`}
+											fontSize={19}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontStyle={""}
+											fontFamily='NormalFont'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={30}
+											y={287}
+											fill={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+											text={`${carddata?.subpValue2}`}
+											fontSize={19}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontStyle={""}
+											fontFamily='MYbold'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={80}
+											y={287}
+											fill={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+											text={`${carddata?.subp2}`}
+											fontSize={19}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontStyle={""}
+											fontFamily='NormalFont'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={30}
+											y={312}
+											fill={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+											text={`${carddata?.subpValue3}`}
+											fontSize={19}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontStyle={""}
+											fontFamily='MYbold'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={80}
+											y={312}
+											fill={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+											text={`${carddata?.subp3}`}
+											fontSize={19}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontStyle={""}
+											fontFamily='NormalFont'
+										/>
+
+										<Text
+											width={50}
+											height={30}
+											x={135}
+											y={260}
+											fill={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+											text={`${carddata?.subpValue4}`}
+											fontSize={19}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontStyle={""}
+											fontFamily='MYbold'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={185}
+											y={260}
+											fill={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+											text={`${carddata?.subp4}`}
+											fontSize={19}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontStyle={""}
+											fontFamily='NormalFont'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={135}
+											y={287}
+											fill={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+											text={`${carddata?.subpValue5}`}
+											fontSize={19}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontStyle={""}
+											fontFamily='MYbold'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={185}
+											y={287}
+											fill={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+											text={`${carddata?.subp5}`}
+											fontSize={19}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontStyle={""}
+											fontFamily='NormalFont'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={135}
+											y={312}
+											fill={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+											text={`${carddata?.subpValue6}`}
+											fontSize={19}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontStyle={""}
+											fontFamily='MYbold'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={185}
+											y={312}
+											fill={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+											text={`${carddata?.subp6}`}
+											fontSize={19}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontStyle={""}
+											fontFamily='NormalFont'
+										/>
+
+										<Text
+											width={220}
+											height={40}
+											x={23}
+											y={218}
+											fill={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+											text={`${carddata?.name}`}
+											fontSize={28}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontStyle={"bold"}
+											fontFamily='MYbold'
+										/>
+										<Text
+											width={60}
+											height={50}
+											x={40}
+											y={64}
+											fill={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+											text={`${
+												carddata?.overallRatting ? carddata?.overallRatting : ""
+											}`}
+											fontSize={38}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontStyle={""}
+											fontFamily='NormalFont'
+										/>
+										<Text
+											width={50}
+											height={40}
+											x={43}
+											y={97}
+											fill={
+												selectedCard?.textColor
+													? selectedCard?.textColor
+													: "white"
+											}
+											text={`${carddata?.mainPosition}`}
+											fontSize={22}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontFamily='NormalFont'
+											fontStyle={"normal"}
+										/>
+										<Image
+											x={52}
+											y={138}
+											height={23}
+											width={30}
+											image={countryflagavtar}
+											scale={{ x: 1, y: 0.9 }}
+										/>
+										<Image
+											x={53}
+											y={172}
+											height={30}
+											width={30}
+											image={clubFlagavtar}
+											scale={{ x: 1, y: 1 }}
+										/>
+										<Image
+											x={105}
+											y={80}
+											height={120}
+											width={150}
+											image={useravtar}
+											scale={{ x: 0.8, y: 1.1 }}
+										/>
+									</Layer>
+								</Stage>
+							</div>
+						</div>
+						<div className='row w-100 mx-auto' style={{ marginTop: "30px" }}>
+							<div className='col-12 col-md-6 d-flex align-items-center justify-content-center'>
+								<button
+									style={{
+										width: "100%",
+										maxWidth: "180px",
+										textDecoration: "none !important",
+										marginBottom: "20px",
+										textTransform: "initial",
+									}}
+									onClick={newDownloadBrandNewFunction}
+									className='btn mainColor secondarybg'>
+									{dbTranslator("downpng")}
+								</button>
+							</div>
+							<div className='col-12 col-md-6 d-flex align-items-center justify-content-center'>
+								<button
+									style={{
+										width: "100%",
+										maxWidth: "180px",
+										marginBottom: "20px",
+									}}
+									onClick={() => {
+										dispatch(setCardInfo({ cardinfo: carddata }));
+										dispatch(
+											setCardInfoImages({
+												cardInfoImages: carddataImages,
+											})
+										);
+										navigate(`/cardCustomization1/${selectedCard?.id}`);
+									}}
+									className='btn mainColor thirdbg'>
+									{dbTranslator("buyphy")}
+								</button>
+							</div>
+						</div>
+						{/*  */}
 
 						{/*Editor End */}
 					</div>
@@ -1537,7 +1499,15 @@ const ChooseCardPage = () => {
 											footballCards?.map((dat, index) => (
 												<>
 													<div
-														onClick={() => setselectedCard(dat)}
+														onClick={() => {
+															setselectedCard(dat);
+															const section = document.querySelector("#topdiv");
+															section?.scrollIntoView({
+																behavior: "smooth",
+																block: "end",
+																inline: "nearest",
+															});
+														}}
 														className={`col-6 col-md-4 d-flex align-items-center justify-content-center mb-2
 											}`}>
 														<div

@@ -23,6 +23,7 @@ const CustomNavbar = ({ changeLanguage }) => {
 	const { footballCards, otherProducts } = useSelector(
 		(state) => state.project
 	);
+	const { isAuth } = useSelector((state) => state.auth);
 	const filteredData = () => {
 		if (inputval !== "") {
 			let res1 = footballCards?.filter(
@@ -81,21 +82,21 @@ const CustomNavbar = ({ changeLanguage }) => {
 								<Nav className='justify-content-start flex-grow-1 pe-3'>
 									<Nav.Link eventKey='1' className=' text-center mx-1 my-auto'>
 										<NavLink
-											className={(isActive) => (!isActive ? "" : "active")}
+											className={({ isActive }) => (isActive ? "active" : "")}
 											to='/products'>
 											{dbTranslator("prdcts")}
 										</NavLink>
 									</Nav.Link>
 									<Nav.Link eventKey='2' className=' text-center mx-1 my-auto'>
 										<NavLink
-											className={(isActive) => (!isActive ? "" : "active")}
+											className={({ isActive }) => (!isActive ? "" : "active")}
 											to='/cards'>
 											{dbTranslator("app")}
 										</NavLink>
 									</Nav.Link>
 									<Nav.Link eventKey='3' className=' text-center mx-1 my-auto'>
 										<NavLink
-											className={(isActive) => (!isActive ? "" : "active")}
+											className={({ isActive }) => (!isActive ? "" : "active")}
 											to='/support'>
 											{dbTranslator("suprt")}
 										</NavLink>
@@ -105,9 +106,9 @@ const CustomNavbar = ({ changeLanguage }) => {
 						</Navbar.Offcanvas>
 						<Navbar.Toggle aria-controls={`offcanvasNavbar-expand-lg`} />
 
-						<button
+						<NavLink
+							to='/'
 							onClick={() => {
-								navigate("/");
 								const section = document.querySelector("#mainSection");
 								section?.scrollIntoView({
 									behavior: "smooth",
@@ -128,11 +129,11 @@ const CustomNavbar = ({ changeLanguage }) => {
 								src={logoimg}
 								alt='logo'
 							/>
-						</button>
+						</NavLink>
 					</div>
 					<div className='d-flex d-lg-none'>
 						<NavLink
-							className={(isActive) =>
+							className={({ isActive }) =>
 								"nav-link my-auto rightMarginResp" +
 								(!isActive ? "" : " active")
 							}
@@ -143,11 +144,11 @@ const CustomNavbar = ({ changeLanguage }) => {
 							/>
 						</NavLink>
 						<NavLink
-							className={(isActive) =>
+							className={({ isActive }) =>
 								"nav-link my-auto rightMarginResp" +
 								(!isActive ? "" : " active")
 							}
-							to='/auth'>
+							to={isAuth?.uid ? "/profile" : "/auth"}>
 							<IoPersonOutline
 								className='responsiveElements'
 								style={{ color: "rgba(0,0,0,0.5)" }}
@@ -157,7 +158,7 @@ const CustomNavbar = ({ changeLanguage }) => {
 							onClick={() => {
 								setopenModel(true);
 							}}
-							className={"nav-link my-auto active"}>
+							className={"nav-link my-auto"}>
 							<AiOutlineSearch
 								className='responsiveElements'
 								style={{ color: "rgba(0,0,0,0.5)" }}
@@ -186,21 +187,21 @@ const CustomNavbar = ({ changeLanguage }) => {
 								<div className='d-block d-lg-none'>
 									<Nav.Link eventKey='1' className=' text-center mx-1 my-auto'>
 										<NavLink
-											className={(isActive) => (!isActive ? "" : "active")}
+											className={({ isActive }) => (!isActive ? "" : "active")}
 											to='/products'>
 											{dbTranslator("prdcts")}
 										</NavLink>
 									</Nav.Link>
 									<Nav.Link eventKey='2' className=' text-center mx-1 my-auto'>
 										<NavLink
-											className={(isActive) => (!isActive ? "" : "active")}
+											className={({ isActive }) => (!isActive ? "" : "active")}
 											to='/cards'>
 											{dbTranslator("app")}
 										</NavLink>
 									</Nav.Link>
 									<Nav.Link eventKey='3' className=' text-center mx-1 my-auto'>
 										<NavLink
-											className={(isActive) => (!isActive ? "" : "active")}
+											className={({ isActive }) => (!isActive ? "" : "active")}
 											to='/support'>
 											{dbTranslator("suprt")}
 										</NavLink>
@@ -214,7 +215,7 @@ const CustomNavbar = ({ changeLanguage }) => {
 										onClick={() => {
 											setopenModel(true);
 										}}
-										className={"nav-link my-auto active"}>
+										className={"nav-link my-auto"}>
 										<AiOutlineSearch
 											style={{ fontSize: "30px", color: "rgba(0,0,0,0.5)" }}
 										/>
@@ -224,7 +225,7 @@ const CustomNavbar = ({ changeLanguage }) => {
 									eventKey='4'
 									className=' text-center mx-1 my-auto d-none d-lg-block'>
 									<NavLink
-										className={(isActive) => (!isActive ? "" : "active")}
+										className={({ isActive }) => (!isActive ? "" : "active")}
 										to='/cart'>
 										<BiCartAlt
 											style={{ fontSize: "30px", color: "rgba(0,0,0,0.5)" }}
@@ -235,8 +236,8 @@ const CustomNavbar = ({ changeLanguage }) => {
 									eventKey='5'
 									className=' text-center mx-1 my-auto d-none d-lg-block'>
 									<NavLink
-										className={(isActive) => (!isActive ? "" : "active")}
-										to='/auth'>
+										className={({ isActive }) => (!isActive ? "" : "active")}
+										to={isAuth?.uid ? "/profile" : "/auth"}>
 										<IoPersonOutline
 											style={{ fontSize: "30px", color: "rgba(0,0,0,0.5)" }}
 										/>
@@ -244,7 +245,7 @@ const CustomNavbar = ({ changeLanguage }) => {
 								</Nav.Link>
 								<Nav.Link eventKey='6' className=' text-center mx-1 my-auto'>
 									<NavLink
-										className={(isActive) => (!isActive ? "" : "active")}
+										className={({ isActive }) => (!isActive ? "" : "active")}
 										to='/products'>
 										<button className='btn mainColor secondarybg'>
 											{dbTranslator("shpCrd")}

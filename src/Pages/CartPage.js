@@ -195,7 +195,7 @@ const CartPage = () => {
 										fontWeight: "bold",
 										fontSize: "20px",
 									}}>
-									US ${subtotal + 25}
+									US ${parseFloat(subtotal + 25).toFixed(2)}
 								</div>
 							</div>
 							<div className='row w-100 gx-0 mt-4'>

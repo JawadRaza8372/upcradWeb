@@ -11,12 +11,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { CustomHook } from "../CustomHook/CustomHook";
 import { uploadImage } from "../Database/Database";
 import CustomLargeLoader from "../Components/CustomLargeLoader";
+import ContinueShopping from "../Components/ContinueShopping";
 export const CardCustomization1 = () => {
 	const { dbTranslator } = CustomHook();
 	const [isbigloading, setisbigloading] = useState(false);
-	const { footballCards, cartItems, clubs, cardinfo, cardInfoImages } =
-		useSelector((state) => state.project);
+	const { footballCards, cartItems, cardinfo, cardInfoImages } = useSelector(
+		(state) => state.project
+	);
 	const { id } = useParams();
+	const [openModal, setopenModal] = useState(false);
+	const [finalImage, setfinalImage] = useState("");
 	const selectedCard = footballCards?.find((dat) => dat.id === id);
 	const dispatch = useDispatch();
 	const [carddataImages, setcarddataImages] = useState({
@@ -119,7 +123,7 @@ export const CardCustomization1 = () => {
 			progress: undefined,
 			theme: "light",
 		});
-		navigate("/cart");
+		setopenModal(true);
 	};
 	const nextBtnFunc = async () => {
 		if (compSeq === 0) {
@@ -132,6 +136,7 @@ export const CardCustomization1 = () => {
 				setisbigloading(true);
 				const rest = await uploadImage(result);
 				if (rest?.data) {
+					setfinalImage(result);
 					addToCartFunction(rest?.data);
 				} else {
 					console.log(rest?.error);
@@ -158,6 +163,12 @@ export const CardCustomization1 = () => {
 	} else {
 		return (
 			<>
+				<ContinueShopping
+					title={currentData?.title}
+					imgSrc={finalImage}
+					show={openModal}
+					hide={() => setopenModal(false)}
+				/>
 				<div
 					className='col-10 mx-auto'
 					style={{
