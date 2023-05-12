@@ -15,6 +15,7 @@ import ProductInfo from "../Pages/ProductInfo";
 import PrivacyPage from "../Pages/PrivacyPage";
 import ContactUsPage from "../Pages/ContactUsPage";
 import ReturnPolicyPage from "../Pages/ReturnPolicyPage";
+import { CardCustomization1 } from "../Pages/CardCustomization1";
 
 const FileRoutes = () => {
 	return (
@@ -28,6 +29,7 @@ const FileRoutes = () => {
 			<Route path='/products' element={<ProductsPage />} />
 			<Route path='/otherProducts' element={<OtherProducts />} />
 			<Route path='/cardCustomization/:id' element={<CardCustomization />} />
+			<Route path='/cardCustomization1/:id' element={<CardCustomization1 />} />
 			<Route path='/success/:id' element={<SuccessPage />} />
 			<Route path='/cart' element={<CartPage />} />
 			<Route path='/privacy' element={<PrivacyPage />} />

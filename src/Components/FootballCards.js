@@ -29,7 +29,8 @@ const FootballCards = ({
 				cursor: "pointer",
 				maxWidth: "268px",
 				backgroundColor: "white",
-			}}>
+			}}
+			className='boxShadowDiv allCenter'>
 			{isbestSeller && (
 				<div
 					style={{

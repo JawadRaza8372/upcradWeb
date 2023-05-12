@@ -2,7 +2,9 @@
 	margin: 0px;
 	padding: 0px;
 }
-
+.boxShadowDiv {
+	box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.55);
+}
 body {
 	margin: 0;
 	padding: 0px;
@@ -99,6 +101,43 @@ body {
 .mainbg {
 	background-color: #21325e !important;
 }
+.rightMarginResp {
+	margin-right: 20px;
+	@media screen and (max-width: 374px) {
+		margin-right: 10px;
+	}
+}
+.responsiveElements {
+	font-size: 30px;
+	@media screen and (max-width: 374px) {
+		font-size: 22px;
+	}
+}
+
+.offcanvas.offcanvas.offcanvas-end:first-child {
+	flex-grow: 0.7 !important;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-direction: row;
+}
+.offcanvas.offcanvas.offcanvas-end:last-child {
+	flex-grow: 0.1 !important;
+}
+.logoImgResp {
+	width: 150px;
+	@media screen and (max-width: 991.98px) {
+		width: 130px;
+	}
+
+	@media screen and (max-width: 374px) {
+		width: 100px;
+	}
+	@media screen and (max-width: 374px) {
+		width: 100px;
+	}
+}
+
 .thirdbg {
 	background-color: #f89a44 !important;
 }

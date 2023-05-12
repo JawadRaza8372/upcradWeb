@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import localimg from "../ownassets/firstsesion.jpg";
+import localimg from "../ownassets/firstsesion1.png";
+import defaultImg from "../ownassets/firstsesion.png";
 const initialState = {
 	footballCards: [],
 	otherProducts: [],
@@ -10,6 +11,8 @@ const initialState = {
 	clientSecret: null,
 	languages: {},
 	banner: localimg,
+	cardinfo: {},
+	cardInfoImages: {},
 };
 
 export const projectSlice = createSlice({
@@ -72,6 +75,41 @@ export const projectSlice = createSlice({
 				state.banner = action.payload.banner;
 			}
 		},
+		setCardInfo: (state, action) => {
+			if (action.payload.cardinfo === null) {
+				state.cardinfo = {
+					overallRatting: "98",
+					mainPosition: "POR",
+					name: "Up Card",
+					subpValue1: "67",
+					subpValue2: "87",
+					subpValue3: "99",
+					subpValue4: "44",
+					subpValue5: "98",
+					subpValue6: "65",
+					subp1: "SAL",
+					subp2: "PAR",
+					subp3: "SAQ",
+					subp4: "REF",
+					subp5: "VEL",
+					subp6: "POS",
+				};
+			} else {
+				state.cardinfo = action.payload.cardinfo;
+			}
+		},
+		setCardInfoImages: (state, action) => {
+			if (action.payload.cardInfoImages === null) {
+				state.cardInfoImages = {
+					imglink: defaultImg,
+					country:
+						"https://cdn.shopify.com/s/files/1/2412/8291/files/es_120x.png",
+					team: "https://cdn.shopify.com/s/files/1/2412/8291/files/FootballGreatest_120x.png?v=11203880791753341527",
+				};
+			} else {
+				state.cardInfoImages = action.payload.cardInfoImages;
+			}
+		},
 	},
 });
 
@@ -84,6 +122,8 @@ export const {
 	setDeliveryInfo,
 	setClientSecretId,
 	setBanner,
+	setCardInfo,
+	setCardInfoImages,
 } = projectSlice.actions;
 
 export default projectSlice.reducer;

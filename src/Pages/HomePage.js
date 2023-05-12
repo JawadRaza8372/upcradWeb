@@ -38,9 +38,10 @@ import fistImage4 from "../ownassets/firstimg (4).png";
 import ServiceMiniCard from "../Components/ServiceMiniCard";
 import { useSelector } from "react-redux";
 import { CustomHook } from "../CustomHook/CustomHook";
-import OurServicesCard from "../Components/OurServicesCard";
+//import OurServicesCard from "../Components/OurServicesCard";
+import banner from "../ownassets/firstsesion1.png";
 const HomePage = () => {
-	const { footballCards, otherProducts, banner } = useSelector(
+	const { footballCards, otherProducts } = useSelector(
 		(state) => state.project
 	);
 	const { dbTranslator } = CustomHook();
@@ -139,6 +140,16 @@ const HomePage = () => {
 		nextArrow: <CustomRightArrow />,
 		prevArrow: <CustomLeftArrow />,
 	};
+	const settings3 = {
+		centerMode: true,
+		infinite: true,
+		slidesToShow: 1,
+		speed: 500,
+		dots: true,
+		slidesToScroll: 1,
+		nextArrow: <CustomRightArrow />,
+		prevArrow: <CustomLeftArrow />,
+	};
 	const settings2 = {
 		dots: true,
 		infinite: true,
@@ -197,9 +208,9 @@ const HomePage = () => {
 						<div className='row h-100 m-0'>
 							<div
 								style={{ padding: "25px 20px", paddingTop: "0px" }}
-								className='order-2 order-md-1 col-12 gb-2 col-md-6 d-flex align-items-start justify-content-center flex-column'>
+								className='order-2 order-md-1 col-12 gb-2 col-md-6 d-none d-sm-flex align-items-start justify-content-center flex-column'>
 								<h1
-									className='firstSectionHeading'
+									className='firstSectionHeading newColor'
 									style={{
 										color: "white",
 										margin: "10px 0px",
@@ -208,7 +219,7 @@ const HomePage = () => {
 									{dbTranslator("perfect")}
 								</h1>
 								<p
-									className='resptextp'
+									className='resptextp newColor'
 									style={{
 										marginTop: "20px",
 										marginBottom: "20px",
@@ -219,18 +230,17 @@ const HomePage = () => {
 								</p>
 								<button
 									onClick={() => navigate("/products")}
-									className='btn mainColor secondarybg'>
+									className='btn newColor secondarybg'>
 									{dbTranslator("shpCrd")}
 								</button>
 							</div>
-							<div className='order-1 order-md-2 p-0 col-12 col-md-6 allCenter flex-column'>
+							<div className='order-1 order-md-2 d-none d-sm-flex p-0 col-12 col-md-6 allCenter flex-column'>
 								<img
 									style={{
-										margin: "20px auto",
+										margin: "0px auto",
 										marginBottom: "10px",
 										width: "100%",
 										objectFit: "contain",
-										height: "226px",
 									}}
 									src={banner}
 									alt='first sectionimage'
@@ -247,10 +257,10 @@ const HomePage = () => {
 					<div className='mainbg d-none d-md-flex bottomLineDiv allCenter'>
 						<div className='row gx-0 w-100 mx-auto'>
 							<div className='col-12 col-md-3 allCenter'>
-								<span>
+								<span className='newcolor1'>
 									<BsStarFill
 										style={{ fontSize: "18px", marginRight: "10px" }}
-										className='secondaryColor'
+										className='newcolor1'
 									/>
 									{dbTranslator("tpilot1")}
 								</span>
@@ -263,17 +273,17 @@ const HomePage = () => {
 											<BsStarFill
 												key={index}
 												style={{ fontSize: "18px", marginLeft: "5px" }}
-												className='secondaryColor'
+												className='newcolor1'
 											/>
 										))}
 									<BsStarHalf
 										style={{ fontSize: "18px", marginLeft: "5px" }}
-										className='secondaryColor'
+										className='newcolor1'
 									/>
 								</span>
 							</div>
 							<div className='col-12 col-md-6 allCenter'>
-								<span>
+								<span className='newcolor1'>
 									{dbTranslator("TScore")} : 4.5 | 500+ {dbTranslator("review")}
 								</span>
 							</div>
@@ -282,7 +292,16 @@ const HomePage = () => {
 				</div>
 			</div>
 			{/*Second Container */}
-
+			<h1
+				className='firstSectionHeading newColor d-block d-sm-none'
+				style={{
+					marginTop: "0px",
+					marginBottom: "20px",
+					textTransform: "none",
+					textAlign: "center",
+				}}>
+				{dbTranslator("perfect")}
+			</h1>
 			<div className='secondContainer'>
 				<div className='col-11 col-lg-10 my-2 mx-auto h-100 allCenter flex-column'>
 					<div className='row w-100 h-88 my-0 my-md-4'>
@@ -322,7 +341,8 @@ const HomePage = () => {
 										marginRight: "auto",
 										marginTop: "20px",
 										borderRadius: "24px",
-										height: "420px",
+										minHeight: "320px",
+										width: "95%",
 									}}
 								/>
 								<button
@@ -334,7 +354,7 @@ const HomePage = () => {
 						</div>
 						<div className='col-12 mb-4 col-lg-6  order-1 order-md-2 allCenter flex-column'>
 							<div className='row w-100 h-100  d-flex d-md-none'>
-								<Slider {...settings2}>
+								<Slider {...settings3}>
 									{footballCards &&
 										footballCards
 											?.slice(0, 6)
@@ -412,7 +432,7 @@ const HomePage = () => {
 			</div>
 			{/*third Container */}
 
-			<div className='allCenter flex-column thirdContainer'>
+			{/* <div className='allCenter flex-column thirdContainer'>
 				<div className='allCenter flex-column'>
 					<h3 style={{ fontWeight: "bold" }} className='mainColor'>
 						{dbTranslator("service")}
@@ -428,7 +448,7 @@ const HomePage = () => {
 				</div>
 
 				<OurServicesCard />
-			</div>
+			</div> */}
 			{/*fourth Container */}
 
 			<div className='allCenter fourthContainer flex-column'>
@@ -489,7 +509,7 @@ const HomePage = () => {
 				</div>
 			</div>
 			{/*fifth Container */}
-			{otherProducts && (
+			{otherProducts?.length > 0 && (
 				<div className='allCenter fifthContainer flex-column'>
 					<div className='col-11 col-lg-11 mx-auto h-100'>
 						<div className=' row w-100 mx-auto'>

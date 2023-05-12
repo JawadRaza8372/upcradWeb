@@ -2,13 +2,69 @@
 	background: transparent;
 	height: max-content;
 	position: relative;
-	background: #221ba7;
+	background: #cbfafc;
+}
+.newcolor1 {
+	color: #cbfafc !important;
+}
+@media screen and (max-width: 576px) {
+	.firstContWrapper {
+		background: #cbfafc;
+		background-image: url("../ownassets/firstsesion1.png");
+		background-position: center;
+		background-size: contain;
+		background-repeat: no-repeat;
+		mask-image: linear-gradient(to top, transparent, black, black);
+	}
+}
+.newColor {
+	color: #0e5053 !important;
+}
+
+.slick-list {
+	overflow: visible !important;
+}
+.slick-slider.slick-initialized {
+	margin-top: 30px;
+}
+.slick-slider.slick-initialized > .slick-dots {
+	margin-top: 30px;
+}
+.slick-track {
+	display: flex !important;
+}
+.slick-active.slick-center.slick-current {
+	transform: scale(1.2, 1.1);
+	width: 320px;
+	margin: 0px auto;
+	align-self: center;
+}
+@media screen and (max-width: 285px) {
+	.slick-active.slick-center.slick-current {
+		margin-top: 0px !important;
+		margin-bottom: 0px !important;
+		margin-right: auto !important;
+		margin-left: -25px !important;
+		width: 180px !important;
+		/* margin-left: -50px;
+		margin-right: -40px; */
+	}
+}
+.slick-active.slick-center.slick-current > div > div {
+	width: 100% !important;
+	z-index: 1.5;
+	margin: 0px auto;
 }
 .firstCont {
 	min-height: 40vh;
 	max-height: max-content;
 	overflow-x: hidden;
 }
+
+.firstCont img {
+	height: 326px;
+}
+
 .secondContainer {
 	background: #f0f0f0;
 	min-height: 80vh;
@@ -150,7 +206,7 @@ canvas {
 
 @media screen and (max-width: 768px) {
 	.firstSectionHeading {
-		font-size: 30px;
+		font-size: 25px;
 		max-width: none;
 	}
 	.resptextp {

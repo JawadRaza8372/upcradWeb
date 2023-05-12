@@ -18,7 +18,11 @@ import AdsComp from "../Components/AdsComp";
 import { Modal } from "react-bootstrap";
 import CustomLargeLoader from "../Components/CustomLargeLoader";
 import { countries, recomadCuntries } from "../Database/Database";
-import { setClubs } from "../store/projectSlice";
+import {
+	setCardInfo,
+	setCardInfoImages,
+	setClubs,
+} from "../store/projectSlice";
 
 const ChooseCardPage = () => {
 	const { dbTranslator } = CustomHook();
@@ -442,7 +446,7 @@ const ChooseCardPage = () => {
 													marginBottom: "20px",
 												}}
 												onClick={() =>
-													navigate(`/cardCustomization/${dat?.id}`)
+													navigate(`/cardCustomization1/${dat?.id}`)
 												}
 												className='btn mainColor thirdbg'>
 												{dbTranslator("buyphy")}
@@ -457,11 +461,14 @@ const ChooseCardPage = () => {
 					style={{ margin: "50px auto" }}
 					className='row d-flex h-100 w-100 gx-0'>
 					<div className='col-12 col-md-8  h-100 d-flex align-items-center flex-column justify-content-center'>
-						<p className='respiveLabel mainColor w-100'>
+						<p
+							className='respiveLabel mainColor w-100'
+							style={{ textAlign: "center" }}>
 							{dbTranslator("appPagetxt")}
 						</p>
 
 						{/*Editor start */}
+
 						{previewOn ? (
 							<>
 								<div className='d-none d-sm-block allCenter'>
@@ -1496,9 +1503,15 @@ const ChooseCardPage = () => {
 												maxWidth: "180px",
 												marginBottom: "20px",
 											}}
-											onClick={() =>
-												navigate(`/cardCustomization/${selectedCard?.id}`)
-											}
+											onClick={() => {
+												dispatch(setCardInfo({ cardinfo: carddata }));
+												dispatch(
+													setCardInfoImages({
+														cardInfoImages: carddataImages,
+													})
+												);
+												navigate(`/cardCustomization1/${selectedCard?.id}`);
+											}}
 											className='btn mainColor thirdbg'>
 											{dbTranslator("buyphy")}
 										</button>

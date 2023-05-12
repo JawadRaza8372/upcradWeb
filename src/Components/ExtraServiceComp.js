@@ -1,29 +1,54 @@
 import React from "react";
 import truckicon from "../ownassets/truck.png";
 import { CustomHook } from "../CustomHook/CustomHook";
+import extra1 from "../ownassets/extr1.jpg";
+import extra2 from "../ownassets/ext2.png";
+import extra3 from "../ownassets/extr3.jpg";
+import extra4 from "../ownassets/extra4.png";
+import extra5 from "../ownassets/extra5.jpg";
+
 const ExtraServiceComp = ({ value, setvalue }) => {
 	const { dbTranslator } = CustomHook();
+	const imgearry = [
+		{ imgSrc: extra1 },
+		{ imgSrc: extra2 },
+		{ imgSrc: extra3 },
+		{ imgSrc: extra4 },
+		{ imgSrc: extra5 },
+	];
 	const rawdata = [
 		{
-			title: "Super fast track",
-			subtitle: "Card designed, printed, shipped within 1-3 working days.",
-			price: "7",
+			title: "MATERIAL PREMIUM",
+			subtitle:
+				"We will manufacture your letters in 3mm thick methacrylate, with a premium finish.",
+			price: "6.50",
 		},
 
 		{
-			title: "Super fast track with wall mounting kit",
-			subtitle:
-				"Card designed, printed, shipped within 1-3 working days.Will contain wall mounting Kit",
-			price: "20",
+			title: "CARDS PACK",
+			subtitle: "We're sending you an extra random soccer card!",
+			price: "5",
 		},
 		{
-			title: "Super fast track with premium acrylic stand",
+			title: "PROTECTION AGAINST DAMAGE",
 			subtitle:
-				"Card designed, printed, shipped within 1-3 working days.Will contain premium acrylic stand",
-			price: "27",
+				"Protection against damage that the order may suffer during shipping. If your order arrives damaged, we will change it.",
+			price: "3.99",
 		},
 		{
-			title: "Skip",
+			title: "GREETINGS CARD",
+			subtitle:
+				"We'll include a premium card so you can write a congratulatory message.",
+			price: "1.50",
+		},
+		{
+			title: "WALL MOUNTING STICKER",
+			subtitle:
+				"We send you an adhesive with which you can stick your football card on the wall!",
+			price: "0.99",
+		},
+		{
+			title: "DO NOT ADD ANYTHING",
 			subtitle: "---",
 			price: "0",
 		},
@@ -59,12 +84,11 @@ const ExtraServiceComp = ({ value, setvalue }) => {
 								justifyContent: "center",
 							}}>
 							<img
-								src={truckicon}
+								src={`${imgearry[index] ? imgearry[index]?.imgSrc : truckicon}`}
 								alt='truck'
 								style={{
 									width: "100%",
-									maxWidth: "120px",
-									objectFit: "contain",
+									objectFit: "cover",
 								}}
 							/>
 						</div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { SignUp, login } from "../Database/Database";
 import { setAuth } from "../store/authSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -59,7 +59,13 @@ const LoginSignUp = () => {
 		}
 	};
 	const { isAuth } = useSelector((state) => state.auth);
-	if (isAuth) {
+	useEffect(() => {
+		if (isAuth?.uid) {
+			navigate("/profile");
+		}
+	});
+
+	if (isAuth?.uid) {
 		navigate("/profile");
 		return null;
 	} else {
