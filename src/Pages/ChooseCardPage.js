@@ -8,10 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import defaultImg from "../ownassets/firstsesion.png";
 import Cropper from "react-cropper";
 import "../Components/OnClickCard/OnClickCard.css";
-import Slider from "react-slick";
 import "../../node_modules/slick-carousel/slick/slick.css";
 import "../../node_modules/slick-carousel/slick/slick-theme.css";
-import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import { CustomHook } from "../CustomHook/CustomHook";
 import { saveAs } from "file-saver";
 import AdsComp from "../Components/AdsComp";
@@ -26,6 +24,7 @@ import {
 
 const ChooseCardPage = () => {
 	const { dbTranslator } = CustomHook();
+
 	const navigate = useNavigate();
 	const { footballCards, clubs } = useSelector((state) => state.project);
 	const [selectedCard, setselectedCard] = useState(
@@ -130,70 +129,46 @@ const ChooseCardPage = () => {
 
 	const [carddata, setcarddata] = useState({
 		overallRatting: "98",
-		mainPosition: "POR",
-		name: "Up Card",
+		mainPosition: "DC",
+		name: "NOMBRE",
 		subpValue1: "67",
 		subpValue2: "87",
 		subpValue3: "99",
 		subpValue4: "44",
 		subpValue5: "98",
 		subpValue6: "65",
-		subp1: "SAL",
-		subp2: "PAR",
-		subp3: "SAQ",
-		subp4: "REF",
-		subp5: "VEL",
-		subp6: "POS",
+		subp1: "RIT",
+		subp2: "PAS",
+		subp3: "TIR",
+		subp4: "REG",
+		subp5: "DEF",
+		subp6: "FIS",
 	});
+	useEffect(() => {
+		setCardInfo({
+			overallRatting: "",
+			mainPosition: "",
+			name: "",
+			subpValue1: "",
+			subpValue2: "",
+			subpValue3: "",
+			subpValue4: "",
+			subpValue5: "",
+			subpValue6: "",
+			subp1: "",
+			subp2: "",
+			subp3: "",
+			subp4: "",
+			subp5: "",
+			subp6: "",
+		});
+	}, []);
+
 	const [showAds, setshowAds] = useState(false);
 	useEffect(() => {
 		setselectedCard(footballCards?.length > 0 ? footballCards[0] : {});
 	}, [footballCards]);
 
-	const CustomLeftArrow = (props) => {
-		const { className, onClick } = props;
-
-		return (
-			<button className={className} onClick={() => onClick()}>
-				<AiOutlineLeft className='mainColor' style={{ fontSize: "20px" }} />
-			</button>
-		);
-	};
-
-	const CustomRightArrow = (props) => {
-		const { className, onClick } = props;
-
-		return (
-			<button className={className} onClick={() => onClick()}>
-				<AiOutlineRight className='mainColor' style={{ fontSize: "20px" }} />
-			</button>
-		);
-	};
-	const download = (link) => {
-		setshowAds(true);
-		setTimeout(() => {
-			setshowAds(false);
-			saveAs(`${link}`, "upCardSoccerLetter.jpg");
-		}, 7000);
-	};
-	const settings2 = {
-		dots: false,
-		infinite: true,
-		speed: 500,
-		slidesToShow: 2,
-		slidesToScroll: 2,
-		nextArrow: <CustomRightArrow />,
-		prevArrow: <CustomLeftArrow />,
-		responsive: [
-			{
-				breakpoint: 500,
-				settings: {
-					slidesToShow: 1,
-					slidesToScroll: 1,
-				},
-			},
-		],
-	};
 	const [inputValue, setInputValue] = useState("");
 	const [inputValueClub, setinputValueClub] = useState("");
 	const dispatch = useDispatch();
@@ -237,6 +212,7 @@ const ChooseCardPage = () => {
 	if (isLargeLoading) {
 		return <CustomLargeLoader />;
 	}
+
 	return (
 		<div style={{ overflowX: "hidden" }}>
 			<Modal fullscreen show={openCropper}>
@@ -404,68 +380,13 @@ const ChooseCardPage = () => {
 				}}>
 				<div
 					style={{ margin: "50px auto" }}
-					className='row d-none h-100 w-100 gx-0'>
-					<Slider {...settings2}>
-						{footballCards &&
-							footballCards?.map((dat) => (
-								<div
-									key={dat?.id}
-									className='col-12 h-100 d-flex align-items-center flex-column justify-content-center'>
-									<img
-										style={{
-											objectFit: "contain",
-											width: "100%",
-											maxWidth: "350px",
-										}}
-										src={dat?.imgSrc}
-										alt='teams'
-									/>
-
-									<div
-										className='row w-100 mx-auto'
-										style={{ marginTop: "30px" }}>
-										<div className='col-12 col-md-6 d-flex align-items-center justify-content-center'>
-											<button
-												style={{
-													width: "100%",
-													maxWidth: "180px",
-													textDecoration: "none !important",
-													marginBottom: "20px",
-													textTransform: "initial",
-												}}
-												onClick={() => download(`${dat?.imgSrc}`)}
-												className='btn mainColor secondarybg'>
-												{dbTranslator("downpng")}
-											</button>
-										</div>
-										<div className='col-12 col-md-6 d-flex align-items-center justify-content-center'>
-											<button
-												style={{
-													width: "100%",
-													maxWidth: "180px",
-													marginBottom: "20px",
-												}}
-												onClick={() =>
-													navigate(`/cardCustomization1/${dat?.id}`)
-												}
-												className='btn mainColor thirdbg'>
-												{dbTranslator("buyphy")}
-											</button>
-										</div>
-									</div>
-								</div>
-							))}
-					</Slider>
-				</div>
-				<div
-					style={{ margin: "50px auto" }}
 					className='row d-flex h-100 w-100 gx-0'>
 					<div
 						id='topdiv'
 						className='col-12 col-md-8  h-100 d-flex align-items-center flex-column justify-content-center'>
 						<p
 							className='respiveLabel mainColor w-100'
-							style={{ textAlign: "center" }}>
+							style={{ textAlign: "center", marginBottom: "-15px" }}>
 							{dbTranslator("appPagetxt")}
 						</p>
 
@@ -839,7 +760,7 @@ const ChooseCardPage = () => {
 													? selectedCard?.textColor
 													: "white"
 											}
-											text={`${carddata?.subpValue1}`}
+											text={`${carddata?.subpValue1?.toUpperCase()}`}
 											fontSize={26}
 											verticalAlign={"middle"}
 											align={"center"}
@@ -855,7 +776,7 @@ const ChooseCardPage = () => {
 													? selectedCard?.textColor
 													: "white"
 											}
-											text={`${carddata?.subp1}`}
+											text={`${carddata?.subp1?.toUpperCase()}`}
 											fontSize={26}
 											verticalAlign={"middle"}
 											align={"center"}
@@ -871,7 +792,7 @@ const ChooseCardPage = () => {
 													? selectedCard?.textColor
 													: "white"
 											}
-											text={`${carddata?.subpValue2}`}
+											text={`${carddata?.subpValue2?.toUpperCase()}`}
 											fontSize={26}
 											verticalAlign={"middle"}
 											align={"center"}
@@ -887,7 +808,7 @@ const ChooseCardPage = () => {
 													? selectedCard?.textColor
 													: "white"
 											}
-											text={`${carddata?.subp2}`}
+											text={`${carddata?.subp2?.toUpperCase()}`}
 											fontSize={26}
 											verticalAlign={"middle"}
 											align={"center"}
@@ -903,7 +824,7 @@ const ChooseCardPage = () => {
 													? selectedCard?.textColor
 													: "white"
 											}
-											text={`${carddata?.subpValue3}`}
+											text={`${carddata?.subpValue3?.toUpperCase()}`}
 											fontSize={26}
 											verticalAlign={"middle"}
 											align={"center"}
@@ -919,7 +840,7 @@ const ChooseCardPage = () => {
 													? selectedCard?.textColor
 													: "white"
 											}
-											text={`${carddata?.subp3}`}
+											text={`${carddata?.subp3?.toUpperCase()}`}
 											fontSize={26}
 											verticalAlign={"middle"}
 											align={"center"}
@@ -935,7 +856,7 @@ const ChooseCardPage = () => {
 													? selectedCard?.textColor
 													: "white"
 											}
-											text={`${carddata?.subpValue4}`}
+											text={`${carddata?.subpValue4?.toUpperCase()}`}
 											fontSize={26}
 											verticalAlign={"middle"}
 											align={"center"}
@@ -951,7 +872,7 @@ const ChooseCardPage = () => {
 													? selectedCard?.textColor
 													: "white"
 											}
-											text={`${carddata?.subp4}`}
+											text={`${carddata?.subp4?.toUpperCase()}`}
 											fontSize={26}
 											verticalAlign={"middle"}
 											align={"center"}
@@ -967,7 +888,7 @@ const ChooseCardPage = () => {
 													? selectedCard?.textColor
 													: "white"
 											}
-											text={`${carddata?.subpValue5}`}
+											text={`${carddata?.subpValue5?.toUpperCase()}`}
 											fontSize={26}
 											verticalAlign={"middle"}
 											align={"center"}
@@ -983,7 +904,7 @@ const ChooseCardPage = () => {
 													? selectedCard?.textColor
 													: "white"
 											}
-											text={`${carddata?.subp5}`}
+											text={`${carddata?.subp5?.toUpperCase()}`}
 											fontSize={26}
 											verticalAlign={"middle"}
 											align={"center"}
@@ -999,7 +920,7 @@ const ChooseCardPage = () => {
 													? selectedCard?.textColor
 													: "white"
 											}
-											text={`${carddata?.subpValue6}`}
+											text={`${carddata?.subpValue6?.toUpperCase()}`}
 											fontSize={26}
 											verticalAlign={"middle"}
 											align={"center"}
@@ -1015,7 +936,7 @@ const ChooseCardPage = () => {
 													? selectedCard?.textColor
 													: "white"
 											}
-											text={`${carddata?.subp6}`}
+											text={`${carddata?.subp6?.toUpperCase()}`}
 											fontSize={26}
 											verticalAlign={"middle"}
 											align={"center"}
@@ -1031,7 +952,7 @@ const ChooseCardPage = () => {
 													? selectedCard?.textColor
 													: "white"
 											}
-											text={`${carddata?.name}`}
+											text={`${carddata?.name?.toUpperCase()}`}
 											fontSize={40}
 											verticalAlign={"middle"}
 											align={"center"}
@@ -1049,7 +970,9 @@ const ChooseCardPage = () => {
 													: "white"
 											}
 											text={`${
-												carddata?.overallRatting ? carddata?.overallRatting : ""
+												carddata?.overallRatting
+													? carddata?.overallRatting?.toUpperCase()
+													: ""
 											}`}
 											fontSize={56}
 											verticalAlign={"middle"}
@@ -1066,7 +989,7 @@ const ChooseCardPage = () => {
 													? selectedCard?.textColor
 													: "white"
 											}
-											text={`${carddata?.mainPosition}`}
+											text={`${carddata?.mainPosition?.toUpperCase()}`}
 											fontSize={28}
 											verticalAlign={"middle"}
 											align={"center"}
@@ -1167,7 +1090,7 @@ const ChooseCardPage = () => {
 													? selectedCard?.textColor
 													: "white"
 											}
-											text={`${carddata?.subpValue1}`}
+											text={`${carddata?.subpValue1?.toUpperCase()}`}
 											fontSize={19}
 											verticalAlign={"middle"}
 											align={"center"}
@@ -1184,7 +1107,7 @@ const ChooseCardPage = () => {
 													? selectedCard?.textColor
 													: "white"
 											}
-											text={`${carddata?.subp1}`}
+											text={`${carddata?.subp1?.toUpperCase()}`}
 											fontSize={19}
 											verticalAlign={"middle"}
 											align={"center"}
@@ -1201,7 +1124,7 @@ const ChooseCardPage = () => {
 													? selectedCard?.textColor
 													: "white"
 											}
-											text={`${carddata?.subpValue2}`}
+											text={`${carddata?.subpValue2?.toUpperCase()}`}
 											fontSize={19}
 											verticalAlign={"middle"}
 											align={"center"}
@@ -1218,7 +1141,7 @@ const ChooseCardPage = () => {
 													? selectedCard?.textColor
 													: "white"
 											}
-											text={`${carddata?.subp2}`}
+											text={`${carddata?.subp2?.toUpperCase()}`}
 											fontSize={19}
 											verticalAlign={"middle"}
 											align={"center"}
@@ -1235,7 +1158,7 @@ const ChooseCardPage = () => {
 													? selectedCard?.textColor
 													: "white"
 											}
-											text={`${carddata?.subpValue3}`}
+											text={`${carddata?.subpValue3?.toUpperCase()}`}
 											fontSize={19}
 											verticalAlign={"middle"}
 											align={"center"}
@@ -1252,7 +1175,7 @@ const ChooseCardPage = () => {
 													? selectedCard?.textColor
 													: "white"
 											}
-											text={`${carddata?.subp3}`}
+											text={`${carddata?.subp3?.toUpperCase()}`}
 											fontSize={19}
 											verticalAlign={"middle"}
 											align={"center"}
@@ -1270,7 +1193,7 @@ const ChooseCardPage = () => {
 													? selectedCard?.textColor
 													: "white"
 											}
-											text={`${carddata?.subpValue4}`}
+											text={`${carddata?.subpValue4?.toUpperCase()}`}
 											fontSize={19}
 											verticalAlign={"middle"}
 											align={"center"}
@@ -1287,7 +1210,7 @@ const ChooseCardPage = () => {
 													? selectedCard?.textColor
 													: "white"
 											}
-											text={`${carddata?.subp4}`}
+											text={`${carddata?.subp4?.toUpperCase()}`}
 											fontSize={19}
 											verticalAlign={"middle"}
 											align={"center"}
@@ -1304,7 +1227,7 @@ const ChooseCardPage = () => {
 													? selectedCard?.textColor
 													: "white"
 											}
-											text={`${carddata?.subpValue5}`}
+											text={`${carddata?.subpValue5?.toUpperCase()}`}
 											fontSize={19}
 											verticalAlign={"middle"}
 											align={"center"}
@@ -1321,7 +1244,7 @@ const ChooseCardPage = () => {
 													? selectedCard?.textColor
 													: "white"
 											}
-											text={`${carddata?.subp5}`}
+											text={`${carddata?.subp5?.toUpperCase()}`}
 											fontSize={19}
 											verticalAlign={"middle"}
 											align={"center"}
@@ -1338,7 +1261,7 @@ const ChooseCardPage = () => {
 													? selectedCard?.textColor
 													: "white"
 											}
-											text={`${carddata?.subpValue6}`}
+											text={`${carddata?.subpValue6?.toUpperCase()}`}
 											fontSize={19}
 											verticalAlign={"middle"}
 											align={"center"}
@@ -1355,7 +1278,7 @@ const ChooseCardPage = () => {
 													? selectedCard?.textColor
 													: "white"
 											}
-											text={`${carddata?.subp6}`}
+											text={`${carddata?.subp6?.toUpperCase()}`}
 											fontSize={19}
 											verticalAlign={"middle"}
 											align={"center"}
@@ -1373,7 +1296,7 @@ const ChooseCardPage = () => {
 													? selectedCard?.textColor
 													: "white"
 											}
-											text={`${carddata?.name}`}
+											text={`${carddata?.name?.toUpperCase()}`}
 											fontSize={28}
 											verticalAlign={"middle"}
 											align={"center"}
@@ -1391,7 +1314,9 @@ const ChooseCardPage = () => {
 													: "white"
 											}
 											text={`${
-												carddata?.overallRatting ? carddata?.overallRatting : ""
+												carddata?.overallRatting
+													? carddata?.overallRatting?.toUpperCase()
+													: ""
 											}`}
 											fontSize={38}
 											verticalAlign={"middle"}
@@ -1409,7 +1334,7 @@ const ChooseCardPage = () => {
 													? selectedCard?.textColor
 													: "white"
 											}
-											text={`${carddata?.mainPosition}`}
+											text={`${carddata?.mainPosition?.toUpperCase()}`}
 											fontSize={22}
 											verticalAlign={"middle"}
 											align={"center"}
@@ -1444,41 +1369,37 @@ const ChooseCardPage = () => {
 								</Stage>
 							</div>
 						</div>
-						<div className='row w-100 mx-auto' style={{ marginTop: "30px" }}>
-							<div className='col-12 col-md-6 d-flex align-items-center justify-content-center'>
-								<button
-									style={{
-										width: "100%",
-										maxWidth: "180px",
-										textDecoration: "none !important",
-										marginBottom: "20px",
-										textTransform: "initial",
-									}}
-									onClick={newDownloadBrandNewFunction}
-									className='btn mainColor secondarybg'>
-									{dbTranslator("downpng")}
-								</button>
-							</div>
-							<div className='col-12 col-md-6 d-flex align-items-center justify-content-center'>
-								<button
-									style={{
-										width: "100%",
-										maxWidth: "180px",
-										marginBottom: "20px",
-									}}
-									onClick={() => {
-										dispatch(setCardInfo({ cardinfo: carddata }));
-										dispatch(
-											setCardInfoImages({
-												cardInfoImages: carddataImages,
-											})
-										);
-										navigate(`/cardCustomization1/${selectedCard?.id}`);
-									}}
-									className='btn mainColor thirdbg'>
-									{dbTranslator("buyphy")}
-								</button>
-							</div>
+						<div className='w-100 allCenter justify-content-evenly flex-row'>
+							{/* <div className='col-6 col-md-6 d-flex align-items-center justify-content-center'> */}
+							<button
+								style={{
+									width: "46%",
+									marginBottom: "5px",
+								}}
+								onClick={newDownloadBrandNewFunction}
+								className='btn mainColor secondarybg responsiveFontBtn'>
+								{dbTranslator("downpng")}
+							</button>
+							{/* </div>
+							<div className='col-6 col-md-6 d-flex align-items-center justify-content-center'> */}
+							<button
+								style={{
+									width: "46%",
+									marginBottom: "5px",
+								}}
+								onClick={() => {
+									dispatch(setCardInfo({ cardinfo: carddata }));
+									dispatch(
+										setCardInfoImages({
+											cardInfoImages: carddataImages,
+										})
+									);
+									navigate(`/cardCustomization1/${selectedCard?.id}`);
+								}}
+								className='btn mainColor thirdbg responsiveFontBtn'>
+								{dbTranslator("buyphy")}
+							</button>
+							{/* </div> */}
 						</div>
 						{/*  */}
 

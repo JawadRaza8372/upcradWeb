@@ -47,6 +47,13 @@ export const projectSlice = createSlice({
 				state.cartItems = action.payload.cartItems;
 			}
 		},
+		setExtraServices: (state, action) => {
+			if (action.payload.extraServices === null) {
+				state.extraServices = [];
+			} else {
+				state.extraServices = action.payload.extraServices;
+			}
+		},
 		setClubs: (state, action) => {
 			if (action.payload.clubs === null) {
 				state.clubs = [];
@@ -124,6 +131,7 @@ export const {
 	setBanner,
 	setCardInfo,
 	setCardInfoImages,
+	setExtraServices,
 } = projectSlice.actions;
 
 export default projectSlice.reducer;

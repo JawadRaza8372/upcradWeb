@@ -28,7 +28,10 @@ const ProductInfo = () => {
 				cartItems: newdata,
 			})
 		);
-		window.localStorage.setItem("upcardcartArry", JSON.stringify(newdata));
+		window.localStorage.setItem(
+			"upcardcartArryUpdated",
+			JSON.stringify(newdata)
+		);
 
 		toast.success(dbTranslator("paddcrt"), {
 			position: "bottom-right",

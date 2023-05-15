@@ -1,4 +1,5 @@
 import React from "react";
+import ReactPlayer from "react-player";
 import instaImag0 from "../ownassets/insta1.jpg";
 import instaImag1 from "../ownassets/insta2.jpg";
 import instaImag3 from "../ownassets/insta3.jpg";
@@ -40,6 +41,12 @@ import { useSelector } from "react-redux";
 import { CustomHook } from "../CustomHook/CustomHook";
 //import OurServicesCard from "../Components/OurServicesCard";
 import banner from "../ownassets/firstsesion1.png";
+import reviimg1 from "../ownassets/Canvas.png";
+import reviimg2 from "../ownassets/Canvas16.png";
+import reviimg3 from "../ownassets/Canvas18.png";
+import reviimg4 from "../ownassets/Canvas4.png";
+import reviimg5 from "../ownassets/Canvas8.png";
+
 const HomePage = () => {
 	const { footballCards, otherProducts } = useSelector(
 		(state) => state.project
@@ -170,32 +177,37 @@ const HomePage = () => {
 	};
 	const reviewraw = [
 		{
-			name: "Lucas",
+			name: "Oliver",
+			stars: 5,
+			message: "I like this socccer card very much felt like royality.",
+			imageurl: reviimg1,
+		},
+		{
+			name: "Alejandro",
+			stars: 5,
+			message: "Me gustó mucho esta combinación de colores es increíble",
+			imageurl: reviimg2,
+		},
+		{
+			name: "Lorenzo",
 			stars: 4,
-			message: "very good",
-			imageurl:
-				"https://res.cloudinary.com/dpjk8xcld/image/upload/v1682419516/vznx6dzacukjxtvgn4yn.png",
+			message:
+				"Mi è piaciuto così tanto il colore nero su oro che si adatta alla mia personalità",
+			imageurl: reviimg3,
 		},
 		{
-			name: "Adrian Cintado",
-			stars: 3,
-			message: "Liked this one so much",
-			imageurl:
-				"https://res.cloudinary.com/dpjk8xcld/image/upload/v1682422279/ph5jdcfgowmuxckimfrx.png",
+			name: "Laurent",
+			stars: 5,
+			message:
+				"Une des cartes préférées avec ma combinaison de couleurs préférée.",
+			imageurl: reviimg4,
 		},
 		{
-			name: "Leon",
+			name: "Jürgen",
 			stars: 4,
-			message: "very good",
-			imageurl:
-				"https://res.cloudinary.com/dpjk8xcld/image/upload/v1682422399/btm7mfscum9coujglogs.png",
-		},
-		{
-			name: "Izan",
-			stars: 3,
-			message: "My Favorite loved it so much",
-			imageurl:
-				"https://res.cloudinary.com/dpjk8xcld/image/upload/v1682422399/btm7mfscum9coujglogs.png",
+			message:
+				"Eine goldene Karte fühlt sich an wie ein Geschenk des Königs an einen Adligen.",
+			imageurl: reviimg5,
 		},
 	];
 	let sellerspara = dbTranslator("tbNewSellerPara");
@@ -260,7 +272,7 @@ const HomePage = () => {
 								<span className='newcolor1'>
 									<BsStarFill
 										style={{ fontSize: "18px", marginRight: "10px" }}
-										className='newcolor1'
+										className='secondaryColor'
 									/>
 									{dbTranslator("tpilot1")}
 								</span>
@@ -273,12 +285,12 @@ const HomePage = () => {
 											<BsStarFill
 												key={index}
 												style={{ fontSize: "18px", marginLeft: "5px" }}
-												className='newcolor1'
+												className='secondaryColor'
 											/>
 										))}
 									<BsStarHalf
 										style={{ fontSize: "18px", marginLeft: "5px" }}
-										className='newcolor1'
+										className='secondaryColor'
 									/>
 								</span>
 							</div>
@@ -293,14 +305,14 @@ const HomePage = () => {
 			</div>
 			{/*Second Container */}
 			<h1
-				className='firstSectionHeading newColor d-block d-sm-none'
+				className='newfirstSectionHeading mainColor fw-bold d-block d-sm-none'
 				style={{
-					marginTop: "0px",
-					marginBottom: "20px",
+					marginTop: "-22px",
+					marginBottom: "-20px",
 					textTransform: "none",
 					textAlign: "center",
 				}}>
-				{dbTranslator("perfect")}
+				{dbTranslator("perfectpresent")}
 			</h1>
 			<div className='secondContainer'>
 				<div className='col-11 col-lg-10 my-2 mx-auto h-100 allCenter flex-column'>
@@ -357,7 +369,7 @@ const HomePage = () => {
 								<Slider {...settings3}>
 									{footballCards &&
 										footballCards
-											?.slice(0, 6)
+											?.slice(4, 10)
 											?.map((dat) => (
 												<FootballCards
 													onClickFun={() =>
@@ -375,7 +387,7 @@ const HomePage = () => {
 							</div>
 							<div className='row w-100 d-none d-md-flex'>
 								{footballCards &&
-									footballCards?.slice(0, 4)?.map((dat) => (
+									footballCards?.slice(4, 8)?.map((dat) => (
 										<div
 											key={dat.id}
 											className='col-12 col-sm-6 mx-auto allCenter'>
@@ -835,14 +847,12 @@ const HomePage = () => {
 								<div
 									key={index + "slidervideo"}
 									className='col-12 mx-auto d-flex allCenter'>
-									<iframe
-										title={`${index}`}
-										src={`${dat.videolink}`}
-										allowFullScreen
-										scrolling='no'
-										style={{ width: "90%", margin: "0 auto" }}
-										height='400px'
-										allow='encrypted-media;'></iframe>
+									<ReactPlayer
+										height={"400px"}
+										width={"90%"}
+										url={`${dat.videolink}`}
+										style={{ margin: "0px auto" }}
+									/>
 								</div>
 							))}
 						</Slider>
@@ -852,14 +862,12 @@ const HomePage = () => {
 							<div
 								key={index}
 								className='col-12 col-sm-6 col-md-4 mb-4 col-lg-3 allCenter'>
-								<iframe
-									title={`${index}`}
-									src={`${dat.videolink}`}
-									allowFullScreen
-									scrolling='no'
-									style={{ width: "95%", maxWidth: "260px" }}
-									height='500px'
-									allow='encrypted-media;'></iframe>
+								<ReactPlayer
+									height={"500px"}
+									width={"95%"}
+									style={{ maxWidth: "260px" }}
+									url={`${dat.videolink}`}
+								/>
 							</div>
 						))}
 					</div>

@@ -97,12 +97,14 @@ body {
 	box-shadow: none !important;
 	border: 0px !important;
 	padding-left: 0px !important;
+	padding-right: 0px !important;
+	margin-right: 20px;
 }
 .mainbg {
 	background-color: #21325e !important;
 }
 .rightMarginResp {
-	margin-right: 20px;
+	margin-right: 10px;
 	@media screen and (max-width: 374px) {
 		margin-right: 10px;
 	}
@@ -591,15 +593,22 @@ h6 {
 	background-color: #f89a44 !important;
 	padding: 0px 10px;
 }
-
+.responsiveFontBtn {
+	max-width: 180px;
+}
 @media screen and (max-width: 768px) {
+	.responsiveFontBtn {
+		font-size: 0.8rem !important;
+		padding: 0.7rem 0.5rem !important;
+		font-weight: bold !important;
+	}
 	.respoloront {
 		background-color: transparent !important;
 		margin-top: 25px !important;
 	}
 	.cartimgrsp {
 		max-width: none !important;
-		height: 100%;
+		height: 200px;
 		max-height: none !important;
 		width: 100%;
 		object-fit: contain;
@@ -624,6 +633,9 @@ h6 {
 	}
 }
 @media screen and (max-width: 320px) {
+	.responsiveFontBtn {
+		font-size: 0.62rem !important;
+	}
 	.navbar-brand img {
 		height: 30px !important;
 	}

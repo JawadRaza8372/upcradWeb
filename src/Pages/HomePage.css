@@ -21,8 +21,11 @@
 	color: #0e5053 !important;
 }
 
-.slick-list {
+.secondContainer .slick-list {
 	overflow: visible !important;
+}
+.slick-list {
+	overflow: hidden !important;
 }
 .slick-slider.slick-initialized {
 	margin-top: 30px;
@@ -66,7 +69,7 @@
 }
 
 .secondContainer {
-	background: #f0f0f0;
+	background: #ffffff;
 	min-height: 80vh;
 	height: fit-content;
 	padding-top: 30px;
@@ -150,6 +153,10 @@
 }
 .firstSectionHeading {
 	font-size: 45px;
+	font-weight: bold;
+}
+.newfirstSectionHeading {
+	font-size: 30px;
 	font-weight: bold;
 }
 .scrolledImageContainer {

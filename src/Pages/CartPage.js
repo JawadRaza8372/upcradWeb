@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setCartItems } from "../store/projectSlice";
+import { setCartItems, setExtraServices } from "../store/projectSlice";
 import CartPageCard from "../Components/CartPageCard";
 import { CustomHook } from "../CustomHook/CustomHook";
 import { postData } from "../Database/Database";
@@ -9,12 +9,18 @@ import { useNavigate } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import PaymentMethod from "../Components/PaymentMethod";
+import extra1 from "../ownassets/extr1.jpg";
+import extra2 from "../ownassets/ext2.png";
+import extra3 from "../ownassets/extr3.jpg";
+import extra4 from "../ownassets/extra4.png";
+import extra5 from "../ownassets/extra5.jpg";
+import truckicon from "../ownassets/truck.png";
 
 const CartPage = () => {
 	const { dbTranslator } = CustomHook();
 	const dispatch = useDispatch();
 	const [dopayment, setdopayment] = useState(false);
-	const { footballCards, otherProducts, cartItems, clientSecret } = useSelector(
+	const { footballCards, extraServices, cartItems, clientSecret } = useSelector(
 		(state) => state.project
 	);
 	const { isAuth } = useSelector((state) => state.auth);
@@ -22,11 +28,22 @@ const CartPage = () => {
 	const navigate = useNavigate();
 	const removeItemFun = (itId) => {
 		let newdata = cartItems.filter((dat) => dat.id !== itId);
-		window.localStorage.setItem("upcardcartArry", JSON.stringify(newdata));
+		window.localStorage.setItem(
+			"upcardcartArryUpdated",
+			JSON.stringify(newdata)
+		);
 		dispatch(setCartItems({ cartItems: newdata }));
 		setdopayment(false);
 	};
-
+	const removeItemFun2 = (itId) => {
+		let newdata = extraServices.filter((dat, index) => index !== itId);
+		window.localStorage.setItem(
+			"upcardcartArryUpdatedExtras",
+			JSON.stringify(newdata)
+		);
+		dispatch(setExtraServices({ extraServices: newdata }));
+		setdopayment(false);
+	};
 	let subtotal = 0;
 	const saveorderFunc = async (deta) => {
 		console.log({
@@ -42,7 +59,7 @@ const CartPage = () => {
 		);
 		if (rest?.data) {
 			dispatch(setCartItems({ cartItems: [] }));
-			window.localStorage.removeItem("upcardcartArry");
+			window.localStorage.removeItem("upcardcartArryUpdated");
 			navigate(`/success/${rest?.data}`);
 		} else {
 			toast.error(`${rest?.error}`, {
@@ -94,54 +111,64 @@ const CartPage = () => {
 								{dbTranslator("scart")}
 							</span>
 							{cartItems?.length ? (
-								cartItems.map((dat, indea) => {
-									const carddata = footballCards?.filter(
-										(dac) => dac.id === dat.pid
-									);
-									const otherp = otherProducts?.filter(
-										(dec) => dec.id === dat.pid
-									);
-									const currentdata =
-										carddata?.length > 0
-											? { ...carddata[0], extra: dat?.extra }
-											: otherp?.length > 0
-											? { ...otherp[0], extra: dat?.extra }
-											: {
-													price: "not available",
-													title: "not available",
-													extra: { price: "0" },
-											  };
-									let nowSubol =
-										parseFloat(currentdata?.price) +
-										parseFloat(currentdata?.extra?.price);
-									subtotal = subtotal + nowSubol;
-									if (isNaN(nowSubol) === false) {
-										return (
-											<CartPageCard
-												key={dat?.id ? dat.id : new Date().getTime()}
-												id={dat?.id ? dat.id : new Date().getTime()}
-												title={currentdata?.title}
-												price={
-													"Product Price + Extra Service = " +
-													currentdata?.price +
-													" + " +
-													currentdata?.extra?.price +
-													" = " +
-													"$" +
-													nowSubol
-												}
-												imgSrc={
-													typeof dat?.imgSrc === "object"
-														? `${dat?.imgSrc?.starter}${dat?.imgSrc?.imglink}`
-														: dat?.imgSrc
-												}
-												removeItemFun={removeItemFun}
-											/>
+								<>
+									{cartItems.map((dat, indea) => {
+										const carddata = footballCards?.filter(
+											(dac) => dac.id === dat.pid
 										);
-									} else {
-										return null;
-									}
-								})
+										const currentdata = carddata[0];
+										subtotal = subtotal + parseFloat(currentdata?.price);
+										if (isNaN(subtotal) === false) {
+											return (
+												<CartPageCard
+													key={dat?.id ? dat.id : new Date().getTime()}
+													id={dat?.id ? dat.id : new Date().getTime()}
+													title={currentdata?.title}
+													price={"€" + currentdata?.price}
+													imgSrc={
+														typeof dat?.imgSrc === "object"
+															? `${dat?.imgSrc?.starter}${dat?.imgSrc?.imglink}`
+															: dat?.imgSrc
+													}
+													removeItemFun={removeItemFun}
+												/>
+											);
+										} else {
+											return null;
+										}
+									})}
+									{extraServices.map((dat, indea) => {
+										subtotal = subtotal + parseFloat(dat?.price);
+										if (isNaN(subtotal) === false) {
+											return (
+												<CartPageCard
+													key={indea}
+													id={indea}
+													title={dat?.title}
+													price={"€" + dat?.price}
+													imgSrc={
+														dat?.price === "0"
+															? truckicon
+															: dat?.price === "1"
+															? extra5
+															: dat?.price === "2"
+															? extra4
+															: dat?.price === "3"
+															? extra3
+															: dat?.price === "5"
+															? extra2
+															: dat?.price === "7"
+															? extra1
+															: truckicon
+													}
+													removeItemFun={removeItemFun2}
+												/>
+											);
+										} else {
+											return null;
+										}
+									})}
+								</>
 							) : (
 								<div className='errorDiv'>{dbTranslator("paddart")}</div>
 							)}
@@ -170,7 +197,7 @@ const CartPage = () => {
 										textAlign: "end",
 										fontSize: "16px",
 									}}>
-									US ${subtotal}
+									€ {subtotal}
 								</div>
 								<div className='col-6' style={{ fontSize: "16px" }}>
 									{dbTranslator("ship")}
@@ -181,7 +208,7 @@ const CartPage = () => {
 										textAlign: "end",
 										fontSize: "16px",
 									}}>
-									US $25
+									€ 25
 								</div>
 								<div
 									className='col-6'
@@ -195,7 +222,7 @@ const CartPage = () => {
 										fontWeight: "bold",
 										fontSize: "20px",
 									}}>
-									US ${parseFloat(subtotal + 25).toFixed(2)}
+									€ {parseFloat(subtotal + 25).toFixed(2)}
 								</div>
 							</div>
 							<div className='row w-100 gx-0 mt-4'>

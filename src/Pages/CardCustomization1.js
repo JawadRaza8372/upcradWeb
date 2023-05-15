@@ -6,7 +6,7 @@ import defaultImg from "../ownassets/firstsesion.png";
 import { Stage, Layer, Image, Text, Line } from "react-konva";
 import useImage from "use-image";
 import { toast } from "react-toastify";
-import { setCartItems } from "../store/projectSlice";
+import { setCartItems, setExtraServices } from "../store/projectSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { CustomHook } from "../CustomHook/CustomHook";
 import { uploadImage } from "../Database/Database";
@@ -15,9 +15,8 @@ import ContinueShopping from "../Components/ContinueShopping";
 export const CardCustomization1 = () => {
 	const { dbTranslator } = CustomHook();
 	const [isbigloading, setisbigloading] = useState(false);
-	const { footballCards, cartItems, cardinfo, cardInfoImages } = useSelector(
-		(state) => state.project
-	);
+	const { footballCards, cartItems, cardinfo, cardInfoImages, extraServices } =
+		useSelector((state) => state.project);
 	const { id } = useParams();
 	const [openModal, setopenModal] = useState(false);
 	const [finalImage, setfinalImage] = useState("");
@@ -88,11 +87,7 @@ export const CardCustomization1 = () => {
 	const navigate = useNavigate();
 	const [compSeq, setcompSeq] = useState(0);
 	//const [fullScreeniew, setFullScreeniew] = useState(false);
-	const [extraService, setextraService] = useState({
-		title: "",
-		subtitle: "",
-		prie: "",
-	});
+	const [extraService, setextraService] = useState([]);
 	const stageRef = React.useRef();
 	const newref = React.useRef();
 
@@ -103,7 +98,6 @@ export const CardCustomization1 = () => {
 				id: new Date().getTime(),
 				pid: id,
 				imgSrc: imglink,
-				extra: extraService,
 			},
 		];
 		dispatch(
@@ -111,7 +105,16 @@ export const CardCustomization1 = () => {
 				cartItems: newdata,
 			})
 		);
-		window.localStorage.setItem("upcardcartArry", JSON.stringify(newdata));
+		let newdat2 = [...extraServices, ...extraService];
+		dispatch(setExtraServices({ extraServices: newdat2 }));
+		window.localStorage.setItem(
+			"upcardcartArryUpdated",
+			JSON.stringify(newdata)
+		);
+		window.localStorage.setItem(
+			"upcardcartArryUpdatedExtras",
+			JSON.stringify(newdat2)
+		);
 
 		toast.success(dbTranslator("paddcrt"), {
 			position: "bottom-right",
@@ -183,6 +186,7 @@ export const CardCustomization1 = () => {
 							{compSeq === 0 && (
 								<ExtraServiceComp
 									value={extraService}
+									productid={id}
 									setvalue={(dat) => setextraService(dat)}
 								/>
 							)}
@@ -266,7 +270,7 @@ export const CardCustomization1 = () => {
 														? selectedCard?.textColor
 														: "white"
 												}
-												text={`${carddata?.subpValue1}`}
+												text={`${carddata?.subpValue1?.toUpperCase()}`}
 												fontSize={26}
 												verticalAlign={"middle"}
 												align={"center"}
@@ -282,7 +286,7 @@ export const CardCustomization1 = () => {
 														? selectedCard?.textColor
 														: "white"
 												}
-												text={`${carddata?.subp1}`}
+												text={`${carddata?.subp1?.toUpperCase()}`}
 												fontSize={26}
 												verticalAlign={"middle"}
 												align={"center"}
@@ -298,7 +302,7 @@ export const CardCustomization1 = () => {
 														? selectedCard?.textColor
 														: "white"
 												}
-												text={`${carddata?.subpValue2}`}
+												text={`${carddata?.subpValue2?.toUpperCase()}`}
 												fontSize={26}
 												verticalAlign={"middle"}
 												align={"center"}
@@ -314,7 +318,7 @@ export const CardCustomization1 = () => {
 														? selectedCard?.textColor
 														: "white"
 												}
-												text={`${carddata?.subp2}`}
+												text={`${carddata?.subp2?.toUpperCase()}`}
 												fontSize={26}
 												verticalAlign={"middle"}
 												align={"center"}
@@ -330,7 +334,7 @@ export const CardCustomization1 = () => {
 														? selectedCard?.textColor
 														: "white"
 												}
-												text={`${carddata?.subpValue3}`}
+												text={`${carddata?.subpValue3?.toUpperCase()}`}
 												fontSize={26}
 												verticalAlign={"middle"}
 												align={"center"}
@@ -346,7 +350,7 @@ export const CardCustomization1 = () => {
 														? selectedCard?.textColor
 														: "white"
 												}
-												text={`${carddata?.subp3}`}
+												text={`${carddata?.subp3?.toUpperCase()}`}
 												fontSize={26}
 												verticalAlign={"middle"}
 												align={"center"}
@@ -362,7 +366,7 @@ export const CardCustomization1 = () => {
 														? selectedCard?.textColor
 														: "white"
 												}
-												text={`${carddata?.subpValue4}`}
+												text={`${carddata?.subpValue4?.toUpperCase()}`}
 												fontSize={26}
 												verticalAlign={"middle"}
 												align={"center"}
@@ -378,7 +382,7 @@ export const CardCustomization1 = () => {
 														? selectedCard?.textColor
 														: "white"
 												}
-												text={`${carddata?.subp4}`}
+												text={`${carddata?.subp4?.toUpperCase()}`}
 												fontSize={26}
 												verticalAlign={"middle"}
 												align={"center"}
@@ -394,7 +398,7 @@ export const CardCustomization1 = () => {
 														? selectedCard?.textColor
 														: "white"
 												}
-												text={`${carddata?.subpValue5}`}
+												text={`${carddata?.subpValue5?.toUpperCase()}`}
 												fontSize={26}
 												verticalAlign={"middle"}
 												align={"center"}
@@ -410,7 +414,7 @@ export const CardCustomization1 = () => {
 														? selectedCard?.textColor
 														: "white"
 												}
-												text={`${carddata?.subp5}`}
+												text={`${carddata?.subp5?.toUpperCase()}`}
 												fontSize={26}
 												verticalAlign={"middle"}
 												align={"center"}
@@ -426,7 +430,7 @@ export const CardCustomization1 = () => {
 														? selectedCard?.textColor
 														: "white"
 												}
-												text={`${carddata?.subpValue6}`}
+												text={`${carddata?.subpValue6?.toUpperCase()}`}
 												fontSize={26}
 												verticalAlign={"middle"}
 												align={"center"}
@@ -442,7 +446,7 @@ export const CardCustomization1 = () => {
 														? selectedCard?.textColor
 														: "white"
 												}
-												text={`${carddata?.subp6}`}
+												text={`${carddata?.subp6?.toUpperCase()}`}
 												fontSize={26}
 												verticalAlign={"middle"}
 												align={"center"}
@@ -458,7 +462,7 @@ export const CardCustomization1 = () => {
 														? selectedCard?.textColor
 														: "white"
 												}
-												text={`${carddata?.name}`}
+												text={`${carddata?.name?.toUpperCase()}`}
 												fontSize={40}
 												verticalAlign={"middle"}
 												align={"center"}
@@ -477,7 +481,7 @@ export const CardCustomization1 = () => {
 												}
 												text={`${
 													carddata?.overallRatting
-														? carddata?.overallRatting
+														? carddata?.overallRatting?.toUpperCase()
 														: ""
 												}`}
 												fontSize={56}
@@ -495,7 +499,7 @@ export const CardCustomization1 = () => {
 														? selectedCard?.textColor
 														: "white"
 												}
-												text={`${carddata?.mainPosition}`}
+												text={`${carddata?.mainPosition?.toUpperCase()}`}
 												fontSize={28}
 												verticalAlign={"middle"}
 												align={"center"}
@@ -602,7 +606,7 @@ export const CardCustomization1 = () => {
 														? selectedCard?.textColor
 														: "white"
 												}
-												text={`${carddata?.subpValue1}`}
+												text={`${carddata?.subpValue1?.toUpperCase()}`}
 												fontSize={19}
 												verticalAlign={"middle"}
 												align={"center"}
@@ -619,7 +623,7 @@ export const CardCustomization1 = () => {
 														? selectedCard?.textColor
 														: "white"
 												}
-												text={`${carddata?.subp1}`}
+												text={`${carddata?.subp1?.toUpperCase()}`}
 												fontSize={19}
 												verticalAlign={"middle"}
 												align={"center"}
@@ -636,7 +640,7 @@ export const CardCustomization1 = () => {
 														? selectedCard?.textColor
 														: "white"
 												}
-												text={`${carddata?.subpValue2}`}
+												text={`${carddata?.subpValue2?.toUpperCase()}`}
 												fontSize={19}
 												verticalAlign={"middle"}
 												align={"center"}
@@ -653,7 +657,7 @@ export const CardCustomization1 = () => {
 														? selectedCard?.textColor
 														: "white"
 												}
-												text={`${carddata?.subp2}`}
+												text={`${carddata?.subp2?.toUpperCase()}`}
 												fontSize={19}
 												verticalAlign={"middle"}
 												align={"center"}
@@ -670,7 +674,7 @@ export const CardCustomization1 = () => {
 														? selectedCard?.textColor
 														: "white"
 												}
-												text={`${carddata?.subpValue3}`}
+												text={`${carddata?.subpValue3?.toUpperCase()}`}
 												fontSize={19}
 												verticalAlign={"middle"}
 												align={"center"}
@@ -687,7 +691,7 @@ export const CardCustomization1 = () => {
 														? selectedCard?.textColor
 														: "white"
 												}
-												text={`${carddata?.subp3}`}
+												text={`${carddata?.subp3?.toUpperCase()}`}
 												fontSize={19}
 												verticalAlign={"middle"}
 												align={"center"}
@@ -705,7 +709,7 @@ export const CardCustomization1 = () => {
 														? selectedCard?.textColor
 														: "white"
 												}
-												text={`${carddata?.subpValue4}`}
+												text={`${carddata?.subpValue4?.toUpperCase()}`}
 												fontSize={19}
 												verticalAlign={"middle"}
 												align={"center"}
@@ -722,7 +726,7 @@ export const CardCustomization1 = () => {
 														? selectedCard?.textColor
 														: "white"
 												}
-												text={`${carddata?.subp4}`}
+												text={`${carddata?.subp4?.toUpperCase()}`}
 												fontSize={19}
 												verticalAlign={"middle"}
 												align={"center"}
@@ -739,7 +743,7 @@ export const CardCustomization1 = () => {
 														? selectedCard?.textColor
 														: "white"
 												}
-												text={`${carddata?.subpValue5}`}
+												text={`${carddata?.subpValue5?.toUpperCase()}`}
 												fontSize={19}
 												verticalAlign={"middle"}
 												align={"center"}
@@ -756,7 +760,7 @@ export const CardCustomization1 = () => {
 														? selectedCard?.textColor
 														: "white"
 												}
-												text={`${carddata?.subp5}`}
+												text={`${carddata?.subp5?.toUpperCase()}`}
 												fontSize={19}
 												verticalAlign={"middle"}
 												align={"center"}
@@ -773,7 +777,7 @@ export const CardCustomization1 = () => {
 														? selectedCard?.textColor
 														: "white"
 												}
-												text={`${carddata?.subpValue6}`}
+												text={`${carddata?.subpValue6?.toUpperCase()}`}
 												fontSize={19}
 												verticalAlign={"middle"}
 												align={"center"}
@@ -790,7 +794,7 @@ export const CardCustomization1 = () => {
 														? selectedCard?.textColor
 														: "white"
 												}
-												text={`${carddata?.subp6}`}
+												text={`${carddata?.subp6?.toUpperCase()}`}
 												fontSize={19}
 												verticalAlign={"middle"}
 												align={"center"}
@@ -808,7 +812,7 @@ export const CardCustomization1 = () => {
 														? selectedCard?.textColor
 														: "white"
 												}
-												text={`${carddata?.name}`}
+												text={`${carddata?.name?.toUpperCase()}`}
 												fontSize={28}
 												verticalAlign={"middle"}
 												align={"center"}
@@ -827,7 +831,7 @@ export const CardCustomization1 = () => {
 												}
 												text={`${
 													carddata?.overallRatting
-														? carddata?.overallRatting
+														? carddata?.overallRatting?.toUpperCase()
 														: ""
 												}`}
 												fontSize={38}
@@ -846,7 +850,7 @@ export const CardCustomization1 = () => {
 														? selectedCard?.textColor
 														: "white"
 												}
-												text={`${carddata?.mainPosition}`}
+												text={`${carddata?.mainPosition?.toUpperCase()}`}
 												fontSize={22}
 												verticalAlign={"middle"}
 												align={"center"}
@@ -881,14 +885,7 @@ export const CardCustomization1 = () => {
 									</Stage>
 								</div>
 							</div>
-							{/* <div className='d-block' ref={newref}>
-						
-						</div> */}
-							{/* <button
-							onClick={() => setFullScreeniew(true)}
-							className='btn mainColor nillbtn d-block d-md-none'>
-							<BsFullscreen />
-						</button> */}
+
 							<span
 								style={{
 									fontSize: "28px",
@@ -979,26 +976,11 @@ export const CardCustomization1 = () => {
 								</div>
 							</div>
 							<div className='order-2 order-md-3 col-6  mb-4 col-md-3 d-flex align-items-center justify-content-center'>
-								{/* {compSeq >= 4 ? (
-								<button
-									onClick={() => {
-										// navigate(`/success/${id}`);
-									}}
-									data-desktop-atc=''
-									className='btn w-90 mainColor secondarybg'>
-									Submit
-								</button>
-							) : ( */}
 								<button
 									onClick={nextBtnFunc}
 									className='btn w-90 mainColor secondarybg'>
-									{/* <AiOutlineRight
-										className='mainColor'
-										style={{ fontSize: "22px" }}
-									/> */}
 									{compSeq < 4 ? dbTranslator("next") : dbTranslator("save")}
 								</button>
-								{/* )} */}
 							</div>
 						</div>
 					</div>

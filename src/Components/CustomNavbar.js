@@ -143,17 +143,7 @@ const CustomNavbar = ({ changeLanguage }) => {
 								style={{ color: "rgba(0,0,0,0.5)" }}
 							/>
 						</NavLink>
-						<NavLink
-							className={({ isActive }) =>
-								"nav-link my-auto rightMarginResp" +
-								(!isActive ? "" : " active")
-							}
-							to={isAuth?.uid ? "/profile" : "/auth"}>
-							<IoPersonOutline
-								className='responsiveElements'
-								style={{ color: "rgba(0,0,0,0.5)" }}
-							/>
-						</NavLink>
+
 						<div
 							onClick={() => {
 								setopenModel(true);
@@ -232,9 +222,7 @@ const CustomNavbar = ({ changeLanguage }) => {
 										/>
 									</NavLink>
 								</Nav.Link>
-								<Nav.Link
-									eventKey='5'
-									className=' text-center mx-1 my-auto d-none d-lg-block'>
+								<Nav.Link eventKey='5' className=' text-center mx-1 my-auto'>
 									<NavLink
 										className={({ isActive }) => (!isActive ? "" : "active")}
 										to={isAuth?.uid ? "/profile" : "/auth"}>

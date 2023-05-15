@@ -109,7 +109,7 @@ const FootballCards = ({
 						className='m-0'>
 						{price && (
 							<span style={{ color: "rgba(0, 0, 0, 0.5)" }}>
-								<b>From ${price}</b>
+								<b>From €{price}</b>
 							</span>
 						)}{" "}
 						{oldprice && (
@@ -118,7 +118,7 @@ const FootballCards = ({
 									textDecorationLine: "line-through",
 									color: "red",
 								}}>
-								${oldprice}
+								€{oldprice}
 							</span>
 						)}
 					</p>

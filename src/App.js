@@ -9,6 +9,7 @@ import {
 	setLanguages,
 	setOtherProducts,
 	setBanner,
+	setExtraServices,
 } from "./store/projectSlice";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -79,10 +80,18 @@ function App() {
 			);
 		});
 
-		const cartdata = window.localStorage.getItem("upcardcartArry");
+		const cartdata = window.localStorage.getItem("upcardcartArryUpdated");
 		dispatch(
 			setCartItems({
 				cartItems: JSON.parse(cartdata),
+			})
+		);
+		const cartdata2 = window.localStorage.getItem(
+			"upcardcartArryUpdatedExtras"
+		);
+		dispatch(
+			setExtraServices({
+				extraServices: JSON.parse(cartdata2),
 			})
 		);
 		console.log("-----------------------welcome");
