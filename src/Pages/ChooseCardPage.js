@@ -216,8 +216,13 @@ const ChooseCardPage = () => {
 		setTimeout(() => {
 			saveAs(`${uri}`, "upCardSoccerLetter.jpg");
 		}, 7000);
-		setshowAds(false);
 	};
+	useEffect(() => {
+		setTimeout(() => {
+			setshowAds(false);
+		}, 7000);
+	}, [showAds]);
+
 	console.log("showsads", showAds);
 	const cropperRef = React.createRef(null);
 	const oncrop = () => {
