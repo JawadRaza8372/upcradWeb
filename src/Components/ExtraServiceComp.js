@@ -64,68 +64,70 @@ const ExtraServiceComp = ({ value, setvalue }) => {
 			<div
 				className='w-100 p-4 d-flex align-items-start justify-content-center mt-3 flex-column'
 				style={{ background: "rgba(62,73,122,0.08)" }}>
-				{rawdata.map((dat, index) => {
-					let check = value?.find((da) =>
-						da.title === dat.title ? true : false
-					);
-					return (
-						<div
-							key={index}
-							onClick={() => {
-								if (check) {
-									let newvAL = value.filter((daw) => daw.title !== dat.title);
-									setvalue(newvAL);
-								} else {
-									setvalue([...value, dat]);
-								}
-							}}
-							className='row w-100 mb-3 mx-auto'
-							style={{
-								height: "fit-content",
-								minHeight: "80px",
-								border: check ? "1px solid black" : "0px",
-								borderRadius: "10px",
-								cursor: "pointer",
-								overflow: "hidden",
-							}}>
+				{rawdata &&
+					rawdata?.map((dat, index) => {
+						let check =
+							value?.length > 0
+								? value?.find((da) => (da.title === dat.title ? true : false))
+								: false;
+						return (
 							<div
-								className='col-12 col-md-2'
+								key={index}
+								onClick={() => {
+									if (check) {
+										let newvAL = value.filter((daw) => daw.title !== dat.title);
+										setvalue(newvAL);
+									} else {
+										setvalue(value?.length > 0 ? [...value, dat] : [dat]);
+									}
+								}}
+								className='row w-100 mb-3 mx-auto'
 								style={{
-									background: "white",
-									display: "flex",
-									alignItems: "center",
-									justifyContent: "center",
+									height: "fit-content",
+									minHeight: "80px",
+									border: check ? "1px solid black" : "0px",
+									borderRadius: "10px",
+									cursor: "pointer",
+									overflow: "hidden",
 								}}>
-								<img
-									src={`${
-										imgearry[index] ? imgearry[index]?.imgSrc : truckicon
-									}`}
-									alt='truck'
+								<div
+									className='col-12 col-md-2'
 									style={{
-										width: "100%",
-										objectFit: "cover",
-										maxWidth: "250px",
-									}}
-								/>
-							</div>
-							<div className='col-12 col-md-10 d-flex align-items-start justify-content-center flex-column'>
-								<span
-									className='mainColor'
-									style={{ fontSize: "16px", fontWeight: "600" }}>
-									{dat.title}-€{dat.price}
-								</span>
-								<span
-									style={{
-										fontSize: "12px",
-										fontWeight: "600",
-										color: "rgba(106, 106, 106, 1)",
+										background: "white",
+										display: "flex",
+										alignItems: "center",
+										justifyContent: "center",
 									}}>
-									{dat.subtitle}
-								</span>
+									<img
+										src={`${
+											imgearry[index] ? imgearry[index]?.imgSrc : truckicon
+										}`}
+										alt='truck'
+										style={{
+											width: "100%",
+											objectFit: "cover",
+											maxWidth: "250px",
+										}}
+									/>
+								</div>
+								<div className='col-12 col-md-10 d-flex align-items-start justify-content-center flex-column'>
+									<span
+										className='mainColor'
+										style={{ fontSize: "16px", fontWeight: "600" }}>
+										{dat.title}-€{dat.price}
+									</span>
+									<span
+										style={{
+											fontSize: "12px",
+											fontWeight: "600",
+											color: "rgba(106, 106, 106, 1)",
+										}}>
+										{dat.subtitle}
+									</span>
+								</div>
 							</div>
-						</div>
-					);
-				})}
+						);
+					})}
 			</div>
 		</div>
 	);

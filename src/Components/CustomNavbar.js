@@ -7,7 +7,6 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { CustomHook } from "../CustomHook/CustomHook";
 import logoimg from "../ownassets/logo.png";
 import { BiCartAlt } from "react-icons/bi";
-import { IoPersonOutline } from "react-icons/io5";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
 import { useSelector } from "react-redux";
@@ -23,7 +22,6 @@ const CustomNavbar = ({ changeLanguage }) => {
 	const { footballCards, otherProducts } = useSelector(
 		(state) => state.project
 	);
-	const { isAuth } = useSelector((state) => state.auth);
 	const filteredData = () => {
 		if (inputval !== "") {
 			let res1 = footballCards?.filter(
@@ -222,15 +220,7 @@ const CustomNavbar = ({ changeLanguage }) => {
 										/>
 									</NavLink>
 								</Nav.Link>
-								<Nav.Link eventKey='5' className=' text-center mx-1 my-auto'>
-									<NavLink
-										className={({ isActive }) => (!isActive ? "" : "active")}
-										to={isAuth?.uid ? "/profile" : "/auth"}>
-										<IoPersonOutline
-											style={{ fontSize: "30px", color: "rgba(0,0,0,0.5)" }}
-										/>
-									</NavLink>
-								</Nav.Link>
+
 								<Nav.Link eventKey='6' className=' text-center mx-1 my-auto'>
 									<NavLink
 										className={({ isActive }) => (!isActive ? "" : "active")}

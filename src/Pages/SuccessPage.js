@@ -5,6 +5,7 @@ const SuccessPage = () => {
 	const { dbTranslator } = CustomHook();
 	return (
 		<div
+			id='mainSection'
 			style={{
 				height: "fit-content",
 				minHeight: "70vh",

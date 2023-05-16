@@ -5,12 +5,10 @@ import CartPage from "../Pages/CartPage";
 import ChooseCardPage from "../Pages/ChooseCardPage";
 import ErrorPage from "../Pages/ErrorPage";
 import HomePage from "../Pages/HomePage";
-import LoginSignUp from "../Pages/LoginSignUp";
 import OtherProducts from "../Pages/OtherProducts";
 import ProductsPage from "../Pages/ProductsPage";
 import SuccessPage from "../Pages/SuccessPage";
 import SupportPage from "../Pages/SupportPage";
-import ProfileScreen from "../Pages/ProfileScreen";
 import ProductInfo from "../Pages/ProductInfo";
 import PrivacyPage from "../Pages/PrivacyPage";
 import ContactUsPage from "../Pages/ContactUsPage";
@@ -21,8 +19,6 @@ const FileRoutes = () => {
 	return (
 		<Routes>
 			<Route path='/cards' element={<ChooseCardPage />} />
-			<Route path='/auth' element={<LoginSignUp />} />
-			<Route path='/profile' element={<ProfileScreen />} />
 			<Route path='/productInfo/:id' element={<ProductInfo />} />
 			<Route path='/support' element={<SupportPage />} />
 			<Route path='/products' element={<ProductsPage />} />

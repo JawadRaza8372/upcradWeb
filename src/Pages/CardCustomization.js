@@ -413,6 +413,7 @@ export const CardCustomization = () => {
 						{compSeq === 4 && (
 							<ExtraServiceComp
 								value={extraService}
+								productid={id}
 								setvalue={(dat) => setextraService(dat)}
 							/>
 						)}

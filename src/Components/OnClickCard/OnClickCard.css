@@ -7,6 +7,7 @@
 input::placeholder {
 	color: transparent;
 }
+
 .editablecARD > img {
 	width: 377px;
 	height: 599px;
@@ -50,6 +51,9 @@ input::placeholder {
 	border-radius: 2px;
 	background-color: transparent;
 	height: 120px;
+}
+.editableContent > .upperhalf > .nameContaiber > input:focus {
+	caret-color: red !important;
 }
 .editableContent > .upperhalf > .nameContaiber > input {
 	width: 100%;
@@ -100,6 +104,13 @@ input::placeholder {
 	align-items: center;
 	justify-content: flex-start;
 	flex-direction: column;
+}
+.editableContent
+	> .upperhalf
+	> .inputConatiners
+	> .blackcontainer
+	> input:focus {
+	caret-color: red !important;
 }
 .editableContent > .upperhalf > .inputConatiners > .blackcontainer > input {
 	width: 100%;
@@ -220,6 +231,9 @@ input::placeholder {
 	> .fieldsContainer
 	> input:last-child {
 	margin-right: 25px;
+}
+.editableContent > .lowerhalf > .leftinputs > .fieldsContainer > input:focus {
+	caret-color: red !important;
 }
 .editableContent > .lowerhalf > .leftinputs > .fieldsContainer > input {
 	width: 40px;

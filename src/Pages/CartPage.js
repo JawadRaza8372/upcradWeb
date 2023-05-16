@@ -48,18 +48,22 @@ const CartPage = () => {
 	const saveorderFunc = async (deta) => {
 		console.log({
 			products: cartItems,
+			extras: extraServices,
 			...deta,
 		});
 		const rest = await postData(
 			{
 				products: cartItems,
+				extras: extraServices,
 				...deta,
 			},
 			"Orders"
 		);
 		if (rest?.data) {
 			dispatch(setCartItems({ cartItems: [] }));
+			dispatch(setExtraServices({ extraServices: [] }));
 			window.localStorage.removeItem("upcardcartArryUpdated");
+			window.localStorage.removeItem("upcardcartArryUpdatedExtras");
 			navigate(`/success/${rest?.data}`);
 		} else {
 			toast.error(`${rest?.error}`, {
