@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import CommonChooseCard from "../Components/CommonChooseCard";
 import { useNavigate } from "react-router-dom";
 import { Stage, Layer, Image, Text, Line } from "react-konva";
@@ -163,6 +163,25 @@ const ChooseCardPage = () => {
 			subp6: "",
 		});
 	}, []);
+	useLayoutEffect(() => {
+		setCardInfo({
+			overallRatting: "",
+			mainPosition: "",
+			name: "",
+			subpValue1: "",
+			subpValue2: "",
+			subpValue3: "",
+			subpValue4: "",
+			subpValue5: "",
+			subpValue6: "",
+			subp1: "",
+			subp2: "",
+			subp3: "",
+			subp4: "",
+			subp5: "",
+			subp6: "",
+		});
+	}, []);
 
 	const [showAds, setshowAds] = useState(false);
 	useEffect(() => {
@@ -228,9 +247,9 @@ const ChooseCardPage = () => {
 							preview='.img-preview'
 							src={`${templinkImg}`}
 							ref={cropperRef}
-							initialAspectRatio={3 / 4}
-							aspectRatio={3 / 4}
-							viewMode={1}
+							initialAspectRatio={1}
+							aspectRatio={1}
+							viewMode={2}
 							guides={false}
 						/>
 						<button
@@ -1012,12 +1031,12 @@ const ChooseCardPage = () => {
 											scale={{ x: 1, y: 1 }}
 										/>
 										<Image
-											x={140}
-											y={115}
-											height={185}
+											x={120}
+											y={110}
+											height={220}
 											width={220}
 											image={useravtar}
-											scale={{ x: 0.8, y: 1.1 }}
+											scale={{ x: 1, y: 1 }}
 										/>
 									</Layer>
 								</Stage>
@@ -1358,12 +1377,12 @@ const ChooseCardPage = () => {
 											scale={{ x: 1, y: 1 }}
 										/>
 										<Image
-											x={105}
-											y={80}
-											height={120}
+											x={92}
+											y={71}
+											height={150}
 											width={150}
 											image={useravtar}
-											scale={{ x: 0.8, y: 1.1 }}
+											scale={{ x: 1, y: 1 }}
 										/>
 									</Layer>
 								</Stage>

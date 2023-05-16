@@ -191,7 +191,8 @@ code {
 }
 @font-face {
 	font-family: "NormalFont";
-	src: local("646-font"), url("./fonsts/646-font.otf") format("opentype");
+	src: local("DINPro-CondensedMedium"),
+		url("./fonsts/DINPro-CondensedMedium.otf") format("opentype");
 }
 p,
 span,

@@ -145,9 +145,9 @@ const BasicInfoComp = ({
 							preview='.img-preview'
 							src={`${imgsrc}`}
 							ref={cropperRef}
-							initialAspectRatio={3 / 4}
-							aspectRatio={3 / 4}
-							viewMode={1}
+							initialAspectRatio={1}
+							aspectRatio={1}
+							viewMode={2}
 							guides={false}
 						/>
 						<button

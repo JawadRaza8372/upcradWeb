@@ -522,12 +522,12 @@ export const CardCustomization1 = () => {
 												scale={{ x: 1, y: 1 }}
 											/>
 											<Image
-												x={140}
-												y={115}
-												height={185}
+												x={120}
+												y={110}
+												height={220}
 												width={220}
 												image={useravtar}
-												scale={{ x: 0.8, y: 1.1 }}
+												scale={{ x: 1, y: 1 }}
 											/>
 										</Layer>
 									</Stage>
@@ -874,12 +874,12 @@ export const CardCustomization1 = () => {
 												scale={{ x: 1, y: 1 }}
 											/>
 											<Image
-												x={105}
-												y={80}
-												height={120}
+												x={92}
+												y={71}
+												height={150}
 												width={150}
 												image={useravtar}
-												scale={{ x: 0.8, y: 1.1 }}
+												scale={{ x: 1, y: 1 }}
 											/>
 										</Layer>
 									</Stage>
