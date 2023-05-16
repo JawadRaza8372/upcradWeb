@@ -218,6 +218,7 @@ const ChooseCardPage = () => {
 			saveAs(`${uri}`, "upCardSoccerLetter.jpg");
 		}, 7000);
 	};
+	console.log("showsads", showAds);
 	const cropperRef = React.createRef(null);
 	const oncrop = () => {
 		setcarddataImages({
@@ -388,7 +389,13 @@ const ChooseCardPage = () => {
 					</div>
 				</div>
 			</Modal>
-
+			{showAds && (
+				<Modal fullscreen show={showAds}>
+					<div className='shwoadscardsadsdiv'>
+						<AdsComp slotnumber='5755097747' />
+					</div>
+				</Modal>
+			)}
 			<div
 				className='col-10 mx-auto'
 				style={{
@@ -1476,11 +1483,6 @@ const ChooseCardPage = () => {
 					</div>
 				</div>
 			</div>
-			<Modal fullscreen show={showAds}>
-				<div className='shwoadscardsadsdiv'>
-					<AdsComp slotnumber='5755097747' />
-				</div>
-			</Modal>
 		</div>
 	);
 };
