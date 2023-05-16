@@ -57,7 +57,7 @@ body {
 	z-index: 4000;
 }
 .modal-fullscreen .modal-content {
-	background: transparent;
+	background: transparent !important;
 }
 
 .mainColoerdDiv {
@@ -279,7 +279,7 @@ h6 {
 	width: 100%;
 	min-height: 100%;
 	height: max-content;
-	background: rgba(0, 0, 0, 0.8);
+	background: rgba(0, 0, 0, 0.8) !important;
 	position: absolute;
 	top: 0px;
 	left: 0px;
