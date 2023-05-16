@@ -12,7 +12,7 @@ import "../../node_modules/slick-carousel/slick/slick.css";
 import "../../node_modules/slick-carousel/slick/slick-theme.css";
 import { CustomHook } from "../CustomHook/CustomHook";
 import { saveAs } from "file-saver";
-import AdsComp from "../Components/AdsComp";
+//import AdsComp from "../Components/AdsComp";
 import { Modal } from "react-bootstrap";
 import CustomLargeLoader from "../Components/CustomLargeLoader";
 import { countries, recomadCuntries } from "../Database/Database";
@@ -128,60 +128,22 @@ const ChooseCardPage = () => {
 	});
 
 	const [carddata, setcarddata] = useState({
-		overallRatting: "98",
-		mainPosition: "DC",
-		name: "NOMBRE",
-		subpValue1: "67",
-		subpValue2: "87",
-		subpValue3: "99",
-		subpValue4: "44",
-		subpValue5: "98",
-		subpValue6: "65",
-		subp1: "RIT",
-		subp2: "PAS",
-		subp3: "TIR",
-		subp4: "REG",
-		subp5: "DEF",
-		subp6: "FIS",
+		overallRatting: "",
+		mainPosition: "",
+		name: "",
+		subpValue1: "",
+		subpValue2: "",
+		subpValue3: "",
+		subpValue4: "",
+		subpValue5: "",
+		subpValue6: "",
+		subp1: "",
+		subp2: "",
+		subp3: "",
+		subp4: "",
+		subp5: "",
+		subp6: "",
 	});
-	useEffect(() => {
-		setCardInfo({
-			overallRatting: "",
-			mainPosition: "",
-			name: "",
-			subpValue1: "",
-			subpValue2: "",
-			subpValue3: "",
-			subpValue4: "",
-			subpValue5: "",
-			subpValue6: "",
-			subp1: "",
-			subp2: "",
-			subp3: "",
-			subp4: "",
-			subp5: "",
-			subp6: "",
-		});
-	}, []);
-	useLayoutEffect(() => {
-		setCardInfo({
-			overallRatting: "",
-			mainPosition: "",
-			name: "",
-			subpValue1: "",
-			subpValue2: "",
-			subpValue3: "",
-			subpValue4: "",
-			subpValue5: "",
-			subpValue6: "",
-			subp1: "",
-			subp2: "",
-			subp3: "",
-			subp4: "",
-			subp5: "",
-			subp6: "",
-		});
-	}, []);
 
 	const [showAds, setshowAds] = useState(false);
 	useEffect(() => {
@@ -214,16 +176,11 @@ const ChooseCardPage = () => {
 		const uri = stageRef.current.toDataURL({ pixelRatio: 3 });
 		setshowAds(true);
 		setTimeout(() => {
-			saveAs(`${uri}`, "upCardSoccerLetter.jpg");
-		}, 7000);
-	};
-	useEffect(() => {
-		setTimeout(() => {
+			saveAs(`${uri}`, `${selectedCard?.title}_upCard.jpg`);
 			setshowAds(false);
 		}, 7000);
-	}, [showAds]);
+	};
 
-	console.log("showsads", showAds);
 	const cropperRef = React.createRef(null);
 	const oncrop = () => {
 		setcarddataImages({
@@ -234,6 +191,26 @@ const ChooseCardPage = () => {
 		});
 		setopenCropper(false);
 	};
+	useLayoutEffect(() => {
+		setcarddata({
+			overallRatting: "98",
+			mainPosition: "DC",
+			name: "NOMBRE",
+			subpValue1: "67",
+			subpValue2: "87",
+			subpValue3: "99",
+			subpValue4: "44",
+			subpValue5: "98",
+			subpValue6: "65",
+			subp1: "RIT",
+			subp2: "PAS",
+			subp3: "TIR",
+			subp4: "REG",
+			subp5: "DEF",
+			subp6: "FIS",
+		});
+	}, []);
+
 	if (isLargeLoading) {
 		return <CustomLargeLoader />;
 	}
@@ -397,7 +374,7 @@ const ChooseCardPage = () => {
 			{showAds && (
 				<Modal fullscreen show={showAds}>
 					<div className='shwoadscardsadsdiv'>
-						<AdsComp slotnumber='5755097747' />
+						{/* <AdsComp slotnumber='5755097747' /> */}
 					</div>
 				</Modal>
 			)}
@@ -722,7 +699,6 @@ const ChooseCardPage = () => {
 									<div className='smallestLineh' />
 								</div>
 							</div>
-
 							<div className='d-none d-sm-block allCenter'>
 								<Stage
 									ref={stageRef}
