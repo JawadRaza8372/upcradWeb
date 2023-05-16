@@ -15,8 +15,8 @@ import { CustomHook } from "../CustomHook/CustomHook";
 import { setClubs } from "../store/projectSlice";
 import { getDatabase, ref, child, get } from "firebase/database";
 import { uploadImage } from "../Database/Database";
-import CustomLargeLoader from "../Components/CustomLargeLoader";
 import ContinueShopping from "../Components/ContinueShopping";
+import NewLargeLoader from "../Components/NewLargeLoader";
 export const CardCustomization = () => {
 	const { dbTranslator } = CustomHook();
 	const [isbigloading, setisbigloading] = useState(false);
@@ -347,854 +347,839 @@ export const CardCustomization = () => {
 			}
 		}
 	};
-	if (isbigloading) {
-		return <CustomLargeLoader />;
-	} else {
-		return (
-			<>
-				<ContinueShopping
-					title={currentData?.title}
-					imgSrc={finalImage}
-					show={openModal}
-					hide={() => setopenModal(false)}
-				/>
-				<div
-					className='col-10 mx-auto'
-					style={{
-						height: "fit-content",
-						minHeight: "60vh",
-						overflow: "visible",
-						background: "white",
-						padding: "15px 0px",
-					}}>
-					<div className='row gx-0 w-100 h-100'>
-						<div className='col-12 order-2 order-md-1 col-md-6 h-100 mb-4'>
-							{compSeq === 0 && (
-								<BasicInfoComp
-									nameValue={BasicInfo.name}
-									onChangeName={(d) => {
-										setBasicInfo({
-											...BasicInfo,
-											name: d.target.value?.toUpperCase(),
-										});
-									}}
-									onChangeImage={handleUpload}
-									imglink={BasicInfo.image}
-									setactivePosition={(d) =>
-										setBasicInfo({ ...BasicInfo, position: d })
-									}
-									activePosition={BasicInfo.position}
-									imgsrc={templinkImg}
-									model={openCropper}
-									onCropComp={onCropomplete}
-									setActiveSubPosition={(dat) => setsubPositions(dat)}
-								/>
-							)}
-							{compSeq === 1 && (
-								<ChooseClubComp
-									selectedFlag={clubFlag}
-									setselectedFlag={(dat) => setClubFlag(dat)}
-									handleFlagUpload={uploadClubFlag}
-								/>
-							)}
-							{compSeq === 2 && (
-								<ChooseFlagComp
-									selectedFlag={selectedCountry}
-									onSelectedFlag={(dat) => setselectedCountry(dat)}
-								/>
-							)}
-							{compSeq === 3 && (
-								<ChooseAttributComp
-									selectedSubPositions={subPositions}
-									positionValues={subPositionsVal}
-									onSetSubPositionValues={setsubPositionsal}
-									overAllRating={overAllRatting}
-								/>
-							)}
-							{compSeq === 4 && (
-								<ExtraServiceComp
-									value={extraService}
-									setvalue={(dat) => setextraService(dat)}
-								/>
-							)}
+
+	return (
+		<>
+			{isbigloading && <NewLargeLoader />}
+			<ContinueShopping
+				title={currentData?.title}
+				imgSrc={finalImage}
+				show={openModal}
+				hide={() => setopenModal(false)}
+			/>
+			<div
+				className='col-10 mx-auto'
+				style={{
+					height: "fit-content",
+					minHeight: "60vh",
+					overflow: "visible",
+					background: "white",
+					padding: "15px 0px",
+				}}>
+				<div className='row gx-0 w-100 h-100'>
+					<div className='col-12 order-2 order-md-1 col-md-6 h-100 mb-4'>
+						{compSeq === 0 && (
+							<BasicInfoComp
+								nameValue={BasicInfo.name}
+								onChangeName={(d) => {
+									setBasicInfo({
+										...BasicInfo,
+										name: d.target.value?.toUpperCase(),
+									});
+								}}
+								onChangeImage={handleUpload}
+								imglink={BasicInfo.image}
+								setactivePosition={(d) =>
+									setBasicInfo({ ...BasicInfo, position: d })
+								}
+								activePosition={BasicInfo.position}
+								imgsrc={templinkImg}
+								model={openCropper}
+								onCropComp={onCropomplete}
+								setActiveSubPosition={(dat) => setsubPositions(dat)}
+							/>
+						)}
+						{compSeq === 1 && (
+							<ChooseClubComp
+								selectedFlag={clubFlag}
+								setselectedFlag={(dat) => setClubFlag(dat)}
+								handleFlagUpload={uploadClubFlag}
+							/>
+						)}
+						{compSeq === 2 && (
+							<ChooseFlagComp
+								selectedFlag={selectedCountry}
+								onSelectedFlag={(dat) => setselectedCountry(dat)}
+							/>
+						)}
+						{compSeq === 3 && (
+							<ChooseAttributComp
+								selectedSubPositions={subPositions}
+								positionValues={subPositionsVal}
+								onSetSubPositionValues={setsubPositionsal}
+								overAllRating={overAllRatting}
+							/>
+						)}
+						{compSeq === 4 && (
+							<ExtraServiceComp
+								value={extraService}
+								setvalue={(dat) => setextraService(dat)}
+							/>
+						)}
+					</div>
+					<div className='order-1 order-md-2 mb-4 col-12 col-md-6 allCenter flex-column'>
+						<div className='btn nillbtn mainColor'>
+							{dbTranslator("pvwonly")}
 						</div>
-						<div className='order-1 order-md-2 mb-4 col-12 col-md-6 allCenter flex-column'>
-							<div className='btn nillbtn mainColor'>
-								{dbTranslator("pvwonly")}
+						<div ref={newref}>
+							<div className='d-none d-sm-block'>
+								<Stage ref={stageRef} width={377} height={599}>
+									<Layer>
+										<Image x={0} y={0} height={599} width={377} image={image} />
+										<Line
+											x={74}
+											y={196}
+											points={[0, 0, 40, 0]}
+											stroke={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+										/>
+										<Line
+											x={74}
+											y={250}
+											points={[0, 0, 40, 0]}
+											stroke={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+										/>
+										<Line
+											x={165}
+											y={515}
+											points={[0, 0, 47, 0]}
+											stroke={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+										/>
+										<Line
+											x={72}
+											y={380}
+											points={[0, 0, 230, 0]}
+											stroke={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+										/>
+										<Line
+											x={186}
+											y={398}
+											points={[0, 0, 0, 107]}
+											stroke={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={70}
+											y={395}
+											fill={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+											text={`${subPositionsVal.fastValue}`}
+											fontSize={26}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontFamily='MYbold'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={120}
+											y={395}
+											fill={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+											text={`${subPositions.fastValue}`}
+											fontSize={26}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontFamily='NormalFont'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={70}
+											y={435}
+											fill={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+											text={`${subPositionsVal.secValue}`}
+											fontSize={26}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontFamily='MYbold'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={120}
+											y={435}
+											fill={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+											text={`${subPositions.secValue}`}
+											fontSize={26}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontFamily='NormalFont'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={70}
+											y={475}
+											fill={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+											text={`${subPositionsVal.thrdValue}`}
+											fontSize={26}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontFamily='MYbold'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={120}
+											y={475}
+											fill={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+											text={`${subPositions.thrdValue}`}
+											fontSize={26}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontFamily='NormalFont'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={190}
+											y={395}
+											fill={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+											text={`${subPositionsVal.forValue}`}
+											fontSize={26}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontFamily='MYbold'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={240}
+											y={395}
+											fill={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+											text={`${subPositions.forValue}`}
+											fontSize={26}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontFamily='NormalFont'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={190}
+											y={435}
+											fill={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+											text={`${subPositionsVal.fifValue}`}
+											fontSize={26}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontFamily='MYbold'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={240}
+											y={435}
+											fill={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+											text={`${subPositions.fifValue}`}
+											fontSize={26}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontFamily='NormalFont'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={190}
+											y={475}
+											fill={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+											text={`${subPositionsVal.sixValue}`}
+											fontSize={26}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontFamily='MYbold'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={240}
+											y={475}
+											fill={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+											text={`${subPositions.sixValue}`}
+											fontSize={26}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontFamily='NormalFont'
+										/>
+										<Text
+											width={220}
+											height={40}
+											x={80}
+											y={337}
+											fill={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+											text={`${BasicInfo?.name}`}
+											fontSize={40}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontStyle={"bold"}
+											fontFamily='MYbold'
+										/>
+										<Text
+											width={60}
+											height={50}
+											x={65}
+											y={110}
+											fill={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+											text={`${overAllRatting > 0 ? overAllRatting : ""}`}
+											fontSize={56}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontFamily='NormalFont'
+										/>
+										<Text
+											width={50}
+											height={40}
+											x={70}
+											y={155}
+											fill={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+											text={`${BasicInfo?.position}`}
+											fontSize={28}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontFamily='NormalFont'
+										/>
+										<Image
+											x={71.5}
+											y={210}
+											height={35}
+											width={45}
+											image={countryflagavtar}
+											scale={{ x: 1, y: 0.8 }}
+										/>
+										<Image
+											x={73}
+											y={260}
+											height={45}
+											width={45}
+											image={clubFlagavtar}
+											scale={{ x: 1, y: 1 }}
+										/>
+										<Image
+											x={120}
+											y={110}
+											height={220}
+											width={220}
+											image={useravtar}
+											scale={{ x: 1, y: 1 }}
+										/>
+									</Layer>
+								</Stage>
 							</div>
-							<div ref={newref}>
-								<div className='d-none d-sm-block'>
-									<Stage ref={stageRef} width={377} height={599}>
-										<Layer>
-											<Image
-												x={0}
-												y={0}
-												height={599}
-												width={377}
-												image={image}
-											/>
-											<Line
-												x={74}
-												y={196}
-												points={[0, 0, 40, 0]}
-												stroke={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-											/>
-											<Line
-												x={74}
-												y={250}
-												points={[0, 0, 40, 0]}
-												stroke={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-											/>
-											<Line
-												x={165}
-												y={515}
-												points={[0, 0, 47, 0]}
-												stroke={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-											/>
-											<Line
-												x={72}
-												y={380}
-												points={[0, 0, 230, 0]}
-												stroke={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-											/>
-											<Line
-												x={186}
-												y={398}
-												points={[0, 0, 0, 107]}
-												stroke={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={70}
-												y={395}
-												fill={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-												text={`${subPositionsVal.fastValue}`}
-												fontSize={26}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontFamily='MYbold'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={120}
-												y={395}
-												fill={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-												text={`${subPositions.fastValue}`}
-												fontSize={26}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontFamily='NormalFont'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={70}
-												y={435}
-												fill={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-												text={`${subPositionsVal.secValue}`}
-												fontSize={26}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontFamily='MYbold'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={120}
-												y={435}
-												fill={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-												text={`${subPositions.secValue}`}
-												fontSize={26}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontFamily='NormalFont'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={70}
-												y={475}
-												fill={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-												text={`${subPositionsVal.thrdValue}`}
-												fontSize={26}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontFamily='MYbold'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={120}
-												y={475}
-												fill={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-												text={`${subPositions.thrdValue}`}
-												fontSize={26}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontFamily='NormalFont'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={190}
-												y={395}
-												fill={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-												text={`${subPositionsVal.forValue}`}
-												fontSize={26}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontFamily='MYbold'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={240}
-												y={395}
-												fill={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-												text={`${subPositions.forValue}`}
-												fontSize={26}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontFamily='NormalFont'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={190}
-												y={435}
-												fill={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-												text={`${subPositionsVal.fifValue}`}
-												fontSize={26}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontFamily='MYbold'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={240}
-												y={435}
-												fill={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-												text={`${subPositions.fifValue}`}
-												fontSize={26}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontFamily='NormalFont'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={190}
-												y={475}
-												fill={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-												text={`${subPositionsVal.sixValue}`}
-												fontSize={26}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontFamily='MYbold'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={240}
-												y={475}
-												fill={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-												text={`${subPositions.sixValue}`}
-												fontSize={26}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontFamily='NormalFont'
-											/>
-											<Text
-												width={220}
-												height={40}
-												x={80}
-												y={337}
-												fill={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-												text={`${BasicInfo?.name}`}
-												fontSize={40}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontStyle={"bold"}
-												fontFamily='MYbold'
-											/>
-											<Text
-												width={60}
-												height={50}
-												x={65}
-												y={110}
-												fill={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-												text={`${overAllRatting > 0 ? overAllRatting : ""}`}
-												fontSize={56}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontFamily='NormalFont'
-											/>
-											<Text
-												width={50}
-												height={40}
-												x={70}
-												y={155}
-												fill={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-												text={`${BasicInfo?.position}`}
-												fontSize={28}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontFamily='NormalFont'
-											/>
-											<Image
-												x={71.5}
-												y={210}
-												height={35}
-												width={45}
-												image={countryflagavtar}
-												scale={{ x: 1, y: 0.8 }}
-											/>
-											<Image
-												x={73}
-												y={260}
-												height={45}
-												width={45}
-												image={clubFlagavtar}
-												scale={{ x: 1, y: 1 }}
-											/>
-											<Image
-												x={120}
-												y={110}
-												height={220}
-												width={220}
-												image={useravtar}
-												scale={{ x: 1, y: 1 }}
-											/>
-										</Layer>
-									</Stage>
-								</div>
-								<div className='d-block d-sm-none'>
-									<Stage ref={stageRef} width={270} height={400}>
-										<Layer>
-											<Image
-												x={0}
-												y={0}
-												height={400}
-												width={270}
-												image={image}
-											/>
-											<Line
-												x={54}
-												y={130}
-												points={[0, 0, 27, 0]}
-												stroke={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-											/>
-											<Line
-												x={54}
-												y={168}
-												points={[0, 0, 27, 0]}
-												stroke={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-											/>
-											<Line
-												x={117}
-												y={343}
-												points={[0, 0, 36, 0]}
-												stroke={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-											/>
-											<Line
-												x={50}
-												y={254}
-												points={[0, 0, 166, 0]}
-												stroke={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-											/>
-											<Line
-												x={133.3}
-												y={266}
-												points={[0, 0, 0, 71]}
-												stroke={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={30}
-												y={260}
-												fill={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-												text={`${subPositionsVal.fastValue}`}
-												fontSize={19}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontStyle={""}
-												fontFamily='MYbold'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={80}
-												y={260}
-												fill={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-												text={`${subPositions.fastValue}`}
-												fontSize={19}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontStyle={""}
-												fontFamily='NormalFont'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={30}
-												y={287}
-												fill={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-												text={`${subPositionsVal.secValue}`}
-												fontSize={19}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontStyle={""}
-												fontFamily='MYbold'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={80}
-												y={287}
-												fill={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-												text={`${subPositions.secValue}`}
-												fontSize={19}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontStyle={""}
-												fontFamily='NormalFont'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={30}
-												y={312}
-												fill={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-												text={`${subPositionsVal.thrdValue}`}
-												fontSize={19}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontStyle={""}
-												fontFamily='MYbold'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={80}
-												y={312}
-												fill={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-												text={`${subPositions.thrdValue}`}
-												fontSize={19}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontStyle={""}
-												fontFamily='NormalFont'
-											/>
+							<div className='d-block d-sm-none'>
+								<Stage ref={stageRef} width={270} height={400}>
+									<Layer>
+										<Image x={0} y={0} height={400} width={270} image={image} />
+										<Line
+											x={54}
+											y={130}
+											points={[0, 0, 27, 0]}
+											stroke={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+										/>
+										<Line
+											x={54}
+											y={168}
+											points={[0, 0, 27, 0]}
+											stroke={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+										/>
+										<Line
+											x={117}
+											y={343}
+											points={[0, 0, 36, 0]}
+											stroke={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+										/>
+										<Line
+											x={50}
+											y={254}
+											points={[0, 0, 166, 0]}
+											stroke={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+										/>
+										<Line
+											x={133.3}
+											y={266}
+											points={[0, 0, 0, 71]}
+											stroke={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={30}
+											y={260}
+											fill={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+											text={`${subPositionsVal.fastValue}`}
+											fontSize={19}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontStyle={""}
+											fontFamily='MYbold'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={80}
+											y={260}
+											fill={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+											text={`${subPositions.fastValue}`}
+											fontSize={19}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontStyle={""}
+											fontFamily='NormalFont'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={30}
+											y={287}
+											fill={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+											text={`${subPositionsVal.secValue}`}
+											fontSize={19}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontStyle={""}
+											fontFamily='MYbold'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={80}
+											y={287}
+											fill={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+											text={`${subPositions.secValue}`}
+											fontSize={19}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontStyle={""}
+											fontFamily='NormalFont'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={30}
+											y={312}
+											fill={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+											text={`${subPositionsVal.thrdValue}`}
+											fontSize={19}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontStyle={""}
+											fontFamily='MYbold'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={80}
+											y={312}
+											fill={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+											text={`${subPositions.thrdValue}`}
+											fontSize={19}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontStyle={""}
+											fontFamily='NormalFont'
+										/>
 
-											<Text
-												width={50}
-												height={30}
-												x={135}
-												y={260}
-												fill={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-												text={`${subPositionsVal.forValue}`}
-												fontSize={19}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontStyle={""}
-												fontFamily='MYbold'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={185}
-												y={260}
-												fill={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-												text={`${subPositions.forValue}`}
-												fontSize={19}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontStyle={""}
-												fontFamily='NormalFont'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={135}
-												y={287}
-												fill={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-												text={`${subPositionsVal.fifValue}`}
-												fontSize={19}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontStyle={""}
-												fontFamily='MYbold'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={185}
-												y={287}
-												fill={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-												text={`${subPositions.fifValue}`}
-												fontSize={19}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontStyle={""}
-												fontFamily='NormalFont'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={135}
-												y={312}
-												fill={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-												text={`${subPositionsVal.sixValue}`}
-												fontSize={19}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontStyle={""}
-												fontFamily='MYbold'
-											/>
-											<Text
-												width={50}
-												height={30}
-												x={185}
-												y={312}
-												fill={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-												text={`${subPositions.sixValue}`}
-												fontSize={19}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontStyle={""}
-												fontFamily='NormalFont'
-											/>
+										<Text
+											width={50}
+											height={30}
+											x={135}
+											y={260}
+											fill={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+											text={`${subPositionsVal.forValue}`}
+											fontSize={19}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontStyle={""}
+											fontFamily='MYbold'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={185}
+											y={260}
+											fill={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+											text={`${subPositions.forValue}`}
+											fontSize={19}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontStyle={""}
+											fontFamily='NormalFont'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={135}
+											y={287}
+											fill={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+											text={`${subPositionsVal.fifValue}`}
+											fontSize={19}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontStyle={""}
+											fontFamily='MYbold'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={185}
+											y={287}
+											fill={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+											text={`${subPositions.fifValue}`}
+											fontSize={19}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontStyle={""}
+											fontFamily='NormalFont'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={135}
+											y={312}
+											fill={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+											text={`${subPositionsVal.sixValue}`}
+											fontSize={19}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontStyle={""}
+											fontFamily='MYbold'
+										/>
+										<Text
+											width={50}
+											height={30}
+											x={185}
+											y={312}
+											fill={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+											text={`${subPositions.sixValue}`}
+											fontSize={19}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontStyle={""}
+											fontFamily='NormalFont'
+										/>
 
-											<Text
-												width={220}
-												height={40}
-												x={23}
-												y={218}
-												fill={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-												text={`${BasicInfo?.name}`}
-												fontSize={28}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontStyle={"bold"}
-												fontFamily='MYbold'
-											/>
-											<Text
-												width={60}
-												height={50}
-												x={40}
-												y={64}
-												fill={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-												text={`${overAllRatting > 0 ? overAllRatting : ""}`}
-												fontSize={38}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontStyle={""}
-												fontFamily='NormalFont'
-											/>
-											<Text
-												width={50}
-												height={40}
-												x={43}
-												y={97}
-												fill={
-													currentData?.textColor
-														? currentData?.textColor
-														: "white"
-												}
-												text={`${BasicInfo?.position}`}
-												fontSize={22}
-												verticalAlign={"middle"}
-												align={"center"}
-												fontFamily='NormalFont'
-												fontStyle={"normal"}
-											/>
-											<Image
-												x={52}
-												y={138}
-												height={23}
-												width={30}
-												image={countryflagavtar}
-												scale={{ x: 1, y: 0.9 }}
-											/>
-											<Image
-												x={53}
-												y={172}
-												height={30}
-												width={30}
-												image={clubFlagavtar}
-												scale={{ x: 1, y: 1 }}
-											/>
-											<Image
-												x={92}
-												y={71}
-												height={150}
-												width={150}
-												image={useravtar}
-												scale={{ x: 1, y: 1 }}
-											/>
-										</Layer>
-									</Stage>
-								</div>
+										<Text
+											width={220}
+											height={40}
+											x={23}
+											y={218}
+											fill={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+											text={`${BasicInfo?.name}`}
+											fontSize={28}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontStyle={"bold"}
+											fontFamily='MYbold'
+										/>
+										<Text
+											width={60}
+											height={50}
+											x={40}
+											y={64}
+											fill={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+											text={`${overAllRatting > 0 ? overAllRatting : ""}`}
+											fontSize={38}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontStyle={""}
+											fontFamily='NormalFont'
+										/>
+										<Text
+											width={50}
+											height={40}
+											x={43}
+											y={97}
+											fill={
+												currentData?.textColor
+													? currentData?.textColor
+													: "white"
+											}
+											text={`${BasicInfo?.position}`}
+											fontSize={22}
+											verticalAlign={"middle"}
+											align={"center"}
+											fontFamily='NormalFont'
+											fontStyle={"normal"}
+										/>
+										<Image
+											x={52}
+											y={138}
+											height={23}
+											width={30}
+											image={countryflagavtar}
+											scale={{ x: 1, y: 0.9 }}
+										/>
+										<Image
+											x={53}
+											y={172}
+											height={30}
+											width={30}
+											image={clubFlagavtar}
+											scale={{ x: 1, y: 1 }}
+										/>
+										<Image
+											x={92}
+											y={71}
+											height={150}
+											width={150}
+											image={useravtar}
+											scale={{ x: 1, y: 1 }}
+										/>
+									</Layer>
+								</Stage>
 							</div>
-							{/* <div className='d-block' ref={newref}>
+						</div>
+						{/* <div className='d-block' ref={newref}>
 						
 						</div> */}
-							{/* <button
+						{/* <button
 							onClick={() => setFullScreeniew(true)}
 							className='btn mainColor nillbtn d-block d-md-none'>
 							<BsFullscreen />
 						</button> */}
-							<span
-								style={{
-									fontSize: "28px",
-									fontWeight: "bold",
-									textTransform: "capitalize",
-								}}
-								className=' d-none d-md-block text-center mainColor mb-2'>
-								{currentData?.title}
-							</span>
-							<div className=' d-none d-md-flex row w-100'>
-								<div
-									style={{ fontSize: "16px", fontWeight: "bold" }}
-									className='col-4 d-flex align-items-center justify-content-center flex-row'>
-									{dbTranslator("Excellent")}
-								</div>
-								<div className='col-4 d-flex align-items-center justify-content-center flex-row'>
-									{ratting &&
-										Array(ratting)
-											.fill("a")
-											.map((dat, index) => (
-												<BsStarFill
-													key={index}
-													style={{ fontSize: "22px" }}
-													className='secondaryColor'
-												/>
-											))}
-									{Array(decimalpoint ? 1 : 0)
+						<span
+							style={{
+								fontSize: "28px",
+								fontWeight: "bold",
+								textTransform: "capitalize",
+							}}
+							className=' d-none d-md-block text-center mainColor mb-2'>
+							{currentData?.title}
+						</span>
+						<div className=' d-none d-md-flex row w-100'>
+							<div
+								style={{ fontSize: "16px", fontWeight: "bold" }}
+								className='col-4 d-flex align-items-center justify-content-center flex-row'>
+								{dbTranslator("Excellent")}
+							</div>
+							<div className='col-4 d-flex align-items-center justify-content-center flex-row'>
+								{ratting &&
+									Array(ratting)
 										.fill("a")
 										.map((dat, index) => (
-											<BsStarHalf
+											<BsStarFill
 												key={index}
 												style={{ fontSize: "22px" }}
 												className='secondaryColor'
 											/>
 										))}
-									{(ratting || ratting === 0) &&
-										Array(5 - Math.ceil(rattingdata))
-											.fill("a")
-											.map((dat, index) => (
-												<BsStar
-													key={index}
-													style={{ fontSize: "22px" }}
-													className='mainColor'
-												/>
-											))}
-								</div>
-								<div
-									style={{ fontSize: "14px", fontWeight: "500" }}
-									className='col-4  d-flex align-items-center justify-content-center flex-row'>
-									4.5 out of 5
-								</div>
+								{Array(decimalpoint ? 1 : 0)
+									.fill("a")
+									.map((dat, index) => (
+										<BsStarHalf
+											key={index}
+											style={{ fontSize: "22px" }}
+											className='secondaryColor'
+										/>
+									))}
+								{(ratting || ratting === 0) &&
+									Array(5 - Math.ceil(rattingdata))
+										.fill("a")
+										.map((dat, index) => (
+											<BsStar
+												key={index}
+												style={{ fontSize: "22px" }}
+												className='mainColor'
+											/>
+										))}
+							</div>
+							<div
+								style={{ fontSize: "14px", fontWeight: "500" }}
+								className='col-4  d-flex align-items-center justify-content-center flex-row'>
+								4.5 out of 5
 							</div>
 						</div>
 					</div>
-					<div className='col-12 mb-4 w-100'>
-						<div className='row'>
-							<div className='order-1 col-6 col-md-3 d-flex align-items-center justify-content-center'>
-								<button
-									onClick={() => {
-										compSeq > 0
-											? setcompSeq(compSeq - 1)
-											: navigate(`/products`);
-									}}
-									className='btn w-90 mb-4'
-									style={{
-										background: "rgba(33,50,94,0.25)",
-										color: "rgba(33,50,94,1)",
-									}}>
-									{compSeq > 0 ? dbTranslator("prevos") : dbTranslator("home")}
-								</button>
-							</div>
-							<div className='order-3 order-md-2 col-12  mb-4 col-md-6 d-flex align-items-center justify-content-center'>
+				</div>
+				<div className='col-12 mb-4 w-100'>
+					<div className='row'>
+						<div className='order-1 col-6 col-md-3 d-flex align-items-center justify-content-center'>
+							<button
+								onClick={() => {
+									compSeq > 0 ? setcompSeq(compSeq - 1) : navigate(`/products`);
+								}}
+								className='btn w-90 mb-4'
+								style={{
+									background: "rgba(33,50,94,0.25)",
+									color: "rgba(33,50,94,1)",
+								}}>
+								{compSeq > 0 ? dbTranslator("prevos") : dbTranslator("home")}
+							</button>
+						</div>
+						<div className='order-3 order-md-2 col-12  mb-4 col-md-6 d-flex align-items-center justify-content-center'>
+							<div
+								style={{
+									width: "100%",
+									height: "10px",
+									borderRadius: "10px",
+									background: "#D9D9D9",
+								}}>
 								<div
 									style={{
-										width: "100%",
-										height: "10px",
+										height: "100%",
+										width: `${(compSeq + 1) * 20}%`,
 										borderRadius: "10px",
-										background: "#D9D9D9",
-									}}>
-									<div
-										style={{
-											height: "100%",
-											width: `${(compSeq + 1) * 20}%`,
-											borderRadius: "10px",
-										}}
-										className='mainbg'
-									/>
-								</div>
+									}}
+									className='mainbg'
+								/>
 							</div>
-							<div className='order-2 order-md-3 col-6  mb-4 col-md-3 d-flex align-items-center justify-content-center'>
-								{/* {compSeq >= 4 ? (
+						</div>
+						<div className='order-2 order-md-3 col-6  mb-4 col-md-3 d-flex align-items-center justify-content-center'>
+							{/* {compSeq >= 4 ? (
 								<button
 									onClick={() => {
 										// navigate(`/success/${id}`);
@@ -1204,21 +1189,20 @@ export const CardCustomization = () => {
 									Submit
 								</button>
 							) : ( */}
-								<button
-									onClick={nextBtnFunc}
-									className='btn w-90 mainColor secondarybg'>
-									{/* <AiOutlineRight
+							<button
+								onClick={nextBtnFunc}
+								className='btn w-90 mainColor secondarybg'>
+								{/* <AiOutlineRight
 										className='mainColor'
 										style={{ fontSize: "22px" }}
 									/> */}
-									{compSeq < 4 ? dbTranslator("next") : dbTranslator("save")}
-								</button>
-								{/* )} */}
-							</div>
+								{compSeq < 4 ? dbTranslator("next") : dbTranslator("save")}
+							</button>
+							{/* )} */}
 						</div>
 					</div>
 				</div>
-			</>
-		);
-	}
+			</div>
+		</>
+	);
 };

@@ -14,13 +14,13 @@ import { CustomHook } from "../CustomHook/CustomHook";
 import { saveAs } from "file-saver";
 //import AdsComp from "../Components/AdsComp";
 import { Modal } from "react-bootstrap";
-import CustomLargeLoader from "../Components/CustomLargeLoader";
 import { countries, recomadCuntries } from "../Database/Database";
 import {
 	setCardInfo,
 	setCardInfoImages,
 	setClubs,
 } from "../store/projectSlice";
+import NewLargeLoader from "../Components/NewLargeLoader";
 
 const ChooseCardPage = () => {
 	const { dbTranslator } = CustomHook();
@@ -211,12 +211,9 @@ const ChooseCardPage = () => {
 		});
 	}, []);
 
-	if (isLargeLoading) {
-		return <CustomLargeLoader />;
-	}
-
 	return (
 		<div style={{ overflowX: "hidden" }}>
+			{isLargeLoading && <NewLargeLoader />}
 			<Modal fullscreen show={openCropper}>
 				<div
 					style={{
@@ -707,325 +704,329 @@ const ChooseCardPage = () => {
 									className='mx-auto'>
 									<Layer>
 										<Image x={0} y={0} height={599} width={377} image={image} />
-										<Line
-											x={74}
-											y={196}
-											points={[0, 0, 40, 0]}
-											stroke={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-										/>
-										<Line
-											x={74}
-											y={250}
-											points={[0, 0, 40, 0]}
-											stroke={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-										/>
-										<Line
-											x={165}
-											y={515}
-											points={[0, 0, 47, 0]}
-											stroke={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-										/>
-										<Line
-											x={72}
-											y={380}
-											points={[0, 0, 230, 0]}
-											stroke={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-										/>
-										<Line
-											x={186}
-											y={398}
-											points={[0, 0, 0, 107]}
-											stroke={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-										/>
-										<Text
-											width={50}
-											height={30}
-											x={70}
-											y={395}
-											fill={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-											text={`${carddata?.subpValue1?.toUpperCase()}`}
-											fontSize={26}
-											verticalAlign={"middle"}
-											align={"center"}
-											fontFamily='MYbold'
-										/>
-										<Text
-											width={50}
-											height={30}
-											x={120}
-											y={395}
-											fill={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-											text={`${carddata?.subp1?.toUpperCase()}`}
-											fontSize={26}
-											verticalAlign={"middle"}
-											align={"center"}
-											fontFamily='NormalFont'
-										/>
-										<Text
-											width={50}
-											height={30}
-											x={70}
-											y={435}
-											fill={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-											text={`${carddata?.subpValue2?.toUpperCase()}`}
-											fontSize={26}
-											verticalAlign={"middle"}
-											align={"center"}
-											fontFamily='MYbold'
-										/>
-										<Text
-											width={50}
-											height={30}
-											x={120}
-											y={435}
-											fill={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-											text={`${carddata?.subp2?.toUpperCase()}`}
-											fontSize={26}
-											verticalAlign={"middle"}
-											align={"center"}
-											fontFamily='NormalFont'
-										/>
-										<Text
-											width={50}
-											height={30}
-											x={70}
-											y={475}
-											fill={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-											text={`${carddata?.subpValue3?.toUpperCase()}`}
-											fontSize={26}
-											verticalAlign={"middle"}
-											align={"center"}
-											fontFamily='MYbold'
-										/>
-										<Text
-											width={50}
-											height={30}
-											x={120}
-											y={475}
-											fill={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-											text={`${carddata?.subp3?.toUpperCase()}`}
-											fontSize={26}
-											verticalAlign={"middle"}
-											align={"center"}
-											fontFamily='NormalFont'
-										/>
-										<Text
-											width={50}
-											height={30}
-											x={190}
-											y={395}
-											fill={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-											text={`${carddata?.subpValue4?.toUpperCase()}`}
-											fontSize={26}
-											verticalAlign={"middle"}
-											align={"center"}
-											fontFamily='MYbold'
-										/>
-										<Text
-											width={50}
-											height={30}
-											x={240}
-											y={395}
-											fill={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-											text={`${carddata?.subp4?.toUpperCase()}`}
-											fontSize={26}
-											verticalAlign={"middle"}
-											align={"center"}
-											fontFamily='NormalFont'
-										/>
-										<Text
-											width={50}
-											height={30}
-											x={190}
-											y={435}
-											fill={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-											text={`${carddata?.subpValue5?.toUpperCase()}`}
-											fontSize={26}
-											verticalAlign={"middle"}
-											align={"center"}
-											fontFamily='MYbold'
-										/>
-										<Text
-											width={50}
-											height={30}
-											x={240}
-											y={435}
-											fill={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-											text={`${carddata?.subp5?.toUpperCase()}`}
-											fontSize={26}
-											verticalAlign={"middle"}
-											align={"center"}
-											fontFamily='NormalFont'
-										/>
-										<Text
-											width={50}
-											height={30}
-											x={190}
-											y={475}
-											fill={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-											text={`${carddata?.subpValue6?.toUpperCase()}`}
-											fontSize={26}
-											verticalAlign={"middle"}
-											align={"center"}
-											fontFamily='MYbold'
-										/>
-										<Text
-											width={50}
-											height={30}
-											x={240}
-											y={475}
-											fill={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-											text={`${carddata?.subp6?.toUpperCase()}`}
-											fontSize={26}
-											verticalAlign={"middle"}
-											align={"center"}
-											fontFamily='NormalFont'
-										/>
-										<Text
-											width={220}
-											height={40}
-											x={80}
-											y={337}
-											fill={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-											text={`${carddata?.name?.toUpperCase()}`}
-											fontSize={40}
-											verticalAlign={"middle"}
-											align={"center"}
-											fontStyle={"bold"}
-											fontFamily='MYbold'
-										/>
-										<Text
-											width={60}
-											height={50}
-											x={65}
-											y={110}
-											fill={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-											text={`${
-												carddata?.overallRatting
-													? carddata?.overallRatting?.toUpperCase()
-													: ""
-											}`}
-											fontSize={56}
-											verticalAlign={"middle"}
-											align={"center"}
-											fontFamily='NormalFont'
-										/>
-										<Text
-											width={50}
-											height={40}
-											x={70}
-											y={155}
-											fill={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-											text={`${carddata?.mainPosition?.toUpperCase()}`}
-											fontSize={28}
-											verticalAlign={"middle"}
-											align={"center"}
-											fontFamily='NormalFont'
-										/>
-										<Image
-											x={71.5}
-											y={210}
-											height={35}
-											width={45}
-											image={countryflagavtar}
-											scale={{ x: 1, y: 0.8 }}
-										/>
-										<Image
-											x={73}
-											y={260}
-											height={45}
-											width={45}
-											image={clubFlagavtar}
-											scale={{ x: 1, y: 1 }}
-										/>
-										<Image
-											x={120}
-											y={110}
-											height={220}
-											width={220}
-											image={useravtar}
-											scale={{ x: 1, y: 1 }}
-										/>
+										{image && (
+											<>
+												<Line
+													x={74}
+													y={196}
+													points={[0, 0, 40, 0]}
+													stroke={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+												/>
+												<Line
+													x={74}
+													y={250}
+													points={[0, 0, 40, 0]}
+													stroke={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+												/>
+												<Line
+													x={165}
+													y={515}
+													points={[0, 0, 47, 0]}
+													stroke={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+												/>
+												<Line
+													x={72}
+													y={380}
+													points={[0, 0, 230, 0]}
+													stroke={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+												/>
+												<Line
+													x={186}
+													y={398}
+													points={[0, 0, 0, 107]}
+													stroke={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+												/>
+												<Text
+													width={50}
+													height={30}
+													x={70}
+													y={395}
+													fill={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+													text={`${carddata?.subpValue1?.toUpperCase()}`}
+													fontSize={26}
+													verticalAlign={"middle"}
+													align={"center"}
+													fontFamily='MYbold'
+												/>
+												<Text
+													width={50}
+													height={30}
+													x={120}
+													y={395}
+													fill={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+													text={`${carddata?.subp1?.toUpperCase()}`}
+													fontSize={26}
+													verticalAlign={"middle"}
+													align={"center"}
+													fontFamily='NormalFont'
+												/>
+												<Text
+													width={50}
+													height={30}
+													x={70}
+													y={435}
+													fill={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+													text={`${carddata?.subpValue2?.toUpperCase()}`}
+													fontSize={26}
+													verticalAlign={"middle"}
+													align={"center"}
+													fontFamily='MYbold'
+												/>
+												<Text
+													width={50}
+													height={30}
+													x={120}
+													y={435}
+													fill={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+													text={`${carddata?.subp2?.toUpperCase()}`}
+													fontSize={26}
+													verticalAlign={"middle"}
+													align={"center"}
+													fontFamily='NormalFont'
+												/>
+												<Text
+													width={50}
+													height={30}
+													x={70}
+													y={475}
+													fill={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+													text={`${carddata?.subpValue3?.toUpperCase()}`}
+													fontSize={26}
+													verticalAlign={"middle"}
+													align={"center"}
+													fontFamily='MYbold'
+												/>
+												<Text
+													width={50}
+													height={30}
+													x={120}
+													y={475}
+													fill={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+													text={`${carddata?.subp3?.toUpperCase()}`}
+													fontSize={26}
+													verticalAlign={"middle"}
+													align={"center"}
+													fontFamily='NormalFont'
+												/>
+												<Text
+													width={50}
+													height={30}
+													x={190}
+													y={395}
+													fill={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+													text={`${carddata?.subpValue4?.toUpperCase()}`}
+													fontSize={26}
+													verticalAlign={"middle"}
+													align={"center"}
+													fontFamily='MYbold'
+												/>
+												<Text
+													width={50}
+													height={30}
+													x={240}
+													y={395}
+													fill={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+													text={`${carddata?.subp4?.toUpperCase()}`}
+													fontSize={26}
+													verticalAlign={"middle"}
+													align={"center"}
+													fontFamily='NormalFont'
+												/>
+												<Text
+													width={50}
+													height={30}
+													x={190}
+													y={435}
+													fill={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+													text={`${carddata?.subpValue5?.toUpperCase()}`}
+													fontSize={26}
+													verticalAlign={"middle"}
+													align={"center"}
+													fontFamily='MYbold'
+												/>
+												<Text
+													width={50}
+													height={30}
+													x={240}
+													y={435}
+													fill={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+													text={`${carddata?.subp5?.toUpperCase()}`}
+													fontSize={26}
+													verticalAlign={"middle"}
+													align={"center"}
+													fontFamily='NormalFont'
+												/>
+												<Text
+													width={50}
+													height={30}
+													x={190}
+													y={475}
+													fill={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+													text={`${carddata?.subpValue6?.toUpperCase()}`}
+													fontSize={26}
+													verticalAlign={"middle"}
+													align={"center"}
+													fontFamily='MYbold'
+												/>
+												<Text
+													width={50}
+													height={30}
+													x={240}
+													y={475}
+													fill={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+													text={`${carddata?.subp6?.toUpperCase()}`}
+													fontSize={26}
+													verticalAlign={"middle"}
+													align={"center"}
+													fontFamily='NormalFont'
+												/>
+												<Text
+													width={220}
+													height={40}
+													x={80}
+													y={337}
+													fill={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+													text={`${carddata?.name?.toUpperCase()}`}
+													fontSize={40}
+													verticalAlign={"middle"}
+													align={"center"}
+													fontStyle={"bold"}
+													fontFamily='MYbold'
+												/>
+												<Text
+													width={60}
+													height={50}
+													x={65}
+													y={110}
+													fill={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+													text={`${
+														carddata?.overallRatting
+															? carddata?.overallRatting?.toUpperCase()
+															: ""
+													}`}
+													fontSize={56}
+													verticalAlign={"middle"}
+													align={"center"}
+													fontFamily='NormalFont'
+												/>
+												<Text
+													width={50}
+													height={40}
+													x={70}
+													y={155}
+													fill={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+													text={`${carddata?.mainPosition?.toUpperCase()}`}
+													fontSize={28}
+													verticalAlign={"middle"}
+													align={"center"}
+													fontFamily='NormalFont'
+												/>
+												<Image
+													x={71.5}
+													y={210}
+													height={35}
+													width={45}
+													image={countryflagavtar}
+													scale={{ x: 1, y: 0.8 }}
+												/>
+												<Image
+													x={73}
+													y={260}
+													height={45}
+													width={45}
+													image={clubFlagavtar}
+													scale={{ x: 1, y: 1 }}
+												/>
+												<Image
+													x={120}
+													y={110}
+													height={220}
+													width={220}
+													image={useravtar}
+													scale={{ x: 1, y: 1 }}
+												/>
+											</>
+										)}
 									</Layer>
 								</Stage>
 							</div>
@@ -1037,341 +1038,345 @@ const ChooseCardPage = () => {
 									className='mx-auto'>
 									<Layer>
 										<Image x={0} y={0} height={400} width={270} image={image} />
-										<Line
-											x={54}
-											y={130}
-											points={[0, 0, 27, 0]}
-											stroke={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-										/>
-										<Line
-											x={54}
-											y={168}
-											points={[0, 0, 27, 0]}
-											stroke={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-										/>
-										<Line
-											x={117}
-											y={343}
-											points={[0, 0, 36, 0]}
-											stroke={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-										/>
-										<Line
-											x={50}
-											y={254}
-											points={[0, 0, 166, 0]}
-											stroke={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-										/>
-										<Line
-											x={133.3}
-											y={266}
-											points={[0, 0, 0, 71]}
-											stroke={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-										/>
-										<Text
-											width={50}
-											height={30}
-											x={30}
-											y={260}
-											fill={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-											text={`${carddata?.subpValue1?.toUpperCase()}`}
-											fontSize={19}
-											verticalAlign={"middle"}
-											align={"center"}
-											fontStyle={""}
-											fontFamily='MYbold'
-										/>
-										<Text
-											width={50}
-											height={30}
-											x={80}
-											y={260}
-											fill={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-											text={`${carddata?.subp1?.toUpperCase()}`}
-											fontSize={19}
-											verticalAlign={"middle"}
-											align={"center"}
-											fontStyle={""}
-											fontFamily='NormalFont'
-										/>
-										<Text
-											width={50}
-											height={30}
-											x={30}
-											y={287}
-											fill={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-											text={`${carddata?.subpValue2?.toUpperCase()}`}
-											fontSize={19}
-											verticalAlign={"middle"}
-											align={"center"}
-											fontStyle={""}
-											fontFamily='MYbold'
-										/>
-										<Text
-											width={50}
-											height={30}
-											x={80}
-											y={287}
-											fill={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-											text={`${carddata?.subp2?.toUpperCase()}`}
-											fontSize={19}
-											verticalAlign={"middle"}
-											align={"center"}
-											fontStyle={""}
-											fontFamily='NormalFont'
-										/>
-										<Text
-											width={50}
-											height={30}
-											x={30}
-											y={312}
-											fill={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-											text={`${carddata?.subpValue3?.toUpperCase()}`}
-											fontSize={19}
-											verticalAlign={"middle"}
-											align={"center"}
-											fontStyle={""}
-											fontFamily='MYbold'
-										/>
-										<Text
-											width={50}
-											height={30}
-											x={80}
-											y={312}
-											fill={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-											text={`${carddata?.subp3?.toUpperCase()}`}
-											fontSize={19}
-											verticalAlign={"middle"}
-											align={"center"}
-											fontStyle={""}
-											fontFamily='NormalFont'
-										/>
+										{image && (
+											<>
+												<Line
+													x={54}
+													y={130}
+													points={[0, 0, 27, 0]}
+													stroke={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+												/>
+												<Line
+													x={54}
+													y={168}
+													points={[0, 0, 27, 0]}
+													stroke={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+												/>
+												<Line
+													x={117}
+													y={343}
+													points={[0, 0, 36, 0]}
+													stroke={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+												/>
+												<Line
+													x={50}
+													y={254}
+													points={[0, 0, 166, 0]}
+													stroke={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+												/>
+												<Line
+													x={133.3}
+													y={266}
+													points={[0, 0, 0, 71]}
+													stroke={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+												/>
+												<Text
+													width={50}
+													height={30}
+													x={30}
+													y={260}
+													fill={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+													text={`${carddata?.subpValue1?.toUpperCase()}`}
+													fontSize={19}
+													verticalAlign={"middle"}
+													align={"center"}
+													fontStyle={""}
+													fontFamily='MYbold'
+												/>
+												<Text
+													width={50}
+													height={30}
+													x={80}
+													y={260}
+													fill={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+													text={`${carddata?.subp1?.toUpperCase()}`}
+													fontSize={19}
+													verticalAlign={"middle"}
+													align={"center"}
+													fontStyle={""}
+													fontFamily='NormalFont'
+												/>
+												<Text
+													width={50}
+													height={30}
+													x={30}
+													y={287}
+													fill={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+													text={`${carddata?.subpValue2?.toUpperCase()}`}
+													fontSize={19}
+													verticalAlign={"middle"}
+													align={"center"}
+													fontStyle={""}
+													fontFamily='MYbold'
+												/>
+												<Text
+													width={50}
+													height={30}
+													x={80}
+													y={287}
+													fill={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+													text={`${carddata?.subp2?.toUpperCase()}`}
+													fontSize={19}
+													verticalAlign={"middle"}
+													align={"center"}
+													fontStyle={""}
+													fontFamily='NormalFont'
+												/>
+												<Text
+													width={50}
+													height={30}
+													x={30}
+													y={312}
+													fill={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+													text={`${carddata?.subpValue3?.toUpperCase()}`}
+													fontSize={19}
+													verticalAlign={"middle"}
+													align={"center"}
+													fontStyle={""}
+													fontFamily='MYbold'
+												/>
+												<Text
+													width={50}
+													height={30}
+													x={80}
+													y={312}
+													fill={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+													text={`${carddata?.subp3?.toUpperCase()}`}
+													fontSize={19}
+													verticalAlign={"middle"}
+													align={"center"}
+													fontStyle={""}
+													fontFamily='NormalFont'
+												/>
 
-										<Text
-											width={50}
-											height={30}
-											x={135}
-											y={260}
-											fill={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-											text={`${carddata?.subpValue4?.toUpperCase()}`}
-											fontSize={19}
-											verticalAlign={"middle"}
-											align={"center"}
-											fontStyle={""}
-											fontFamily='MYbold'
-										/>
-										<Text
-											width={50}
-											height={30}
-											x={185}
-											y={260}
-											fill={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-											text={`${carddata?.subp4?.toUpperCase()}`}
-											fontSize={19}
-											verticalAlign={"middle"}
-											align={"center"}
-											fontStyle={""}
-											fontFamily='NormalFont'
-										/>
-										<Text
-											width={50}
-											height={30}
-											x={135}
-											y={287}
-											fill={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-											text={`${carddata?.subpValue5?.toUpperCase()}`}
-											fontSize={19}
-											verticalAlign={"middle"}
-											align={"center"}
-											fontStyle={""}
-											fontFamily='MYbold'
-										/>
-										<Text
-											width={50}
-											height={30}
-											x={185}
-											y={287}
-											fill={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-											text={`${carddata?.subp5?.toUpperCase()}`}
-											fontSize={19}
-											verticalAlign={"middle"}
-											align={"center"}
-											fontStyle={""}
-											fontFamily='NormalFont'
-										/>
-										<Text
-											width={50}
-											height={30}
-											x={135}
-											y={312}
-											fill={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-											text={`${carddata?.subpValue6?.toUpperCase()}`}
-											fontSize={19}
-											verticalAlign={"middle"}
-											align={"center"}
-											fontStyle={""}
-											fontFamily='MYbold'
-										/>
-										<Text
-											width={50}
-											height={30}
-											x={185}
-											y={312}
-											fill={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-											text={`${carddata?.subp6?.toUpperCase()}`}
-											fontSize={19}
-											verticalAlign={"middle"}
-											align={"center"}
-											fontStyle={""}
-											fontFamily='NormalFont'
-										/>
+												<Text
+													width={50}
+													height={30}
+													x={135}
+													y={260}
+													fill={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+													text={`${carddata?.subpValue4?.toUpperCase()}`}
+													fontSize={19}
+													verticalAlign={"middle"}
+													align={"center"}
+													fontStyle={""}
+													fontFamily='MYbold'
+												/>
+												<Text
+													width={50}
+													height={30}
+													x={185}
+													y={260}
+													fill={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+													text={`${carddata?.subp4?.toUpperCase()}`}
+													fontSize={19}
+													verticalAlign={"middle"}
+													align={"center"}
+													fontStyle={""}
+													fontFamily='NormalFont'
+												/>
+												<Text
+													width={50}
+													height={30}
+													x={135}
+													y={287}
+													fill={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+													text={`${carddata?.subpValue5?.toUpperCase()}`}
+													fontSize={19}
+													verticalAlign={"middle"}
+													align={"center"}
+													fontStyle={""}
+													fontFamily='MYbold'
+												/>
+												<Text
+													width={50}
+													height={30}
+													x={185}
+													y={287}
+													fill={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+													text={`${carddata?.subp5?.toUpperCase()}`}
+													fontSize={19}
+													verticalAlign={"middle"}
+													align={"center"}
+													fontStyle={""}
+													fontFamily='NormalFont'
+												/>
+												<Text
+													width={50}
+													height={30}
+													x={135}
+													y={312}
+													fill={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+													text={`${carddata?.subpValue6?.toUpperCase()}`}
+													fontSize={19}
+													verticalAlign={"middle"}
+													align={"center"}
+													fontStyle={""}
+													fontFamily='MYbold'
+												/>
+												<Text
+													width={50}
+													height={30}
+													x={185}
+													y={312}
+													fill={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+													text={`${carddata?.subp6?.toUpperCase()}`}
+													fontSize={19}
+													verticalAlign={"middle"}
+													align={"center"}
+													fontStyle={""}
+													fontFamily='NormalFont'
+												/>
 
-										<Text
-											width={220}
-											height={40}
-											x={23}
-											y={218}
-											fill={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-											text={`${carddata?.name?.toUpperCase()}`}
-											fontSize={28}
-											verticalAlign={"middle"}
-											align={"center"}
-											fontStyle={"bold"}
-											fontFamily='MYbold'
-										/>
-										<Text
-											width={60}
-											height={50}
-											x={40}
-											y={64}
-											fill={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-											text={`${
-												carddata?.overallRatting
-													? carddata?.overallRatting?.toUpperCase()
-													: ""
-											}`}
-											fontSize={38}
-											verticalAlign={"middle"}
-											align={"center"}
-											fontStyle={""}
-											fontFamily='NormalFont'
-										/>
-										<Text
-											width={50}
-											height={40}
-											x={43}
-											y={97}
-											fill={
-												selectedCard?.textColor
-													? selectedCard?.textColor
-													: "white"
-											}
-											text={`${carddata?.mainPosition?.toUpperCase()}`}
-											fontSize={22}
-											verticalAlign={"middle"}
-											align={"center"}
-											fontFamily='NormalFont'
-											fontStyle={"normal"}
-										/>
-										<Image
-											x={52}
-											y={138}
-											height={23}
-											width={30}
-											image={countryflagavtar}
-											scale={{ x: 1, y: 0.9 }}
-										/>
-										<Image
-											x={53}
-											y={172}
-											height={30}
-											width={30}
-											image={clubFlagavtar}
-											scale={{ x: 1, y: 1 }}
-										/>
-										<Image
-											x={92}
-											y={71}
-											height={150}
-											width={150}
-											image={useravtar}
-											scale={{ x: 1, y: 1 }}
-										/>
+												<Text
+													width={220}
+													height={40}
+													x={23}
+													y={218}
+													fill={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+													text={`${carddata?.name?.toUpperCase()}`}
+													fontSize={28}
+													verticalAlign={"middle"}
+													align={"center"}
+													fontStyle={"bold"}
+													fontFamily='MYbold'
+												/>
+												<Text
+													width={60}
+													height={50}
+													x={40}
+													y={64}
+													fill={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+													text={`${
+														carddata?.overallRatting
+															? carddata?.overallRatting?.toUpperCase()
+															: ""
+													}`}
+													fontSize={38}
+													verticalAlign={"middle"}
+													align={"center"}
+													fontStyle={""}
+													fontFamily='NormalFont'
+												/>
+												<Text
+													width={50}
+													height={40}
+													x={43}
+													y={97}
+													fill={
+														selectedCard?.textColor
+															? selectedCard?.textColor
+															: "white"
+													}
+													text={`${carddata?.mainPosition?.toUpperCase()}`}
+													fontSize={22}
+													verticalAlign={"middle"}
+													align={"center"}
+													fontFamily='NormalFont'
+													fontStyle={"normal"}
+												/>
+												<Image
+													x={52}
+													y={138}
+													height={23}
+													width={30}
+													image={countryflagavtar}
+													scale={{ x: 1, y: 0.9 }}
+												/>
+												<Image
+													x={53}
+													y={172}
+													height={30}
+													width={30}
+													image={clubFlagavtar}
+													scale={{ x: 1, y: 1 }}
+												/>
+												<Image
+													x={92}
+													y={71}
+													height={150}
+													width={150}
+													image={useravtar}
+													scale={{ x: 1, y: 1 }}
+												/>
+											</>
+										)}
 									</Layer>
 								</Stage>
 							</div>
