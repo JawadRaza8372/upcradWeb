@@ -214,9 +214,9 @@ const ChooseCardPage = () => {
 		const uri = stageRef.current.toDataURL({ pixelRatio: 3 });
 		setshowAds(true);
 		setTimeout(() => {
-			setshowAds(false);
 			saveAs(`${uri}`, "upCardSoccerLetter.jpg");
 		}, 7000);
+		setshowAds(false);
 	};
 	console.log("showsads", showAds);
 	const cropperRef = React.createRef(null);
