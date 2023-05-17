@@ -91,7 +91,7 @@ const ExtraServiceComp = ({ value, setvalue }) => {
 									overflow: "hidden",
 								}}>
 								<div
-									className='col-12 col-md-2'
+									className='col-3 col-md-2'
 									style={{
 										background: "white",
 										display: "flex",
@@ -110,16 +110,13 @@ const ExtraServiceComp = ({ value, setvalue }) => {
 										}}
 									/>
 								</div>
-								<div className='col-12 col-md-10 d-flex align-items-start justify-content-center flex-column'>
-									<span
-										className='mainColor'
-										style={{ fontSize: "16px", fontWeight: "600" }}>
-										{dat.title}-€{dat.price}
+								<div className='col-9 col-md-10 d-flex align-items-start justify-content-center flex-column'>
+									<span className='mainColor extraserviceheadresp'>
+										{dat.title}+€{dat.price}
 									</span>
 									<span
+										className='extraservicesheadresp'
 										style={{
-											fontSize: "12px",
-											fontWeight: "600",
 											color: "rgba(106, 106, 106, 1)",
 										}}>
 										{dat.subtitle}
