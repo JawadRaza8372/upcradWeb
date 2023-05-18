@@ -8,7 +8,7 @@ import instaImag5 from "../ownassets/insta5.jpg";
 import instaImag6 from "../ownassets/insta6.webp";
 import instaImag7 from "../ownassets/insta7.jpg";
 import instaImag8 from "../ownassets/insta8.jpg";
-import startedimage from "../ownassets/image 18.png";
+import startedimage from "../ownassets/our history.jpg";
 import FootballCards from "../Components/FootballCards";
 import secssion from "../ownassets/secsesion.png";
 import service1 from "../ownassets/servis1.jpeg";
@@ -793,7 +793,7 @@ const HomePage = () => {
 						<div className='col-12  col-md-5 allCenter'>
 							<img
 								src={startedimage}
-								style={{ objectFit: "contain" }}
+								style={{ objectFit: "contain", height: "370px", width: "100%" }}
 								alt='how it all started'
 							/>
 						</div>

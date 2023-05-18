@@ -12,7 +12,7 @@ import "../../node_modules/slick-carousel/slick/slick.css";
 import "../../node_modules/slick-carousel/slick/slick-theme.css";
 import { CustomHook } from "../CustomHook/CustomHook";
 import { saveAs } from "file-saver";
-//import AdsComp from "../Components/AdsComp";
+import AdsComp from "../Components/AdsComp";
 import { Modal } from "react-bootstrap";
 import { countries, recomadCuntries } from "../Database/Database";
 import {
@@ -371,7 +371,7 @@ const ChooseCardPage = () => {
 			{showAds && (
 				<Modal fullscreen show={showAds}>
 					<div className='shwoadscardsadsdiv'>
-						{/* <AdsComp slotnumber='5755097747' /> */}
+						<AdsComp slotnumber='5755097747' />
 					</div>
 				</Modal>
 			)}
@@ -1417,7 +1417,7 @@ const ChooseCardPage = () => {
 
 						{/*Editor End */}
 					</div>
-					<div className='col-12 col-md-4 mx-auto h-100'>
+					<div className='col-12 col-md-4 mx-auto h-100 d-none d-md-flex'>
 						<CommonChooseCard title={dbTranslator("chooseard")}>
 							<div className='col-12 h-100'>
 								<div
@@ -1466,6 +1466,51 @@ const ChooseCardPage = () => {
 								</div>
 							</div>
 						</CommonChooseCard>
+					</div>
+					<div className='col-12 col-md-4 mx-auto h-100 d-flex d-md-none'>
+						<div
+							style={{
+								width: "100%",
+								overflowX: "hidden",
+								overflowY: "auto",
+							}}>
+							<div className='row'>
+								{footballCards &&
+									footballCards?.map((dat, index) => (
+										<>
+											<div
+												onClick={() => {
+													setselectedCard(dat);
+													const section = document.querySelector("#topdiv");
+													section?.scrollIntoView({
+														behavior: "smooth",
+														block: "end",
+														inline: "nearest",
+													});
+												}}
+												className={`col-6 col-md-4 d-flex align-items-center justify-content-center mb-2
+											}`}>
+												<div
+													style={{
+														background: "white",
+														padding: "5px",
+														cursor: "pointer",
+													}}>
+													<img
+														style={{
+															objectFit: "contain",
+															width: "100%",
+															maxWidth: "60px",
+														}}
+														src={dat.imgSrc}
+														alt={dat.title}
+													/>
+												</div>
+											</div>
+										</>
+									))}
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
