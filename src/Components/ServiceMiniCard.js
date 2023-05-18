@@ -21,7 +21,12 @@ const ServiceMiniCard = ({ sorce, title, onClickFun }) => {
 					cursor: "pointer",
 				}}>
 				<img
-					style={{ width: "160px", height: "160px", marginBottom: "7px" }}
+					style={{
+						width: "160px",
+						height: "160px",
+						marginBottom: "7px",
+						objectFit: "cover",
+					}}
 					src={sorce}
 					alt={title}
 				/>

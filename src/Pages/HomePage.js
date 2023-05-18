@@ -1,11 +1,11 @@
 import React from "react";
 import ReactPlayer from "react-player";
-import instaImag0 from "../ownassets/insta1.jpg";
-import instaImag1 from "../ownassets/insta2.jpg";
+import instaImag0 from "../ownassets/insta1.webp";
+import instaImag1 from "../ownassets/insta2.webp";
 import instaImag3 from "../ownassets/insta3.jpg";
 import instaImag4 from "../ownassets/insta4.jpg";
 import instaImag5 from "../ownassets/insta5.jpg";
-import instaImag6 from "../ownassets/insta6.jpg";
+import instaImag6 from "../ownassets/insta6.webp";
 import instaImag7 from "../ownassets/insta7.jpg";
 import instaImag8 from "../ownassets/insta8.jpg";
 import startedimage from "../ownassets/image 18.png";
@@ -154,6 +154,7 @@ const HomePage = () => {
 		speed: 50,
 		dots: true,
 		slidesToScroll: 1,
+		swipeToSlide: true,
 		nextArrow: <CustomRightArrow />,
 		prevArrow: <CustomLeftArrow />,
 	};

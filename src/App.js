@@ -108,6 +108,7 @@ function App() {
 					<FileRoutes />
 					<FooterComp />
 					<CookieConsent
+						contentStyle={{ flex: "0 1 auto" }}
 						enableDeclineButton
 						containerClasses='mainbg'
 						buttonText={<MdDone style={{ fontSize: "27px" }} />}
