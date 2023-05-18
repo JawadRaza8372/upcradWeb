@@ -144,6 +144,8 @@ const HomePage = () => {
 		speed: 500,
 		slidesToShow: 1,
 		slidesToScroll: 1,
+		swipeToSlide: true,
+
 		nextArrow: <CustomRightArrow />,
 		prevArrow: <CustomLeftArrow />,
 	};
@@ -164,6 +166,7 @@ const HomePage = () => {
 		speed: 500,
 		slidesToShow: 2,
 		slidesToScroll: 2,
+		swipeToSlide: true,
 		nextArrow: <CustomRightArrow />,
 		prevArrow: <CustomLeftArrow />,
 		responsive: [
@@ -172,6 +175,7 @@ const HomePage = () => {
 				settings: {
 					slidesToShow: 1,
 					slidesToScroll: 1,
+					swipeToSlide: true,
 				},
 			},
 		],
