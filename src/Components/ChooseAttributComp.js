@@ -8,6 +8,7 @@ const ChooseAttributComp = ({
 	positionValues,
 	onSetSubPositionValues,
 	overAllRating,
+	onChangeOverAllRatting,
 }) => {
 	const { dbTranslator } = CustomHook();
 
@@ -106,9 +107,17 @@ const ChooseAttributComp = ({
 			<QuestionLinee label={"F"} title={"Overall rating"}>
 				<div className='row w-100 gx-0 mx-auto' style={{ marginTop: "20px" }}>
 					<div className='col-12 mt-1 col-md-3'>
-						<div className='largerRatingDiv'>
+						<input
+							placeholder='00'
+							type='number'
+							value={overAllRating}
+							maxLength={2}
+							onChange={onChangeOverAllRatting}
+							className='width90'
+						/>
+						{/* <div className='largerRatingDiv'>
 							{overAllRating ? overAllRating : "00"}
-						</div>
+						</div> */}
 					</div>
 					<div className='col-12 mt-1 col-md-9 d-flex align-items-center justify-content-evenly flex-row'>
 						<span className='respQuestionHeading'>
@@ -116,13 +125,13 @@ const ChooseAttributComp = ({
 						</span>
 
 						<div className='smalltextdivRating'>
-							{overAllRating > 3 ? overAllRating - 1 : "00"}
+							{overAllRating > 3 ? parseInt(overAllRating - 1) : "00"}
 						</div>
 						<div className='smalltextdivRating'>
 							{overAllRating > 0 ? overAllRating : "00"}
 						</div>
 						<div className='smalltextdivRating'>
-							{overAllRating > 0 ? overAllRating + 2 : "00"}
+							{overAllRating > 0 ? parseInt(overAllRating) + 1 : "00"}
 						</div>
 					</div>
 				</div>

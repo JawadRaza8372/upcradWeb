@@ -1,9 +1,21 @@
 * {
 	margin: 0px;
 	padding: 0px;
+	scroll-behavior: smooth;
 }
 .boxShadowDiv {
 	box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.55);
+}
+.width90 {
+	width: 90% !important;
+	height: 40px;
+	background: white;
+	text-align: center;
+	border: none;
+	outline: none;
+	font-size: 16px;
+	font-weight: 600;
+	margin: 0 auto;
 }
 body {
 	margin: 0;
@@ -620,6 +632,9 @@ h6 {
 .contactCRD:hover > span {
 	color: #f89a44;
 	font-weight: bold;
+}
+.borderadiusbtn {
+	border-radius: 5px !important;
 }
 .contactCRD > svg {
 	width: 100%;

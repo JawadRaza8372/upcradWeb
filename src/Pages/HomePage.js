@@ -11,9 +11,9 @@ import instaImag8 from "../ownassets/insta8.jpg";
 import startedimage from "../ownassets/image 18.png";
 import FootballCards from "../Components/FootballCards";
 import secssion from "../ownassets/secsesion.png";
-import service1 from "../ownassets/servis1.png";
-import service2 from "../ownassets/servis2.png";
-import service3 from "../ownassets/servis3.png";
+import service1 from "../ownassets/servis1.jpeg";
+import service2 from "../ownassets/servis2.jpeg";
+import service3 from "../ownassets/servis3.jpeg";
 import Slider from "react-slick";
 import { Reviewcard } from "../Components/Reviewcard";
 import "../../node_modules/slick-carousel/slick/slick.css";
@@ -151,7 +151,7 @@ const HomePage = () => {
 		centerMode: true,
 		infinite: true,
 		slidesToShow: 1,
-		speed: 500,
+		speed: 50,
 		dots: true,
 		slidesToScroll: 1,
 		nextArrow: <CustomRightArrow />,
@@ -269,7 +269,7 @@ const HomePage = () => {
 					<div className='mainbg d-none d-md-flex bottomLineDiv allCenter'>
 						<div className='row gx-0 w-100 mx-auto'>
 							<div className='col-12 col-md-3 allCenter'>
-								<span className='newcolor1'>
+								<span style={{ color: "white" }}>
 									<BsStarFill
 										style={{ fontSize: "18px", marginRight: "10px" }}
 										className='secondaryColor'
@@ -295,7 +295,7 @@ const HomePage = () => {
 								</span>
 							</div>
 							<div className='col-12 col-md-6 allCenter'>
-								<span className='newcolor1'>
+								<span style={{ color: "white" }}>
 									{dbTranslator("TScore")} : 4.5 | 500+ {dbTranslator("review")}
 								</span>
 							</div>

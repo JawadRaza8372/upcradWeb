@@ -18,6 +18,9 @@ import { useTranslation } from "react-i18next";
 import { getDatabase, ref, child, get } from "firebase/database";
 import CustomLargeLoader from "./Components/CustomLargeLoader";
 import New404page from "./Pages/New404page";
+import CookieConsent from "react-cookie-consent";
+import { MdDone, MdOutlineClose } from "react-icons/md";
+import { CustomHook } from "./CustomHook/CustomHook";
 //import { useNavigate } from "react-router-dom";
 
 function App() {
@@ -96,7 +99,7 @@ function App() {
 		);
 		console.log("-----------------------welcome");
 	}, [dispatch]);
-
+	const { dbTranslator } = CustomHook();
 	return (
 		<>
 			{webstatus === "active" ? (
@@ -104,6 +107,21 @@ function App() {
 					<CustomNavbar changeLanguage={changeLanguage} />
 					<FileRoutes />
 					<FooterComp />
+					<CookieConsent
+						enableDeclineButton
+						containerClasses='mainbg'
+						buttonText={<MdDone style={{ fontSize: "27px" }} />}
+						buttonClasses='btn nillbtn borderadiusbtn mainColor secondarybg'
+						declineButtonClasses='btn nillbtn borderadiusbtn mainColor thirdbg'
+						declineButtonText={<MdOutlineClose style={{ fontSize: "27px" }} />}
+						onDecline={() => {
+							console.log("declined");
+						}}
+						onAccept={() => {
+							console.log("Accept was triggered by clicking the Accept button");
+						}}>
+						{dbTranslator("cookietext")}
+					</CookieConsent>
 				</>
 			) : webstatus === "unknown" ? (
 				<>

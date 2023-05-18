@@ -193,15 +193,15 @@ const ChooseCardPage = () => {
 	};
 	useLayoutEffect(() => {
 		setcarddata({
-			overallRatting: "98",
+			overallRatting: "99",
 			mainPosition: "DC",
 			name: "NOMBRE",
-			subpValue1: "67",
-			subpValue2: "87",
+			subpValue1: "99",
+			subpValue2: "99",
 			subpValue3: "99",
-			subpValue4: "44",
-			subpValue5: "98",
-			subpValue6: "65",
+			subpValue4: "99",
+			subpValue5: "99",
+			subpValue6: "99",
 			subp1: "RIT",
 			subp2: "PAS",
 			subp3: "TIR",

@@ -29,21 +29,21 @@ export const CardCustomization1 = () => {
 	});
 
 	const [carddata, setcarddata] = useState({
-		overallRatting: "98",
-		mainPosition: "POR",
-		name: "Up Card",
-		subpValue1: "67",
-		subpValue2: "87",
+		overallRatting: "99",
+		mainPosition: "DC",
+		name: "NOMBRE",
+		subpValue1: "99",
+		subpValue2: "99",
 		subpValue3: "99",
-		subpValue4: "44",
-		subpValue5: "98",
-		subpValue6: "65",
-		subp1: "SAL",
-		subp2: "PAR",
-		subp3: "SAQ",
-		subp4: "REF",
-		subp5: "VEL",
-		subp6: "POS",
+		subpValue4: "99",
+		subpValue5: "99",
+		subpValue6: "99",
+		subp1: "RIT",
+		subp2: "PAS",
+		subp3: "TIR",
+		subp4: "REG",
+		subp5: "DEF",
+		subp6: "FIS",
 	});
 	const fetchData = () => {
 		setcarddata(cardinfo);
@@ -105,7 +105,11 @@ export const CardCustomization1 = () => {
 				cartItems: newdata,
 			})
 		);
-		let newdat2 = [...extraServices, ...extraService];
+
+		let newdat2 =
+			extraService[0]?.title === "DO NOT ADD ANYTHING"
+				? [...extraServices]
+				: [...extraServices, ...extraService];
 		dispatch(setExtraServices({ extraServices: newdat2 }));
 		window.localStorage.setItem(
 			"upcardcartArryUpdated",

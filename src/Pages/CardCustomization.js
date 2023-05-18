@@ -9,7 +9,7 @@ import { BsStarFill, BsStar, BsStarHalf } from "react-icons/bs";
 import { Stage, Layer, Image, Text, Line } from "react-konva";
 import useImage from "use-image";
 import { toast } from "react-toastify";
-import { setCartItems } from "../store/projectSlice";
+import { setCartItems, setExtraServices } from "../store/projectSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { CustomHook } from "../CustomHook/CustomHook";
 import { setClubs } from "../store/projectSlice";
@@ -20,7 +20,7 @@ import NewLargeLoader from "../Components/NewLargeLoader";
 export const CardCustomization = () => {
 	const { dbTranslator } = CustomHook();
 	const [isbigloading, setisbigloading] = useState(false);
-	const { footballCards, cartItems, clubs } = useSelector(
+	const { footballCards, cartItems, clubs, extraServices } = useSelector(
 		(state) => state.project
 	);
 	const dispatch = useDispatch();
@@ -70,11 +70,9 @@ export const CardCustomization = () => {
 	const navigate = useNavigate();
 	const [compSeq, setcompSeq] = useState(0);
 	//const [fullScreeniew, setFullScreeniew] = useState(false);
-	const [extraService, setextraService] = useState({
-		title: "",
-		subtitle: "",
-		prie: "",
-	});
+
+	const [extraService, setextraService] = useState([]);
+
 	const [openCropper, setopenCropper] = useState(false);
 	const stageRef = React.useRef();
 	const newref = React.useRef();
@@ -216,7 +214,6 @@ export const CardCustomization = () => {
 				id: new Date().getTime(),
 				pid: id,
 				imgSrc: imglink,
-				extra: extraService,
 			},
 		];
 		dispatch(
@@ -224,9 +221,19 @@ export const CardCustomization = () => {
 				cartItems: newdata,
 			})
 		);
+
+		let newdat2 =
+			extraService[0]?.title === "DO NOT ADD ANYTHING"
+				? [...extraServices]
+				: [...extraServices, ...extraService];
+		dispatch(setExtraServices({ extraServices: newdat2 }));
 		window.localStorage.setItem(
 			"upcardcartArryUpdated",
 			JSON.stringify(newdata)
+		);
+		window.localStorage.setItem(
+			"upcardcartArryUpdatedExtras",
+			JSON.stringify(newdat2)
 		);
 
 		toast.success(dbTranslator("paddcrt"), {
@@ -241,6 +248,7 @@ export const CardCustomization = () => {
 		});
 		setopenModal(true);
 	};
+
 	const nextBtnFunc = async () => {
 		if (compSeq === 0) {
 			if (
@@ -408,6 +416,9 @@ export const CardCustomization = () => {
 								positionValues={subPositionsVal}
 								onSetSubPositionValues={setsubPositionsal}
 								overAllRating={overAllRatting}
+								onChangeOverAllRatting={(e) =>
+									setoverAllRatting(e.target.value)
+								}
 							/>
 						)}
 						{compSeq === 4 && (

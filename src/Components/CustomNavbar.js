@@ -67,7 +67,7 @@ const CustomNavbar = ({ changeLanguage }) => {
 				sticky='top'
 				bg='light'
 				expand={"lg"}
-				className='my-1 w-100'>
+				className='w-100'>
 				<Container>
 					<div
 						style={{ width: "auto", flex: "1" }}
@@ -78,21 +78,27 @@ const CustomNavbar = ({ changeLanguage }) => {
 							placement='end'>
 							<Offcanvas.Body style={{ width: "auto", flex: "0" }}>
 								<Nav className='justify-content-start flex-grow-1 pe-3'>
-									<Nav.Link eventKey='1' className=' text-center mx-1 my-auto'>
+									<Nav.Link
+										eventKey='1'
+										className=' text-center mx-1 my-auto py-1'>
 										<NavLink
 											className={({ isActive }) => (isActive ? "active" : "")}
 											to='/products'>
 											{dbTranslator("prdcts")}
 										</NavLink>
 									</Nav.Link>
-									<Nav.Link eventKey='2' className=' text-center mx-1 my-auto'>
+									<Nav.Link
+										eventKey='2'
+										className=' text-center mx-1 my-auto py-1'>
 										<NavLink
 											className={({ isActive }) => (!isActive ? "" : "active")}
 											to='/cards'>
 											{dbTranslator("app")}
 										</NavLink>
 									</Nav.Link>
-									<Nav.Link eventKey='3' className=' text-center mx-1 my-auto'>
+									<Nav.Link
+										eventKey='3'
+										className=' text-center mx-1 my-auto  py-1'>
 										<NavLink
 											className={({ isActive }) => (!isActive ? "" : "active")}
 											to='/support'>
@@ -102,7 +108,10 @@ const CustomNavbar = ({ changeLanguage }) => {
 								</Nav>
 							</Offcanvas.Body>
 						</Navbar.Offcanvas>
-						<Navbar.Toggle aria-controls={`offcanvasNavbar-expand-lg`} />
+						<Navbar.Toggle
+							className=' py-1'
+							aria-controls={`offcanvasNavbar-expand-lg`}
+						/>
 
 						<NavLink
 							to='/'
@@ -120,7 +129,7 @@ const CustomNavbar = ({ changeLanguage }) => {
 								flex: "1",
 								background: "transparent",
 							}}
-							className='navbar-brand d-flex nillbtn h-100 allCenter'>
+							className='navbar-brand d-flex nillbtn h-100 allCenter  py-1'>
 							<img
 								style={{ objectFit: "contain" }}
 								className='logoImgResp'
@@ -132,7 +141,7 @@ const CustomNavbar = ({ changeLanguage }) => {
 					<div className='d-flex d-lg-none'>
 						<NavLink
 							className={({ isActive }) =>
-								"nav-link my-auto rightMarginResp" +
+								"nav-link my-auto  py-1 rightMarginResp" +
 								(!isActive ? "" : " active")
 							}
 							to='/cart'>
@@ -146,7 +155,7 @@ const CustomNavbar = ({ changeLanguage }) => {
 							onClick={() => {
 								setopenModel(true);
 							}}
-							className={"nav-link my-auto"}>
+							className={"nav-link my-auto  py-1"}>
 							<AiOutlineSearch
 								className='responsiveElements'
 								style={{ color: "rgba(0,0,0,0.5)" }}
@@ -173,21 +182,27 @@ const CustomNavbar = ({ changeLanguage }) => {
 						<Offcanvas.Body>
 							<Nav className='justify-content-end flex-grow-1 pe-3'>
 								<div className='d-block d-lg-none'>
-									<Nav.Link eventKey='1' className=' text-center mx-1 my-auto'>
+									<Nav.Link
+										eventKey='1'
+										className=' text-center mx-1  py-1 my-auto'>
 										<NavLink
 											className={({ isActive }) => (!isActive ? "" : "active")}
 											to='/products'>
 											{dbTranslator("prdcts")}
 										</NavLink>
 									</Nav.Link>
-									<Nav.Link eventKey='2' className=' text-center mx-1 my-auto'>
+									<Nav.Link
+										eventKey='2'
+										className=' text-center mx-1  py-1 my-auto'>
 										<NavLink
 											className={({ isActive }) => (!isActive ? "" : "active")}
 											to='/cards'>
 											{dbTranslator("app")}
 										</NavLink>
 									</Nav.Link>
-									<Nav.Link eventKey='3' className=' text-center mx-1 my-auto'>
+									<Nav.Link
+										eventKey='3'
+										className=' text-center mx-1  py-1 my-auto'>
 										<NavLink
 											className={({ isActive }) => (!isActive ? "" : "active")}
 											to='/support'>
@@ -198,7 +213,7 @@ const CustomNavbar = ({ changeLanguage }) => {
 
 								<Nav.Link
 									eventKey='32'
-									className=' text-center mx-1 my-auto d-none d-lg-block'>
+									className=' text-center mx-1  py-1 my-auto d-none d-lg-block'>
 									<div
 										onClick={() => {
 											setopenModel(true);
@@ -211,7 +226,7 @@ const CustomNavbar = ({ changeLanguage }) => {
 								</Nav.Link>
 								<Nav.Link
 									eventKey='4'
-									className=' text-center mx-1 my-auto d-none d-lg-block'>
+									className=' text-center  py-1 mx-1 my-auto d-none d-lg-block'>
 									<NavLink
 										className={({ isActive }) => (!isActive ? "" : "active")}
 										to='/cart'>
@@ -221,7 +236,9 @@ const CustomNavbar = ({ changeLanguage }) => {
 									</NavLink>
 								</Nav.Link>
 
-								<Nav.Link eventKey='6' className=' text-center mx-1 my-auto'>
+								<Nav.Link
+									eventKey='6'
+									className=' py-1 text-center mx-1 my-auto'>
 									<NavLink
 										className={({ isActive }) => (!isActive ? "" : "active")}
 										to='/products'>

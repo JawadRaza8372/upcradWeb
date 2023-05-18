@@ -1,5 +1,5 @@
-import React from "react";
-import { Route, Routes } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { CardCustomization } from "../Pages/CardCustomization";
 import CartPage from "../Pages/CartPage";
 import ChooseCardPage from "../Pages/ChooseCardPage";
@@ -16,6 +16,10 @@ import ReturnPolicyPage from "../Pages/ReturnPolicyPage";
 import { CardCustomization1 } from "../Pages/CardCustomization1";
 
 const FileRoutes = () => {
+	const { pathname } = useLocation();
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, [pathname]);
 	return (
 		<Routes>
 			<Route path='/cards' element={<ChooseCardPage />} />

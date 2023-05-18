@@ -15,22 +15,13 @@ const ChooseClubComp = ({
 	const { clubs } = useSelector((state) => state.project);
 	const [loading, setloading] = useState(false);
 	const [inputValue, setInputValue] = useState("");
-	const [selectData, setselectData] = useState(0);
 	const filteredData = () => {
 		if (inputValue !== "") {
 			return clubs?.filter((dat) =>
 				dat?.name?.toLowerCase()?.includes(inputValue?.toLowerCase())
 			);
 		} else {
-			if (selectData === 0) {
-				return clubs?.filter((dat) => dat?.category === "others");
-			} else if (selectData === 1) {
-				return clubs?.filter((dat) => dat?.category === "premium");
-			} else if (selectData === 2) {
-				return clubs?.filter((dat) => dat?.category === "champion");
-			} else {
-				return clubs?.slice(0, 4);
-			}
+			return clubs?.slice(0, 6);
 		}
 	};
 	const clubFlagUploader = async (e) => {
@@ -77,35 +68,7 @@ const ChooseClubComp = ({
 					onChange={(e) => setInputValue(e.target.value)}
 					placeholder={dbTranslator("search")}
 				/>
-				<div
-					className='row w-100 gx-0'
-					style={{
-						border: "0px",
-						borderBottom: "2px solid rgba(0,0,0,0.5)",
-						marginBottom: "30px",
-					}}>
-					<div
-						onClick={() => setselectData(0)}
-						className={`col-2 customOptionSelector ${
-							selectData === 0 ? "actieOption" : ""
-						}`}>
-						{dbTranslator("other")}
-					</div>
-					<div
-						onClick={() => setselectData(1)}
-						className={`col-6 customOptionSelector ${
-							selectData === 1 ? "actieOption" : ""
-						}`}>
-						{dbTranslator("pleague")}
-					</div>
-					<div
-						onClick={() => setselectData(2)}
-						className={`col-4 customOptionSelector ${
-							selectData === 2 ? "actieOption" : ""
-						}`}>
-						{dbTranslator("champ")}
-					</div>
-				</div>
+
 				<div
 					style={{
 						height: "180px",

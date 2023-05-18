@@ -114,7 +114,7 @@ const CartPage = () => {
 								}}>
 								{dbTranslator("scart")}
 							</span>
-							{cartItems?.length ? (
+							{cartItems?.length > 0 || extraServices?.length > 0 ? (
 								<>
 									{cartItems.map((dat, indea) => {
 										const carddata = footballCards?.filter(
@@ -128,7 +128,7 @@ const CartPage = () => {
 													key={dat?.id ? dat.id : new Date().getTime()}
 													id={dat?.id ? dat.id : new Date().getTime()}
 													title={currentdata?.title}
-													price={"€" + currentdata?.price}
+													price={currentdata?.price + "€"}
 													imgSrc={
 														typeof dat?.imgSrc === "object"
 															? `${dat?.imgSrc?.starter}${dat?.imgSrc?.imglink}`
@@ -141,6 +141,7 @@ const CartPage = () => {
 											return null;
 										}
 									})}
+
 									{extraServices.map((dat, indea) => {
 										subtotal = subtotal + parseFloat(dat?.price);
 										if (isNaN(subtotal) === false) {
@@ -149,7 +150,7 @@ const CartPage = () => {
 													key={indea}
 													id={indea}
 													title={dat?.title}
-													price={"€" + dat?.price}
+													price={dat?.price + "€"}
 													imgSrc={
 														dat?.price === "0"
 															? truckicon
@@ -201,7 +202,7 @@ const CartPage = () => {
 										textAlign: "end",
 										fontSize: "16px",
 									}}>
-									€ {subtotal}
+									{subtotal} €
 								</div>
 								<div className='col-6' style={{ fontSize: "16px" }}>
 									{dbTranslator("ship")}
@@ -212,7 +213,7 @@ const CartPage = () => {
 										textAlign: "end",
 										fontSize: "16px",
 									}}>
-									€ 25
+									25 €
 								</div>
 								<div
 									className='col-6'
@@ -226,7 +227,7 @@ const CartPage = () => {
 										fontWeight: "bold",
 										fontSize: "20px",
 									}}>
-									€ {parseFloat(subtotal + 25).toFixed(2)}
+									{parseFloat(subtotal + 25).toFixed(2)} €
 								</div>
 							</div>
 							<div className='row w-100 gx-0 mt-4'>

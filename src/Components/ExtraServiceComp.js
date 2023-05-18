@@ -47,11 +47,6 @@ const ExtraServiceComp = ({ value, setvalue }) => {
 				"We send you an adhesive with which you can stick your football card on the wall!",
 			price: "1",
 		},
-		{
-			title: "DO NOT ADD ANYTHING",
-			subtitle: "---",
-			price: "0",
-		},
 	];
 	return (
 		<div className='w-90 h-100 mx-auto d-flex align-items-start justify-content-center flex-column'>
@@ -112,7 +107,7 @@ const ExtraServiceComp = ({ value, setvalue }) => {
 								</div>
 								<div className='col-9 col-md-10 d-flex align-items-start justify-content-center flex-column'>
 									<span className='mainColor extraserviceheadresp'>
-										{dat.title}+€{dat.price}
+										{dat.title}+ {dat.price}€
 									</span>
 									<span
 										className='extraservicesheadresp'
@@ -125,6 +120,60 @@ const ExtraServiceComp = ({ value, setvalue }) => {
 							</div>
 						);
 					})}
+
+				<div
+					onClick={() => {
+						setvalue([
+							{
+								title: "DO NOT ADD ANYTHING",
+								subtitle: "---",
+								price: "0",
+							},
+						]);
+					}}
+					className='row w-100 mb-3 mx-auto'
+					style={{
+						height: "fit-content",
+						minHeight: "80px",
+						border:
+							value.length > 0 && value[0]?.title === "DO NOT ADD ANYTHING"
+								? "1px solid black"
+								: "0px",
+						borderRadius: "10px",
+						cursor: "pointer",
+						overflow: "hidden",
+					}}>
+					<div
+						className='col-3 col-md-2'
+						style={{
+							background: "white",
+							display: "flex",
+							alignItems: "center",
+							justifyContent: "center",
+						}}>
+						<img
+							src={truckicon}
+							alt='truck'
+							style={{
+								width: "100%",
+								objectFit: "cover",
+								maxWidth: "250px",
+							}}
+						/>
+					</div>
+					<div className='col-9 col-md-10 d-flex align-items-start justify-content-center flex-column'>
+						<span className='mainColor extraserviceheadresp'>
+							DO NOT ADD ANYTHING + 0€
+						</span>
+						<span
+							className='extraservicesheadresp'
+							style={{
+								color: "rgba(106, 106, 106, 1)",
+							}}>
+							---
+						</span>
+					</div>
+				</div>
 			</div>
 		</div>
 	);
