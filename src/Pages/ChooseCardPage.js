@@ -477,9 +477,10 @@ const ChooseCardPage = () => {
 									</div>
 									<div className='nameContaiber'>
 										<input
-											maxLength={12}
+											maxLength={16}
 											placeholder='Your Name'
 											value={carddata?.name}
+											spellCheck={false}
 											onChange={(e) => {
 												e.target.setSelectionRange(
 													e.target.value.length,
@@ -959,7 +960,7 @@ const ChooseCardPage = () => {
 															: "white"
 													}
 													text={`${carddata?.name?.toUpperCase()}`}
-													fontSize={40}
+													fontSize={33}
 													verticalAlign={"middle"}
 													align={"center"}
 													fontStyle={"bold"}

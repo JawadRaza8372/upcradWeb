@@ -149,17 +149,17 @@ const HomePage = () => {
 		nextArrow: <CustomRightArrow />,
 		prevArrow: <CustomLeftArrow />,
 	};
-	const settings3 = {
-		centerMode: true,
-		infinite: true,
-		slidesToShow: 1,
-		speed: 50,
-		dots: true,
-		slidesToScroll: 1,
-		swipeToSlide: true,
-		nextArrow: <CustomRightArrow />,
-		prevArrow: <CustomLeftArrow />,
-	};
+	// const settings3 = {
+	// 	centerMode: true,
+	// 	infinite: true,
+	// 	slidesToShow: 1,
+	// 	speed: 50,
+	// 	dots: true,
+	// 	slidesToScroll: 1,
+	// 	swipeToSlide: true,
+	// 	nextArrow: <CustomRightArrow />,
+	// 	prevArrow: <CustomLeftArrow />,
+	// };
 	const settings2 = {
 		dots: true,
 		infinite: true,
@@ -369,26 +369,34 @@ const HomePage = () => {
 								</button>
 							</div>
 						</div>
-						<div className='col-12 mb-4 col-lg-6  order-1 order-md-2 allCenter flex-column'>
-							<div className='row w-100 h-100  d-flex d-md-none'>
-								<Slider {...settings3}>
-									{footballCards &&
-										footballCards
-											?.slice(4, 10)
-											?.map((dat) => (
-												<FootballCards
-													onClickFun={() =>
-														navigate(`/cardCustomization/${dat.id}`)
-													}
-													key={dat.id + dat.title + "sliderfootball"}
-													isbestSeller={true}
-													sorce={dat.imgSrc}
-													title={dat.title}
-													price={dat.price}
-													oldprice={dat.oldprice}
-												/>
-											))}
-								</Slider>
+						<div className='col-12 mb-4 col-lg-6  order-1 order-md-2'>
+							<div
+								className='row gx-0 w-100 d-flex d-md-none align-items-center justify-content-start flex-row'
+								style={{
+									overflowX: "auto",
+									height: "350px",
+									flexWrap: "nowrap",
+								}}>
+								{footballCards &&
+									footballCards?.slice(4, 10)?.map((dat) => (
+										<div
+											key={dat.id + dat.title + "sliderfootball"}
+											className='respfootballContslider allCenter'>
+											<FootballCards
+												onClickFun={() =>
+													navigate(`/cardCustomization/${dat.id}`)
+												}
+												isbestSeller={true}
+												sorce={dat.imgSrc}
+												title={dat.title}
+												price={dat.price}
+												oldprice={dat.oldprice}
+											/>
+										</div>
+									))}
+								{/* <Slider {...settings3}>
+
+								</Slider> */}
 							</div>
 							<div className='row w-100 d-none d-md-flex'>
 								{footballCards &&
@@ -409,7 +417,7 @@ const HomePage = () => {
 										</div>
 									))}
 							</div>
-							<div className='row w-100 mt-3 h-100 allCenter'>
+							<div className='row w-100 mt-3 allCenter'>
 								<button
 									onClick={() => navigate("/products")}
 									className='btn mainColor secondarybg'

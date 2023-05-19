@@ -204,6 +204,10 @@
 canvas {
 	max-width: 100%;
 }
+.respfootballContslider {
+	width: 320px !important;
+	height: 100%;
+}
 @media (max-width: 991.98px) {
 	.firstSectionHeading {
 		font-size: 30px;
@@ -238,6 +242,10 @@ canvas {
 	}
 }
 @media screen and (max-width: 400px) {
+	.respfootballContslider {
+		width: 240px !important;
+		height: 100%;
+	}
 	.scrolledImageContainer {
 		overflow-x: scroll;
 	}
