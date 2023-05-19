@@ -173,7 +173,7 @@ const BasicInfoComp = ({
 						onChange={onChangeName}
 						className='inputCustmResp'
 						placeholder={dbTranslator("name")}
-						maxLength={12}
+						maxLength={16}
 					/>
 					<label className='w-100' htmlFor='file'>
 						{imglink?.length > 0 && loading === false ? (

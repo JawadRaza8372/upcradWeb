@@ -691,7 +691,7 @@ export const CardCustomization = () => {
 													: "white"
 											}
 											text={`${BasicInfo?.name}`}
-											fontSize={40}
+											fontSize={33}
 											verticalAlign={"middle"}
 											align={"center"}
 											fontStyle={"bold"}

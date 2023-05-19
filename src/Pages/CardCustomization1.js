@@ -460,7 +460,7 @@ export const CardCustomization1 = () => {
 													: "white"
 											}
 											text={`${carddata?.name?.toUpperCase()}`}
-											fontSize={40}
+											fontSize={33}
 											verticalAlign={"middle"}
 											align={"center"}
 											fontStyle={"bold"}
