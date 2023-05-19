@@ -19,7 +19,9 @@ const ErrorPage = () => {
 				alt='logo'
 				style={{ width: "95%", maxWidth: "450px", objectFit: "contain" }}
 			/>
-			<h1 className='mainColor'>{dbTranslator("text404")}</h1>
+			<h1 style={{ textAlign: "center" }} className='mainColor'>
+				{dbTranslator("text404")}
+			</h1>
 		</div>
 	);
 };
