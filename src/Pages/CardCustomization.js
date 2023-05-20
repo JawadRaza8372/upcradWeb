@@ -58,6 +58,8 @@ export const CardCustomization = () => {
 		name: "",
 		id: "",
 	});
+	const [tempclubimg, settempclubimg] = useState("");
+
 	const [overAllRatting, setoverAllRatting] = useState(0);
 	let rattingdata = 4.5;
 	let ratting = Math.floor(rattingdata);
@@ -74,6 +76,7 @@ export const CardCustomization = () => {
 	const [extraService, setextraService] = useState([]);
 
 	const [openCropper, setopenCropper] = useState(false);
+	const [clubcroopers, setclubcroopers] = useState(false);
 	const stageRef = React.useRef();
 	const newref = React.useRef();
 	const [image] = useImage(`${currentData?.imgSrc}`, "Anonimus");
@@ -137,30 +140,21 @@ export const CardCustomization = () => {
 	});
 	const [templinkImg, settemplinkImg] = useState("");
 
-	const uploadImageFun = async (image) => {
-		const data = new FormData();
-		data.append("file", image);
-		data.append("upload_preset", "jhcjvtsx");
-		data.append("cloud_name", "dxb services");
-		const result = await fetch(
-			"  https://api.cloudinary.com/v1_1/dpjk8xcld/image/upload",
-			{
-				method: "post",
-				body: data,
-			}
-		);
-		return result?.json();
-	};
-	const uploadClubFlag = async (e) => {
-		const result = await uploadImageFun(e.target.files[0]);
-		if (result?.secure_url?.length > 0) {
-			setClubFlag({
-				badge: result?.secure_url,
-				name: "customFlag",
-				id: "customFlag",
-			});
-		}
-	};
+	// const uploadImageFun = async (image) => {
+	// 	const data = new FormData();
+	// 	data.append("file", image);
+	// 	data.append("upload_preset", "jhcjvtsx");
+	// 	data.append("cloud_name", "dxb services");
+	// 	const result = await fetch(
+	// 		"  https://api.cloudinary.com/v1_1/dpjk8xcld/image/upload",
+	// 		{
+	// 			method: "post",
+	// 			body: data,
+	// 		}
+	// 	);
+	// 	return result?.json();
+	// };
+
 	const getBase64 = (file) => {
 		return new Promise((resolve) => {
 			let baseURL = "";
@@ -190,6 +184,23 @@ export const CardCustomization = () => {
 		);
 		return rest.json();
 	};
+	const onCropompleteClub = (link) => {
+		setClubFlag({
+			badge: link,
+			name: "customFlag",
+			id: "customFlag",
+		});
+		setclubcroopers(false);
+	};
+	const uploadClubFlag = async (e) => {
+		const result = await uploadImageFunNew(e.target.files[0]);
+		if (result?.imglink) {
+			settempclubimg(result?.imglink);
+			setclubcroopers(true);
+		} else {
+			console.log(result?.error);
+		}
+	};
 	const handleUpload = async (e) => {
 		const result = await uploadImageFunNew(e.target.files[0]);
 		if (result?.imglink) {
@@ -199,6 +210,7 @@ export const CardCustomization = () => {
 			console.log(result?.error);
 		}
 	};
+
 	const onCropomplete = (link) => {
 		setBasicInfo({
 			...BasicInfo,
@@ -223,7 +235,7 @@ export const CardCustomization = () => {
 		);
 
 		let newdat2 =
-			extraService[0]?.title === "DO NOT ADD ANYTHING"
+			extraService[0]?.title === dbTranslator("headextra6")
 				? [...extraServices]
 				: [...extraServices, ...extraService];
 		dispatch(setExtraServices({ extraServices: newdat2 }));
@@ -402,6 +414,9 @@ export const CardCustomization = () => {
 								selectedFlag={clubFlag}
 								setselectedFlag={(dat) => setClubFlag(dat)}
 								handleFlagUpload={uploadClubFlag}
+								imgsrc={tempclubimg}
+								model={clubcroopers}
+								onCropComp={onCropompleteClub}
 							/>
 						)}
 						{compSeq === 2 && (

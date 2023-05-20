@@ -4,11 +4,15 @@ import { BiImageAdd } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import CustomSmallLoader from "./CustomSmallLoader";
 import { CustomHook } from "../CustomHook/CustomHook";
-
+import Cropper from "react-cropper";
+import "../../node_modules/cropperjs/dist/cropper.css";
 const ChooseClubComp = ({
 	selectedFlag,
 	setselectedFlag,
 	handleFlagUpload,
+	imgsrc,
+	model,
+	onCropComp,
 }) => {
 	const { dbTranslator } = CustomHook();
 
@@ -29,8 +33,52 @@ const ChooseClubComp = ({
 		await handleFlagUpload(e);
 		setloading(false);
 	};
+	const cropperRef = React.createRef(null);
+	const oncrop = () => {
+		onCropComp(
+			cropperRef.current.cropper
+				?.getCroppedCanvas()
+				?.toDataURL({ pixelRatio: 3 })
+		);
+	};
 	return (
-		<div className='w-90 h-100 mx-auto d-flex align-items-start justify-content-center flex-column'>
+		<div
+			style={{ position: "relative" }}
+			className='w-90 h-100 mx-auto d-flex align-items-start justify-content-center flex-column'>
+			{model && (
+				<div
+					style={{
+						position: "absolute",
+
+						width: "100%",
+						height: "100vh",
+						background: "rgba(255,255,255,0.9)",
+						zIndex: "1000",
+						left: "0px",
+						top: "0px",
+						transform: "translate(-50% , -50%),",
+					}}
+					className='allCenter flex-row'>
+					<div className='col-11 col-lg-6 allCenter flex-column'>
+						<Cropper
+							style={{ height: 400, width: "100%" }}
+							preview='.img-preview'
+							src={`${imgsrc}`}
+							ref={cropperRef}
+							initialAspectRatio={1}
+							aspectRatio={1}
+							viewMode={2}
+							guides={false}
+						/>
+						<button
+							className='btn mainColor secondarybg'
+							style={{ margin: "20px auto" }}
+							onClick={oncrop}>
+							{dbTranslator("save")}
+						</button>
+					</div>
+				</div>
+			)}
 			<span className='mainColor CustHeadingRespComp'>
 				{dbTranslator("head3")}
 			</span>

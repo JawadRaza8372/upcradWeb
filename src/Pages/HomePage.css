@@ -241,6 +241,10 @@ canvas {
 		margin-right: 40px;
 	}
 }
+.disableClass {
+	opacity: 0.7;
+	pointer-events: none;
+}
 @media screen and (max-width: 400px) {
 	.respfootballContslider {
 		width: 240px !important;

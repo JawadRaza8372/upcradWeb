@@ -107,7 +107,7 @@ export const CardCustomization1 = () => {
 		);
 
 		let newdat2 =
-			extraService[0]?.title === "DO NOT ADD ANYTHING"
+			extraService[0]?.title === dbTranslator("headextra6")
 				? [...extraServices]
 				: [...extraServices, ...extraService];
 		dispatch(setExtraServices({ extraServices: newdat2 }));

@@ -116,7 +116,7 @@ const CartPage = () => {
 							</span>
 							{cartItems?.length > 0 || extraServices?.length > 0 ? (
 								<>
-									{cartItems.map((dat, indea) => {
+									{cartItems?.map((dat, indea) => {
 										const carddata = footballCards?.filter(
 											(dac) => dac.id === dat.pid
 										);
@@ -142,7 +142,7 @@ const CartPage = () => {
 										}
 									})}
 
-									{extraServices.map((dat, indea) => {
+									{extraServices?.map((dat, indea) => {
 										subtotal = subtotal + parseFloat(dat?.price);
 										if (isNaN(subtotal) === false) {
 											return (

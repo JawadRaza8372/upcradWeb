@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import truckicon from "../ownassets/truck.png";
 import { CustomHook } from "../CustomHook/CustomHook";
 import extra1 from "../ownassets/extr1.jpg";
@@ -8,6 +8,7 @@ import extra4 from "../ownassets/extra4.png";
 import extra5 from "../ownassets/extra5.jpg";
 
 const ExtraServiceComp = ({ value, setvalue }) => {
+	const [disableother, setdisableother] = useState(false);
 	const { dbTranslator } = CustomHook();
 	const imgearry = [
 		{ imgSrc: extra1 },
@@ -18,33 +19,29 @@ const ExtraServiceComp = ({ value, setvalue }) => {
 	];
 	const rawdata = [
 		{
-			title: "MATERIAL PREMIUM",
-			subtitle:
-				"We will manufacture your letters in 3mm thick methacrylate, with a premium finish.",
+			title: dbTranslator("headextra1"),
+			subtitle: dbTranslator("subextra1"),
 			price: "7",
 		},
 
 		{
-			title: "CARDS PACK",
-			subtitle: "We're sending you an extra random soccer card!",
+			title: dbTranslator("headextra2"),
+			subtitle: dbTranslator("subextra2"),
 			price: "5",
 		},
 		{
-			title: "PROTECTION AGAINST DAMAGE",
-			subtitle:
-				"Protection against damage that the order may suffer during shipping. If your order arrives damaged, we will change it.",
+			title: dbTranslator("headextra3"),
+			subtitle: dbTranslator("subextra3"),
 			price: "3",
 		},
 		{
-			title: "GREETINGS CARD",
-			subtitle:
-				"We'll include a premium card so you can write a congratulatory message.",
+			title: dbTranslator("headextra4"),
+			subtitle: dbTranslator("subextra4"),
 			price: "2",
 		},
 		{
-			title: "WALL MOUNTING STICKER",
-			subtitle:
-				"We send you an adhesive with which you can stick your football card on the wall!",
+			title: dbTranslator("headextra5"),
+			subtitle: dbTranslator("subextra5"),
 			price: "1",
 		},
 	];
@@ -76,7 +73,9 @@ const ExtraServiceComp = ({ value, setvalue }) => {
 										setvalue(value?.length > 0 ? [...value, dat] : [dat]);
 									}
 								}}
-								className='row w-100 mb-3 mx-auto'
+								className={`row w-100 mb-3 mx-auto ${
+									disableother ? "disableClass" : ""
+								}`}
 								style={{
 									height: "fit-content",
 									minHeight: "80px",
@@ -123,6 +122,7 @@ const ExtraServiceComp = ({ value, setvalue }) => {
 
 				<div
 					onClick={() => {
+						setdisableother(true);
 						setvalue([
 							{
 								title: "DO NOT ADD ANYTHING",
@@ -163,7 +163,7 @@ const ExtraServiceComp = ({ value, setvalue }) => {
 					</div>
 					<div className='col-9 col-md-10 d-flex align-items-start justify-content-center flex-column'>
 						<span className='mainColor extraserviceheadresp'>
-							DO NOT ADD ANYTHING + 0€
+							{dbTranslator("headextra6")} + 0€
 						</span>
 						<span
 							className='extraservicesheadresp'
