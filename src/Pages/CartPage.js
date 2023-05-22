@@ -15,6 +15,7 @@ import extra3 from "../ownassets/extr3.jpg";
 import extra4 from "../ownassets/extra4.png";
 import extra5 from "../ownassets/extra5.jpg";
 import truckicon from "../ownassets/truck.png";
+import { apiurl } from "../Harddata";
 
 const CartPage = () => {
 	const { dbTranslator } = CustomHook();
@@ -80,14 +81,12 @@ const CartPage = () => {
 	};
 	const [stripePromise, setStripePromise] = useState(null);
 	useEffect(() => {
-		fetch("https://upcradstripepayment-production.up.railway.app/config").then(
-			async (r) => {
-				const result = await r.json();
-				if (result?.publishableKey) {
-					setStripePromise(loadStripe(`${result?.publishableKey}`));
-				}
+		fetch(`${apiurl}/config`).then(async (r) => {
+			const result = await r.json();
+			if (result?.publishableKey) {
+				setStripePromise(loadStripe(`${result?.publishableKey}`));
 			}
-		);
+		});
 	}, []);
 	return (
 		<>
@@ -213,7 +212,7 @@ const CartPage = () => {
 										textAlign: "end",
 										fontSize: "16px",
 									}}>
-									25 €
+									0 €
 								</div>
 								<div
 									className='col-6'
@@ -227,7 +226,7 @@ const CartPage = () => {
 										fontWeight: "bold",
 										fontSize: "20px",
 									}}>
-									{parseFloat(subtotal + 25).toFixed(2)} €
+									{parseFloat(subtotal + 0).toFixed(2)} €
 								</div>
 							</div>
 							<div className='row w-100 gx-0 mt-4'>

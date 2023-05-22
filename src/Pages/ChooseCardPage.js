@@ -21,6 +21,7 @@ import {
 	setClubs,
 } from "../store/projectSlice";
 import NewLargeLoader from "../Components/NewLargeLoader";
+import { apiurl } from "../Harddata";
 
 const ChooseCardPage = () => {
 	const { dbTranslator } = CustomHook();
@@ -77,19 +78,16 @@ const ChooseCardPage = () => {
 
 	const uploadImageFunNew = async (image) => {
 		const results = await getBase64(image);
-		const rest = await fetch(
-			"https://upcradstripepayment-production.up.railway.app/imgeUpload",
-			{
-				method: "post",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({
-					imglink: results?.split("base64,")[1],
-					starter: `${results?.split("base64,")[0]}base64,`,
-				}),
-			}
-		);
+		const rest = await fetch(`${apiurl}/imgeUpload`, {
+			method: "post",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				imglink: results?.split("base64,")[1],
+				starter: `${results?.split("base64,")[0]}base64,`,
+			}),
+		});
 		return rest.json();
 	};
 	const [openCropper, setopenCropper] = useState(false);

@@ -291,6 +291,13 @@ h6 {
 	justify-content: center;
 	padding: 10px 20px;
 }
+@media screen and (max-width: 768px) {
+	.topHeadingDiv {
+		padding: 0px 20px;
+		min-height: 6vh;
+		margin-bottom: 0px;
+	}
+}
 .modalContainer {
 	width: 100%;
 	min-height: 100%;

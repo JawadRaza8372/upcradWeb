@@ -272,9 +272,7 @@ const ProductsPage = () => {
 						<div className='row w-100 gx-0 mb-5'>
 							{filterNewData(footballCards) &&
 								filterNewData(footballCards)?.map((dat) => (
-									<div
-										key={dat.id}
-										className='col-12 col-sm-6 col-md-4 mx-auto'>
+									<div key={dat.id} className='col-6 col-sm-6 col-md-4 mx-auto'>
 										<FootballCards
 											onClickFun={() =>
 												navigate(`/cardCustomization/${dat.id}`)

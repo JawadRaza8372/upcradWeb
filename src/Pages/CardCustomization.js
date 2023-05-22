@@ -17,6 +17,7 @@ import { getDatabase, ref, child, get } from "firebase/database";
 import { uploadImage } from "../Database/Database";
 import ContinueShopping from "../Components/ContinueShopping";
 import NewLargeLoader from "../Components/NewLargeLoader";
+import { apiurl } from "../Harddata";
 export const CardCustomization = () => {
 	const { dbTranslator } = CustomHook();
 	const [isbigloading, setisbigloading] = useState(false);
@@ -169,19 +170,16 @@ export const CardCustomization = () => {
 
 	const uploadImageFunNew = async (image) => {
 		const results = await getBase64(image);
-		const rest = await fetch(
-			"https://upcradstripepayment-production.up.railway.app/imgeUpload",
-			{
-				method: "post",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({
-					imglink: results?.split("base64,")[1],
-					starter: `${results?.split("base64,")[0]}base64,`,
-				}),
-			}
-		);
+		const rest = await fetch(`${apiurl}/imgeUpload`, {
+			method: "post",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				imglink: results?.split("base64,")[1],
+				starter: `${results?.split("base64,")[0]}base64,`,
+			}),
+		});
 		return rest.json();
 	};
 	const onCropompleteClub = (link) => {

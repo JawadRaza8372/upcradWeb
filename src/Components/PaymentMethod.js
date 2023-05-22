@@ -8,6 +8,7 @@ import { CardElement } from "@stripe/react-stripe-js";
 import { useDispatch, useSelector } from "react-redux";
 import { setClientSecretId } from "../store/projectSlice";
 import { CustomHook } from "../CustomHook/CustomHook";
+import { apiurl } from "../Harddata";
 
 const PaymentMethod = ({ price, data, userid, saveOrderInfo }) => {
 	const { dbTranslator } = CustomHook();
@@ -28,16 +29,13 @@ const PaymentMethod = ({ price, data, userid, saveOrderInfo }) => {
 	const dispatch = useDispatch();
 	useEffect(() => {
 		let data = { priceit: `${price}` };
-		fetch(
-			"https://upcradstripepayment-production.up.railway.app/create-payment-intent",
-			{
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(data),
-			}
-		).then(async (result) => {
+		fetch(`${apiurl}/create-payment-intent`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(data),
+		}).then(async (result) => {
 			var newRest = await result.json();
 			dispatch(setClientSecretId({ clientSecret: newRest?.clientSecret }));
 		});

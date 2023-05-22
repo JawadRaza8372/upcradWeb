@@ -1036,8 +1036,9 @@ const customData = {
 	fifValue: "PAS",
 	sixValue: "PHY",
 };
-
+const apiurl = "https://upcradstripepayment-production.up.railway.app";
 export {
+	apiurl,
 	customData,
 	attackdata,
 	middata,
