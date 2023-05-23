@@ -19,17 +19,6 @@ const ExtraServiceComp = ({ value, setvalue }) => {
 	];
 	const rawdata = [
 		{
-			title: dbTranslator("headextra1"),
-			subtitle: dbTranslator("subextra1"),
-			price: "7",
-		},
-
-		{
-			title: dbTranslator("headextra2"),
-			subtitle: dbTranslator("subextra2"),
-			price: "5",
-		},
-		{
 			title: dbTranslator("headextra3"),
 			subtitle: dbTranslator("subextra3"),
 			price: "3",
@@ -66,16 +55,21 @@ const ExtraServiceComp = ({ value, setvalue }) => {
 							<div
 								key={index}
 								onClick={() => {
-									if (check) {
-										let newvAL = value.filter((daw) => daw.title !== dat.title);
-										setvalue(newvAL);
+									let checking = value?.find((dr) => `${dr.price}` === "0");
+									if (checking) {
+										setvalue([dat]);
 									} else {
-										setvalue(value?.length > 0 ? [...value, dat] : [dat]);
+										if (check) {
+											let newvAL = value.filter(
+												(daw) => daw.title !== dat.title
+											);
+											setvalue(newvAL);
+										} else {
+											setvalue(value?.length > 0 ? [...value, dat] : [dat]);
+										}
 									}
 								}}
-								className={`row w-100 mb-3 mx-auto ${
-									disableother ? "disableClass" : ""
-								}`}
+								className={`row w-100 mb-3 mx-auto ${disableother ? "" : ""}`}
 								style={{
 									height: "fit-content",
 									minHeight: "80px",

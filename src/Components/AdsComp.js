@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-//import AdSense from "react-adsense";
+import AdSense from "react-adsense";
 
 class AdsComp extends Component {
 	componentDidMount() {
@@ -21,7 +21,7 @@ class AdsComp extends Component {
 					data-ad-slot={`${this.props.slotnumber}`}
 					data-ad-format='auto'
 					data-full-width-responsive='true'></ins>
-				{/* <AdSense.Google
+				<AdSense.Google
 					client='ca-pub-3453611888054749'
 					slot={`${this.props.slotnumber}`}
 					style={{
@@ -32,7 +32,7 @@ class AdsComp extends Component {
 					}}
 					layout='in-article'
 					format='fluid'
-				/> */}
+				/>
 			</div>
 		);
 	}
