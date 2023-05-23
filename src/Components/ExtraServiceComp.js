@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import truckicon from "../ownassets/truck.png";
 import { CustomHook } from "../CustomHook/CustomHook";
-import extra1 from "../ownassets/extr1.jpg";
-import extra2 from "../ownassets/ext2.png";
 import extra3 from "../ownassets/extr3.jpg";
 import extra4 from "../ownassets/extra4.png";
 import extra5 from "../ownassets/extra5.jpg";
@@ -10,13 +8,7 @@ import extra5 from "../ownassets/extra5.jpg";
 const ExtraServiceComp = ({ value, setvalue }) => {
 	const [disableother, setdisableother] = useState(false);
 	const { dbTranslator } = CustomHook();
-	const imgearry = [
-		{ imgSrc: extra1 },
-		{ imgSrc: extra2 },
-		{ imgSrc: extra3 },
-		{ imgSrc: extra4 },
-		{ imgSrc: extra5 },
-	];
+	const imgearry = [{ imgSrc: extra3 }, { imgSrc: extra4 }, { imgSrc: extra5 }];
 	const rawdata = [
 		{
 			title: dbTranslator("headextra3"),
