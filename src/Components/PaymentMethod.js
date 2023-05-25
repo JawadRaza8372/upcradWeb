@@ -27,6 +27,7 @@ const PaymentMethod = ({ price, data, userid, saveOrderInfo }) => {
 	});
 	const { clientSecret } = useSelector((state) => state.project);
 	const dispatch = useDispatch();
+	console.log(price);
 	useEffect(() => {
 		let data = { priceit: `${price}` };
 		fetch(`${apiurl}/create-payment-intent`, {
@@ -38,7 +39,6 @@ const PaymentMethod = ({ price, data, userid, saveOrderInfo }) => {
 		})
 			.then(async (result) => {
 				var newRest = await result.json();
-				console.log(result);
 				dispatch(setClientSecretId({ clientSecret: newRest?.clientSecret }));
 			})
 			.catch((e) => console.log(e));

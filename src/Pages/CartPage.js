@@ -237,7 +237,7 @@ const CartPage = () => {
 												stripe={stripePromise}
 												options={clientSecret ? { clientSecret } : {}}>
 												<PaymentMethod
-													price={subtotal + 25}
+													price={subtotal}
 													data={cartItems}
 													userid={isAuth?.uid ? isAuth?.uid : "---"}
 													saveOrderInfo={saveorderFunc}
