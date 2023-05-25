@@ -35,10 +35,13 @@ const PaymentMethod = ({ price, data, userid, saveOrderInfo }) => {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify(data),
-		}).then(async (result) => {
-			var newRest = await result.json();
-			dispatch(setClientSecretId({ clientSecret: newRest?.clientSecret }));
-		});
+		})
+			.then(async (result) => {
+				var newRest = await result.json();
+				console.log(result);
+				dispatch(setClientSecretId({ clientSecret: newRest?.clientSecret }));
+			})
+			.catch((e) => console.log(e));
 	}, [price, dispatch]);
 	const [succeeded, setSucceeded] = useState(false);
 	const [error, setError] = useState(null);
